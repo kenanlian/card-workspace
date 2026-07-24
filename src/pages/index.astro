@@ -1,0 +1,17 @@
+---
+// Redirect the site root (/card-workspace-site/) to the default locale.
+const target = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/en/`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>Card Workspace</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={target}>the documentation</a>…</p>
+  </body>
+</html>
