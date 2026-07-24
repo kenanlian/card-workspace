@@ -14,7 +14,7 @@ description: How to install the Card Workspace plugin in Obsidian.
 
 ## Manual installation
 
-1. Download the latest release from the [releases page](https://github.com/kenanlian/card-workspace/releases).
+1. Download the latest release from the [releases page](https://github.com/kenanlian/obsidian-card-workspace/releases).
 2. Copy `main.js`, `manifest.json`, and `styles.css` into
    `<your-vault>/.obsidian/plugins/card-workspace/`.
 3. Reload Obsidian and enable the plugin under **Community plugins**.

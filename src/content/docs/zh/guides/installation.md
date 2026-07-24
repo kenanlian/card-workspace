@@ -14,7 +14,7 @@ description: 如何在 Obsidian 中安装 Card Workspace 插件。
 
 ## 手动安装
 
-1. 从 [发布页面](https://github.com/kenanlian/card-workspace/releases) 下载最新版本。
+1. 从 [发布页面](https://github.com/kenanlian/obsidian-card-workspace/releases) 下载最新版本。
 2. 将 `main.js`、`manifest.json` 和 `styles.css` 复制到
    `<你的仓库>/.obsidian/plugins/card-workspace/` 目录下。
 3. 重新加载 Obsidian，并在 **第三方插件** 中启用该插件。

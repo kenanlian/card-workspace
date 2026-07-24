@@ -26,7 +26,7 @@ export default defineConfig({
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/kenanlian/card-workspace',
+          href: 'https://github.com/kenanlian/obsidian-card-workspace',
         },
       ],
       sidebar: [
