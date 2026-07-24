@@ -16,3 +16,5 @@ pnpm-debug.log*
 .DS_Store
 # Cursor local config (may contain secrets)
 .cursor/
+# Serena tool cache
+.serena/
