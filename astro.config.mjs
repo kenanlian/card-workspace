@@ -16,6 +16,8 @@ export default defineConfig({
     starlight({
       title: 'Card Workspace',
       description: 'A card-based workspace plugin for Obsidian.',
+      // Zed-inspired custom theme (see src/styles/theme.css).
+      customCss: ['./src/styles/theme.css'],
       // English is the default (root) language; Chinese lives under /zh/.
       defaultLocale: 'en',
       locales: {

@@ -1,0 +1,269 @@
+/* ==========================================================================
+   Card Workspace — Zed-inspired theme for Starlight
+   Design language borrowed from zed.dev:
+   - Serif display headings (IBM Plex Serif, light weight, tight tracking)
+   - Monospace body / UI text (IBM Plex Mono) — the "serif head / mono body" inversion
+   - Off-white canvas + faint grid + silver hairlines (light)
+   - Deep navy canvas (dark), brand-blue accents in both modes
+   - Near-square corners (2–4px)
+   ========================================================================== */
+
+/* --- Fonts (self-hosted via @fontsource) -------------------------------- */
+@import '@fontsource-variable/inter';
+@import '@fontsource/ibm-plex-serif/300.css';
+@import '@fontsource/ibm-plex-serif/400.css';
+@import '@fontsource/ibm-plex-serif/500.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/ibm-plex-mono/600.css';
+
+:root {
+  --cw-font-serif: 'IBM Plex Serif', ui-serif, Georgia, 'Times New Roman', serif;
+  --cw-font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui,
+    -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --cw-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, monospace;
+  /* Mono is reserved for UI chrome (nav, buttons, labels) + code */
+  --cw-font-ui: var(--cw-font-mono);
+
+  /* Zed brand */
+  --cw-brand-blue: #1348dc;
+  --cw-signal-blue: #2b7fff;
+
+  /* Starlight font tokens — readable sans for body prose */
+  --sl-font: var(--cw-font-sans);
+  --sl-font-mono: var(--cw-font-mono);
+
+  /* Near-square corners, Zed style */
+  --cw-radius-sm: 2px;
+  --cw-radius-md: 4px;
+}
+
+/* --- Dark mode palette (Zed "canvas dark" navy family) ------------------ */
+:root {
+  --sl-color-accent-low: #10233f;
+  --sl-color-accent: #2b7fff; /* signal blue reads bright on navy */
+  --sl-color-accent-high: #bedbff; /* frost */
+
+  --sl-color-white: #f4f6f8;
+  --sl-color-gray-1: #dce0e5; /* on-dark */
+  --sl-color-gray-2: #b8bdc6;
+  --sl-color-gray-3: #878a98; /* ash */
+  --sl-color-gray-4: #5d636f; /* slate */
+  --sl-color-gray-5: #2f343e; /* midnight */
+  --sl-color-gray-6: #1b1d22; /* surface-dark */
+  --sl-color-gray-7: #141721;
+  --sl-color-black: #101828; /* canvas-dark */
+
+  --cw-surface: #171e2d;
+  --cw-hairline: #262d3b;
+  --cw-grid: rgba(255, 255, 255, 0.035);
+  --cw-heading-accent: var(--sl-color-white);
+}
+
+/* --- Light mode palette (Zed marketing-site off-white) ------------------ */
+:root[data-theme='light'] {
+  --sl-color-accent-low: #e6effe; /* ice wash */
+  --sl-color-accent: #1348dc; /* brand blue */
+  --sl-color-accent-high: #053794; /* deep cobalt */
+
+  --sl-color-white: #1f2228; /* ink-strong -> headings */
+  --sl-color-gray-1: #282c33; /* onyx */
+  --sl-color-gray-2: #3a3d43; /* graphite -> body text */
+  --sl-color-gray-3: #5d636f; /* slate */
+  --sl-color-gray-4: #878a98; /* ash */
+  --sl-color-gray-5: #cbcfd4; /* border-strong */
+  --sl-color-gray-6: #e5e7eb; /* silver mist */
+  --sl-color-gray-7: #f0f0ee;
+  --sl-color-black: #f6f6f4; /* off-white canvas */
+
+  --cw-surface: #ffffff;
+  --cw-hairline: #dadde2;
+  --cw-grid: rgba(19, 72, 220, 0.045);
+  --cw-heading-accent: var(--cw-brand-blue);
+}
+
+/* --- Base typography ---------------------------------------------------- */
+body {
+  font-family: var(--cw-font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.005em;
+}
+
+/* Serif display headings, light weight + tight tracking (Zed signature) */
+h1,
+h2,
+h3,
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.sl-markdown-content h4 {
+  font-family: var(--cw-font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+h1,
+.sl-markdown-content h1 {
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+
+/* Page-title heading gets the brand-blue treatment in light mode */
+.content-panel h1,
+.hero h1 {
+  color: var(--cw-heading-accent);
+}
+
+/* --- Site chrome: header + hairlines ----------------------------------- */
+header.header {
+  background-color: color-mix(in srgb, var(--sl-color-black) 82%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--cw-hairline);
+}
+
+.site-title {
+  font-family: var(--cw-font-mono);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Sidebar / hairlines */
+:root {
+  --sl-color-hairline-shade: var(--cw-hairline);
+  --sl-color-hairline: var(--cw-hairline);
+}
+
+.sidebar-pane {
+  border-inline-end: 1px solid var(--cw-hairline);
+  background-color: var(--sl-color-black);
+}
+
+/* Sidebar nav links: mono UI, tight, subtle */
+nav.sidebar a,
+nav.sidebar summary {
+  font-family: var(--cw-font-ui);
+  font-size: var(--sl-text-sm);
+  letter-spacing: -0.02em;
+}
+
+/* Right-hand "On this page" table of contents: mono UI */
+starlight-toc a {
+  font-family: var(--cw-font-ui);
+  letter-spacing: -0.02em;
+}
+
+/* Active sidebar entry — "ice wash" pill like Zed's active nav */
+nav.sidebar a[aria-current='page'],
+nav.sidebar a[aria-current='page']:hover {
+  background-color: var(--sl-color-accent-low);
+  color: var(--sl-color-text-accent);
+  border-radius: var(--cw-radius-md);
+  font-weight: 500;
+}
+
+/* --- Links -------------------------------------------------------------- */
+.sl-markdown-content a {
+  color: var(--sl-color-text-accent);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--sl-color-text-accent) 40%,
+    transparent
+  );
+}
+.sl-markdown-content a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* --- Buttons (near-square, brand blue) --------------------------------- */
+.sl-link-button {
+  border-radius: var(--cw-radius-md);
+  font-family: var(--cw-font-mono);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.sl-link-button.primary {
+  background-color: var(--sl-color-accent);
+  border-color: var(--sl-color-accent);
+  color: #ffffff;
+}
+.sl-link-button.primary:hover {
+  background-color: color-mix(in srgb, var(--sl-color-accent) 88%, #000);
+}
+.sl-link-button.minimal {
+  border: 1px solid var(--cw-hairline);
+}
+
+/* --- Cards -------------------------------------------------------------- */
+.card {
+  background-color: var(--cw-surface);
+  border: 1px solid var(--cw-hairline);
+  border-radius: var(--cw-radius-md);
+  transition: border-color 0.15s ease, transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+.card:hover {
+  border-color: color-mix(in srgb, var(--sl-color-accent) 55%, var(--cw-hairline));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -12px rgba(19, 72, 220, 0.25);
+}
+.card .icon {
+  color: var(--sl-color-accent);
+  background-color: var(--sl-color-accent-low);
+  border-radius: var(--cw-radius-sm);
+}
+.card .title {
+  font-family: var(--cw-font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* --- Code blocks -------------------------------------------------------- */
+.sl-markdown-content :not(pre) > code {
+  border-radius: var(--cw-radius-sm);
+  border: 1px solid var(--cw-hairline);
+  background-color: var(--sl-color-gray-6);
+  font-size: 0.85em;
+}
+.expressive-code .frame pre,
+.sl-markdown-content pre {
+  border-radius: var(--cw-radius-md);
+  border: 1px solid var(--cw-hairline);
+}
+
+/* --- Splash / hero: signature faint grid + serif display ---------------- */
+.hero {
+  position: relative;
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.05;
+}
+.hero .tagline {
+  font-family: var(--cw-font-mono);
+  color: var(--sl-color-gray-2);
+  letter-spacing: -0.01em;
+}
+
+/* Faint grid backdrop on splash pages */
+.page:has(.hero) main {
+  background-image: linear-gradient(var(--cw-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cw-grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center top;
+}
+
+/* --- Tables ------------------------------------------------------------- */
+.sl-markdown-content th {
+  font-family: var(--cw-font-mono);
+  letter-spacing: -0.01em;
+}
+.sl-markdown-content table {
+  border: 1px solid var(--cw-hairline);
+  border-radius: var(--cw-radius-md);
+  overflow: hidden;
+}
