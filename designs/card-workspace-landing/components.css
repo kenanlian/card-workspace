@@ -1,0 +1,898 @@
+/* ==========================================================================
+   Card Workspace landing — shared primitives.
+   One structural system; each direction reshapes it through tokens plus a
+   small number of `[data-direction='…']` layout overrides at the bottom.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cw-canvas);
+  color: var(--cw-ink);
+  font-family: var(--cw-font-body);
+  font-weight: var(--cw-body-weight);
+  line-height: var(--cw-body-leading);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color var(--cw-dur-mid) var(--cw-ease),
+    color var(--cw-dur-mid) var(--cw-ease);
+}
+
+/* Dense Hanzi needs more vertical room than Latin. */
+[data-lang='zh'] body {
+  line-height: calc(var(--cw-body-leading) + 0.12);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--cw-accent-wash);
+  color: var(--cw-accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cw-accent);
+  outline-offset: 2px;
+  border-radius: var(--cw-radius-sm);
+}
+
+/* --- Page canvas + layered texture --------------------------------------- */
+.cw-page {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+  overflow-clip-margin: 0;
+}
+
+/* grain */
+.cw-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--cw-noise);
+  background-size: 180px 180px;
+  opacity: var(--cw-grain-opacity);
+  mix-blend-mode: multiply;
+}
+
+[data-theme='dark'] .cw-page::before {
+  mix-blend-mode: screen;
+}
+
+/* grid + ambient wash */
+.cw-page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--cw-ambient),
+    linear-gradient(to right, var(--cw-grid) 1px, transparent 1px),
+    linear-gradient(var(--cw-grid) 1px, transparent 1px);
+  background-size: 100% 100%, var(--cw-grid-size) var(--cw-grid-size),
+    var(--cw-grid-size) var(--cw-grid-size);
+  background-position: center top, center top, center top;
+}
+
+.cw-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cw-wrap {
+  width: 100%;
+  max-width: var(--cw-page);
+  margin-inline: auto;
+  padding-inline: var(--cw-space-6);
+}
+
+/* --- Full-bleed hairline rule, fading at both ends ----------------------- */
+.cw-rule {
+  position: relative;
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--cw-ring-strong) 14%,
+    var(--cw-ring-strong) 86%,
+    transparent 100%
+  );
+}
+
+/* crop-mark ticks, zed-style */
+.cw-rule[data-marks]::before,
+.cw-rule[data-marks]::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  width: 1px;
+  height: 7px;
+  background: var(--cw-ring-strong);
+}
+.cw-rule[data-marks]::before {
+  left: max(var(--cw-space-6), calc((100% - var(--cw-page)) / 2 + var(--cw-space-6)));
+}
+.cw-rule[data-marks]::after {
+  right: max(var(--cw-space-6), calc((100% - var(--cw-page)) / 2 + var(--cw-space-6)));
+}
+
+/* --- Micro-labels: the cheapest source of craft -------------------------- */
+.cw-label {
+  font-family: var(--cw-font-mono);
+  font-size: var(--cw-label-size);
+  letter-spacing: var(--cw-label-tracking);
+  text-transform: uppercase;
+  color: var(--cw-ink-faint);
+  font-weight: 400;
+  margin: 0;
+}
+
+.cw-label--accent {
+  color: var(--cw-accent);
+}
+
+.cw-index {
+  font-family: var(--cw-font-mono);
+  font-size: var(--cw-label-size);
+  letter-spacing: var(--cw-label-tracking);
+  color: var(--cw-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Type ---------------------------------------------------------------- */
+.cw-display {
+  font-family: var(--cw-font-display);
+  font-weight: var(--cw-display-weight);
+  letter-spacing: var(--cw-display-tracking);
+  line-height: var(--cw-display-leading);
+  font-size: var(--cw-display-size, clamp(2.6rem, 7.2vw, 5.6rem));
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* Hanzi are full-width glyphs, so the same point size fits far fewer
+   characters per line than Latin. Each direction carries its own CJK display
+   size rather than reusing the Latin one. */
+[data-lang='zh'] .cw-display {
+  font-size: var(--cw-display-size-zh, clamp(1.9rem, 4.5vw, 3.4rem));
+}
+
+/* Authored line breaks, not CSS-decided ones. */
+.cw-display__line {
+  display: block;
+}
+
+.cw-display em {
+  font-style: italic;
+  color: var(--cw-accent);
+  font-weight: inherit;
+}
+
+/* Hanzi has no true italic in these families, so `font-style: italic` would be
+   a synthesised slant — improper in Chinese typography. Keep the accent colour
+   as the emphasis signal instead, and hold breaks to strict CJK rules. */
+[data-lang='zh'] .cw-display {
+  line-break: strict;
+  overflow-wrap: normal;
+}
+
+[data-lang='zh'] .cw-display em,
+[data-lang='zh'] .cw-h2 em {
+  font-style: normal;
+}
+
+.cw-h2 {
+  font-family: var(--cw-font-display);
+  font-weight: var(--cw-h2-weight);
+  letter-spacing: var(--cw-display-tracking);
+  line-height: 1.12;
+  font-size: clamp(1.75rem, 3.4vw, 2.9rem);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.cw-h3 {
+  font-family: var(--cw-font-display);
+  font-weight: var(--cw-h2-weight);
+  letter-spacing: -0.012em;
+  font-size: 1.2rem;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.cw-lede {
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  color: var(--cw-ink-soft);
+  max-width: 56ch;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.cw-body {
+  color: var(--cw-ink-soft);
+  max-width: var(--cw-measure);
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.cw-mono {
+  font-family: var(--cw-font-mono);
+  font-size: 0.8125rem;
+}
+
+/* --- Buttons ------------------------------------------------------------- */
+.cw-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cw-space-2);
+  font-family: var(--cw-font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+  font-weight: 500;
+  padding: 0.72rem 1.1rem;
+  border-radius: var(--cw-radius-md);
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  background: transparent;
+  color: var(--cw-ink);
+  box-shadow: var(--cw-elev-1);
+  transition: background-color var(--cw-dur-fast) var(--cw-ease),
+    color var(--cw-dur-fast) var(--cw-ease), box-shadow var(--cw-dur-fast) var(--cw-ease),
+    transform var(--cw-dur-fast) var(--cw-ease);
+}
+
+.cw-btn:hover {
+  box-shadow: 0 0 0 1px var(--cw-ring-strong);
+  transform: translateY(-1px);
+}
+
+.cw-btn:active {
+  transform: translateY(0);
+}
+
+.cw-btn--primary {
+  background: var(--cw-accent);
+  color: var(--cw-accent-on);
+  box-shadow: none;
+}
+
+.cw-btn--primary:hover {
+  background: var(--cw-accent-ink);
+  box-shadow: 0 6px 18px -8px var(--cw-accent);
+}
+
+.cw-btn__key {
+  font-size: 0.6875rem;
+  padding: 0.05rem 0.3rem;
+  border-radius: 2px;
+  background: color-mix(in oklab, currentColor 14%, transparent);
+  opacity: 0.85;
+}
+
+.cw-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cw-space-3);
+  align-items: center;
+}
+
+/* --- Links --------------------------------------------------------------- */
+.cw-link {
+  color: var(--cw-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in oklab, var(--cw-accent) 38%, transparent);
+  transition: text-decoration-color var(--cw-dur-fast) var(--cw-ease);
+}
+.cw-link:hover {
+  text-decoration-color: currentColor;
+}
+
+/* --- Header -------------------------------------------------------------- */
+.cw-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  background: color-mix(in oklab, var(--cw-canvas) 82%, transparent);
+  box-shadow: 0 1px 0 0 var(--cw-ring);
+}
+
+.cw-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--cw-space-5);
+  min-height: 56px;
+}
+
+.cw-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--cw-space-3);
+  text-decoration: none;
+  color: var(--cw-ink);
+  margin-inline-end: auto;
+}
+
+.cw-brand img {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--cw-radius-sm);
+}
+
+.cw-brand__name {
+  font-family: var(--cw-font-display);
+  font-size: 1.0625rem;
+  font-weight: var(--cw-h2-weight);
+  letter-spacing: -0.015em;
+}
+
+.cw-nav {
+  display: flex;
+  gap: var(--cw-space-5);
+}
+
+.cw-nav a {
+  font-family: var(--cw-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: var(--cw-label-tracking);
+  text-transform: uppercase;
+  color: var(--cw-ink-soft);
+  text-decoration: none;
+  transition: color var(--cw-dur-fast) var(--cw-ease);
+}
+
+.cw-nav a:hover {
+  color: var(--cw-accent);
+}
+
+/* --- Hero ---------------------------------------------------------------- */
+.cw-hero {
+  padding-block: clamp(var(--cw-space-8), 9vw, var(--cw-space-10)) var(--cw-space-8);
+}
+
+.cw-hero__grid {
+  display: grid;
+  gap: var(--cw-space-7);
+  align-items: end;
+}
+
+.cw-hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cw-space-5);
+  align-items: start;
+}
+
+.cw-hero__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cw-space-1);
+}
+
+.cw-todo {
+  font-family: var(--cw-font-mono);
+  font-size: 0.6875rem;
+  color: var(--cw-accent);
+  background: var(--cw-accent-wash);
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--cw-radius-sm);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cw-accent) 30%, transparent);
+  align-self: start;
+}
+
+/* --- Product shot -------------------------------------------------------- */
+.cw-shot {
+  border-radius: var(--cw-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--cw-elev-2);
+  background: var(--cw-surface);
+}
+
+.cw-shot img {
+  width: 100%;
+  height: auto;
+}
+
+.cw-caption {
+  margin: var(--cw-space-3) 0 0;
+  font-family: var(--cw-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--cw-ink-faint);
+}
+
+/* --- Stats --------------------------------------------------------------- */
+.cw-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cw-space-7);
+  padding-block: var(--cw-space-5);
+}
+
+.cw-stat__value {
+  font-family: var(--cw-font-display);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: var(--cw-h2-weight);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.cw-stat__label {
+  margin-top: var(--cw-space-2);
+}
+
+/* --- Sections ------------------------------------------------------------ */
+.cw-section {
+  padding-block: clamp(var(--cw-space-8), 7vw, var(--cw-space-9));
+}
+
+.cw-section__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cw-space-4);
+  margin-bottom: var(--cw-space-7);
+}
+
+.cw-section__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--cw-space-3);
+}
+
+.cw-section__body {
+  display: grid;
+  gap: var(--cw-space-7);
+}
+
+/* --- Definition list with hairline rows ---------------------------------- */
+.cw-deflist {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.cw-deflist__row {
+  display: grid;
+  grid-template-columns: minmax(7rem, 12rem) 1fr;
+  gap: var(--cw-space-5);
+  padding-block: var(--cw-space-4);
+  box-shadow: inset 0 1px 0 0 var(--cw-ring);
+  transition: background-color var(--cw-dur-fast) var(--cw-ease);
+}
+
+.cw-deflist__row:last-child {
+  box-shadow: inset 0 1px 0 0 var(--cw-ring), inset 0 -1px 0 0 var(--cw-ring);
+}
+
+.cw-deflist__row:hover {
+  background: var(--cw-accent-wash);
+}
+
+.cw-deflist__term {
+  font-family: var(--cw-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: var(--cw-label-tracking);
+  text-transform: uppercase;
+  color: var(--cw-accent);
+  margin: 0;
+  padding-top: 0.15rem;
+}
+
+.cw-deflist__desc {
+  margin: 0;
+  color: var(--cw-ink-soft);
+}
+
+/* --- Box rules panel ----------------------------------------------------- */
+.cw-rules {
+  display: grid;
+  gap: 0;
+  font-family: var(--cw-font-mono);
+  font-size: 0.8125rem;
+  background: var(--cw-surface);
+  border-radius: var(--cw-radius-md);
+  box-shadow: var(--cw-elev-1);
+  overflow: hidden;
+}
+
+.cw-rules__row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--cw-space-4);
+  padding: var(--cw-space-3) var(--cw-space-4);
+}
+
+.cw-rules__row + .cw-rules__row {
+  box-shadow: inset 0 1px 0 0 var(--cw-ring);
+}
+
+.cw-rules__op {
+  color: var(--cw-ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.625rem;
+  min-width: 3.2rem;
+}
+
+.cw-rules__value {
+  color: var(--cw-ink);
+}
+
+.cw-rules__row[data-op='minus'] .cw-rules__value {
+  color: var(--cw-ink-faint);
+  text-decoration: line-through;
+  text-decoration-color: var(--cw-ring-strong);
+}
+
+/* --- Steps --------------------------------------------------------------- */
+.cw-steps {
+  display: grid;
+  gap: 0;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cw-steps li {
+  counter-increment: step;
+  display: flex;
+  align-items: baseline;
+  gap: var(--cw-space-4);
+  padding-block: var(--cw-space-4);
+  box-shadow: inset 0 1px 0 0 var(--cw-ring);
+}
+
+.cw-steps li::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--cw-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  color: var(--cw-accent);
+}
+
+/* --- Badge --------------------------------------------------------------- */
+.cw-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cw-space-2);
+  font-family: var(--cw-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: var(--cw-label-tracking);
+  text-transform: uppercase;
+  color: var(--cw-accent);
+  background: var(--cw-accent-wash);
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cw-accent) 28%, transparent);
+}
+
+/* --- Image slot ---------------------------------------------------------- */
+.cw-slot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  padding: var(--cw-space-6);
+  border-radius: var(--cw-radius-lg);
+  background: var(--cw-surface-sunk);
+  box-shadow: inset 0 0 0 1px var(--cw-ring);
+  color: var(--cw-ink-faint);
+  text-align: center;
+  cursor: pointer;
+  transition: box-shadow var(--cw-dur-fast) var(--cw-ease),
+    background-color var(--cw-dur-fast) var(--cw-ease);
+  overflow: hidden;
+}
+
+.cw-slot:hover,
+.cw-slot[data-over='true'] {
+  box-shadow: inset 0 0 0 1px var(--cw-accent);
+  background: var(--cw-accent-wash);
+}
+
+.cw-slot__hint {
+  display: grid;
+  gap: var(--cw-space-2);
+  max-width: 34ch;
+}
+
+.cw-slot__label {
+  font-family: var(--cw-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: var(--cw-label-tracking);
+  text-transform: uppercase;
+  color: var(--cw-accent);
+}
+
+.cw-slot__desc {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.cw-slot img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cw-slot__clear {
+  position: absolute;
+  top: var(--cw-space-3);
+  right: var(--cw-space-3);
+  z-index: 2;
+  font-family: var(--cw-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  border: 0;
+  border-radius: var(--cw-radius-sm);
+  background: color-mix(in oklab, var(--cw-canvas) 88%, transparent);
+  color: var(--cw-ink-soft);
+  box-shadow: 0 0 0 1px var(--cw-ring);
+  cursor: pointer;
+}
+
+/* --- Footer -------------------------------------------------------------- */
+.cw-footer {
+  padding-block: var(--cw-space-8) var(--cw-space-7);
+}
+
+.cw-footer__grid {
+  display: grid;
+  grid-template-columns: 2fr repeat(2, 1fr);
+  gap: var(--cw-space-7);
+}
+
+.cw-footer__col h4 {
+  margin: 0 0 var(--cw-space-4);
+}
+
+.cw-footer__col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--cw-space-3);
+}
+
+.cw-footer__col a {
+  color: var(--cw-ink-soft);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color var(--cw-dur-fast) var(--cw-ease);
+}
+
+.cw-footer__col a:hover {
+  color: var(--cw-accent);
+}
+
+.cw-footer__legal {
+  margin-top: var(--cw-space-7);
+  padding-top: var(--cw-space-5);
+  box-shadow: inset 0 1px 0 0 var(--cw-ring);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--cw-space-5);
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Direction-specific structure
+   ========================================================================== */
+
+/* --- paper: centred, generous, single column ----------------------------- */
+[data-direction='paper'] .cw-hero__grid {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+}
+[data-direction='paper'] .cw-hero__copy {
+  align-items: center;
+}
+[data-direction='paper'] .cw-lede,
+[data-direction='paper'] .cw-body {
+  margin-inline: auto;
+}
+[data-direction='paper'] .cw-section__head {
+  align-items: center;
+  text-align: center;
+}
+[data-direction='paper'] .cw-stats {
+  justify-content: center;
+}
+[data-direction='paper'] .cw-index {
+  display: none;
+}
+[data-direction='paper'] .cw-section {
+  padding-block: clamp(var(--cw-space-9), 9vw, var(--cw-space-10));
+}
+
+/* --- letterpress: left metadata gutter, numbered, denser ----------------- */
+/* An empty metadata gutter aligned with the section head's first column, then
+   two real content columns. The gutter must stay empty — placing content in it
+   would squeeze the measure to a few words per line. */
+[data-direction='letterpress'] .cw-section__body {
+  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--cw-space-7);
+}
+[data-direction='letterpress'] .cw-section__body > *:nth-child(1) {
+  grid-column: 2;
+}
+[data-direction='letterpress'] .cw-section__body > *:nth-child(2) {
+  grid-column: 3;
+}
+[data-direction='letterpress'] .cw-section__head {
+  display: grid;
+  grid-template-columns: minmax(0, 9rem) minmax(0, 1fr);
+  gap: var(--cw-space-7);
+  align-items: baseline;
+}
+[data-direction='letterpress'] .cw-section__eyebrow {
+  flex-direction: column;
+  align-items: start;
+  gap: var(--cw-space-2);
+}
+[data-direction='letterpress'] .cw-hero__grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+[data-direction='letterpress'] .cw-section {
+  padding-block: clamp(var(--cw-space-7), 5.5vw, var(--cw-space-8));
+}
+
+/* --- graphite: centred hero, soft cards, quiet --------------------------- */
+[data-direction='graphite'] .cw-hero__grid {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+}
+[data-direction='graphite'] .cw-hero__copy {
+  align-items: center;
+}
+[data-direction='graphite'] .cw-index {
+  display: none;
+}
+[data-direction='graphite'] .cw-section__head {
+  align-items: center;
+  text-align: center;
+}
+[data-direction='graphite'] .cw-lede {
+  margin-inline: auto;
+}
+[data-direction='graphite'] .cw-stats {
+  justify-content: center;
+}
+
+/* --- blueprint: axes-labelled grid, dense two-column -------------------- */
+[data-direction='blueprint'] .cw-hero__grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+[data-direction='blueprint'] .cw-section__body {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+[data-direction='blueprint'] .cw-section {
+  padding-block: clamp(var(--cw-space-7), 5vw, var(--cw-space-8));
+}
+[data-direction='blueprint'] .cw-section__head {
+  margin-bottom: var(--cw-space-6);
+}
+/* labelled axis line, omp-style */
+[data-direction='blueprint'] .cw-axis {
+  display: flex;
+  align-items: center;
+  gap: var(--cw-space-4);
+  padding-block: var(--cw-space-2);
+}
+[data-direction='blueprint'] .cw-axis__line {
+  flex: 1;
+  height: 1px;
+  background: var(--cw-ring-strong);
+}
+.cw-axis {
+  display: none;
+}
+[data-direction='blueprint'] .cw-axis {
+  display: flex;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 900px) {
+  .cw-wrap {
+    padding-inline: var(--cw-space-5);
+  }
+  [data-direction] .cw-hero__grid,
+  [data-direction] .cw-section__body,
+  [data-direction] .cw-section__head {
+    grid-template-columns: 1fr !important;
+  }
+  /* drop the explicit column placements that go with the desktop gutter */
+  [data-direction] .cw-section__body > * {
+    grid-column: auto !important;
+  }
+  .cw-footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cw-nav {
+    display: none;
+  }
+  .cw-stats {
+    gap: var(--cw-space-6);
+  }
+}
+
+@media (max-width: 560px) {
+  .cw-wrap {
+    padding-inline: var(--cw-space-4);
+  }
+  .cw-display {
+    font-size: clamp(2.1rem, 10vw, 3rem);
+  }
+  .cw-deflist__row {
+    grid-template-columns: 1fr;
+    gap: var(--cw-space-2);
+  }
+  .cw-footer__grid {
+    grid-template-columns: 1fr;
+  }
+  .cw-stats {
+    gap: var(--cw-space-5) var(--cw-space-6);
+  }
+  .cw-actions {
+    width: 100%;
+  }
+  .cw-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Scroll reveal (opt-in, motion-safe) --------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .cw-reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity var(--cw-dur-slow) var(--cw-ease),
+      transform var(--cw-dur-slow) var(--cw-ease);
+  }
+  .cw-reveal[data-shown='true'] {
+    opacity: 1;
+    transform: none;
+  }
+}

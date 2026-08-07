@@ -1,0 +1,356 @@
+/* ==========================================================================
+   Card Workspace landing — design tokens for four visual directions.
+
+   Two warm-retro directions (paper, letterpress) and two cool-technical ones
+   (graphite, blueprint). Each carries its own type system, palette, texture,
+   radius and motion curve, in both light and dark.
+
+   Deliberately avoids Inter / Roboto / Arial / Fraunces.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..500;1,6..72,200..500&family=Instrument+Sans:ital,wght@0,400..600;1,400..600&family=Petrona:ital,wght@0,300..600;1,300..600&family=Archivo:ital,wght@0,400..600;1,400..600&family=Instrument+Serif:ital@0;1&family=Schibsted+Grotesk:ital,wght@0,400..600;1,400..600&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,500;1,300;1,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+
+/* --- Direction-independent scales ---------------------------------------- */
+:root {
+  --cw-space-1: 0.25rem;
+  --cw-space-2: 0.5rem;
+  --cw-space-3: 0.75rem;
+  --cw-space-4: 1rem;
+  --cw-space-5: 1.5rem;
+  --cw-space-6: 2rem;
+  --cw-space-7: 3rem;
+  --cw-space-8: 4rem;
+  --cw-space-9: 6rem;
+  --cw-space-10: 8rem;
+
+  /* Crafted easing — never plain `ease`. */
+  --cw-ease-out: cubic-bezier(0.32, 0.72, 0, 1);
+  --cw-ease-inout: cubic-bezier(0.4, 0, 0.2, 1);
+  --cw-ease-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --cw-dur-fast: 140ms;
+  --cw-dur-mid: 260ms;
+  --cw-dur-slow: 460ms;
+
+  --cw-measure: 68ch;
+  --cw-page: 1200px;
+  --cw-page-wide: 1440px;
+
+  /* Reusable grain. Layered at low opacity by each direction. */
+  --cw-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   DIRECTION 1 — "Paper Index"
+   Warm oatmeal paper, Newsreader serif at light weights, fountain-pen ink
+   accent, index-card rules, generous air. The quiet warm option.
+   ========================================================================== */
+[data-direction='paper'] {
+  --cw-display-size: clamp(2.6rem, 7.2vw, 5.6rem);
+  --cw-display-size-zh: clamp(1.9rem, 4.5vw, 3.4rem);
+  --cw-font-display: 'Newsreader', 'Noto Serif SC', ui-serif, Georgia, serif;
+  --cw-font-body: 'Instrument Sans', 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif;
+  --cw-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --cw-display-weight: 300;
+  --cw-display-tracking: -0.021em;
+  --cw-display-leading: 1.04;
+  --cw-h2-weight: 400;
+  --cw-body-weight: 400;
+  --cw-body-leading: 1.72;
+  --cw-label-tracking: 0.15em;
+  --cw-label-size: 0.6875rem;
+
+  --cw-radius-sm: 2px;
+  --cw-radius-md: 3px;
+  --cw-radius-lg: 4px;
+
+  /* Light — oatmeal paper */
+  --cw-canvas: oklch(0.955 0.011 85);
+  --cw-surface: oklch(0.985 0.006 85);
+  --cw-surface-sunk: oklch(0.932 0.013 84);
+  --cw-ink: oklch(0.235 0.012 60);
+  --cw-ink-soft: oklch(0.44 0.012 62);
+  --cw-ink-faint: oklch(0.63 0.011 65);
+  --cw-ring: oklch(0.235 0.012 60 / 0.14);
+  --cw-ring-strong: oklch(0.235 0.012 60 / 0.28);
+  --cw-accent: oklch(0.44 0.096 258);
+  --cw-accent-ink: oklch(0.36 0.1 258);
+  --cw-accent-wash: oklch(0.44 0.096 258 / 0.07);
+  --cw-accent-on: oklch(0.985 0.004 85);
+
+  --cw-grain-opacity: 0.05;
+  --cw-grid: transparent;
+  --cw-grid-size: 0;
+  --cw-ambient: radial-gradient(
+    120vw 70vh at 15% -20%,
+    oklch(0.44 0.096 258 / 0.045),
+    transparent 62%
+  );
+  --cw-elev-1: 0 0 0 1px var(--cw-ring);
+  --cw-elev-2: 0 0 0 1px var(--cw-ring), 0 12px 32px -18px oklch(0.235 0.012 60 / 0.3);
+  --cw-ease: var(--cw-ease-out);
+}
+
+[data-direction='paper'][data-theme='dark'] {
+  --cw-canvas: oklch(0.185 0.009 62);
+  --cw-surface: oklch(0.228 0.01 62);
+  --cw-surface-sunk: oklch(0.158 0.008 62);
+  --cw-ink: oklch(0.945 0.008 85);
+  --cw-ink-soft: oklch(0.775 0.009 80);
+  --cw-ink-faint: oklch(0.6 0.009 75);
+  --cw-ring: oklch(0.945 0.008 85 / 0.13);
+  --cw-ring-strong: oklch(0.945 0.008 85 / 0.26);
+  --cw-accent: oklch(0.76 0.1 252);
+  --cw-accent-ink: oklch(0.85 0.08 252);
+  --cw-accent-wash: oklch(0.76 0.1 252 / 0.13);
+  --cw-accent-on: oklch(0.185 0.009 62);
+  --cw-grain-opacity: 0.07;
+  --cw-ambient: radial-gradient(
+    120vw 70vh at 15% -20%,
+    oklch(0.76 0.1 252 / 0.07),
+    transparent 62%
+  );
+  --cw-elev-2: 0 0 0 1px var(--cw-ring), 0 14px 36px -20px oklch(0 0 0 / 0.7);
+}
+
+/* ==========================================================================
+   DIRECTION 2 — "Letterpress"
+   Denser warm editorial: Petrona serif with italic emphasis, numbered
+   sections, gutter metadata, terracotta accent, heavy hairline structure.
+   ========================================================================== */
+[data-direction='letterpress'] {
+  --cw-display-size: clamp(2.8rem, 8vw, 6.2rem);
+  --cw-display-size-zh: clamp(2rem, 4.6vw, 3.4rem);
+  --cw-font-display: 'Petrona', 'Noto Serif SC', ui-serif, Georgia, serif;
+  --cw-font-body: 'Archivo', 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif;
+  --cw-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --cw-display-weight: 500;
+  --cw-display-tracking: -0.024em;
+  --cw-display-leading: 0.98;
+  --cw-h2-weight: 500;
+  --cw-body-weight: 400;
+  --cw-body-leading: 1.62;
+  --cw-label-tracking: 0.185em;
+  --cw-label-size: 0.6875rem;
+
+  --cw-radius-sm: 1px;
+  --cw-radius-md: 2px;
+  --cw-radius-lg: 2px;
+
+  /* Light — warm printed stock */
+  --cw-canvas: oklch(0.943 0.014 76);
+  --cw-surface: oklch(0.972 0.009 78);
+  --cw-surface-sunk: oklch(0.915 0.016 74);
+  --cw-ink: oklch(0.205 0.014 48);
+  --cw-ink-soft: oklch(0.415 0.014 50);
+  --cw-ink-faint: oklch(0.6 0.013 55);
+  --cw-ring: oklch(0.205 0.014 48 / 0.17);
+  --cw-ring-strong: oklch(0.205 0.014 48 / 0.34);
+  --cw-accent: oklch(0.515 0.142 38);
+  --cw-accent-ink: oklch(0.435 0.14 36);
+  --cw-accent-wash: oklch(0.515 0.142 38 / 0.09);
+  --cw-accent-on: oklch(0.98 0.008 78);
+
+  --cw-grain-opacity: 0.075;
+  --cw-grid: transparent;
+  --cw-grid-size: 0;
+  --cw-ambient: radial-gradient(
+      80vw 55vh at 88% -12%,
+      oklch(0.515 0.142 38 / 0.06),
+      transparent 60%
+    ),
+    radial-gradient(70vw 60vh at 5% 40%, oklch(0.45 0.06 120 / 0.035), transparent 62%);
+  --cw-elev-1: 0 0 0 1px var(--cw-ring);
+  --cw-elev-2: 0 0 0 1px var(--cw-ring), 0 2px 0 0 oklch(0.205 0.014 48 / 0.1);
+  --cw-ease: var(--cw-ease-quart);
+}
+
+[data-direction='letterpress'][data-theme='dark'] {
+  --cw-canvas: oklch(0.172 0.012 45);
+  --cw-surface: oklch(0.215 0.014 45);
+  --cw-surface-sunk: oklch(0.142 0.011 45);
+  --cw-ink: oklch(0.94 0.012 80);
+  --cw-ink-soft: oklch(0.765 0.013 74);
+  --cw-ink-faint: oklch(0.585 0.012 70);
+  --cw-ring: oklch(0.94 0.012 80 / 0.155);
+  --cw-ring-strong: oklch(0.94 0.012 80 / 0.3);
+  --cw-accent: oklch(0.715 0.145 44);
+  --cw-accent-ink: oklch(0.8 0.12 46);
+  --cw-accent-wash: oklch(0.715 0.145 44 / 0.15);
+  --cw-accent-on: oklch(0.172 0.012 45);
+  --cw-grain-opacity: 0.09;
+  --cw-ambient: radial-gradient(
+      80vw 55vh at 88% -12%,
+      oklch(0.715 0.145 44 / 0.09),
+      transparent 60%
+    ),
+    radial-gradient(70vw 60vh at 5% 40%, oklch(0.6 0.08 140 / 0.05), transparent 62%);
+  --cw-elev-2: 0 0 0 1px var(--cw-ring), 0 2px 0 0 oklch(0 0 0 / 0.4);
+}
+
+/* ==========================================================================
+   DIRECTION 3 — "Graphite"
+   Cool near-neutral. Instrument Serif display against Schibsted Grotesk,
+   hairline rings, almost no chroma. The most restrained of the four.
+   ========================================================================== */
+[data-direction='graphite'] {
+  --cw-display-size: clamp(3rem, 8.4vw, 6.4rem);
+  --cw-display-size-zh: clamp(2rem, 4.9vw, 3.8rem);
+  --cw-font-display: 'Instrument Serif', 'Noto Serif SC', ui-serif, Georgia, serif;
+  --cw-font-body: 'Schibsted Grotesk', 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif;
+  --cw-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --cw-display-weight: 400;
+  --cw-display-tracking: -0.014em;
+  --cw-display-leading: 1;
+  --cw-h2-weight: 400;
+  --cw-body-weight: 400;
+  --cw-body-leading: 1.66;
+  --cw-label-tracking: 0.13em;
+  --cw-label-size: 0.6875rem;
+
+  --cw-radius-sm: 3px;
+  --cw-radius-md: 6px;
+  --cw-radius-lg: 10px;
+
+  /* Light — cool paper white */
+  --cw-canvas: oklch(0.975 0.002 250);
+  --cw-surface: oklch(1 0 0);
+  --cw-surface-sunk: oklch(0.955 0.003 250);
+  --cw-ink: oklch(0.19 0.007 258);
+  --cw-ink-soft: oklch(0.44 0.008 258);
+  --cw-ink-faint: oklch(0.635 0.008 258);
+  --cw-ring: oklch(0.19 0.007 258 / 0.11);
+  --cw-ring-strong: oklch(0.19 0.007 258 / 0.22);
+  --cw-accent: oklch(0.42 0.042 252);
+  --cw-accent-ink: oklch(0.33 0.05 252);
+  --cw-accent-wash: oklch(0.42 0.042 252 / 0.07);
+  --cw-accent-on: oklch(1 0 0);
+
+  --cw-grain-opacity: 0.028;
+  --cw-grid: transparent;
+  --cw-grid-size: 0;
+  --cw-ambient: radial-gradient(
+    100vw 60vh at 78% -18%,
+    oklch(0.42 0.042 252 / 0.05),
+    transparent 60%
+  );
+  --cw-elev-1: 0 0 0 0.5px var(--cw-ring-strong);
+  --cw-elev-2: 0 0 0 1px var(--cw-ring), 0 4px 24px -8px oklch(0.19 0.007 258 / 0.09);
+  --cw-ease: var(--cw-ease-inout);
+}
+
+[data-direction='graphite'][data-theme='dark'] {
+  --cw-canvas: oklch(0.175 0.005 258);
+  --cw-surface: oklch(0.215 0.006 258);
+  --cw-surface-sunk: oklch(0.148 0.005 258);
+  --cw-ink: oklch(0.955 0.002 258);
+  --cw-ink-soft: oklch(0.775 0.005 258);
+  --cw-ink-faint: oklch(0.59 0.006 258);
+  --cw-ring: oklch(0.955 0.002 258 / 0.12);
+  --cw-ring-strong: oklch(0.955 0.002 258 / 0.24);
+  --cw-accent: oklch(0.78 0.055 250);
+  --cw-accent-ink: oklch(0.87 0.04 250);
+  --cw-accent-wash: oklch(0.78 0.055 250 / 0.12);
+  --cw-accent-on: oklch(0.175 0.005 258);
+  --cw-grain-opacity: 0.045;
+  --cw-ambient: radial-gradient(
+    100vw 60vh at 78% -18%,
+    oklch(0.78 0.055 250 / 0.07),
+    transparent 60%
+  );
+  --cw-elev-2: 0 0 0 1px var(--cw-ring), 0 6px 28px -10px oklch(0 0 0 / 0.6);
+}
+
+/* ==========================================================================
+   DIRECTION 4 — "Blueprint"
+   Cool technical grid with labelled axes, IBM Plex Serif display, mono
+   micro-labels, high density. Keeps the current site's signal blue so the
+   status-quo accent gets a fair test.
+   ========================================================================== */
+[data-direction='blueprint'] {
+  --cw-display-size: clamp(2.6rem, 7.2vw, 5.6rem);
+  --cw-display-size-zh: clamp(1.9rem, 4.3vw, 3.2rem);
+  --cw-font-display: 'IBM Plex Serif', 'Noto Serif SC', ui-serif, Georgia, serif;
+  --cw-font-body: 'IBM Plex Sans', 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif;
+  --cw-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --cw-display-weight: 300;
+  --cw-display-tracking: -0.028em;
+  --cw-display-leading: 1;
+  --cw-h2-weight: 400;
+  --cw-body-weight: 400;
+  --cw-body-leading: 1.6;
+  --cw-label-tracking: 0.18em;
+  --cw-label-size: 0.6875rem;
+
+  --cw-radius-sm: 1px;
+  --cw-radius-md: 2px;
+  --cw-radius-lg: 3px;
+
+  /* Light — cool blueprint stock */
+  --cw-canvas: oklch(0.963 0.004 250);
+  --cw-surface: oklch(0.995 0.002 250);
+  --cw-surface-sunk: oklch(0.938 0.006 250);
+  --cw-ink: oklch(0.205 0.026 262);
+  --cw-ink-soft: oklch(0.425 0.022 262);
+  --cw-ink-faint: oklch(0.615 0.018 262);
+  --cw-ring: oklch(0.205 0.026 262 / 0.14);
+  --cw-ring-strong: oklch(0.205 0.026 262 / 0.3);
+  --cw-accent: oklch(0.45 0.216 265);
+  --cw-accent-ink: oklch(0.37 0.2 265);
+  --cw-accent-wash: oklch(0.45 0.216 265 / 0.08);
+  --cw-accent-on: oklch(0.995 0.002 250);
+
+  --cw-grain-opacity: 0.022;
+  --cw-grid: oklch(0.205 0.026 262 / 0.05);
+  --cw-grid-size: 44px;
+  --cw-ambient: radial-gradient(
+      70vw 55vh at 92% -10%,
+      oklch(0.45 0.216 265 / 0.055),
+      transparent 58%
+    ),
+    radial-gradient(60vw 50vh at 2% 30%, oklch(0.5 0.11 200 / 0.035), transparent 60%);
+  --cw-elev-1: 0 0 0 1px var(--cw-ring);
+  --cw-elev-2: 0 0 0 1px var(--cw-ring), 0 10px 30px -16px oklch(0.45 0.216 265 / 0.3);
+  --cw-ease: var(--cw-ease-inout);
+}
+
+[data-direction='blueprint'][data-theme='dark'] {
+  --cw-canvas: oklch(0.168 0.019 264);
+  --cw-surface: oklch(0.212 0.022 264);
+  --cw-surface-sunk: oklch(0.138 0.017 264);
+  --cw-ink: oklch(0.955 0.004 250);
+  --cw-ink-soft: oklch(0.775 0.012 254);
+  --cw-ink-faint: oklch(0.585 0.014 258);
+  --cw-ring: oklch(0.955 0.004 250 / 0.13);
+  --cw-ring-strong: oklch(0.955 0.004 250 / 0.27);
+  --cw-accent: oklch(0.7 0.175 262);
+  --cw-accent-ink: oklch(0.82 0.12 262);
+  --cw-accent-wash: oklch(0.7 0.175 262 / 0.15);
+  --cw-accent-on: oklch(0.168 0.019 264);
+  --cw-grain-opacity: 0.04;
+  --cw-grid: oklch(0.955 0.004 250 / 0.045);
+  --cw-ambient: radial-gradient(
+      70vw 55vh at 92% -10%,
+      oklch(0.7 0.175 262 / 0.09),
+      transparent 58%
+    ),
+    radial-gradient(60vw 50vh at 2% 30%, oklch(0.65 0.12 200 / 0.05), transparent 60%);
+  --cw-elev-2: 0 0 0 1px var(--cw-ring), 0 12px 34px -18px oklch(0 0 0 / 0.75);
+}
+
+/* --- Optional accent override (driven by the in-page Tweaks panel) -------
+   Lets any direction be re-tested with the app icon's violet, so the purple
+   option isn't locked out of the comparison. */
+[data-accent='violet'] {
+  --cw-accent: oklch(0.48 0.222 297);
+  --cw-accent-ink: oklch(0.4 0.21 297);
+  --cw-accent-wash: oklch(0.48 0.222 297 / 0.09);
+}
+[data-accent='violet'][data-theme='dark'] {
+  --cw-accent: oklch(0.73 0.19 296);
+  --cw-accent-ink: oklch(0.84 0.14 296);
+  --cw-accent-wash: oklch(0.73 0.19 296 / 0.16);
+}
