@@ -21,6 +21,7 @@ GitHub Actions (withastro/action) → GitHub Pages
 - Content lives in a single Starlight `docs` collection; there is no custom loader or schema.
 - The sidebar is **manually defined** in `astro.config.mjs` and is decoupled from the filesystem — adding a doc requires both a content file *and* a sidebar entry.
 - `src/pages/index.astro` is a meta-refresh redirect from the site root to `/en/`.
+- `designs/` holds self-contained HTML design artifacts (baoyu-design skill). It is **not** part of the Astro build or GitHub Pages deploy; promote approved work into `src/` when shipping.
 
 ## Key Directories
 
@@ -31,6 +32,7 @@ GitHub Actions (withastro/action) → GitHub Pages
 - `src/assets/` — images referenced by content (e.g. `logo.svg`).
 - `src/pages/` — the root redirect (`index.astro`).
 - `public/` — static assets served as-is (`favicon.svg`).
+- `designs/` — design prototypes and design systems (one folder per project). Not served by Astro.
 - `dist/` — build output (git-ignored).
 
 ## Development Commands
@@ -56,6 +58,7 @@ There is no lint or test script configured.
 - **Internal links**: use absolute paths including the base prefix, e.g. `/card-workspace-site/en/guides/introduction`.
 - **i18n**: sidebar labels carry `translations: { 'zh-CN': '...' }`; keep `en/` and `zh/` structures in sync when adding pages.
 - **Styling**: 100% Starlight default theme — no `src/styles/`, no Tailwind, no `customCss`.
+- **Designs**: one project per `designs/<slug>/` folder; keep deliverables self-contained (HTML/JSX/CSS/assets together). Regular projects have `_d_meta.json`; design systems have `_ds_manifest.json` at the folder root. Preview via HTTP (`python3 -m http.server 4311 --directory designs`), not `file://`. Do not scatter design files in the repo root or under `src/`.
 
 ## Important Files
 
