@@ -11,8 +11,17 @@
           "status": "needs-review"
         }
       ]
+    },
+    "Card Workspace Landing v2": {
+      "versions": [
+        {
+          "path": "Card Workspace Landing v2.html",
+          "createdAt": "2026-08-10T00:28:01.776Z",
+          "status": "needs-review"
+        }
+      ]
     }
   },
   "createdAt": "2026-08-07T00:30:46.964Z",
-  "updatedAt": "2026-08-07T00:34:05.714Z"
+  "updatedAt": "2026-08-10T00:28:01.776Z"
 }
