@@ -3,6 +3,18 @@
    stream of tabbed index cards, each holding the gutter + two-column
    letterpress structure. */
 
+/* Two files rather than one: the accent flips lightness between themes, so the
+   mark is graphite on light and pale blue on dark. CSS picks one off
+   [data-theme]; assets/logo.svg is the light variant. */
+function BrandMark() {
+  return (
+    <React.Fragment>
+      <img className="cw-brand__mark cw-brand__mark--light" src="assets/logo.svg" alt="" />
+      <img className="cw-brand__mark cw-brand__mark--dark" src="assets/logo-dark.svg" alt="" />
+    </React.Fragment>
+  );
+}
+
 function Landing({ c }) {
   const s = c.sections;
 
@@ -20,7 +32,7 @@ function Landing({ c }) {
       <header className="cw-header">
         <div className="cw-wrap cw-header__inner">
           <a className="cw-brand" href="#top">
-            <img src="assets/logo.svg" alt="" />
+            <BrandMark />
             <span className="cw-brand__name">Card Workspace</span>
           </a>
           <VersionBadge version={c.version} title={c.versionTitle} />
@@ -177,7 +189,7 @@ function Landing({ c }) {
           <div className="cw-footer__grid">
             <div className="cw-footer__col">
               <a className="cw-brand" href="#top" style={{ marginBottom: 'var(--cw-space-4)' }}>
-                <img src="assets/logo.svg" alt="" />
+                <BrandMark />
                 <span className="cw-brand__name">Card Workspace</span>
               </a>
               <p className="cw-body" style={{ fontSize: '0.875rem', maxWidth: '34ch' }}>

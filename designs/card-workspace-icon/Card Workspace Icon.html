@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card Workspace — 图标方向对比</title>
+<style>
+  :root {
+    --blue-900: #16283b;
+    --blue-700: #3c4f64;
+    --blue-500: #7f95ae;
+    --blue-100: #e7eaee;
+
+    --bg: #f6f6f4;
+    --panel: #ffffff;
+    --sunk: #f0f0ee;
+    --ink: #1f2228;
+    --ink-2: #3a3d43;
+    --ink-3: #5d636f;
+    --ink-4: #878a98;
+    --line: #dadde2;
+    --line-soft: #e8eaee;
+    --accent: var(--blue-700);
+
+    --radius: 14px;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  }
+
+  [data-theme="dark"] {
+    --bg: #101828;
+    --panel: #171e2d;
+    --sunk: #141721;
+    --ink: #f4f6f8;
+    --ink-2: #dce0e5;
+    --ink-3: #b8bdc6;
+    --ink-4: #878a98;
+    --line: #262d3b;
+    --line-soft: #1f2634;
+    --accent: var(--blue-500);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    padding: 0 0 6rem;
+    background: var(--bg);
+    color: var(--ink-2);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", "Hiragino Sans GB", sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ---------- page header ---------- */
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.875rem 2rem;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .topbar strong {
+    color: var(--ink);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .topbar .sub {
+    color: var(--ink-4);
+    font-size: 0.8125rem;
+  }
+
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--panel);
+    color: var(--ink-3);
+    font: inherit;
+    font-size: 0.8125rem;
+    cursor: pointer;
+  }
+
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  header.intro {
+    padding: 3.5rem 0 2rem;
+  }
+
+  header.intro h1 {
+    margin: 0 0 0.75rem;
+    color: var(--ink);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+
+  header.intro p {
+    margin: 0;
+    max-width: 62ch;
+    color: var(--ink-3);
+  }
+
+  /* ---------- section scaffolding ---------- */
+
+  .concept {
+    margin-top: 2.5rem;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .concept-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem 1.75rem;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .concept-head .id {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: var(--blue-100);
+    color: var(--blue-700);
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+
+  [data-theme="dark"] .concept-head .id {
+    background: #10233f;
+    color: var(--blue-500);
+  }
+
+  .concept-head h2 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .concept-head .why {
+    margin: 0.25rem 0 0;
+    color: var(--ink-3);
+    font-size: 0.9375rem;
+  }
+
+  .badge {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.0625rem 0.5rem;
+    border-radius: 999px;
+    background: var(--blue-700);
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    vertical-align: 3px;
+  }
+
+  .panel-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 1px;
+    background: var(--line-soft);
+  }
+
+  @media (max-width: 880px) {
+    .panel-grid { grid-template-columns: 1fr; }
+  }
+
+  .cell {
+    padding: 1.5rem 1.75rem;
+    background: var(--panel);
+  }
+
+  .cell-label {
+    margin: 0 0 1rem;
+    color: var(--ink-4);
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .stack { display: flex; flex-direction: column; gap: 1.75rem; }
+
+  /* ---------- grid blueprint ---------- */
+
+  .blueprint {
+    display: block;
+    margin: 0 auto;
+    color: var(--ink);
+  }
+
+  .note {
+    margin: 0.875rem 0 0;
+    color: var(--ink-4);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+  }
+
+  /* ---------- real-size specimens ---------- */
+
+  .sizes {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .size-item { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+
+  .size-item .cap {
+    color: var(--ink-4);
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+  }
+
+  .chip {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+
+  .chip.on-light { background: #ffffff; color: #4a4a4a; }
+  .chip.on-dark  { background: #1e1e1e; color: #b7b7b7; border-color: #2c2c2c; }
+
+  /* ---------- obsidian ribbon mock ---------- */
+
+  .mocks { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+  .ribbon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 44px;
+    padding: 10px 0;
+    border-radius: 8px;
+  }
+
+  .ribbon.dark  { background: #1e1e1e; }
+  .ribbon.light { background: #e3e3e3; }
+
+  .ribbon .slot {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+  }
+
+  .ribbon.dark  .slot { color: #9a9a9a; }
+  .ribbon.light .slot { color: #6b6b6b; }
+
+  .ribbon .slot.active { background: rgba(139, 108, 239, 0.16); }
+  .ribbon.dark  .slot.active { color: #e0e0e0; }
+  .ribbon.light .slot.active { color: #2f2f2f; }
+
+  .ribbon .divider {
+    width: 18px;
+    height: 1px;
+    margin: 4px 0;
+    background: currentColor;
+    opacity: 0.18;
+  }
+
+  .tabmock {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 6px;
+    font-size: 12.5px;
+  }
+
+  .tabmock.dark  { background: #262626; color: #d0d0d0; }
+  .tabmock.light { background: #ffffff; color: #4a4a4a; border: 1px solid #e0e0e0; }
+
+  .mock-col { display: flex; flex-direction: column; gap: 0.625rem; }
+
+  .mock-col .cap {
+    color: var(--ink-4);
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+  }
+
+  /* ---------- colour specimens ---------- */
+
+  .colour-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .lockup {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+
+  .starbar {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0 1rem;
+    height: 58px;
+    border-radius: 10px;
+    border: 1px solid;
+    font-size: 0.875rem;
+  }
+
+  .starbar.light { background: #ffffff; border-color: #dadde2; color: #3a3d43; }
+  .starbar.dark  { background: #101828; border-color: #262d3b; color: #b8bdc6; }
+
+  .starbar .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .starbar.light .brand { color: #1f2228; }
+  .starbar.dark  .brand { color: #f4f6f8; }
+
+  .starbar .nav { display: flex; gap: 1rem; font-size: 0.8125rem; opacity: 0.75; }
+
+  .starbar .spacer { flex: 1; }
+
+  .browser-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 210px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 9px 9px 0 0;
+    font-size: 12.5px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .browser-tab.light { background: #ffffff; color: #4a4a4a; border: 1px solid #e0e0e0; border-bottom: none; }
+  .browser-tab.dark  { background: #2b2b2b; color: #cfcfcf; }
+
+  /* ---------- deliverables ---------- */
+
+  .handoff {
+    margin-top: 2.5rem;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+  }
+
+  .handoff h2 {
+    margin: 0 0 0.75rem;
+    color: var(--ink);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .handoff p { margin: 0 0 1rem; color: var(--ink-3); }
+
+  pre {
+    margin: 0;
+    padding: 1rem 1.125rem;
+    background: var(--sunk);
+    border: 1px solid var(--line-soft);
+    border-radius: 10px;
+    overflow-x: auto;
+    color: var(--ink-2);
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+  }
+
+  code { font-family: var(--mono); font-size: 0.9em; }
+
+  .rules { margin: 0; padding-left: 1.125rem; color: var(--ink-3); }
+  .rules li { margin-bottom: 0.375rem; }
+  .rules b { color: var(--ink-2); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- ============ SPRITE ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="grid24" width="1" height="1" patternUnits="userSpaceOnUse">
+      <path d="M1 0V1M0 1H1" fill="none" stroke="currentColor" stroke-width="0.05" opacity="0.28"></path>
+    </pattern>
+
+    <linearGradient id="cwAccent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3c4f64"></stop>
+      <stop offset="1" stop-color="#22374e"></stop>
+    </linearGradient>
+
+    <filter id="cardLift" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#053794" flood-opacity="0.35"></feDropShadow>
+    </filter>
+  </defs>
+
+  <!-- A · 归位 Snap to grid -->
+  <symbol id="mono-a" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+      <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+      <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+      <rect x="-3" y="-3" width="6" height="6" rx="1.5" transform="translate(17.9 6.1) rotate(22)"></rect>
+    </g>
+  </symbol>
+
+  <!-- B · 分栏 Board columns -->
+  <symbol id="mono-b" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="7" height="9" rx="1.5"></rect>
+      <rect x="3" y="16" width="7" height="5" rx="1.5"></rect>
+      <rect x="14" y="3" width="7" height="5" rx="1.5"></rect>
+      <rect x="14" y="12" width="7" height="9" rx="1.5"></rect>
+    </g>
+  </symbol>
+
+  <!-- C · 对齐 Align to guide -->
+  <symbol id="mono-c" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 4v16"></path>
+      <rect x="7" y="3" width="11" height="7" rx="1.5"></rect>
+      <rect x="10" y="14" width="11" height="7" rx="1.5"></rect>
+    </g>
+  </symbol>
+
+  <!-- colour marks -->
+  <symbol id="colour-a" viewBox="0 0 128 128">
+    <rect width="128" height="128" rx="30" fill="url(#cwAccent)"></rect>
+    <g fill="#ffffff">
+      <rect x="26" y="26" width="34" height="34" rx="6" opacity="0.8"></rect>
+      <rect x="26" y="68" width="34" height="34" rx="6" opacity="0.8"></rect>
+      <rect x="68" y="68" width="34" height="34" rx="6" opacity="0.8"></rect>
+      <g filter="url(#cardLift)">
+        <rect x="-16" y="-16" width="32" height="32" rx="6" transform="translate(86.5 41) rotate(22)"></rect>
+      </g>
+    </g>
+  </symbol>
+
+  <symbol id="colour-b" viewBox="0 0 128 128">
+    <rect width="128" height="128" rx="30" fill="url(#cwAccent)"></rect>
+    <g fill="#ffffff">
+      <rect x="24" y="24" width="35" height="46" rx="6"></rect>
+      <rect x="24" y="80" width="35" height="24" rx="6" opacity="0.72"></rect>
+      <rect x="69" y="24" width="35" height="24" rx="6" opacity="0.72"></rect>
+      <rect x="69" y="58" width="35" height="46" rx="6"></rect>
+    </g>
+  </symbol>
+
+  <symbol id="colour-c" viewBox="0 0 128 128">
+    <rect width="128" height="128" rx="30" fill="url(#cwAccent)"></rect>
+    <g fill="#ffffff">
+      <rect x="24" y="28" width="8" height="72" rx="4" opacity="0.55"></rect>
+      <rect x="40" y="24" width="52" height="36" rx="10" opacity="0.8"></rect>
+      <g filter="url(#cardLift)">
+        <rect x="52" y="68" width="52" height="36" rx="10"></rect>
+      </g>
+    </g>
+  </symbol>
+
+  <!-- neighbour icons for the ribbon mock (Lucide) -->
+  <symbol id="lu-search" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.3-4.3"></path>
+    </g>
+  </symbol>
+  <symbol id="lu-folder" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"></path>
+    </g>
+  </symbol>
+  <symbol id="lu-calendar" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 2v4"></path>
+      <path d="M16 2v4"></path>
+      <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+      <path d="M3 10h18"></path>
+    </g>
+  </symbol>
+  <symbol id="lu-settings" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 17H5"></path>
+      <path d="M19 7h-9"></path>
+      <circle cx="17" cy="17" r="3"></circle>
+      <circle cx="7" cy="7" r="3"></circle>
+    </g>
+  </symbol>
+</svg>
+
+<div class="topbar">
+  <div>
+    <strong>Card Workspace — 图标方向对比</strong>
+    <span class="sub">三种"整理"语法 · 单色母版优先</span>
+  </div>
+  <button class="theme-toggle" id="themeBtn" type="button">切换到深色</button>
+</div>
+
+<div class="wrap">
+
+  <header class="intro">
+    <h1>用什么图形语法表达"卡片整理"</h1>
+    <p>
+      "整理"是动作和关系，不是物体，24px 画布上放不下"从乱到齐"的完整叙事。
+      三个方向各自借用一种成熟的图形语法来暗示它：<b>归位</b>（有东西正落到该在的位置）、<b>分栏</b>（已被分门别类的结果）、<b>对齐</b>（有一条基准线在约束）。
+      每个方向都先在 Lucide 的 24×24 网格上画单色母版（描边 2、圆头圆角、元素间距 2、圆角 2），再派生彩色版。
+    </p>
+  </header>
+
+  <!-- ================= A ================= -->
+  <section class="concept" data-screen-label="Concept A">
+    <div class="concept-head">
+      <div class="id">A</div>
+      <div>
+        <h2>归位 · Snap to grid<span class="badge">推荐</span></h2>
+        <p class="why">三张卡片已经在网格里就位，第四张倾斜着正在落下。倾斜是唯一的动态元素，也是整个图形的签名特征——它同时把"卡片"和"正在被整理"两件事说完了。</p>
+      </div>
+    </div>
+
+    <div class="panel-grid">
+      <div class="cell">
+        <p class="cell-label">24 × 24 网格母版</p>
+        <svg class="blueprint" width="240" height="240" viewBox="0 0 24 24">
+          <rect width="24" height="24" fill="url(#grid24)"></rect>
+          <rect x="1" y="1" width="22" height="22" fill="none" stroke="#2b7fff" stroke-width="0.08" stroke-dasharray="0.5 0.5" opacity="0.85"></rect>
+          <use href="#mono-a" width="24" height="24"></use>
+        </svg>
+        <p class="note">虚线是 1px 安全边距。倾斜角定在 22°：栅格化实测下 16° 到了 24px 就看不出倾斜，28° 以上又从"倾斜的卡片"变成菱形。卡片缩到 6×6，是让旋转后的外框仍能留住 2px 间距的最大尺寸。</p>
+      </div>
+
+      <div class="cell stack">
+        <div>
+          <p class="cell-label">实际尺寸（单色）</p>
+          <div class="sizes">
+            <div class="size-item"><div class="chip on-light"><svg width="16" height="16"><use href="#mono-a" width="16" height="16"></use></svg></div><span class="cap">16</span></div>
+            <div class="size-item"><div class="chip on-light"><svg width="20" height="20"><use href="#mono-a" width="20" height="20"></use></svg></div><span class="cap">20</span></div>
+            <div class="size-item"><div class="chip on-light"><svg width="24" height="24"><use href="#mono-a" width="24" height="24"></use></svg></div><span class="cap">24</span></div>
+            <div class="size-item"><div class="chip on-dark"><svg width="16" height="16"><use href="#mono-a" width="16" height="16"></use></svg></div><span class="cap">16</span></div>
+            <div class="size-item"><div class="chip on-dark"><svg width="20" height="20"><use href="#mono-a" width="20" height="20"></use></svg></div><span class="cap">20</span></div>
+            <div class="size-item"><div class="chip on-dark"><svg width="24" height="24"><use href="#mono-a" width="24" height="24"></use></svg></div><span class="cap">24</span></div>
+          </div>
+        </div>
+
+        <div>
+          <p class="cell-label">Obsidian 语境</p>
+          <div class="mocks">
+            <div class="mock-col">
+              <div class="ribbon dark">
+                <div class="slot"><svg width="18" height="18"><use href="#lu-search" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-folder" width="18" height="18"></use></svg></div>
+                <div class="divider"></div>
+                <div class="slot active"><svg width="18" height="18"><use href="#mono-a" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-calendar" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-settings" width="18" height="18"></use></svg></div>
+              </div>
+              <span class="cap">ribbon · 深色</span>
+            </div>
+            <div class="mock-col">
+              <div class="ribbon light">
+                <div class="slot"><svg width="18" height="18"><use href="#lu-search" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-folder" width="18" height="18"></use></svg></div>
+                <div class="divider"></div>
+                <div class="slot active"><svg width="18" height="18"><use href="#mono-a" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-calendar" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-settings" width="18" height="18"></use></svg></div>
+              </div>
+              <span class="cap">ribbon · 浅色</span>
+            </div>
+            <div class="mock-col">
+              <div class="tabmock dark"><svg width="15" height="15"><use href="#mono-a" width="15" height="15"></use></svg>Card Workspace</div>
+              <div class="tabmock light"><svg width="15" height="15"><use href="#mono-a" width="15" height="15"></use></svg>Card Workspace</div>
+              <span class="cap">视图标签页</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="cell-label">网站彩色版</p>
+          <div class="colour-row">
+            <div class="size-item"><svg width="88" height="88"><use href="#colour-a" width="88" height="88"></use></svg><span class="cap">hero 88</span></div>
+            <div class="size-item"><svg width="32" height="32"><use href="#colour-a" width="32" height="32"></use></svg><span class="cap">32</span></div>
+            <div class="size-item"><div class="lockup"><svg width="28" height="28"><use href="#colour-a" width="28" height="28"></use></svg>Card Workspace</div><span class="cap">顶栏锁定图形</span></div>
+            <div class="size-item"><div class="browser-tab light"><svg width="16" height="16"><use href="#colour-a" width="16" height="16"></use></svg>Card Workspace</div><span class="cap">favicon 16</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= B ================= -->
+  <section class="concept" data-screen-label="Concept B">
+    <div class="concept-head">
+      <div class="id">B</div>
+      <div>
+        <h2>分栏 · Board columns</h2>
+        <p class="why">两列高矮交错的卡片，画的是"整理完之后的样子"。最像一个卡片工作台，也最稳，但它是静态结果，没有动作感——而且和 Lucide 的 <code>kanban</code> / <code>layout-dashboard</code> 距离最近，需要靠高矮交错来拉开辨识度。</p>
+      </div>
+    </div>
+
+    <div class="panel-grid">
+      <div class="cell">
+        <p class="cell-label">24 × 24 网格母版</p>
+        <svg class="blueprint" width="240" height="240" viewBox="0 0 24 24">
+          <rect width="24" height="24" fill="url(#grid24)"></rect>
+          <rect x="1" y="1" width="22" height="22" fill="none" stroke="#2b7fff" stroke-width="0.08" stroke-dasharray="0.5 0.5" opacity="0.85"></rect>
+          <use href="#mono-b" width="24" height="24"></use>
+        </svg>
+        <p class="note">四张卡片全部落在 7 宽的两列上，列间距和行间距都是 2px，高度做 9 / 5 的交错以避开通用看板图标。</p>
+      </div>
+
+      <div class="cell stack">
+        <div>
+          <p class="cell-label">实际尺寸（单色）</p>
+          <div class="sizes">
+            <div class="size-item"><div class="chip on-light"><svg width="16" height="16"><use href="#mono-b" width="16" height="16"></use></svg></div><span class="cap">16</span></div>
+            <div class="size-item"><div class="chip on-light"><svg width="20" height="20"><use href="#mono-b" width="20" height="20"></use></svg></div><span class="cap">20</span></div>
+            <div class="size-item"><div class="chip on-light"><svg width="24" height="24"><use href="#mono-b" width="24" height="24"></use></svg></div><span class="cap">24</span></div>
+            <div class="size-item"><div class="chip on-dark"><svg width="16" height="16"><use href="#mono-b" width="16" height="16"></use></svg></div><span class="cap">16</span></div>
+            <div class="size-item"><div class="chip on-dark"><svg width="20" height="20"><use href="#mono-b" width="20" height="20"></use></svg></div><span class="cap">20</span></div>
+            <div class="size-item"><div class="chip on-dark"><svg width="24" height="24"><use href="#mono-b" width="24" height="24"></use></svg></div><span class="cap">24</span></div>
+          </div>
+        </div>
+
+        <div>
+          <p class="cell-label">Obsidian 语境</p>
+          <div class="mocks">
+            <div class="mock-col">
+              <div class="ribbon dark">
+                <div class="slot"><svg width="18" height="18"><use href="#lu-search" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-folder" width="18" height="18"></use></svg></div>
+                <div class="divider"></div>
+                <div class="slot active"><svg width="18" height="18"><use href="#mono-b" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-calendar" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-settings" width="18" height="18"></use></svg></div>
+              </div>
+              <span class="cap">ribbon · 深色</span>
+            </div>
+            <div class="mock-col">
+              <div class="ribbon light">
+                <div class="slot"><svg width="18" height="18"><use href="#lu-search" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-folder" width="18" height="18"></use></svg></div>
+                <div class="divider"></div>
+                <div class="slot active"><svg width="18" height="18"><use href="#mono-b" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-calendar" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-settings" width="18" height="18"></use></svg></div>
+              </div>
+              <span class="cap">ribbon · 浅色</span>
+            </div>
+            <div class="mock-col">
+              <div class="tabmock dark"><svg width="15" height="15"><use href="#mono-b" width="15" height="15"></use></svg>Card Workspace</div>
+              <div class="tabmock light"><svg width="15" height="15"><use href="#mono-b" width="15" height="15"></use></svg>Card Workspace</div>
+              <span class="cap">视图标签页</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="cell-label">网站彩色版</p>
+          <div class="colour-row">
+            <div class="size-item"><svg width="88" height="88"><use href="#colour-b" width="88" height="88"></use></svg><span class="cap">hero 88</span></div>
+            <div class="size-item"><svg width="32" height="32"><use href="#colour-b" width="32" height="32"></use></svg><span class="cap">32</span></div>
+            <div class="size-item"><div class="lockup"><svg width="28" height="28"><use href="#colour-b" width="28" height="28"></use></svg>Card Workspace</div><span class="cap">顶栏锁定图形</span></div>
+            <div class="size-item"><div class="browser-tab light"><svg width="16" height="16"><use href="#colour-b" width="16" height="16"></use></svg>Card Workspace</div><span class="cap">favicon 16</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= C ================= -->
+  <section class="concept" data-screen-label="Concept C">
+    <div class="concept-head">
+      <div class="id">C</div>
+      <div>
+        <h2>对齐 · Align to guide<span class="badge">已选定</span></h2>
+        <p class="why">左侧一条基准线，两张<b>等大</b>的卡片正在往它身上靠——下面那张还错着位没到位。"整理"的语义最直白，形状也最少（三个元素），16px 下最清晰。需要留意的一点：那条竖线容易被读成侧边栏，和 Lucide 的 <code>panel-left</code> 有一定距离感需要把控，卡片的圆角和错位是主要的区分手段。</p>
+      </div>
+    </div>
+
+    <div class="panel-grid">
+      <div class="cell">
+        <p class="cell-label">24 × 24 网格母版</p>
+        <svg class="blueprint" width="240" height="240" viewBox="0 0 24 24">
+          <rect width="24" height="24" fill="url(#grid24)"></rect>
+          <rect x="1" y="1" width="22" height="22" fill="none" stroke="#2b7fff" stroke-width="0.08" stroke-dasharray="0.5 0.5" opacity="0.85"></rect>
+          <use href="#mono-c" width="24" height="24"></use>
+        </svg>
+        <p class="note">两张卡片<b>严格等大</b>（11×7），错位只靠平移、不靠改尺寸——改尺寸会被读成"两张不同的卡片"，只有等大平移才读得出"同一张卡片没放到位"。等大之后 13 宽会越界，所以收到 11 宽、基准线从 3.5 挪到 3，右移 3 格后第二张的外边缘正好落在 22。</p>
+      </div>
+
+      <div class="cell stack">
+        <div>
+          <p class="cell-label">实际尺寸（单色）</p>
+          <div class="sizes">
+            <div class="size-item"><div class="chip on-light"><svg width="16" height="16"><use href="#mono-c" width="16" height="16"></use></svg></div><span class="cap">16</span></div>
+            <div class="size-item"><div class="chip on-light"><svg width="20" height="20"><use href="#mono-c" width="20" height="20"></use></svg></div><span class="cap">20</span></div>
+            <div class="size-item"><div class="chip on-light"><svg width="24" height="24"><use href="#mono-c" width="24" height="24"></use></svg></div><span class="cap">24</span></div>
+            <div class="size-item"><div class="chip on-dark"><svg width="16" height="16"><use href="#mono-c" width="16" height="16"></use></svg></div><span class="cap">16</span></div>
+            <div class="size-item"><div class="chip on-dark"><svg width="20" height="20"><use href="#mono-c" width="20" height="20"></use></svg></div><span class="cap">20</span></div>
+            <div class="size-item"><div class="chip on-dark"><svg width="24" height="24"><use href="#mono-c" width="24" height="24"></use></svg></div><span class="cap">24</span></div>
+          </div>
+        </div>
+
+        <div>
+          <p class="cell-label">Obsidian 语境</p>
+          <div class="mocks">
+            <div class="mock-col">
+              <div class="ribbon dark">
+                <div class="slot"><svg width="18" height="18"><use href="#lu-search" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-folder" width="18" height="18"></use></svg></div>
+                <div class="divider"></div>
+                <div class="slot active"><svg width="18" height="18"><use href="#mono-c" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-calendar" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-settings" width="18" height="18"></use></svg></div>
+              </div>
+              <span class="cap">ribbon · 深色</span>
+            </div>
+            <div class="mock-col">
+              <div class="ribbon light">
+                <div class="slot"><svg width="18" height="18"><use href="#lu-search" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-folder" width="18" height="18"></use></svg></div>
+                <div class="divider"></div>
+                <div class="slot active"><svg width="18" height="18"><use href="#mono-c" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-calendar" width="18" height="18"></use></svg></div>
+                <div class="slot"><svg width="18" height="18"><use href="#lu-settings" width="18" height="18"></use></svg></div>
+              </div>
+              <span class="cap">ribbon · 浅色</span>
+            </div>
+            <div class="mock-col">
+              <div class="tabmock dark"><svg width="15" height="15"><use href="#mono-c" width="15" height="15"></use></svg>Card Workspace</div>
+              <div class="tabmock light"><svg width="15" height="15"><use href="#mono-c" width="15" height="15"></use></svg>Card Workspace</div>
+              <span class="cap">视图标签页</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="cell-label">网站彩色版</p>
+          <div class="colour-row">
+            <div class="size-item"><svg width="88" height="88"><use href="#colour-c" width="88" height="88"></use></svg><span class="cap">hero 88</span></div>
+            <div class="size-item"><svg width="32" height="32"><use href="#colour-c" width="32" height="32"></use></svg><span class="cap">32</span></div>
+            <div class="size-item"><div class="lockup"><svg width="28" height="28"><use href="#colour-c" width="28" height="28"></use></svg>Card Workspace</div><span class="cap">顶栏锁定图形</span></div>
+            <div class="size-item"><div class="browser-tab light"><svg width="16" height="16"><use href="#colour-c" width="16" height="16"></use></svg>Card Workspace</div><span class="cap">favicon 16</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Starlight header ================= -->
+  <section class="concept" data-screen-label="Starlight header">
+    <div class="concept-head">
+      <div class="id">↳</div>
+      <div>
+        <h2>放进网站顶栏</h2>
+        <p class="why">Starlight 顶栏的 logo 高度只有 28px 上下，是彩色版最严苛的场合——比 hero 大图更能决定选哪个方向。</p>
+      </div>
+    </div>
+    <div class="cell stack">
+      <div class="starbar light">
+        <div class="brand"><svg width="26" height="26"><use href="#colour-a" width="26" height="26"></use></svg>Card Workspace</div>
+        <div class="nav"><span>指南</span><span>参考</span></div>
+        <div class="spacer"></div>
+        <div class="nav"><span>简体中文</span><span>GitHub</span></div>
+      </div>
+      <div class="starbar dark">
+        <div class="brand"><svg width="26" height="26"><use href="#colour-b" width="26" height="26"></use></svg>Card Workspace</div>
+        <div class="nav"><span>指南</span><span>参考</span></div>
+        <div class="spacer"></div>
+        <div class="nav"><span>简体中文</span><span>GitHub</span></div>
+      </div>
+      <div class="starbar light">
+        <div class="brand"><svg width="26" height="26"><use href="#colour-c" width="26" height="26"></use></svg>Card Workspace</div>
+        <div class="nav"><span>指南</span><span>参考</span></div>
+        <div class="spacer"></div>
+        <div class="nav"><span>简体中文</span><span>GitHub</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= raster evidence ================= -->
+  <section class="concept" data-screen-label="Raster check">
+    <div class="concept-head">
+      <div class="id">◦</div>
+      <div>
+        <h2>真实栅格对照</h2>
+        <p class="why">浏览器会给 SVG 做抗锯齿，看着总比实际清楚。这两张是用 <code>sharp</code> 真正栅格化成位图的结果——倾斜角定在 22° 就是照着下面那张定的。</p>
+      </div>
+    </div>
+    <div class="cell stack">
+      <div>
+        <p class="cell-label">三方向 · 单色 16/20/24/32/96 + 彩色 16/26/32/88</p>
+        <img src="raster-check.png" alt="三个方向在各尺寸下的栅格化对照" style="max-width:100%;border:1px solid var(--line-soft);border-radius:10px;background:#fff">
+      </div>
+      <div>
+        <p class="cell-label">C 的卡片尺寸研究 · 定稿依据</p>
+        <img src="raster-c-study.png" alt="C 方案的尺寸与错位对比" style="max-width:100%;border:1px solid var(--line-soft);border-radius:10px;background:#fff">
+        <p class="note">从上到下：<b>不等宽（旧稿）</b>被读成两张不同的卡片，是层级关系不是错位；<b>等大平移 3</b>（定稿）读作同一张卡片没到位；等大平移 4 错位更明显但略显随意；完全对齐最干净却没有动作；错位放在上面那张、以及给下面那张加 8° 倾斜，小尺寸下都像是画歪了。</p>
+      </div>
+
+      <div>
+        <p class="cell-label">A 的倾斜角研究 · 备选方向留档</p>
+        <img src="raster-tilt-study.png" alt="倾斜角度对比" style="max-width:100%;border:1px solid var(--line-soft);border-radius:10px;background:#fff">
+        <p class="note">从上到下：16° 到 24px 就看不出倾斜，退化成 <code>layout-grid</code>；28° 开始像菱形；45° 彻底不是卡片了。22° 是唯一在 24px 能看出倾斜、在 96px 仍是一张卡片的角度。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= handoff ================= -->
+  <section class="handoff">
+    <h2>已交付的资产</h2>
+    <p>方案 C（等大平移 3）已定稿并落地。<code>addIcon()</code> 要求内容适配 <code>0 0 100 100</code> 视口、且不带 <code>&lt;svg&gt;</code> 外壳，所以 24 网格母版套一层 <code>scale(100/24)</code> 交付，描边宽度随之放大到 8.33，不用手工重画：</p>
+    <pre>addIcon('card-workspace', `
+  &lt;g transform="scale(4.16667)" fill="none" stroke="currentColor"
+     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;
+    &lt;path d="M3 4v16"/&gt;
+    &lt;rect x="7" y="3" width="11" height="7" rx="1.5"/&gt;
+    &lt;rect x="10" y="14" width="11" height="7" rx="1.5"/&gt;
+  &lt;/g&gt;
+`);</pre>
+    <ul class="rules" style="margin-top:1.25rem">
+      <li><b>src/assets/logo-light.svg / logo-dark.svg</b> — 主图形明暗两版，hero 与顶栏共用</li>
+      <li><b>public/favicon.svg</b> — 光学调整版：内边距 24→16、容器圆角 30→26、卡片满不透明，专为 16px 优化；内嵌 <code>prefers-color-scheme</code> 规则，跟随浏览器明暗翻转</li>
+      <li><b>public/og.png</b> — 1200×630，已接 <code>og:image</code> / <code>twitter:image</code></li>
+      <li><b>handoff/obsidian-icon.ts</b> — 可直接粘进插件仓库的 <code>addIcon()</code> 注册代码</li>
+      <li><b>handoff/card-workspace-mono.svg</b> — 24 网格单色母版，改图从这里改</li>
+    </ul>
+    <p style="margin-top:1.25rem"><b>配色以 V2 设计稿（<code>tokens-v2.css</code>）为准</b>，不是当前 <code>theme.css</code> 的品牌蓝。V2 的强调色明度在明暗之间翻转——浅色下是深石墨蓝 <code>oklch(0.42 0.042 252)</code> = <code>#3c4f64</code>，深色下却是浅蓝 <code>oklch(0.79 0.055 250)</code> = <code>#a0bedd</code>——所以主图形必须做成两个文件，接到 Starlight 的 <code>logo: { light, dark }</code>。所有色值都由 oklch 精确换算，未凭肉眼取色。</p>
+    <p>主 logo 和 favicon 是<b>两套略有差异的几何</b>——这是刻意的光学调整，不是疏漏。主 logo 保留 0.8 / 1.0 的透明度差来营造层次，favicon 在 16px 下那点层次只会变成脏点，所以拉满对比。改动时两个文件都要同步。</p>
+  </section>
+
+</div>
+
+<script>
+  const btn = document.getElementById('themeBtn');
+  btn.addEventListener('click', () => {
+    const root = document.documentElement;
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    btn.textContent = next === 'dark' ? '切换到浅色' : '切换到深色';
+  });
+</script>
+
+</body>
+</html>

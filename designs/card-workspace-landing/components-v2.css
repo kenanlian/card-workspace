@@ -286,6 +286,18 @@ img {
   border-radius: var(--cw-radius-sm);
 }
 
+.cw-brand__mark--dark {
+  display: none;
+}
+
+[data-theme='dark'] .cw-brand__mark--light {
+  display: none;
+}
+
+[data-theme='dark'] .cw-brand__mark--dark {
+  display: block;
+}
+
 .cw-brand__name {
   font-family: var(--cw-font-display);
   font-size: 1.125rem;

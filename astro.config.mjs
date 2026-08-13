@@ -16,6 +16,20 @@ export default defineConfig({
     starlight({
       title: 'Card Workspace',
       description: 'A card-based workspace plugin for Obsidian.',
+      // V2's accent flips lightness between modes (deep graphite on light,
+      // pale blue on dark), so the mark cannot be a single file.
+      logo: {
+        light: './src/assets/logo-light.svg',
+        dark: './src/assets/logo-dark.svg',
+      },
+      // Starlight emits og:title/og:description/twitter:card itself; only the
+      // image needs an absolute URL, which it cannot build on its own.
+      head: [
+        { tag: 'meta', attrs: { property: 'og:image', content: `${SITE}${BASE}/og.png` } },
+        { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
+        { tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
+        { tag: 'meta', attrs: { name: 'twitter:image', content: `${SITE}${BASE}/og.png` } },
+      ],
       // Zed-inspired custom theme (see src/styles/theme.css).
       customCss: ['./src/styles/theme.css'],
       // English is the default (root) language; Chinese lives under /zh/.
