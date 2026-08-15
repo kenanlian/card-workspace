@@ -18,3 +18,5 @@ pnpm-debug.log*
 .cursor/
 # Serena tool cache
 .serena/
+# Agent skills
+.agents/
