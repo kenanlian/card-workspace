@@ -20,3 +20,5 @@ pnpm-debug.log*
 .serena/
 # Agent skills
 .agents/
+# Private development artifacts companion
+/.dev
