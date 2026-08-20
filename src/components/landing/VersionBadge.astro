@@ -1,0 +1,14 @@
+---
+interface Props {
+  version: string;
+  title: string;
+  href?: string;
+}
+
+const { version, title, href = '#install' } = Astro.props;
+---
+
+<a class="cw-ver" href={href} title={title} aria-label={title}>
+  <span class="cw-ver__dot" aria-hidden="true"></span>
+  <span class="cw-ver__num">{version}</span>
+</a>

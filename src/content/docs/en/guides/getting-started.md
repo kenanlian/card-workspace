@@ -1,23 +1,23 @@
 ---
-title: Getting Started
-description: Create your first card workspace in Obsidian.
+title: Getting started
+description: Open Card Workspace in the left sidebar and browse your first cards.
 ---
 
-> Placeholder content. Replace with your real first-run walkthrough.
+Open the panel, pick a scope, and click a card. Everyday actions stay on the ribbon, right-click menus, and drag — not a long command list.
 
-## Open a workspace
+## Open the view
 
-1. Open the command palette (`Ctrl/Cmd + P`).
-2. Run **Card Workspace: Open**.
-3. A new board opens in the main view.
+1. Click the ribbon icon **Open Card Workspace**, or run **Open Card Workspace view** from the command palette. The panel opens in the **left sidebar**.
+2. In Card Workspace’s own navigation pane, pick a folder, a tag, or a card box.
+3. Browse the card stream and click a card to open its note.
+4. Right-click a folder, tag, box, or card for more actions. Drag a card into an open Markdown editor to insert a link or content.
 
-## Add your first card
+## After you quit Obsidian
 
-1. Click anywhere on the board, or use **Card Workspace: New card**.
-2. Type a title and start writing.
-3. Drag the card to position it.
+On startup, Card Workspace restores the last **folder** you browsed. If that folder was the vault root, it restores the whole vault. It does **not** reopen the last card box.
 
-## Tips
+## Next steps
 
-- Cards are backed by real notes in your vault.
-- Use links to connect cards together.
+- [Navigation](/card-workspace-site/en/guides/navigation/) — folders, tags, favorites, and the two-column pane
+- [Card boxes](/card-workspace-site/en/guides/card-boxes/) — saved topic collections
+- [Writing and organizing](/card-workspace-site/en/guides/writing-and-organizing/) — open, drag, create, and menus

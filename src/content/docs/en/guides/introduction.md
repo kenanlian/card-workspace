@@ -1,18 +1,24 @@
 ---
 title: Introduction
-description: What Card Workspace is and what it can do for you.
+description: What Card Workspace is, what it is not, and who it is for.
 ---
 
-Card Workspace is an [Obsidian](https://obsidian.md/) plugin that lets you organize
-your notes as cards on a visual board.
+Card Workspace is a **left-sidebar** [Obsidian](https://obsidian.md/) plugin that shows notes as a card stream. Each card shows a title and a Markdown-stripped excerpt so you can scan a folder, a tag filter, or a card box without reading a plain file list.
 
-> This page is a placeholder. Replace it with a real introduction to your plugin.
+It is not Obsidian Canvas, and it is not a board you arrange by dragging cards around. Click a card to open the note. As you switch notes in the editor, the matching card is selected. Notes stay Markdown files (and other supported files) in your vault.
 
-## What you can do
+## What you browse
 
-- Lay out notes as movable cards.
-- Group and connect related ideas.
-- Keep everything as plain Markdown in your vault.
+Scope is one of:
+
+- a **folder**, optionally including subfolders
+- a **tag filter**
+- a **card box** — a saved topic collection with its own rules, sort, and pins
+
+## Requirements
+
+- **Desktop only.** Card Workspace is unavailable on mobile.
+- **Obsidian 1.9.0 or later**, because card support for Bases depends on that version.
 
 ## Next steps
 

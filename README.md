@@ -46,14 +46,26 @@ npm run preview   # preview the production build
 
 ```
 src/content/docs/
-├── en/                 # English
-│   ├── index.mdx       # landing / marketing page (splash hero)
+├── en/                              # English
+│   ├── index.mdx                    # splash; imports <Landing locale="en" />
 │   ├── guides/
+│   │   ├── introduction.md
+│   │   ├── installation.md
+│   │   ├── getting-started.md
+│   │   ├── navigation.md
+│   │   ├── card-boxes.md
+│   │   ├── browsing-cards.md
+│   │   └── writing-and-organizing.md
 │   └── reference/
-└── zh/                 # 简体中文 (mirrors the English structure)
+│       ├── settings.md
+│       ├── commands-and-menus.md
+│       └── limits-and-privacy.md
+└── zh/                              # 简体中文 (mirrors the English structure)
     ├── index.mdx
     ├── guides/
     └── reference/
 ```
+
+Splash landing components live in `src/components/landing/`. V2 Graphite Index tokens and Starlight chrome live in `src/styles/`. Guide pages include `guides/card-boxes`. `designs/` is a prototype tree and is not deployed.
 
 Navigation labels and translations live in the `sidebar` config in `astro.config.mjs`.

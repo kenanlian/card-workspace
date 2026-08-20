@@ -1,23 +1,23 @@
 ---
 title: 快速开始
-description: 在 Obsidian 中创建你的第一个卡片工作区。
+description: 在左侧边栏打开 Card Workspace，并浏览第一批卡片。
 ---
 
-> 占位内容，请替换成真实的上手引导。
+打开面板、选择范围，再点击一张卡片即可开始。日常操作在 ribbon、右键菜单和拖拽中完成，不必依赖一长串命令。
 
-## 打开工作区
+## 打开视图
 
-1. 打开命令面板（`Ctrl/Cmd + P`）。
-2. 运行 **Card Workspace: Open**。
-3. 主视图中会打开一个新的看板。
+1. 点击 ribbon 图标 **打开 Card Workspace**，或从命令面板运行 **打开 Card Workspace 视图**。面板会在 **左侧边栏** 打开。
+2. 在 Card Workspace 自带的导航栏中选择文件夹、标签或卡片盒。
+3. 浏览卡片流，点击卡片打开对应笔记。
+4. 右键文件夹、标签、卡片盒或卡片可使用其余操作。把卡片拖入已打开的 Markdown 编辑器即可插入链接或内容。
 
-## 添加第一张卡片
+## 退出后再打开
 
-1. 在看板上任意位置点击，或使用 **Card Workspace: New card**。
-2. 输入标题并开始书写。
-3. 拖动卡片来调整位置。
+启动时，Card Workspace 会恢复你上次浏览的 **文件夹**。如果上次浏览的是库根目录，则恢复整个库。它 **不会** 重新打开上次使用的卡片盒。
 
-## 小贴士
+## 下一步
 
-- 每张卡片都对应仓库中真实的笔记。
-- 使用链接把卡片相互连接起来。
+- [导航](/card-workspace-site/zh/guides/navigation/) — 文件夹、标签、收藏与双栏面板
+- [卡片盒](/card-workspace-site/zh/guides/card-boxes/) — 保存的主题集合
+- [写作与整理](/card-workspace-site/zh/guides/writing-and-organizing/) — 打开、拖拽、新建与菜单

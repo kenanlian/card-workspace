@@ -15,7 +15,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Card Workspace',
-      description: 'A card-based workspace plugin for Obsidian.',
+      description: 'Browse your vault as cards in Obsidian’s sidebar.',
       // V2's accent flips lightness between modes (deep graphite on light,
       // pale blue on dark), so the mark cannot be a single file.
       logo: {
@@ -47,8 +47,8 @@ export default defineConfig({
       ],
       sidebar: [
         {
-          label: 'Guides',
-          translations: { 'zh-CN': '指南' },
+          label: 'Getting started',
+          translations: { 'zh-CN': '开始使用' },
           items: [
             {
               label: 'Introduction',
@@ -61,9 +61,35 @@ export default defineConfig({
               slug: 'guides/installation',
             },
             {
-              label: 'Getting Started',
+              label: 'Getting started',
               translations: { 'zh-CN': '快速开始' },
               slug: 'guides/getting-started',
+            },
+          ],
+        },
+        {
+          label: 'Using Card Workspace',
+          translations: { 'zh-CN': '使用指南' },
+          items: [
+            {
+              label: 'Navigation',
+              translations: { 'zh-CN': '导航' },
+              slug: 'guides/navigation',
+            },
+            {
+              label: 'Card boxes',
+              translations: { 'zh-CN': '卡片盒' },
+              slug: 'guides/card-boxes',
+            },
+            {
+              label: 'Browsing cards',
+              translations: { 'zh-CN': '浏览卡片' },
+              slug: 'guides/browsing-cards',
+            },
+            {
+              label: 'Writing and organizing',
+              translations: { 'zh-CN': '写作与整理' },
+              slug: 'guides/writing-and-organizing',
             },
           ],
         },
@@ -75,6 +101,16 @@ export default defineConfig({
               label: 'Settings',
               translations: { 'zh-CN': '设置' },
               slug: 'reference/settings',
+            },
+            {
+              label: 'Commands and menus',
+              translations: { 'zh-CN': '命令与菜单' },
+              slug: 'reference/commands-and-menus',
+            },
+            {
+              label: 'Limits and privacy',
+              translations: { 'zh-CN': '限制与隐私' },
+              slug: 'reference/limits-and-privacy',
             },
           ],
         },

@@ -1,41 +1,9 @@
 ---
 title: Card Workspace
-description: 一款基于卡片的 Obsidian 工作区插件——把你的笔记组织成可视化看板。
+description: Card Workspace 把任意文件夹、标签或已存集合变成 Obsidian 侧边栏里可扫读的卡片流——标题和摘要，就在你正在写的那篇笔记旁边。
 template: splash
-hero:
-  tagline: 把你的 Obsidian 笔记变成灵活、可视化的卡片工作区。
-  image:
-    alt: Card Workspace 标志
-    light: ../../../assets/logo-light.svg
-    dark: ../../../assets/logo-dark.svg
-  actions:
-    - text: 快速开始
-      link: /card-workspace-site/zh/guides/getting-started/
-      icon: right-arrow
-      variant: primary
-    - text: 在 GitHub 上查看
-      link: https://github.com/kenanlian/obsidian-card-workspace
-      icon: external
-      variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import Landing from '../../../components/landing/Landing.astro';
 
-## 为什么选择 Card Workspace？
-
-<CardGrid stagger>
-  <Card title="可视化整理" icon="puzzle">
-    在无限画布上以卡片方式排列笔记，一眼纵览你的所有想法。
-  </Card>
-  <Card title="快速记录" icon="pencil">
-    无需离开键盘即可创建、编辑和链接卡片。
-  </Card>
-  <Card title="原生贴合 Obsidian" icon="open-book">
-    与现有仓库无缝协作——不锁定，笔记始终以 Markdown 保存。
-  </Card>
-  <Card title="高度可定制" icon="setting">
-    自由调整布局、配色与行为，契合你的思考方式。
-  </Card>
-</CardGrid>
-
-_这里是占位宣传文案——请替换成你真实的产品介绍。_
+<Landing locale="zh" />

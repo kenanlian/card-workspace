@@ -1,20 +1,26 @@
 ---
 title: 安装
-description: 如何在 Obsidian 中安装 Card Workspace 插件。
+description: 从 GitHub Releases 将 Card Workspace 安装到 Obsidian 库中。
 ---
 
-> 占位内容。插件发布后请更新这些步骤。
+Card Workspace 通过 GitHub Releases 手动安装。把发布文件复制到库目录后，再在 Obsidian 中启用插件。
 
-## 从社区插件市场安装
+## 运行要求
 
-1. 在 Obsidian 中打开 **设置 → 第三方插件**。
-2. 确保 **安全模式（Restricted mode）** 已关闭。
-3. 点击 **浏览**，搜索 **Card Workspace**。
-4. 点击 **安装**，然后 **启用**。
+- 桌面版 Obsidian（不支持移动端）
+- Obsidian **1.9.0** 或更高版本
 
-## 手动安装
+## 从 GitHub Releases 安装
 
-1. 从 [发布页面](https://github.com/kenanlian/obsidian-card-workspace/releases) 下载最新版本。
-2. 将 `main.js`、`manifest.json` 和 `styles.css` 复制到
-   `<你的仓库>/.obsidian/plugins/card-workspace/` 目录下。
-3. 重新加载 Obsidian，并在 **第三方插件** 中启用该插件。
+1. 前往 [Releases](https://github.com/kenanlian/obsidian-card-workspace/releases) 页面下载最新版本。
+2. 解压压缩包，并将 `main.js`、`manifest.json` 和 `styles.css` 复制到：
+
+   `<vault>/.obsidian/plugins/card-workspace/`
+
+3. 打开 Obsidian 的 **设置 → 第三方插件**。
+4. 如已开启安全模式（Restricted mode / Safe mode），请先关闭。
+5. 在已安装插件列表中启用 **Card Workspace**。
+
+## 下一步
+
+启用插件后，请 [打开视图并浏览第一批卡片](/card-workspace-site/zh/guides/getting-started/)。

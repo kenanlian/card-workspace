@@ -1,41 +1,9 @@
 ---
 title: Card Workspace
-description: A card-based workspace plugin for Obsidian — organize your notes as a visual board.
+description: Card Workspace turns any folder, tag, or saved collection into a scannable card stream inside Obsidian’s sidebar — titles and excerpts, right beside the note you’re writing.
 template: splash
-hero:
-  tagline: Turn your Obsidian notes into a flexible, visual card workspace.
-  image:
-    alt: Card Workspace logo
-    light: ../../../assets/logo-light.svg
-    dark: ../../../assets/logo-dark.svg
-  actions:
-    - text: Get Started
-      link: /card-workspace-site/en/guides/getting-started/
-      icon: right-arrow
-      variant: primary
-    - text: View on GitHub
-      link: https://github.com/kenanlian/obsidian-card-workspace
-      icon: external
-      variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import Landing from '../../../components/landing/Landing.astro';
 
-## Why Card Workspace?
-
-<CardGrid stagger>
-  <Card title="Visual organization" icon="puzzle">
-    Arrange notes as cards on an infinite canvas and see your ideas at a glance.
-  </Card>
-  <Card title="Fast capture" icon="pencil">
-    Create, edit, and link cards without leaving your keyboard.
-  </Card>
-  <Card title="Native to Obsidian" icon="open-book">
-    Works with your existing vault — no lock-in, your notes stay as Markdown.
-  </Card>
-  <Card title="Customizable" icon="setting">
-    Tune layouts, colors, and behavior to fit the way you think.
-  </Card>
-</CardGrid>
-
-_This is placeholder marketing copy — replace it with your real pitch._
+<Landing locale="en" />

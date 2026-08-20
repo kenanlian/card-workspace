@@ -1,0 +1,49 @@
+---
+import type { BoxRule, BoxVizCopy, RuleOp } from '../../content/landing';
+
+interface Props {
+  rules: BoxRule[];
+  viz: BoxVizCopy;
+}
+
+const { rules, viz } = Astro.props;
+const sources = rules.filter((r) => r.op !== 'minus');
+const excluded = rules.find((r) => r.op === 'minus');
+const rots = ['-3.2deg', '2.4deg', '-1.6deg', '3deg'];
+const lines = ['72%', '54%', '63%', '48%'];
+const opText: Record<Exclude<RuleOp, 'minus'>, string> = { scope: 'folder', or: 'tag' };
+---
+
+<div class="cw-boxviz">
+  <div class="cw-boxviz__sources">
+    {
+      sources.map((r, i) => (
+        <article
+          class="cw-mini"
+          style={`--cw-rot: ${rots[i % rots.length]}; --cw-i: ${i}`}
+        >
+          <span class="cw-mini__op">{opText[r.op as Exclude<RuleOp, 'minus'>]}</span>
+          <span class="cw-mini__value">{r.value}</span>
+          <span class="cw-mini__line" style={`--cw-line-w: ${lines[i % lines.length]}`}></span>
+        </article>
+      ))
+    }
+    {
+      excluded && (
+        <article class="cw-mini cw-mini--out" style="--cw-rot: 3.4deg">
+          <span class="cw-mini__op">{viz.excluded}</span>
+          <span class="cw-mini__value">{excluded.value}</span>
+        </article>
+      )
+    }
+  </div>
+
+  <div class="cw-boxviz__deck">
+    <div class="cw-deck__layer"></div>
+    <div class="cw-deck__layer"></div>
+    <div class="cw-deck__face">
+      <span class="cw-deck__title">{viz.deckTitle}</span>
+      <span class="cw-deck__label">{viz.deckLabel}</span>
+    </div>
+  </div>
+</div>

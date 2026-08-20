@@ -1,0 +1,16 @@
+---
+interface Props {
+  caption: string;
+}
+
+const { caption } = Astro.props;
+---
+
+<figure class="cw-hero__shot cw-deal" style="--cw-i: 2; --cw-deal-rot: 0.7deg">
+  <div class="cw-shot">
+    <div class="cw-shot__ph" role="img" aria-label={caption}>
+      <span class="cw-slot__desc">{caption}</span>
+    </div>
+  </div>
+  <figcaption class="cw-caption">{caption}</figcaption>
+</figure>
