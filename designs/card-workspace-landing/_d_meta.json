@@ -18,10 +18,20 @@
           "path": "Card Workspace Landing v2.html",
           "createdAt": "2026-08-10T00:28:01.776Z",
           "status": "needs-review"
+        },
+        {
+          "path": "Card Workspace Landing v3.html",
+          "createdAt": "2026-08-21T01:04:07.799Z",
+          "status": "needs-review",
+          "subtitle": "V3 — internal indexes, compact left-column titles, and centered 4:3 feature media",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
         }
       ]
     }
   },
   "createdAt": "2026-08-07T00:30:46.964Z",
-  "updatedAt": "2026-08-10T00:28:01.776Z"
+  "updatedAt": "2026-08-21T01:14:26.371Z"
 }

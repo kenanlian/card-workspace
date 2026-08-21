@@ -1,0 +1,118 @@
+/* ==========================================================================
+   Card Workspace landing — v3 "Graphite Index"
+
+   One converged direction instead of four:
+     · palette + surface logic  → Graphite (cool near-neutral, almost no chroma)
+     · type                     → Letterpress (Petrona / Archivo / IBM Plex Mono)
+     · hero                     → Paper Index stacked composition
+     · everything below the hero→ Letterpress gutter + two-column structure
+
+   Avoids Inter / Roboto / Arial / Fraunces.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,300..600;1,300..600&family=Archivo:ital,wght@0,400..600;1,400..600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap');
+
+:root {
+  --cw-space-1: 0.25rem;
+  --cw-space-2: 0.5rem;
+  --cw-space-3: 0.75rem;
+  --cw-space-4: 1rem;
+  --cw-space-5: 1.5rem;
+  --cw-space-6: 2rem;
+  --cw-space-7: 3rem;
+  --cw-space-8: 4rem;
+  --cw-space-9: 6rem;
+  --cw-space-10: 8rem;
+
+  --cw-ease-out: cubic-bezier(0.32, 0.72, 0, 1);
+  --cw-ease-inout: cubic-bezier(0.4, 0, 0.2, 1);
+  --cw-ease-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --cw-ease: var(--cw-ease-out);
+  --cw-dur-fast: 140ms;
+  --cw-dur-mid: 260ms;
+  --cw-dur-slow: 520ms;
+
+  --cw-measure: 64ch;
+  --cw-page: 1180px;
+  --cw-gutter: 8.5rem;
+
+  --cw-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* --- Type: Letterpress ------------------------------------------------- */
+  --cw-font-display: 'Petrona', 'Noto Serif SC', ui-serif, Georgia, serif;
+  --cw-font-body: 'Archivo', 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif;
+  --cw-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --cw-display-size: clamp(2.8rem, 7.6vw, 5.8rem);
+  --cw-display-size-zh: clamp(2rem, 4.6vw, 3.5rem);
+  --cw-display-weight: 500;
+  --cw-display-tracking: -0.024em;
+  --cw-display-leading: 1.02;
+  --cw-h2-weight: 500;
+  --cw-body-weight: 400;
+  --cw-body-leading: 1.64;
+  --cw-label-tracking: 0.16em;
+  --cw-label-size: 0.6875rem;
+
+  /* --- Shape: card-forward ---------------------------------------------- */
+  --cw-radius-sm: 4px;
+  --cw-radius-md: 7px;
+  --cw-radius-lg: 11px;
+  --cw-radius-card: 14px;
+
+  /* --- Light: Graphite --------------------------------------------------- */
+  --cw-canvas: oklch(0.971 0.002 250);
+  --cw-surface: oklch(1 0 0);
+  --cw-surface-sunk: oklch(0.958 0.003 250);
+  --cw-ink: oklch(0.19 0.007 258);
+  --cw-ink-soft: oklch(0.44 0.008 258);
+  --cw-ink-faint: oklch(0.635 0.008 258);
+  --cw-ring: oklch(0.19 0.007 258 / 0.11);
+  --cw-ring-strong: oklch(0.19 0.007 258 / 0.22);
+  --cw-accent: oklch(0.42 0.042 252);
+  --cw-accent-ink: oklch(0.33 0.05 252);
+  --cw-accent-wash: oklch(0.42 0.042 252 / 0.07);
+  --cw-accent-on: oklch(1 0 0);
+
+  --cw-grain-opacity: 0.03;
+  --cw-ambient: radial-gradient(
+      100vw 62vh at 78% -20%,
+      oklch(0.42 0.042 252 / 0.05),
+      transparent 60%
+    ),
+    radial-gradient(70vw 50vh at 4% 8%, oklch(0.42 0.042 252 / 0.03), transparent 62%);
+
+  --cw-elev-1: 0 0 0 1px var(--cw-ring);
+  --cw-elev-card: 0 1px 1px oklch(0.19 0.007 258 / 0.03),
+    0 10px 28px -18px oklch(0.19 0.007 258 / 0.28);
+  --cw-elev-card-hover: 0 1px 1px oklch(0.19 0.007 258 / 0.04),
+    0 20px 44px -22px oklch(0.19 0.007 258 / 0.34);
+  --cw-elev-lift: 0 12px 30px -20px oklch(0.19 0.007 258 / 0.4);
+}
+
+[data-theme='dark'] {
+  --cw-canvas: oklch(0.172 0.005 258);
+  --cw-surface: oklch(0.219 0.006 258);
+  --cw-surface-sunk: oklch(0.192 0.005 258);
+  --cw-ink: oklch(0.955 0.002 258);
+  --cw-ink-soft: oklch(0.775 0.005 258);
+  --cw-ink-faint: oklch(0.6 0.006 258);
+  --cw-ring: oklch(0.955 0.002 258 / 0.12);
+  --cw-ring-strong: oklch(0.955 0.002 258 / 0.24);
+  --cw-accent: oklch(0.79 0.055 250);
+  --cw-accent-ink: oklch(0.88 0.04 250);
+  --cw-accent-wash: oklch(0.79 0.055 250 / 0.12);
+  --cw-accent-on: oklch(0.172 0.005 258);
+
+  --cw-grain-opacity: 0.045;
+  --cw-ambient: radial-gradient(
+      100vw 62vh at 78% -20%,
+      oklch(0.79 0.055 250 / 0.07),
+      transparent 60%
+    ),
+    radial-gradient(70vw 50vh at 4% 8%, oklch(0.79 0.055 250 / 0.04), transparent 62%);
+
+  --cw-elev-card: 0 1px 0 oklch(1 0 0 / 0.03) inset, 0 14px 32px -20px oklch(0 0 0 / 0.75);
+  --cw-elev-card-hover: 0 1px 0 oklch(1 0 0 / 0.05) inset, 0 24px 48px -24px oklch(0 0 0 / 0.85);
+  --cw-elev-lift: 0 16px 34px -22px oklch(0 0 0 / 0.8);
+}
