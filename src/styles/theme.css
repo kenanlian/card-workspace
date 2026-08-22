@@ -1,250 +1,167 @@
-/* ==========================================================================
-   Card Workspace — Graphite Index theme for Starlight
-   Type: Petrona display / Archivo body / IBM Plex Mono chrome
-   Color: cool near-neutral Graphite + low-chroma accent
-   Shape: card-forward radii (4 / 7 / 11 / 14)
-   ========================================================================== */
-
 @import './tokens.css';
-
-/* --- Fonts (self-hosted via @fontsource) -------------------------------- */
-@import '@fontsource-variable/petrona';
 @import '@fontsource-variable/archivo';
-@import '@fontsource/noto-serif-sc/latin-400.css';
-@import '@fontsource/noto-serif-sc/latin-500.css';
-@import '@fontsource/noto-serif-sc/chinese-simplified-400.css';
-@import '@fontsource/noto-serif-sc/chinese-simplified-500.css';
 @import '@fontsource/noto-sans-sc/latin-400.css';
 @import '@fontsource/noto-sans-sc/latin-500.css';
 @import '@fontsource/noto-sans-sc/chinese-simplified-400.css';
 @import '@fontsource/noto-sans-sc/chinese-simplified-500.css';
 @import '@fontsource/ibm-plex-mono/400.css';
 @import '@fontsource/ibm-plex-mono/500.css';
-@import '@fontsource/ibm-plex-mono/600.css';
 
-/* fontsource-variable registers "Petrona Variable" / "Archivo Variable".
-   Alias those files onto the C1 family names used in --cw-font-display / --cw-font-body. */
-@font-face {
-  font-family: 'Petrona';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url('@fontsource-variable/petrona/files/petrona-latin-wght-normal.woff2')
-    format('woff2-variations');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-    U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Petrona';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url('@fontsource-variable/petrona/files/petrona-latin-ext-wght-normal.woff2')
-    format('woff2-variations');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
-    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
-    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url('@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2')
-    format('woff2-variations');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-    U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url('@fontsource-variable/archivo/files/archivo-latin-ext-wght-normal.woff2')
-    format('woff2-variations');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
-    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
-    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-
-/* --- Base typography ---------------------------------------------------- */
 body {
   font-family: var(--cw-font-body);
-  font-weight: var(--cw-body-weight);
-  line-height: var(--cw-body-leading);
+  font-weight: 400;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Display headings: Petrona at V2 display/h2 weight */
 h1,
 h2,
 h3,
+h4,
 .sl-markdown-content h1,
 .sl-markdown-content h2,
 .sl-markdown-content h3,
 .sl-markdown-content h4 {
   font-family: var(--cw-font-display);
-  font-weight: var(--cw-h2-weight);
-  letter-spacing: var(--cw-display-tracking);
+  font-weight: 570;
+  letter-spacing: -0.025em;
 }
 
-h1,
-.sl-markdown-content h1 {
-  font-weight: var(--cw-display-weight);
-  line-height: var(--cw-display-leading);
+html[lang='zh-CN'] .sl-markdown-content {
+  line-height: 1.78;
 }
 
-.content-panel h1,
-.hero h1 {
-  color: var(--cw-ink);
+html[lang='zh-CN'] .sl-markdown-content h1,
+html[lang='zh-CN'] .sl-markdown-content h2,
+html[lang='zh-CN'] .sl-markdown-content h3 {
+  letter-spacing: -0.015em;
+  line-height: 1.35;
 }
 
-/* --- Site chrome: header + hairlines ----------------------------------- */
 header.header {
-  background-color: color-mix(in oklch, var(--cw-canvas) 82%, transparent);
-  backdrop-filter: saturate(140%) blur(12px);
-  -webkit-backdrop-filter: saturate(140%) blur(12px);
-  border-bottom: 1px solid var(--cw-ring);
+  background-color: color-mix(in oklab, var(--cw-canvas) 88%, transparent);
+  border-bottom-color: var(--cw-line);
+  backdrop-filter: saturate(130%) blur(14px);
+  -webkit-backdrop-filter: saturate(130%) blur(14px);
 }
 
 .site-title {
-  font-family: var(--cw-font-mono);
-  font-weight: 600;
+  font-weight: 570;
   letter-spacing: -0.02em;
+}
+
+.site-title img {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .sidebar-pane {
-  border-inline-end: 1px solid var(--cw-ring);
-  background-color: var(--cw-canvas);
+  background: var(--cw-canvas);
+  border-inline-end-color: var(--cw-line);
 }
 
-/* Sidebar nav links: mono UI, tight, subtle */
 nav.sidebar a,
-nav.sidebar summary {
-  font-family: var(--cw-font-ui);
-  font-size: var(--sl-text-sm);
-  letter-spacing: -0.02em;
-}
-
-/* Right-hand "On this page" table of contents: mono UI */
+nav.sidebar summary,
 starlight-toc a {
-  font-family: var(--cw-font-ui);
-  letter-spacing: -0.02em;
+  font-size: var(--sl-text-sm);
+  letter-spacing: -0.01em;
 }
 
-/* Active sidebar entry — Graphite accent-wash pill */
 nav.sidebar a[aria-current='page'],
 nav.sidebar a[aria-current='page']:hover {
-  background-color: var(--cw-accent-wash);
-  color: var(--sl-color-text-accent);
-  border-radius: var(--cw-radius-md);
+  color: var(--cw-accent-strong);
+  background: var(--cw-accent-soft);
+  border-radius: var(--cw-radius-control);
   font-weight: 500;
 }
 
-/* --- Links -------------------------------------------------------------- */
-.sl-markdown-content a {
-  color: var(--sl-color-text-accent);
-  text-underline-offset: 0.2em;
-  text-decoration-thickness: 1px;
-  text-decoration-color: color-mix(
-    in oklch,
-    var(--sl-color-text-accent) 40%,
-    transparent
-  );
+.sl-markdown-content {
+  color: var(--cw-ink-soft);
 }
+
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.sl-markdown-content h4,
+.sl-markdown-content strong {
+  color: var(--cw-ink);
+}
+
+.sl-markdown-content a {
+  color: var(--cw-accent-strong);
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+  text-underline-offset: 0.2em;
+}
+
 .sl-markdown-content a:hover {
   text-decoration-color: currentColor;
 }
 
-/* --- Buttons ------------------------------------------------------------ */
-.sl-link-button {
-  border-radius: var(--cw-radius-md);
-  font-family: var(--cw-font-mono);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-.sl-link-button.primary {
-  background-color: var(--cw-accent);
-  border-color: var(--cw-accent);
-  color: var(--cw-accent-on);
-}
-.sl-link-button.primary:hover {
-  background-color: var(--cw-accent-ink);
-}
-.sl-link-button.minimal {
-  border: 1px solid var(--cw-ring);
+.sl-markdown-content :not(pre) > code {
+  color: var(--cw-ink);
+  background: var(--cw-surface-subtle);
+  border: 1px solid var(--cw-line);
+  border-radius: 0.3rem;
 }
 
-/* --- Cards -------------------------------------------------------------- */
+.expressive-code .frame pre,
+.sl-markdown-content pre,
+.sl-markdown-content table {
+  border-color: var(--cw-line);
+  border-radius: var(--cw-radius-control);
+}
+
 .card {
-  background-color: var(--cw-surface);
-  border: 1px solid var(--cw-ring);
-  border-radius: var(--cw-radius-card);
-  box-shadow: var(--cw-elev-card);
-  transition: border-color var(--cw-dur-fast) var(--cw-ease),
-    transform var(--cw-dur-fast) var(--cw-ease),
-    box-shadow var(--cw-dur-fast) var(--cw-ease);
+  background: var(--cw-surface);
+  border-color: var(--cw-line);
+  border-radius: var(--cw-radius-control);
+  box-shadow: none;
 }
+
 .card:hover {
-  border-color: var(--cw-ring-strong);
-  transform: translateY(-2px);
-  box-shadow: var(--cw-elev-card-hover);
+  border-color: var(--cw-line-strong);
+  transform: none;
+  box-shadow: none;
 }
+
 .card .icon {
   color: var(--cw-accent);
-  background-color: var(--cw-accent-wash);
-  border-radius: var(--cw-radius-sm);
-}
-.card .title {
-  font-family: var(--cw-font-display);
-  font-weight: var(--cw-h2-weight);
-  letter-spacing: var(--cw-display-tracking);
+  background: var(--cw-accent-soft);
 }
 
-/* --- Code blocks -------------------------------------------------------- */
-.sl-markdown-content :not(pre) > code {
-  border-radius: var(--cw-radius-sm);
-  border: 1px solid var(--cw-ring);
-  background-color: var(--cw-surface-sunk);
-  font-size: 0.85em;
-}
-.expressive-code .frame pre,
-.sl-markdown-content pre {
-  border-radius: var(--cw-radius-md);
-  border: 1px solid var(--cw-ring);
+:where(a, button, summary, select, input):focus-visible {
+  outline: 2px solid var(--cw-accent);
+  outline-offset: 3px;
 }
 
-/* --- Splash / hero ------------------------------------------------------ */
-.hero {
-  position: relative;
-}
-.hero h1 {
-  font-size: var(--cw-display-size);
-  line-height: var(--cw-display-leading);
-}
-.hero .tagline {
-  font-family: var(--cw-font-mono);
-  color: var(--cw-ink-soft);
-  letter-spacing: -0.01em;
+@media (max-width: 49.99rem) {
+  :root {
+    --sl-menu-button-size: 2.75rem;
+  }
+
+  site-search > button[data-open-modal] {
+    justify-content: center;
+    width: 2.75rem;
+    min-width: 2.75rem;
+    height: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0.625rem;
+  }
+
+  mobile-starlight-toc summary {
+    min-height: 2.75rem;
+    padding-block: 0;
+  }
+
+  mobile-starlight-toc summary .toggle {
+    min-height: 2.75rem;
+  }
 }
 
-.page:has(.hero) main {
-  background-image: linear-gradient(var(--cw-ring) 1px, transparent 1px),
-    linear-gradient(90deg, var(--cw-ring) 1px, transparent 1px);
-  background-size: 48px 48px;
-  background-position: center top;
-}
-
-/* --- Tables ------------------------------------------------------------- */
-.sl-markdown-content th {
-  font-family: var(--cw-font-mono);
-  letter-spacing: -0.01em;
-}
-.sl-markdown-content table {
-  border: 1px solid var(--cw-ring);
-  border-radius: var(--cw-radius-md);
-  overflow: hidden;
+@media (min-width: 72rem) {
+  .sl-markdown-content {
+    font-size: 1rem;
+  }
 }

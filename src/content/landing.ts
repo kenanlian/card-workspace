@@ -1,28 +1,13 @@
-/** Bilingual V2 landing copy. CTA URLs follow plan C2; no Tweaks/ImageSlot chrome. */
-
 export type Locale = 'en' | 'zh';
-export type RuleOp = 'scope' | 'or' | 'minus';
 
 export interface NavItem {
   label: string;
   href: string;
 }
 
-export interface TileItem {
-  term: string;
-  desc: string;
-}
-
-export interface BoxRule {
-  op: RuleOp;
-  value: string;
-}
-
-export interface BoxVizCopy {
-  deckTitle: string;
-  deckLabel: string;
-  excluded: string;
-  caption: string;
+export interface ProofItem {
+  title: string;
+  body: string;
 }
 
 export interface FooterLink {
@@ -30,100 +15,88 @@ export interface FooterLink {
   href: string;
 }
 
-export interface FooterColumn {
-  title: string;
-  links: FooterLink[];
-}
-
 export interface LandingCopy {
   lang: Locale;
   version: string;
   versionTitle: string;
+  themeLabel: string;
+  languageLabel: string;
+  languageHref: string;
+  languageCode: string;
   nav: NavItem[];
   hero: {
     eyebrow: string;
     headline: string[];
-    headlineEmphasis: number;
-    tagline: string;
+    headlineCompact: string[];
+    lede: string;
     primaryCta: string;
     primaryHref: string;
     secondaryCta: string;
     secondaryHref: string;
-    shotCaption: string;
+    meta: string;
+    mediaLabel: string;
+    mediaTitle: string;
+    mediaBrief: string;
   };
-  sections: {
-    why: {
-      index: string;
-      kicker: string;
-      title: string;
-      body: string;
-      points: TileItem[];
-      slot: string;
-    };
-    nav: {
-      index: string;
-      kicker: string;
-      title: string;
-      body: string;
-      points: TileItem[];
-      slot: string;
-    };
-    boxes: {
-      index: string;
-      kicker: string;
-      title: string;
-      body: string;
-      rules: BoxRule[];
-      aside: string;
-      boxViz: BoxVizCopy;
-    };
-    flow: {
-      index: string;
-      kicker: string;
-      title: string;
-      body: string;
-      points: TileItem[];
-      aside: string;
-      slot: string;
-    };
-    scale: {
-      index: string;
-      kicker: string;
-      title: string;
-      body: string;
-      points: TileItem[];
-    };
-    privacy: {
-      index: string;
-      kicker: string;
-      title: string;
-      body: string;
-      badge: string;
-    };
-    install: {
-      index: string;
-      kicker: string;
-      title: string;
-      body: string;
-      steps: string[];
-      primaryCta: string;
-      primaryHref: string;
-      secondaryCta: string;
-      secondaryHref: string;
-      note: string;
-    };
+  boxes: {
+    kicker: string;
+    title: string;
+    body: string;
+    support: string;
+    conceptLabel: string;
+    conceptTitle: string;
+    ruleOne: string;
+    ruleTwo: string;
+    and: string;
+    or: string;
+    manual: string;
+    manualNote: string;
+    excluded: string;
+    excludedNote: string;
+    boxState: string;
+    precedence: string;
+  };
+  browse: {
+    kicker: string;
+    title: string;
+    body: string;
+    labels: string[];
+    mediaLabel: string;
+    mediaTitle: string;
+    mediaBrief: string;
+  };
+  drag: {
+    kicker: string;
+    title: string;
+    body: string;
+    actions: string[];
+    mediaLabel: string;
+    mediaTitle: string;
+    mediaBrief: string;
+  };
+  proof: {
+    kicker: string;
+    title: string;
+    items: ProofItem[];
+    capabilities: string;
+  };
+  cta: {
+    title: string;
+    body: string;
+    primaryCta: string;
+    primaryHref: string;
+    secondaryCta: string;
+    secondaryHref: string;
   };
   footer: {
     tagline: string;
-    columns: FooterColumn[];
+    links: FooterLink[];
     legal: string;
   };
 }
 
 const RELEASES = 'https://github.com/kenanlian/obsidian-card-workspace/releases';
 const REPO = 'https://github.com/kenanlian/obsidian-card-workspace';
-const ISSUES = 'https://github.com/kenanlian/obsidian-card-workspace/issues';
-const LICENSE = 'https://github.com/kenanlian/obsidian-card-workspace/blob/main/LICENSE';
 
 function docs(locale: Locale, slug: string): string {
   return `/card-workspace-site/${locale}/${slug}/`;
@@ -132,299 +105,224 @@ function docs(locale: Locale, slug: string): string {
 export const landing: Record<Locale, LandingCopy> = {
   en: {
     lang: 'en',
-    version: 'v1.0.2',
-    versionTitle: 'Current release — v1.0.2',
+    version: 'v1.1.3',
+    versionTitle: 'Card Workspace v1.1.3 on GitHub Releases',
+    themeLabel: 'Switch color theme',
+    languageLabel: 'Read this page in Simplified Chinese',
+    languageHref: '/card-workspace-site/zh/',
+    languageCode: '中文',
     nav: [
-      { label: 'Why', href: '#why' },
-      { label: 'Boxes', href: '#boxes' },
-      { label: 'In flow', href: '#flow' },
-      { label: 'Scale', href: '#scale' },
-      { label: 'Docs', href: '#install' },
+      { label: 'Card boxes', href: '#card-boxes' },
+      { label: 'Browse', href: '#browse' },
+      { label: 'Drag to write', href: '#drag' },
+      { label: 'Docs', href: docs('en', 'guides/introduction') },
     ],
     hero: {
-      eyebrow: 'Obsidian plugin',
+      eyebrow: 'Obsidian desktop plugin · v1.1.3',
       headline: ['Browse your vault', 'as cards,', 'not filenames.'],
-      headlineEmphasis: 1,
-      tagline:
-        'Card Workspace turns any folder, tag, or saved collection into a scannable card stream inside Obsidian’s sidebar — titles and excerpts, right beside the note you’re writing.',
-      primaryCta: 'Get Card Workspace',
+      headlineCompact: ['Browse your vault', 'as cards,', 'not filenames.'],
+      lede:
+        'Card Workspace turns folders and tags into an excerpt-rich card stream in Obsidian’s left sidebar. See what each note says, open it beside your work, or drag it into the note you’re writing.',
+      primaryCta: 'Install from GitHub',
       primaryHref: RELEASES,
       secondaryCta: 'Read the docs',
-      secondaryHref: '/card-workspace-site/en/guides/getting-started/',
-      shotCaption: 'Card Workspace open in the left sidebar, navigation pane beside the card stream',
+      secondaryHref: docs('en', 'guides/getting-started'),
+      meta: 'Obsidian 1.9+ · Desktop only · Runs locally',
+      mediaLabel: 'Product screenshot slot · 16:10',
+      mediaTitle: 'The complete browsing loop, beside the editor',
+      mediaBrief:
+        'Capture a populated sidebar with folders, tags, card boxes, and favorites; show 4–6 readable Markdown cards, one selected card, and its corresponding note open in the editor.',
     },
-    sections: {
-      why: {
-        index: '01',
-        kicker: 'The premise',
-        title: 'A file list gives you names. A card gives you the note.',
-        body: 'Every card carries the note’s title and a Markdown-stripped excerpt, so you can tell two similarly named notes apart without opening either. Click a card and the note opens in your main editor. Switch notes in the editor and the matching card selects itself — the panel never falls out of sync with what you’re reading.',
-        points: [
-          {
-            term: 'Excerpt previews',
-            desc: 'Titles plus clean excerpts with the Markdown syntax stripped out.',
-          },
-          {
-            term: 'Two-way sync',
-            desc: 'Click a card to open a note; change notes in the editor and the card follows.',
-          },
-          {
-            term: 'Local search',
-            desc: 'Indexed full-text search across the cards currently in scope.',
-          },
-        ],
-        slot: 'Drop a close-up of two or three cards showing the title + excerpt treatment',
-      },
-      nav: {
-        index: '02',
-        kicker: 'Its own navigation',
-        title: 'A second column that doesn’t borrow the File Explorer.',
-        body: 'Card Workspace renders its own navigation column next to the card stream, holding Folders, Tags, Boxes, and Favorites. Drag the divider to rebalance the two columns, or hide the column entirely and give the cards full width. Narrow the sidebar past two columns and the layout falls back to a single pane, with the header button swapping between navigation and cards — so the panel stays usable at any width.',
-        points: [
-          { term: 'Folders', desc: 'Scope to a folder, with or without its subfolders.' },
-          { term: 'Tags', desc: 'Filter by tags read from both frontmatter and note body.' },
-          { term: 'Boxes', desc: 'Saved rule-based collections that cut across folders.' },
-          { term: 'Favorites', desc: 'Pin folders, files, tags, and boxes; grouped and reorderable.' },
-        ],
-        slot: 'Drop a shot of the navigation column with Folders / Tags / Boxes / Favorites visible',
-      },
-      boxes: {
-        index: '03',
-        kicker: 'The idea worth the install',
-        title: 'Card boxes collect what folders can’t.',
-        body: 'A card box is a saved, topic-oriented collection. It keeps its own membership rules — a folder scope plus tags, combined with OR across rules — along with its own sort order and its own pins, and you can add or exclude individual notes by hand. Use one to gather notes that belong together conceptually but live in different folders, without moving a single file or maintaining an index note.',
-        rules: [
-          { op: 'scope', value: 'Projects/Research' },
-          { op: 'or', value: '#method' },
-          { op: 'or', value: '#fieldwork' },
-          { op: 'minus', value: 'manually excluded notes' },
-        ],
-        aside:
-          'Right-click in the Boxes section to create one, or save your current folder-and-tag scope as a box in a single step.',
-        boxViz: {
-          deckTitle: 'Research',
-          deckLabel: 'card box',
-          excluded: 'excluded by hand',
-          caption: 'Rules gather matching notes out of different folders into one box. No file moves.',
-        },
-      },
-      flow: {
-        index: '04',
-        kicker: 'Stays in your flow',
-        title: 'Drag a card into the editor and it writes itself in.',
-        body: 'Drop a card into an open note to insert a wikilink, an embed, the note’s content, or its title plus content. The plugin can also ask which one you meant on every drop. Right-click almost anything for the rest: create notes, folders, canvases, and bases, rename, duplicate, move, delete, copy vault or system paths, reveal in your system file explorer, or search inside a folder.',
-        points: [
-          { term: 'Wikilink', desc: 'A plain link back to the note.' },
-          { term: 'Embed', desc: 'Transclude the note where you dropped it.' },
-          { term: 'Content', desc: 'Paste the note’s body inline.' },
-          { term: 'Title + content', desc: 'Heading followed by the body.' },
-        ],
-        aside: 'Select several cards to move, delete, or merge notes in one pass.',
-        slot: 'Drop a shot or short clip of a card being dragged into an open editor',
-      },
-      scale: {
-        index: '05',
-        kicker: 'Built for real vaults',
-        title: 'Large folders stay smooth.',
-        body: 'Only the cards actually on screen get rendered, so a folder with thousands of notes scrolls like a short one. Search runs against a local index, and tag filtering reads tags from frontmatter and inline content alike.',
-        points: [
-          { term: 'Virtualized scrolling', desc: 'Only visible cards are rendered.' },
-          { term: 'Indexed search', desc: 'Full-text search over the current scope.' },
-          { term: 'Pin reordering', desc: 'Keep chosen cards at the top of the stream.' },
-        ],
-      },
-      privacy: {
-        index: '06',
-        kicker: 'Privacy',
-        title: 'Nothing leaves your vault.',
-        body: 'Card Workspace makes no external network requests. File operations go through Obsidian’s local Vault and FileManager APIs, and search indexing runs on the bundled local library. Your notes stay Markdown files on your disk.',
-        badge: 'No network requests',
-      },
-      install: {
-        index: '07',
-        kicker: 'Get started',
-        title: 'Add it to your vault.',
-        body: 'Card Workspace requires Obsidian 1.9.0 or later. Open the panel from the ribbon icon or run “Open Card Workspace view” from the command palette, then pick a folder, tag, or box to start browsing.',
-        steps: [
-          'Install the plugin',
-          'Enable it under Community plugins',
-          'Run “Open Card Workspace view”',
-          'Pick a folder, tag, or box',
-        ],
-        primaryCta: 'Get Card Workspace',
-        primaryHref: RELEASES,
-        secondaryCta: 'View on GitHub',
-        secondaryHref: REPO,
-        note: 'Desktop only. Install from GitHub Releases. Not listed in Community plugins.',
-      },
+    boxes: {
+      kicker: 'Card boxes',
+      title: 'Card boxes collect what folders can’t.',
+      body:
+        'Save the current folder and tag scope as a card box, and matching notes keep appearing as the vault changes. Add individual notes when needed, remove the ones you do not want, and keep each box’s own sort and pins. The source files stay where they are.',
+      support:
+        'Made for research topics, long-running projects, reading lists, and any collection that crosses folder boundaries.',
+      conceptLabel: 'Rule model · accurate example',
+      conceptTitle: 'Field research',
+      ruleOne: 'Projects/Research',
+      ruleTwo: 'Sources/Interviews',
+      and: 'AND',
+      or: 'OR',
+      manual: 'Manually added',
+      manualNote: 'synthesis-map.md',
+      excluded: 'Excluded',
+      excludedNote: 'meeting-scratch.md',
+      boxState: 'Modified date ↓ · 2 pinned at top',
+      precedence: 'Manual inclusion wins over exclusion.',
     },
-    footer: {
-      tagline: 'A card-based workspace for Obsidian.',
-      columns: [
+    browse: {
+      kicker: 'Browse',
+      title: 'Keep the whole browsing loop beside your editor.',
+      body:
+        'Card Workspace keeps folders, tags, favorites, and card boxes beside the card stream. Markdown notes show readable previews; scoped search highlights matching text and counts. Open a card in the editor, or switch notes in the editor and let the card stream follow.',
+      labels: ['Excerpt previews', 'Current-scope search', 'Chinese matching', 'Two-way sync'],
+      mediaLabel: 'Future product clip · 16:10 · 5 seconds',
+      mediaTitle: 'Scope, search, open, follow',
+      mediaBrief:
+        'Switch folders, type a Chinese query, reveal highlights and per-note match counts, open a result, then show editor-to-card selection sync.',
+    },
+    drag: {
+      kicker: 'Writing flow',
+      title: 'Drag a useful card into the note you’re writing.',
+      body:
+        'Drop a Markdown card at a specific position in the editor, then insert a wikilink, an embed, the note body, or its title and body. Choose every time or make one action the default.',
+      actions: ['Wikilink', 'Embed', 'Content', 'Title + content'],
+      mediaLabel: 'Future product clip · 16:10 · 4–6 seconds',
+      mediaTitle: 'From card to draft in one drop',
+      mediaBrief:
+        'Show the drag ghost leaving the card stream, the drop menu at the editor cursor, and the chosen result inserted into the note.',
+    },
+    proof: {
+      kicker: 'Built for daily use',
+      title: 'Quiet engineering where it matters.',
+      items: [
         {
-          title: 'Docs',
-          links: [
-            { label: 'Introduction', href: docs('en', 'guides/introduction') },
-            { label: 'Installation', href: docs('en', 'guides/installation') },
-            { label: 'Getting started', href: docs('en', 'guides/getting-started') },
-            { label: 'Settings', href: docs('en', 'reference/settings') },
-          ],
+          title: 'Chinese-aware local search',
+          body: 'Titles and Markdown bodies are indexed locally, with matches highlighted directly on each card.',
         },
         {
-          title: 'Project',
-          links: [
-            { label: 'GitHub', href: REPO },
-            { label: 'Releases', href: RELEASES },
-            { label: 'Issues', href: ISSUES },
-            { label: 'License (MIT)', href: LICENSE },
-          ],
+          title: 'Only visible cards are rendered',
+          body: 'The virtualized stream avoids mounting the full result set at once.',
+        },
+        {
+          title: 'Processing stays on your device',
+          body: 'Card Workspace makes no network requests. Search indexing and file operations stay local.',
         },
       ],
-      legal: 'MIT licensed · Built by kenan.lian',
+      capabilities:
+        'Also included: favorites, pins, sorting, bulk organization, complete file context menus, and Markdown, Base, Canvas, and Excalidraw cards.',
+    },
+    cta: {
+      title: 'Replace the file list with cards you can read.',
+      body:
+        'Card Workspace is installed manually from GitHub Releases and supports Obsidian 1.9.0 or later on desktop.',
+      primaryCta: 'Download from GitHub Releases',
+      primaryHref: RELEASES,
+      secondaryCta: 'Read installation guide',
+      secondaryHref: docs('en', 'guides/installation'),
+    },
+    footer: {
+      tagline: 'Readable notes, beside the note you are writing.',
+      links: [
+        { label: 'Documentation', href: docs('en', 'guides/introduction') },
+        { label: 'Installation', href: docs('en', 'guides/installation') },
+        { label: 'GitHub', href: REPO },
+        { label: 'Releases', href: RELEASES },
+      ],
+      legal: 'MIT licensed · Card Workspace v1.1.3',
     },
   },
-
   zh: {
     lang: 'zh',
-    version: 'v1.0.2',
-    versionTitle: '当前版本 —— v1.0.2',
+    version: 'v1.1.3',
+    versionTitle: '在 GitHub Releases 查看 Card Workspace v1.1.3',
+    themeLabel: '切换颜色主题',
+    languageLabel: 'View this page in English',
+    languageHref: '/card-workspace-site/en/',
+    languageCode: 'EN',
     nav: [
-      { label: '为什么', href: '#why' },
-      { label: '卡片盒', href: '#boxes' },
-      { label: '不打断', href: '#flow' },
-      { label: '大库', href: '#scale' },
-      { label: '文档', href: '#install' },
+      { label: '卡片盒', href: '#card-boxes' },
+      { label: '浏览', href: '#browse' },
+      { label: '拖入写作', href: '#drag' },
+      { label: '文档', href: docs('zh', 'guides/introduction') },
     ],
     hero: {
-      eyebrow: 'Obsidian 插件',
-      headline: ['把仓库读成卡片，', '而不是', '一串文件名。'],
-      headlineEmphasis: 1,
-      tagline:
-        'Card Workspace 把任意文件夹、标签或已存集合变成 Obsidian 侧边栏里可扫读的卡片流——标题和摘要，就在你正在写的那篇笔记旁边。',
-      primaryCta: '获取 Card Workspace',
+      eyebrow: 'Obsidian 桌面端插件 · v1.1.3',
+      headline: ['把仓库读成卡片，', '而不是一串文件名。'],
+      headlineCompact: ['把仓库读成卡片，', '而不是', '一串文件名。'],
+      lede:
+        'Card Workspace 在 Obsidian 左侧栏把文件夹和标签变成带摘要的卡片流。扫一眼就知道笔记里写了什么，点开继续读，或直接拖进正在写的页面。',
+      primaryCta: '从 GitHub 安装',
       primaryHref: RELEASES,
       secondaryCta: '查看文档',
-      secondaryHref: '/card-workspace-site/zh/guides/getting-started/',
-      shotCaption: 'Card Workspace 在左侧边栏展开，导航列与卡片流并置',
+      secondaryHref: docs('zh', 'guides/getting-started'),
+      meta: 'Obsidian 1.9+ · 仅桌面端 · 本地运行',
+      mediaLabel: '产品截图位置 · 16:10',
+      mediaTitle: '编辑器旁边的完整浏览闭环',
+      mediaBrief:
+        '未来截图：左侧栏中填充文件夹、标签、卡片盒与收藏；显示 4–6 张可读卡片、当前选中的卡片，以及编辑器中对应打开的笔记。',
     },
-    sections: {
-      why: {
-        index: '01',
-        kicker: '前提',
-        title: '文件列表只给名字，卡片给你笔记本身。',
-        body: '每张卡片都带着笔记标题和一段剥离了 Markdown 语法的摘要，两篇名字相近的笔记不用打开就能分清。点一张卡片，笔记在主编辑区打开；在编辑器里切换笔记，对应的卡片会自动选中——面板不会和你正在读的内容脱节。',
-        points: [
-          { term: '摘要预览', desc: '标题加上剥离了 Markdown 语法的干净摘要。' },
-          { term: '双向同步', desc: '点卡片打开笔记；在编辑器换笔记，卡片跟着走。' },
-          { term: '本地搜索', desc: '对当前范围内的卡片做索引化全文检索。' },
-        ],
-        slot: '放一张卡片特写，展示标题与摘要的排版处理（两三张卡片即可）',
-      },
-      nav: {
-        index: '02',
-        kicker: '自带导航',
-        title: '第二列导航，不占用文件管理器。',
-        body: 'Card Workspace 在卡片流旁边渲染自己的导航列，收纳文件夹、标签、卡片盒和收藏。拖动分隔条重新分配两列宽度，或者直接把导航列收起来让卡片占满。当侧边栏窄到放不下两列时，布局会自动降级为单栏，标题栏的按钮在导航和卡片之间切换——任何宽度下面板都还能用。',
-        points: [
-          { term: '文件夹', desc: '限定到某个文件夹，可选是否包含子文件夹。' },
-          { term: '标签', desc: '按标签筛选，来源同时包含 frontmatter 和正文。' },
-          { term: '卡片盒', desc: '已保存的规则集合，可以跨文件夹取材。' },
-          { term: '收藏', desc: '收藏文件夹、文件、标签和卡片盒，分类排列且可重排。' },
-        ],
-        slot: '放一张导航列的截图，让文件夹 / 标签 / 卡片盒 / 收藏 四个分区都可见',
-      },
-      boxes: {
-        index: '03',
-        kicker: '真正值得装的那个功能',
-        title: '卡片盒装得下文件夹装不下的东西。',
-        body: '卡片盒是一个已保存的、面向主题的集合。它有自己的归属规则——一个文件夹范围加上标签，多条规则之间以 OR 组合——还有自己的排序和自己的置顶，你也可以手工加入或排除单篇笔记。用它来聚合那些概念上属于一起、却分散在不同文件夹里的笔记，不用移动任何文件，也不用维护索引笔记。',
-        rules: [
-          { op: 'scope', value: 'Projects/Research' },
-          { op: 'or', value: '#method' },
-          { op: 'or', value: '#fieldwork' },
-          { op: 'minus', value: '手工排除的笔记' },
-        ],
-        aside: '在「卡片盒」分区右键即可新建，也可以把当前的文件夹与标签范围一步存成一个卡片盒。',
-        boxViz: {
-          deckTitle: 'Research',
-          deckLabel: '卡片盒',
-          excluded: '手工排除',
-          caption: '规则把散落在不同文件夹里的笔记收拢进同一个盒子，文件一个都不用动。',
-        },
-      },
-      flow: {
-        index: '04',
-        kicker: '不打断手上的事',
-        title: '把卡片拖进编辑器，它自己会写进去。',
-        body: '把卡片拖到打开的笔记里，可以插入 wikilink、嵌入、笔记正文，或者标题加正文。也可以让插件每次拖放时都问你想用哪一种。其余操作几乎都在右键里：新建笔记、文件夹、白板和 Bases，重命名、复制、移动、删除，拷贝库内路径或系统路径，在系统文件管理器中显示，或在文件夹内搜索。',
-        points: [
-          { term: 'wikilink', desc: '一个指回笔记的普通链接。' },
-          { term: '嵌入', desc: '在拖放位置直接嵌入这篇笔记。' },
-          { term: '正文', desc: '把笔记正文原样粘进来。' },
-          { term: '标题加正文', desc: '标题在前，正文在后。' },
-        ],
-        aside: '多选若干卡片，可以一次性移动、删除或合并笔记。',
-        slot: '放一张（或一小段录屏）把卡片拖进打开的编辑器的画面',
-      },
-      scale: {
-        index: '05',
-        kicker: '为真实体量的库而做',
-        title: '大文件夹一样顺。',
-        body: '只有真正出现在屏幕上的卡片才会被渲染，所以装着几千篇笔记的文件夹滚起来和小文件夹没差别。搜索走本地索引，标签筛选同时读取 frontmatter 和正文里的标签。',
-        points: [
-          { term: '虚拟滚动', desc: '只渲染可见范围内的卡片。' },
-          { term: '索引搜索', desc: '在当前范围内做全文检索。' },
-          { term: '置顶重排', desc: '把选定的卡片固定在卡片流顶部。' },
-        ],
-      },
-      privacy: {
-        index: '06',
-        kicker: '隐私',
-        title: '没有任何东西离开你的仓库。',
-        body: 'Card Workspace 不发起任何外部网络请求。文件操作全部走 Obsidian 本地的 Vault 与 FileManager API，搜索索引跑在随插件打包的本地库里。你的笔记始终是磁盘上的 Markdown 文件。',
-        badge: '零联网请求',
-      },
-      install: {
-        index: '07',
-        kicker: '开始使用',
-        title: '把它装进你的仓库。',
-        body: 'Card Workspace 需要 Obsidian 1.9.0 或更高版本。从侧边栏图标打开面板，或在命令面板运行「打开 Card Workspace 视图」，然后选一个文件夹、标签或卡片盒开始浏览。',
-        steps: [
-          '安装插件',
-          '在第三方插件中启用',
-          '运行「打开 Card Workspace 视图」',
-          '选一个文件夹、标签或卡片盒',
-        ],
-        primaryCta: '获取 Card Workspace',
-        primaryHref: RELEASES,
-        secondaryCta: '在 GitHub 查看',
-        secondaryHref: REPO,
-        note: '仅桌面端。从 GitHub Releases 安装。尚未上架社区插件市场。',
-      },
+    boxes: {
+      kicker: '卡片盒',
+      title: '卡片盒装得下文件夹装不下的东西。',
+      body:
+        '把当前的文件夹和标签保存成一个卡片盒，它会持续收集符合规则的笔记。临时需要的可以手动加入，不想看到的可以移出。笔记仍留在原来的文件夹，每个卡片盒可以保留自己的排序和置顶。',
+      support: '适合研究主题、长期项目、阅读清单，以及任何跨越文件夹的笔记集合。',
+      conceptLabel: '规则模型 · 准确示例',
+      conceptTitle: '田野研究',
+      ruleOne: 'Projects/Research',
+      ruleTwo: 'Sources/Interviews',
+      and: '且',
+      or: '或',
+      manual: '手动加入',
+      manualNote: 'synthesis-map.md',
+      excluded: '排除',
+      excludedNote: 'meeting-scratch.md',
+      boxState: '修改时间 ↓ · 2 张卡片置顶',
+      precedence: '手动加入优先于排除。',
     },
-    footer: {
-      tagline: '一个为 Obsidian 而做的卡片工作区。',
-      columns: [
+    browse: {
+      kicker: '浏览',
+      title: '整个浏览过程，都留在编辑器旁边。',
+      body:
+        'Card Workspace 自带文件夹、标签、收藏和卡片盒导航。选定范围后，Markdown 笔记会显示为带摘要的卡片；在当前范围内搜索时，命中的文字和次数直接出现在卡片上。点开一张卡片，编辑器随即打开；从编辑器切换笔记，卡片流也会跟着高亮。',
+      labels: ['摘要预览', '当前范围搜索', '中文匹配', '双向同步'],
+      mediaLabel: '未来产品录屏 · 16:10 · 5 秒',
+      mediaTitle: '切换范围、搜索、打开、跟随',
+      mediaBrief:
+        '未来录屏：切换文件夹，输入一条中文查询，显示高亮与每篇笔记的命中次数，打开结果，再展示编辑器与卡片选择同步。',
+    },
+    drag: {
+      kicker: '写作流',
+      title: '看到有用的卡片，直接拖进正在写的笔记。',
+      body:
+        '把 Markdown 卡片拖到编辑器中的具体位置，松手后可以插入 wikilink、嵌入、正文，或“标题 + 正文”。常用方式可以设为默认，也可以每次选择。',
+      actions: ['Wikilink', '嵌入', '正文', '标题 + 正文'],
+      mediaLabel: '未来产品录屏 · 16:10 · 4–6 秒',
+      mediaTitle: '拖一下，把卡片放进草稿',
+      mediaBrief:
+        '未来录屏：展示卡片离开卡片流时的拖拽影子、编辑器光标旁的放置菜单，以及选择后插入的结果。',
+    },
+    proof: {
+      kicker: '日常使用',
+      title: '把工程细节用在真正重要的地方。',
+      items: [
         {
-          title: '文档',
-          links: [
-            { label: '简介', href: docs('zh', 'guides/introduction') },
-            { label: '安装', href: docs('zh', 'guides/installation') },
-            { label: '快速开始', href: docs('zh', 'guides/getting-started') },
-            { label: '设置', href: docs('zh', 'reference/settings') },
-          ],
+          title: '中文也能直接搜索',
+          body: '标题和 Markdown 正文使用本地索引。搜索结果在卡片中高亮，并显示每篇笔记的命中次数。',
         },
         {
-          title: '项目',
-          links: [
-            { label: 'GitHub', href: REPO },
-            { label: '发布', href: RELEASES },
-            { label: '问题反馈', href: ISSUES },
-            { label: '许可证 (MIT)', href: LICENSE },
-          ],
+          title: '卡片流只渲染可见部分',
+          body: '虚拟化布局不会一次渲染完整列表，较大的文件夹和卡片盒也能保持可用。',
+        },
+        {
+          title: '所有处理都留在本机',
+          body: 'Card Workspace 不发起网络请求。搜索索引和文件操作都在本地完成，笔记仍然保存在原来的仓库中。',
         },
       ],
-      legal: 'MIT 许可 · 由 kenan.lian 开发',
+      capabilities:
+        '还包括：收藏、置顶、排序、批量整理、完整的文件右键菜单，以及 Markdown、Base、Canvas、Excalidraw 卡片。',
+    },
+    cta: {
+      title: '把文件列表换成能读的卡片。',
+      body: 'Card Workspace 目前通过 GitHub Releases 手动安装，支持 Obsidian 1.9.0 及以上桌面端。',
+      primaryCta: '从 GitHub Releases 下载',
+      primaryHref: RELEASES,
+      secondaryCta: '查看安装说明',
+      secondaryHref: docs('zh', 'guides/installation'),
+    },
+    footer: {
+      tagline: '能读的笔记，就在正在写的笔记旁边。',
+      links: [
+        { label: '使用文档', href: docs('zh', 'guides/introduction') },
+        { label: '安装说明', href: docs('zh', 'guides/installation') },
+        { label: 'GitHub', href: REPO },
+        { label: '版本发布', href: RELEASES },
+      ],
+      legal: 'MIT 许可证 · Card Workspace v1.1.3',
     },
   },
 };

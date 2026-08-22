@@ -23,7 +23,7 @@ Markdown cards get full previews and full-text search. The other kinds are title
 
 ## Privacy
 
-All processing stays inside your vault. The plugin does not make external network requests. File operations go through Obsidian’s local Vault and FileManager APIs. Search indexing uses the bundled `minisearch` library.
+Processing stays on your local machine. The plugin does not make external network requests. File operations go through Obsidian’s local Vault and FileManager APIs. The bundled search engine stores its local index in IndexedDB; your source notes remain in their original vault folders.
 
 This documentation site self-hosts its fonts. That is unrelated to plugin privacy.
 

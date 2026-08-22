@@ -1,199 +1,81 @@
-/* ==========================================================================
-   Card Workspace — Graphite Index tokens
-   Source: designs/card-workspace-landing/tokens-v2.css
-   Remapped to Starlight dark-first: :root = dark, :root[data-theme='light'] = light.
-   Do not copy V2’s light-on-:root polarity or the Google Fonts @import.
-   ========================================================================== */
-
 :root {
-  --cw-space-1: 0.25rem;
-  --cw-space-2: 0.5rem;
-  --cw-space-3: 0.75rem;
-  --cw-space-4: 1rem;
-  --cw-space-5: 1.5rem;
-  --cw-space-6: 2rem;
-  --cw-space-7: 3rem;
-  --cw-space-8: 4rem;
-  --cw-space-9: 6rem;
-  --cw-space-10: 8rem;
+  --cw-font-display: 'Archivo Variable', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cw-font-body: 'Archivo Variable', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cw-font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
 
-  --cw-ease-out: cubic-bezier(0.32, 0.72, 0, 1);
-  --cw-ease-inout: cubic-bezier(0.4, 0, 0.2, 1);
-  --cw-ease-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
-  --cw-ease: var(--cw-ease-out);
-  --cw-dur-fast: 140ms;
-  --cw-dur-mid: 260ms;
-  --cw-dur-slow: 520ms;
+  --cw-page: 1240px;
+  --cw-reading: 62ch;
+  --cw-header-height: 4rem;
+  --cw-radius-control: 0.5rem;
+  --cw-radius-media: 0.875rem;
+  --cw-fast: 140ms;
+  --cw-mid: 220ms;
+  --cw-ease: cubic-bezier(0.2, 0.75, 0.25, 1);
 
-  --cw-measure: 64ch;
-  --cw-page: 1180px;
-  --cw-gutter: 8.5rem;
+  --cw-canvas: oklch(0.975 0.003 250);
+  --cw-surface: oklch(0.995 0.001 250);
+  --cw-surface-subtle: oklch(0.955 0.005 250);
+  --cw-surface-strong: oklch(0.925 0.007 250);
+  --cw-ink: oklch(0.2 0.012 255);
+  --cw-ink-soft: oklch(0.43 0.012 255);
+  --cw-ink-faint: oklch(0.59 0.01 255);
+  --cw-line: oklch(0.2 0.012 255 / 0.12);
+  --cw-line-strong: oklch(0.2 0.012 255 / 0.22);
+  --cw-accent: oklch(0.43 0.055 245);
+  --cw-accent-strong: oklch(0.35 0.064 245);
+  --cw-accent-soft: oklch(0.43 0.055 245 / 0.09);
+  --cw-on-accent: oklch(0.99 0.002 250);
+  --cw-media-shadow: 0 24px 64px -38px oklch(0.2 0.02 255 / 0.42),
+    0 1px 2px oklch(0.2 0.02 255 / 0.08);
 
-  --cw-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
-
-  /* --- Type: Letterpress ------------------------------------------------- */
-  --cw-font-display: 'Petrona', 'Noto Serif SC', ui-serif, Georgia, serif;
-  --cw-font-body: 'Archivo', 'Noto Sans SC', ui-sans-serif, system-ui, sans-serif;
-  --cw-font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --cw-font-ui: var(--cw-font-mono);
-
-  --cw-display-size: clamp(2.8rem, 7.6vw, 5.8rem);
-  --cw-display-size-zh: clamp(2rem, 4.6vw, 3.5rem);
-  --cw-display-weight: 500;
-  --cw-display-tracking: -0.024em;
-  --cw-display-leading: 1.02;
-  --cw-h2-weight: 500;
-  --cw-body-weight: 400;
-  --cw-body-leading: 1.64;
-  --cw-label-tracking: 0.16em;
-  --cw-label-size: 0.6875rem;
-
-  /* --- Shape: card-forward ---------------------------------------------- */
-  --cw-radius-sm: 4px;
-  --cw-radius-md: 7px;
-  --cw-radius-lg: 11px;
-  --cw-radius-card: 14px;
-  --cw-tab-h: 28px;
-
-  /* --- Dark: Graphite (Starlight default) -------------------------------- */
-  --cw-canvas: oklch(0.172 0.005 258);
-  --cw-surface: oklch(0.219 0.006 258);
-  --cw-surface-sunk: oklch(0.192 0.005 258);
-  --cw-ink: oklch(0.955 0.002 258);
-  --cw-ink-soft: oklch(0.775 0.005 258);
-  --cw-ink-faint: oklch(0.6 0.006 258);
-  --cw-ring: oklch(0.955 0.002 258 / 0.12);
-  --cw-ring-strong: oklch(0.955 0.002 258 / 0.24);
-  --cw-accent: oklch(0.79 0.055 250);
-  --cw-accent-ink: oklch(0.88 0.04 250);
-  --cw-accent-wash: oklch(0.79 0.055 250 / 0.12);
-  --cw-accent-on: oklch(0.172 0.005 258);
-
-  --cw-grain-opacity: 0.045;
-  --cw-ambient: radial-gradient(
-      100vw 62vh at 78% -20%,
-      oklch(0.79 0.055 250 / 0.07),
-      transparent 60%
-    ),
-    radial-gradient(70vw 50vh at 4% 8%, oklch(0.79 0.055 250 / 0.04), transparent 62%);
-
-  --cw-elev-1: 0 0 0 1px var(--cw-ring);
-  --cw-elev-card: 0 1px 0 oklch(1 0 0 / 0.03) inset, 0 14px 32px -20px oklch(0 0 0 / 0.75);
-  --cw-elev-card-hover: 0 1px 0 oklch(1 0 0 / 0.05) inset, 0 24px 48px -24px oklch(0 0 0 / 0.85);
-  --cw-elev-lift: 0 16px 34px -22px oklch(0 0 0 / 0.8);
-
-  /* Starlight fonts — body is Archivo; mono is IBM Plex Mono */
   --sl-font: var(--cw-font-body);
   --sl-font-mono: var(--cw-font-mono);
-  --sl-border-radius: var(--cw-radius-md);
-
-  /* Starlight palette ← Graphite dark */
-  --sl-color-accent-low: var(--cw-accent-wash);
+  --sl-border-radius: var(--cw-radius-control);
+  --sl-color-accent-low: var(--cw-accent-soft);
   --sl-color-accent: var(--cw-accent);
-  --sl-color-accent-high: var(--cw-accent-ink);
-
+  --sl-color-accent-high: var(--cw-accent-strong);
   --sl-color-white: var(--cw-ink);
-  --sl-color-gray-1: oklch(0.88 0.003 258);
+  --sl-color-gray-1: oklch(0.29 0.012 255);
   --sl-color-gray-2: var(--cw-ink-soft);
   --sl-color-gray-3: var(--cw-ink-faint);
-  --sl-color-gray-4: oklch(0.42 0.008 258);
-  --sl-color-gray-5: oklch(0.32 0.007 258);
-  --sl-color-gray-6: var(--cw-surface);
-  --sl-color-gray-7: var(--cw-surface-sunk);
+  --sl-color-gray-4: oklch(0.72 0.008 255);
+  --sl-color-gray-5: oklch(0.84 0.006 250);
+  --sl-color-gray-6: var(--cw-surface-subtle);
+  --sl-color-gray-7: oklch(0.985 0.002 250);
   --sl-color-black: var(--cw-canvas);
-
-  --sl-color-hairline-shade: var(--cw-ring);
-  --sl-color-hairline: var(--cw-ring);
+  --sl-color-hairline: var(--cw-line);
+  --sl-color-hairline-shade: var(--cw-line);
 }
 
-/* Duplicate dark values so landing-scoped CSS can target [data-theme='dark']. */
-[data-theme='dark'] {
-  --cw-canvas: oklch(0.172 0.005 258);
-  --cw-surface: oklch(0.219 0.006 258);
-  --cw-surface-sunk: oklch(0.192 0.005 258);
-  --cw-ink: oklch(0.955 0.002 258);
-  --cw-ink-soft: oklch(0.775 0.005 258);
-  --cw-ink-faint: oklch(0.6 0.006 258);
-  --cw-ring: oklch(0.955 0.002 258 / 0.12);
-  --cw-ring-strong: oklch(0.955 0.002 258 / 0.24);
-  --cw-accent: oklch(0.79 0.055 250);
-  --cw-accent-ink: oklch(0.88 0.04 250);
-  --cw-accent-wash: oklch(0.79 0.055 250 / 0.12);
-  --cw-accent-on: oklch(0.172 0.005 258);
+:root[data-theme='dark'] {
+  --cw-canvas: oklch(0.17 0.008 255);
+  --cw-surface: oklch(0.205 0.009 255);
+  --cw-surface-subtle: oklch(0.235 0.01 255);
+  --cw-surface-strong: oklch(0.28 0.012 255);
+  --cw-ink: oklch(0.95 0.004 250);
+  --cw-ink-soft: oklch(0.76 0.008 250);
+  --cw-ink-faint: oklch(0.59 0.009 250);
+  --cw-line: oklch(0.95 0.004 250 / 0.11);
+  --cw-line-strong: oklch(0.95 0.004 250 / 0.22);
+  --cw-accent: oklch(0.77 0.055 245);
+  --cw-accent-strong: oklch(0.84 0.045 245);
+  --cw-accent-soft: oklch(0.77 0.055 245 / 0.11);
+  --cw-on-accent: oklch(0.17 0.008 255);
+  --cw-media-shadow: 0 28px 72px -36px oklch(0 0 0 / 0.75),
+    0 1px 1px oklch(1 0 0 / 0.04) inset;
 
-  --cw-grain-opacity: 0.045;
-  --cw-ambient: radial-gradient(
-      100vw 62vh at 78% -20%,
-      oklch(0.79 0.055 250 / 0.07),
-      transparent 60%
-    ),
-    radial-gradient(70vw 50vh at 4% 8%, oklch(0.79 0.055 250 / 0.04), transparent 62%);
-
-  --cw-elev-card: 0 1px 0 oklch(1 0 0 / 0.03) inset, 0 14px 32px -20px oklch(0 0 0 / 0.75);
-  --cw-elev-card-hover: 0 1px 0 oklch(1 0 0 / 0.05) inset, 0 24px 48px -24px oklch(0 0 0 / 0.85);
-  --cw-elev-lift: 0 16px 34px -22px oklch(0 0 0 / 0.8);
-
-  --sl-color-accent-low: var(--cw-accent-wash);
+  --sl-color-accent-low: var(--cw-accent-soft);
   --sl-color-accent: var(--cw-accent);
-  --sl-color-accent-high: var(--cw-accent-ink);
-
+  --sl-color-accent-high: var(--cw-accent-strong);
   --sl-color-white: var(--cw-ink);
-  --sl-color-gray-1: oklch(0.88 0.003 258);
+  --sl-color-gray-1: oklch(0.88 0.004 250);
   --sl-color-gray-2: var(--cw-ink-soft);
   --sl-color-gray-3: var(--cw-ink-faint);
-  --sl-color-gray-4: oklch(0.42 0.008 258);
-  --sl-color-gray-5: oklch(0.32 0.007 258);
-  --sl-color-gray-6: var(--cw-surface);
-  --sl-color-gray-7: var(--cw-surface-sunk);
+  --sl-color-gray-4: oklch(0.43 0.01 255);
+  --sl-color-gray-5: oklch(0.32 0.01 255);
+  --sl-color-gray-6: var(--cw-surface-subtle);
+  --sl-color-gray-7: var(--cw-surface);
   --sl-color-black: var(--cw-canvas);
-
-  --sl-color-hairline-shade: var(--cw-ring);
-  --sl-color-hairline: var(--cw-ring);
-}
-
-:root[data-theme='light'] {
-  --cw-canvas: oklch(0.971 0.002 250);
-  --cw-surface: oklch(1 0 0);
-  --cw-surface-sunk: oklch(0.958 0.003 250);
-  --cw-ink: oklch(0.19 0.007 258);
-  --cw-ink-soft: oklch(0.44 0.008 258);
-  --cw-ink-faint: oklch(0.635 0.008 258);
-  --cw-ring: oklch(0.19 0.007 258 / 0.11);
-  --cw-ring-strong: oklch(0.19 0.007 258 / 0.22);
-  --cw-accent: oklch(0.42 0.042 252);
-  --cw-accent-ink: oklch(0.33 0.05 252);
-  --cw-accent-wash: oklch(0.42 0.042 252 / 0.07);
-  --cw-accent-on: oklch(1 0 0);
-
-  --cw-grain-opacity: 0.03;
-  --cw-ambient: radial-gradient(
-      100vw 62vh at 78% -20%,
-      oklch(0.42 0.042 252 / 0.05),
-      transparent 60%
-    ),
-    radial-gradient(70vw 50vh at 4% 8%, oklch(0.42 0.042 252 / 0.03), transparent 62%);
-
-  --cw-elev-card: 0 1px 1px oklch(0.19 0.007 258 / 0.03),
-    0 10px 28px -18px oklch(0.19 0.007 258 / 0.28);
-  --cw-elev-card-hover: 0 1px 1px oklch(0.19 0.007 258 / 0.04),
-    0 20px 44px -22px oklch(0.19 0.007 258 / 0.34);
-  --cw-elev-lift: 0 12px 30px -20px oklch(0.19 0.007 258 / 0.4);
-
-  /* Starlight palette ← Graphite light */
-  --sl-color-accent-low: var(--cw-accent-wash);
-  --sl-color-accent: var(--cw-accent);
-  --sl-color-accent-high: var(--cw-accent-ink);
-
-  --sl-color-white: var(--cw-ink);
-  --sl-color-gray-1: oklch(0.28 0.007 258);
-  --sl-color-gray-2: var(--cw-ink-soft);
-  --sl-color-gray-3: var(--cw-ink-faint);
-  --sl-color-gray-4: oklch(0.72 0.006 258);
-  --sl-color-gray-5: oklch(0.84 0.004 250);
-  --sl-color-gray-6: var(--cw-surface-sunk);
-  --sl-color-gray-7: oklch(0.965 0.002 250);
-  --sl-color-black: var(--cw-canvas);
-
-  --sl-color-hairline-shade: var(--cw-ring);
-  --sl-color-hairline: var(--cw-ring);
+  --sl-color-hairline: var(--cw-line);
+  --sl-color-hairline-shade: var(--cw-line);
 }

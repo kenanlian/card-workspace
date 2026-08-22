@@ -1,0 +1,43 @@
+---
+import type { LandingCopy } from '../../content/landing';
+
+interface Props {
+  copy: LandingCopy['boxes'];
+}
+
+const { copy: c } = Astro.props;
+---
+
+<figure class="cw-box-model" aria-labelledby="cw-box-model-title">
+  <div class="cw-box-model__head">
+    <div>
+      <span class="cw-media__label">{c.conceptLabel}</span>
+      <h3 id="cw-box-model-title">{c.conceptTitle}</h3>
+    </div>
+    <span class="cw-box-model__state">{c.boxState}</span>
+  </div>
+
+  <div class="cw-box-model__rules">
+    <div class="cw-rule">
+      <span class="cw-rule__number">01</span>
+      <div class="cw-rule__operand"><span>{c.ruleOne}</span><b>{c.and}</b><span>#method</span></div>
+    </div>
+    <span class="cw-rule__or">{c.or}</span>
+    <div class="cw-rule">
+      <span class="cw-rule__number">02</span>
+      <div class="cw-rule__operand"><span>{c.ruleTwo}</span><b>{c.and}</b><span>#fieldwork</span></div>
+    </div>
+  </div>
+
+  <div class="cw-box-model__manual">
+    <div>
+      <span>{c.manual}</span>
+      <strong>+ {c.manualNote}</strong>
+    </div>
+    <div>
+      <span>{c.excluded}</span>
+      <strong>− {c.excludedNote}</strong>
+    </div>
+  </div>
+  <figcaption>{c.precedence}</figcaption>
+</figure>

@@ -17,11 +17,11 @@ Click a card to open its note. Switch notes in the editor and the matching card 
 
 ## Search
 
-The toolbar **Toggle search** field (**Search notes**) searches the current folder or box locally.
+The toolbar **Toggle search** field (**Search notes**) searches the current folder, folder-and-tag scope, or card box locally. Chinese queries are supported. Matching text is highlighted on Markdown cards, with a per-note hit count.
 
 - An empty query shows all cards in the current scope.
 - A non-empty query waits until the local index is ready. Until then the stream is empty and the panel shows **Search is currently blocked**.
-- Non-Markdown files are indexed by **title only**.
+- Markdown titles and bodies are indexed. Base, Canvas, and Excalidraw cards are indexed by **title only**.
 
 Search-index recovery commands are on [Commands and menus](/card-workspace-site/en/reference/commands-and-menus/). They are not part of everyday browsing.
 

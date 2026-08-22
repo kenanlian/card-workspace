@@ -7,7 +7,7 @@ A card box is a saved topic collection in the **Boxes** section. Use boxes when 
 
 ## Membership
 
-A note is in a box when it matches at least one rule **or** was added by hand, and it was not removed by hand. A note cannot be both hand-added and hand-removed at the same time.
+A note is in a box when it matches at least one rule, unless it was excluded by hand. A manually added note is included whether or not it matches a rule, and **manual inclusion wins over exclusion**.
 
 Each **rule** is:
 

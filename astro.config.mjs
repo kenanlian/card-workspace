@@ -16,11 +16,14 @@ export default defineConfig({
     starlight({
       title: 'Card Workspace',
       description: 'Browse your vault as cards in Obsidian’s sidebar.',
-      // V2's accent flips lightness between modes (deep graphite on light,
-      // pale blue on dark), so the mark cannot be a single file.
       logo: {
         light: './src/assets/logo-light.svg',
         dark: './src/assets/logo-dark.svg',
+      },
+      components: {
+        ThemeProvider: './src/components/LightFirstThemeProvider.astro',
+        PageTitle: './src/components/PageTitle.astro',
+        SkipLink: './src/components/SkipLink.astro',
       },
       // Starlight emits og:title/og:description/twitter:card itself; only the
       // image needs an absolute URL, which it cannot build on its own.
@@ -30,7 +33,7 @@ export default defineConfig({
         { tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
         { tag: 'meta', attrs: { name: 'twitter:image', content: `${SITE}${BASE}/og.png` } },
       ],
-      // Zed-inspired custom theme (see src/styles/theme.css).
+      // Light-first graphite theme shared by the landing page and docs.
       customCss: ['./src/styles/theme.css'],
       // English is the default (root) language; Chinese lives under /zh/.
       defaultLocale: 'en',

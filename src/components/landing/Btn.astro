@@ -2,11 +2,12 @@
 interface Props {
   href: string;
   primary?: boolean;
+  compact?: boolean;
 }
 
-const { href, primary = false } = Astro.props;
+const { href, primary = false, compact = false } = Astro.props;
 ---
 
-<a class:list={['cw-btn', primary && 'cw-btn--primary']} href={href}>
+<a class:list={['cw-btn', primary && 'cw-btn--primary', compact && 'cw-btn--compact']} href={href}>
   <span><slot /></span>
 </a>

@@ -2,15 +2,9 @@
 import '../../styles/landing.css';
 import { getLanding, type Locale } from '../../content/landing';
 import BrandMark from './BrandMark.astro';
-import Label from './Label.astro';
-import VersionBadge from './VersionBadge.astro';
 import Btn from './Btn.astro';
-import SectionCard from './SectionCard.astro';
-import Tiles from './Tiles.astro';
-import RulesPanel from './RulesPanel.astro';
-import BoxViz from './BoxViz.astro';
-import Shot from './Shot.astro';
-import ImageSlot from './ImageSlot.astro';
+import MediaPlaceholder from './MediaPlaceholder.astro';
+import CardBoxConcept from './CardBoxConcept.astro';
 
 interface Props {
   locale: Locale;
@@ -18,205 +12,200 @@ interface Props {
 
 const { locale } = Astro.props;
 const c = getLanding(locale);
-const s = c.sections;
+const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
 ---
 
-<div class="cw-page not-content">
+<div class="cw-page not-content" data-screen-label="Card Workspace landing">
+  <a class="cw-skip" href="#cw-main">{locale === 'zh' ? '跳到主要内容' : 'Skip to content'}</a>
+
   <header class="cw-header">
     <div class="cw-wrap cw-header__inner">
-      <a class="cw-brand" href="#top">
+      <a class="cw-brand" href="#top" aria-label="Card Workspace">
         <BrandMark />
         <span class="cw-brand__name">Card Workspace</span>
       </a>
-      <VersionBadge version={c.version} title={c.versionTitle} />
-      <nav class="cw-nav">
-        {c.nav.map((n) => <a href={n.href}>{n.label}</a>)}
+
+      <a class="cw-version" href={c.hero.primaryHref} title={c.versionTitle}>{c.version}</a>
+
+      <nav class="cw-nav" aria-label={locale === 'zh' ? '页面导航' : 'Landing page'}>
+        {c.nav.map((item) => <a href={item.href}>{item.label}</a>)}
       </nav>
+
+      <div class="cw-header__tools">
+        <a
+          class="cw-tool cw-language"
+          href={c.languageHref}
+          aria-label={c.languageLabel}
+          hreflang={locale === 'zh' ? 'en' : 'zh-CN'}
+        >
+          {c.languageCode}
+        </a>
+        <button class="cw-tool cw-theme" type="button" aria-label={c.themeLabel} title={c.themeLabel}>
+          <span class="cw-theme__light" aria-hidden="true">☼</span>
+          <span class="cw-theme__dark" aria-hidden="true">◐</span>
+        </button>
+        <Btn compact primary href={c.hero.primaryHref}>{locale === 'zh' ? '安装' : 'Install'}</Btn>
+      </div>
     </div>
   </header>
 
-  <section class="cw-hero" id="top" data-screen-label="Hero">
-    <div class="cw-wrap">
-      <div class="cw-hero__copy cw-deal" style="--cw-deal-rot: 0deg">
-        <Label accent>{c.hero.eyebrow}</Label>
-        <h1 class="cw-display">
-          {
-            c.hero.headline.map((line, i) => (
-              <span class="cw-display__line">
-                {i === c.hero.headlineEmphasis ? <em>{line}</em> : line}
-              </span>
-            ))
-          }
-        </h1>
-        <p class="cw-lede">{c.hero.tagline}</p>
-        <div class="cw-actions">
-          <Btn primary href={c.hero.primaryHref}>{c.hero.primaryCta}</Btn>
-          <Btn href={c.hero.secondaryHref}>{c.hero.secondaryCta}</Btn>
+  <div id="cw-main" tabindex="-1">
+    <section class="cw-hero" id="top" data-screen-label="Hero">
+      <div class="cw-wrap cw-hero__grid">
+        <div class="cw-hero__copy">
+          <p class="cw-kicker">{c.hero.eyebrow}</p>
+          <h1 aria-label={headlineLabel}>
+            {
+              c.hero.headline.map((line) => (
+                <span class="cw-headline__line cw-headline__line--standard" aria-hidden="true">{line}</span>
+              ))
+            }
+            {
+              c.hero.headlineCompact.map((line) => (
+                <span class="cw-headline__line cw-headline__line--compact" aria-hidden="true">{line}</span>
+              ))
+            }
+          </h1>
+          <p class="cw-lede">{c.hero.lede}</p>
+          <div class="cw-actions">
+            <Btn primary href={c.hero.primaryHref}>{c.hero.primaryCta}</Btn>
+            <Btn href={c.hero.secondaryHref}>{c.hero.secondaryCta}</Btn>
+          </div>
+          <p class="cw-meta">{c.hero.meta}</p>
+        </div>
+        <MediaPlaceholder
+          featured
+          label={c.hero.mediaLabel}
+          title={c.hero.mediaTitle}
+          brief={c.hero.mediaBrief}
+        />
+      </div>
+    </section>
+
+    <section class="cw-section cw-section--boxes" id="card-boxes" data-screen-label="Card boxes">
+      <div class="cw-wrap cw-feature-grid">
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.boxes.kicker}</p>
+          <h2>{c.boxes.title}</h2>
+          <p class="cw-section-body">{c.boxes.body}</p>
+          <p class="cw-support">{c.boxes.support}</p>
+        </div>
+        <CardBoxConcept copy={c.boxes} />
+      </div>
+    </section>
+
+    <section class="cw-section" id="browse" data-screen-label="Browsing loop">
+      <div class="cw-wrap cw-feature-grid cw-feature-grid--media-first">
+        <MediaPlaceholder
+          kind="clip"
+          label={c.browse.mediaLabel}
+          title={c.browse.mediaTitle}
+          brief={c.browse.mediaBrief}
+        />
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.browse.kicker}</p>
+          <h2>{c.browse.title}</h2>
+          <p class="cw-section-body">{c.browse.body}</p>
+          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '浏览能力' : 'Browsing capabilities'}>
+            {c.browse.labels.map((label) => <li>{label}</li>)}
+          </ul>
         </div>
       </div>
-      <Shot caption={c.hero.shotCaption} />
-    </div>
-  </section>
+    </section>
 
-  <div class="cw-wrap cw-stream">
-    <SectionCard id="why" index={s.why.index} kicker={s.why.kicker} title={s.why.title} order={0}>
-      <div class="cw-sec__text">
-        <p class="cw-body">{s.why.body}</p>
-        <Tiles items={s.why.points} />
-      </div>
-      <div class="cw-sec__media">
-        <ImageSlot label="cards" desc={s.why.slot} />
-      </div>
-    </SectionCard>
-
-    <SectionCard id="nav" index={s.nav.index} kicker={s.nav.kicker} title={s.nav.title} order={1}>
-      <div class="cw-sec__text">
-        <p class="cw-body">{s.nav.body}</p>
-        <Tiles items={s.nav.points} />
-      </div>
-      <div class="cw-sec__media">
-        <ImageSlot label="navigation" desc={s.nav.slot} />
-      </div>
-    </SectionCard>
-
-    <SectionCard id="boxes" index={s.boxes.index} kicker={s.boxes.kicker} title={s.boxes.title} order={2}>
-      <div class="cw-sec__text">
-        <p class="cw-body">{s.boxes.body}</p>
-        <RulesPanel rules={s.boxes.rules} />
-        <p class="cw-body cw-body--aside">{s.boxes.aside}</p>
-      </div>
-      <div class="cw-sec__media">
-        <BoxViz rules={s.boxes.rules} viz={s.boxes.boxViz} />
-        <p class="cw-caption cw-caption--start">{s.boxes.boxViz.caption}</p>
-      </div>
-    </SectionCard>
-
-    <SectionCard id="flow" index={s.flow.index} kicker={s.flow.kicker} title={s.flow.title} order={3}>
-      <div class="cw-sec__text">
-        <p class="cw-body">{s.flow.body}</p>
-        <Tiles items={s.flow.points} />
-        <p class="cw-body cw-body--aside">{s.flow.aside}</p>
-      </div>
-      <div class="cw-sec__media">
-        <ImageSlot label="drag to insert" desc={s.flow.slot} />
-      </div>
-    </SectionCard>
-
-    <SectionCard id="scale" index={s.scale.index} kicker={s.scale.kicker} title={s.scale.title} order={4}>
-      <div class="cw-sec__text">
-        <p class="cw-body">{s.scale.body}</p>
-        <Tiles items={s.scale.points} />
-      </div>
-      <div class="cw-sec__media">
-        <div class="cw-subcard">
-          <Label accent as="span">{`${s.privacy.index} · ${s.privacy.kicker}`}</Label>
-          <h3 class="cw-h3">{s.privacy.title}</h3>
-          <p class="cw-body">{s.privacy.body}</p>
-          <span class="cw-badge">{s.privacy.badge}</span>
+    <section class="cw-section" id="drag" data-screen-label="Writing flow">
+      <div class="cw-wrap cw-feature-grid">
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.drag.kicker}</p>
+          <h2>{c.drag.title}</h2>
+          <p class="cw-section-body">{c.drag.body}</p>
+          <ul class="cw-action-list" aria-label={locale === 'zh' ? 'Markdown 拖入操作' : 'Markdown drop actions'}>
+            {c.drag.actions.map((action, index) => <li><span>0{index + 1}</span>{action}</li>)}
+          </ul>
         </div>
+        <MediaPlaceholder
+          kind="clip"
+          label={c.drag.mediaLabel}
+          title={c.drag.mediaTitle}
+          brief={c.drag.mediaBrief}
+        />
       </div>
-    </SectionCard>
+    </section>
 
-    <SectionCard
-      id="install"
-      index={s.install.index}
-      kicker={s.install.kicker}
-      title={s.install.title}
-      order={5}
-    >
-      <div class="cw-sec__text">
-        <p class="cw-body">{s.install.body}</p>
-        <div class="cw-actions">
-          <Btn primary href={s.install.primaryHref}>{s.install.primaryCta}</Btn>
-          <Btn href={s.install.secondaryHref}>{s.install.secondaryCta}</Btn>
+    <section class="cw-proof" data-screen-label="Trust and proof">
+      <div class="cw-wrap">
+        <div class="cw-proof__heading">
+          <p class="cw-kicker">{c.proof.kicker}</p>
+          <h2>{c.proof.title}</h2>
         </div>
-        <span class="cw-todo">{s.install.note}</span>
-      </div>
-      <div class="cw-sec__media">
-        <ol class="cw-steps">
-          {s.install.steps.map((st) => (
-            <li>
-              <span>{st}</span>
-            </li>
+        <div class="cw-proof__list">
+          {c.proof.items.map((item, index) => (
+            <article>
+              <span>0{index + 1}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </div>
+            </article>
           ))}
-        </ol>
+        </div>
+        <p class="cw-capabilities">{c.proof.capabilities}</p>
       </div>
-    </SectionCard>
+    </section>
+
+    <section class="cw-final" id="install" data-screen-label="Install">
+      <div class="cw-wrap cw-final__inner">
+        <div>
+          <h2>{c.cta.title}</h2>
+          <p>{c.cta.body}</p>
+        </div>
+        <div class="cw-actions">
+          <Btn primary href={c.cta.primaryHref}>{c.cta.primaryCta}</Btn>
+          <Btn href={c.cta.secondaryHref}>{c.cta.secondaryCta}</Btn>
+        </div>
+      </div>
+    </section>
   </div>
 
   <footer class="cw-footer">
-    <div class="cw-wrap">
-      <div class="cw-footer__grid">
-        <div class="cw-footer__col">
-          <a class="cw-brand cw-footer__brand" href="#top">
-            <BrandMark />
-            <span class="cw-brand__name">Card Workspace</span>
-          </a>
-          <p class="cw-body cw-footer__tagline">{c.footer.tagline}</p>
-        </div>
-        {
-          c.footer.columns.map((col) => (
-            <div class="cw-footer__col">
-              <h4 class="cw-label">{col.title}</h4>
-              <ul>
-                {col.links.map((l) => (
-                  <li>
-                    <a href={l.href}>{l.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))
-        }
+    <div class="cw-wrap cw-footer__inner">
+      <div class="cw-footer__brand">
+        <a class="cw-brand" href="#top">
+          <BrandMark />
+          <span class="cw-brand__name">Card Workspace</span>
+        </a>
+        <p>{c.footer.tagline}</p>
       </div>
-      <div class="cw-footer__legal">
-        <Label as="span">{c.footer.legal}</Label>
-        <Label as="span">{c.version}</Label>
-      </div>
+      <nav aria-label={locale === 'zh' ? '页脚导航' : 'Footer'}>
+        {c.footer.links.map((link) => <a href={link.href}>{link.label}</a>)}
+      </nav>
+      <p class="cw-footer__legal">{c.footer.legal}</p>
     </div>
   </footer>
 </div>
 
 <script>
-  function markShown(nodes: Element[]) {
-    for (const node of nodes) {
-      node.setAttribute('data-shown', 'true');
-    }
+  const skipLink = document.querySelector<HTMLAnchorElement>('.cw-skip');
+  const mainTarget = document.querySelector<HTMLElement>('#cw-main');
+  const themeButton = document.querySelector<HTMLButtonElement>('.cw-theme');
+
+  skipLink?.addEventListener('click', () => {
+    requestAnimationFrame(() => mainTarget?.focus({ preventScroll: true }));
+  });
+
+  function syncThemeButton() {
+    if (!themeButton) return;
+    const isDark = document.documentElement.dataset.theme === 'dark';
+    themeButton.setAttribute('aria-pressed', String(isDark));
   }
 
-  function initCwDealIn() {
-    const root = document.querySelector('.cw-page');
-    if (!root) return;
+  themeButton?.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = nextTheme;
+    localStorage.setItem('starlight-theme', nextTheme);
+    window.StarlightThemeProvider?.updatePickers(nextTheme);
+    syncThemeButton();
+  });
 
-    const nodes = Array.from(root.querySelectorAll('.cw-deal'));
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    if (reduceMotion || !('IntersectionObserver' in window)) {
-      markShown(nodes);
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.setAttribute('data-shown', 'true');
-            io.unobserve(entry.target);
-          }
-        }
-      },
-      { rootMargin: '0px 0px -6% 0px', threshold: 0.04 },
-    );
-
-    for (const node of nodes) {
-      node.removeAttribute('data-shown');
-      if (node.getBoundingClientRect().top < window.innerHeight * 0.94) {
-        node.setAttribute('data-shown', 'true');
-        continue;
-      }
-      io.observe(node);
-    }
-  }
-
-  initCwDealIn();
+  syncThemeButton();
 </script>
