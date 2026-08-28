@@ -105,8 +105,8 @@ function docs(locale: Locale, slug: string): string {
 export const landing: Record<Locale, LandingCopy> = {
   en: {
     lang: 'en',
-    version: 'v1.1.3',
-    versionTitle: 'Card Workspace v1.1.3 on GitHub Releases',
+    version: 'v1.1.5',
+    versionTitle: 'Card Workspace v1.1.5 on GitHub Releases',
     themeLabel: 'Switch color theme',
     languageLabel: 'Read this page in Simplified Chinese',
     languageHref: '/card-workspace-site/zh/',
@@ -118,7 +118,7 @@ export const landing: Record<Locale, LandingCopy> = {
       { label: 'Docs', href: docs('en', 'guides/introduction') },
     ],
     hero: {
-      eyebrow: 'Obsidian desktop plugin · v1.1.3',
+      eyebrow: 'Obsidian desktop plugin · v1.1.5',
       headline: ['Browse your vault', 'as cards,', 'not filenames.'],
       headlineCompact: ['Browse your vault', 'as cards,', 'not filenames.'],
       lede:
@@ -158,7 +158,7 @@ export const landing: Record<Locale, LandingCopy> = {
       title: 'Keep the whole browsing loop beside your editor.',
       body:
         'Card Workspace keeps folders, tags, favorites, and card boxes beside the card stream. Markdown notes show readable previews; scoped search highlights matching text and counts. Open a card in the editor, or switch notes in the editor and let the card stream follow.',
-      labels: ['Excerpt previews', 'Current-scope search', 'Chinese matching', 'Two-way sync'],
+      labels: ['Excerpt previews', 'Task status', 'Hover preview', 'Current-scope search', 'Chinese matching', 'Two-way sync'],
       mediaLabel: 'Future product clip · 16:10 · 5 seconds',
       mediaTitle: 'Scope, search, open, follow',
       mediaBrief:
@@ -193,7 +193,7 @@ export const landing: Record<Locale, LandingCopy> = {
         },
       ],
       capabilities:
-        'Also included: favorites, pins, sorting, bulk organization, complete file context menus, and Markdown, Base, Canvas, and Excalidraw cards.',
+        'Also included: favorites, pins, task counts, hover preview, sorting, bulk organization, complete file context menus, and Markdown, Base, Canvas, and Excalidraw cards.',
     },
     cta: {
       title: 'Replace the file list with cards you can read.',
@@ -212,13 +212,13 @@ export const landing: Record<Locale, LandingCopy> = {
         { label: 'GitHub', href: REPO },
         { label: 'Releases', href: RELEASES },
       ],
-      legal: 'MIT licensed · Card Workspace v1.1.3',
+      legal: 'MIT licensed · Card Workspace v1.1.5',
     },
   },
   zh: {
     lang: 'zh',
-    version: 'v1.1.3',
-    versionTitle: '在 GitHub Releases 查看 Card Workspace v1.1.3',
+    version: 'v1.1.5',
+    versionTitle: '在 GitHub Releases 查看 Card Workspace v1.1.5',
     themeLabel: '切换颜色主题',
     languageLabel: 'View this page in English',
     languageHref: '/card-workspace-site/en/',
@@ -230,7 +230,7 @@ export const landing: Record<Locale, LandingCopy> = {
       { label: '文档', href: docs('zh', 'guides/introduction') },
     ],
     hero: {
-      eyebrow: 'Obsidian 桌面端插件 · v1.1.3',
+      eyebrow: 'Obsidian 桌面端插件 · v1.1.5',
       headline: ['把仓库读成卡片，', '而不是一串文件名。'],
       headlineCompact: ['把仓库读成卡片，', '而不是', '一串文件名。'],
       lede:
@@ -269,7 +269,7 @@ export const landing: Record<Locale, LandingCopy> = {
       title: '整个浏览过程，都留在编辑器旁边。',
       body:
         'Card Workspace 自带文件夹、标签、收藏和卡片盒导航。选定范围后，Markdown 笔记会显示为带摘要的卡片；在当前范围内搜索时，命中的文字和次数直接出现在卡片上。点开一张卡片，编辑器随即打开；从编辑器切换笔记，卡片流也会跟着高亮。',
-      labels: ['摘要预览', '当前范围搜索', '中文匹配', '双向同步'],
+      labels: ['摘要预览', '任务状态', '悬停预览', '当前范围搜索', '中文匹配', '双向同步'],
       mediaLabel: '未来产品录屏 · 16:10 · 5 秒',
       mediaTitle: '切换范围、搜索、打开、跟随',
       mediaBrief:
@@ -304,7 +304,7 @@ export const landing: Record<Locale, LandingCopy> = {
         },
       ],
       capabilities:
-        '还包括：收藏、置顶、排序、批量整理、完整的文件右键菜单，以及 Markdown、Base、Canvas、Excalidraw 卡片。',
+        '还包括：收藏、置顶、任务状态、悬停预览、排序、批量整理、完整的文件右键菜单，以及 Markdown、Base、Canvas、Excalidraw 卡片。',
     },
     cta: {
       title: '把文件列表换成能读的卡片。',
@@ -322,7 +322,7 @@ export const landing: Record<Locale, LandingCopy> = {
         { label: 'GitHub', href: REPO },
         { label: '版本发布', href: RELEASES },
       ],
-      legal: 'MIT 许可证 · Card Workspace v1.1.3',
+      legal: 'MIT 许可证 · Card Workspace v1.1.5',
     },
   },
 };

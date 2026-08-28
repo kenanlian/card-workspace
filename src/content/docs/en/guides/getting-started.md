@@ -7,7 +7,7 @@ Open the panel, pick a scope, and click a card. Everyday actions stay on the rib
 
 ## Open the view
 
-1. Click the ribbon icon **Open Card Workspace**, or run **Open Card Workspace view** from the command palette. The panel opens in the **left sidebar**.
+1. Click the ribbon icon **Open Card Workspace**, or run **Open Card Workspace view** from the command palette (you can bind a hotkey to that command). The panel opens in the **left sidebar**.
 2. In Card Workspace’s own navigation pane, pick a folder, a tag, or a card box.
 3. Browse the card stream and click a card to open its note.
 4. Right-click a folder, tag, box, or card for more actions. Drag a card into an open Markdown editor to insert a link or content.
@@ -20,4 +20,5 @@ On startup, Card Workspace restores the last **folder** you browsed. If that fol
 
 - [Navigation](/card-workspace-site/en/guides/navigation/) — folders, tags, favorites, and the two-column pane
 - [Card boxes](/card-workspace-site/en/guides/card-boxes/) — saved topic collections
+- [Browsing cards](/card-workspace-site/en/guides/browsing-cards/) — search, pins, task counts, and hover preview
 - [Writing and organizing](/card-workspace-site/en/guides/writing-and-organizing/) — open, drag, create, and menus

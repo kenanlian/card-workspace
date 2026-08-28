@@ -13,6 +13,9 @@ description: Card Workspace 设置页中实际显示的选项。
 | `cardCornerRadius` | `rounded` | 卡片圆角 |
 | `previewLines` | `5`（最小 3，最大 8） | 预览行数 |
 | `showNavItemCounts` | `false` | 在导航栏显示条目计数 |
+| `navSectionOrder` | favorites, folders, tags, boxes | 导航区分区顺序 |
+
+界面语言跟随 Obsidian：若 Obsidian 语言以 `zh` 开头，Card Workspace 使用简体中文，否则使用英文。没有单独的语言设置。
 
 ## 卡片默认打开方式
 
@@ -55,3 +58,7 @@ description: Card Workspace 设置页中实际显示的选项。
 ## 在导航栏显示条目计数
 
 在导航栏中显示每个文件夹和标签包含的卡片数量。文件夹计数会跟随“包含子文件夹”开关变化，标签计数包含其子标签。默认关闭（`false`）。
+
+## 导航区分区顺序
+
+用 **上移** 和 **下移** 调整导航区各分区的上下顺序。**恢复默认顺序** 会把收藏、文件夹、标签、卡片盒还原为该序列。折叠状态单独记录，不受影响。

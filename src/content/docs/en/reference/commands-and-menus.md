@@ -19,6 +19,8 @@ The ribbon tooltip is **Open Card Workspace**. It opens the panel in the left si
 | `rebuild-folder-card-search-index` | Rebuild Card Workspace local search index from notes |
 | `clear-reset-folder-card-search-index` | Clear and reset Card Workspace local search index state |
 
+You can bind a hotkey to **Open Card Workspace view** in Obsidian’s hotkey settings.
+
 The four search-index commands are recovery tools. They do not replace the in-panel **Search notes** field. Use them when the local index needs status, recovery, rebuild, or a reset.
 
 ## Navigation menus
@@ -26,7 +28,7 @@ The four search-index commands are recovery tools. They do not replace the in-pa
 Right-click a section header or item in the navigation pane.
 
 - **Create** — new note, folder, canvas, or base; new note with a tag; **New card box…**; **Save current view as card box…**
-- **Organize** — rename, duplicate, move; copy vault or system path; show in the system explorer; search in a folder; expand or collapse folder and tag trees; include subfolders; add or remove a tag from the filter
+- **Organize** — rename, duplicate, move; copy vault or system path; show in the system explorer; search in a folder (selects that folder and focuses in-panel search); expand or collapse folder and tag trees; include subfolders; add or remove a tag from the filter
 - **Boxes** — open or exit a box; configure; add the current view; restore removed notes; duplicate, rename, or delete a box
 - **Favorites** — add or remove; move up or down within the same kind; clear all favorites
 - **Destructive** — delete a folder; delete a box (notes stay in the vault)
@@ -44,4 +46,4 @@ Right-click a card for:
 
 ## Bulk menus
 
-With **Bulk** on, the toolbar offers select all, clear selection, move selected, add or remove a tag, delete selected, and merge selected. Merge is Markdown only and needs at least two notes.
+With **Bulk** on, the toolbar offers select all, clear selection, move selected, add or remove a tag, add to card box, remove from box (while a box is open), delete selected, and merge selected. Shift-click selects a range. Merge is Markdown only and needs at least two notes. See [Writing and organizing](/card-workspace-site/en/guides/writing-and-organizing/).

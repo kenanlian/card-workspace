@@ -13,6 +13,9 @@ These are the settings in **Settings → Card Workspace**. Other remembered stat
 | `cardCornerRadius` | `rounded` | Card corner radius |
 | `previewLines` | `5` (min 3, max 8) | Preview lines |
 | `showNavItemCounts` | `false` | Show item counts in navigation |
+| `navSectionOrder` | favorites, folders, tags, boxes | Navigation section order |
+
+The interface language follows Obsidian: if Obsidian’s language starts with `zh`, Card Workspace uses Simplified Chinese; otherwise it uses English. There is no separate language setting.
 
 ## Default card open behavior
 
@@ -55,3 +58,7 @@ Choose how many normalized summary lines each card preview can show (3–8). Def
 ## Show item counts in navigation
 
 Show how many cards each folder and tag contributes in the navigation pane. Folder counts follow the include-subfolders toggle, and tag counts include child tags. Off by default (`false`).
+
+## Navigation section order
+
+Arrange the order of the navigation pane’s sections with **Move up** and **Move down**. **Restore default order** puts Favorites, Folders, Tags, and Boxes back in that sequence. Collapse state is tracked separately and is unaffected.

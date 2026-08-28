@@ -9,6 +9,7 @@ Card Workspace 通过 GitHub Releases 手动安装。把发布文件复制到库
 
 - 桌面版 Obsidian（不支持移动端）
 - Obsidian **1.9.0** 或更高版本
+- 插件界面跟随 Obsidian 语言（`zh*` → 简体中文，否则为英文）
 
 ## 从 GitHub Releases 安装
 

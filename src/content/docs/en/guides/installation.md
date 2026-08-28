@@ -9,6 +9,7 @@ Install Card Workspace from GitHub Releases. Copy the release files into your va
 
 - Desktop Obsidian (not mobile)
 - Obsidian **1.9.0** or later
+- The plugin UI follows Obsidian’s language (`zh*` → Simplified Chinese, otherwise English)
 
 ## Install from GitHub Releases
 
