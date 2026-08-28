@@ -96,6 +96,36 @@ header.header {
   border-inline-start: 0;
 }
 
+/* Starlight splits leftover viewport into the article and the TOC, which
+   makes the third column grow on wide screens. Pin the TOC and let the
+   article take the rest, so prose and the pager share one right edge. */
+@media (min-width: 72rem) {
+  html[data-has-sidebar][data-has-toc] .right-sidebar-container {
+    width: var(--cw-toc-width);
+  }
+
+  html[data-has-sidebar][data-has-toc] .main-pane {
+    width: calc(100% - var(--cw-toc-width));
+  }
+
+  html[data-has-toc] .content-panel {
+    padding-inline: 1rem;
+  }
+
+  .right-sidebar-panel {
+    padding-inline: 0.75rem;
+  }
+
+  .right-sidebar-panel .sl-container {
+    width: calc(var(--cw-toc-width) - 1.5rem);
+    max-width: none;
+  }
+
+  html[data-has-toc] .content-panel .sl-container {
+    max-width: none;
+  }
+}
+
 nav.sidebar a,
 nav.sidebar summary,
 starlight-toc a {
@@ -112,9 +142,8 @@ nav.sidebar a[aria-current='page']:hover {
 }
 
 /* ==========================================================================
-   Docs article — the Magazine direction: serif at reading size on a narrow
-   measure, sections numbered in the left margin, and no rule drawn anywhere in
-   the reading column.
+   Docs article — serif at reading size, sections numbered in the left margin,
+   and no rule drawn anywhere in the reading column.
    ========================================================================== */
 
 /* The title and the prose are two panels of one article, so the seam between
@@ -130,7 +159,6 @@ nav.sidebar a[aria-current='page']:hover {
 }
 
 .cw-doc-title {
-  max-width: var(--cw-doc-measure);
   font-family: var(--cw-font-serif);
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -144,19 +172,6 @@ nav.sidebar a[aria-current='page']:hover {
   line-height: var(--cw-doc-leading);
   text-wrap: pretty;
   counter-reset: cw-doc-section;
-}
-
-/* Prose is held to the measure; tables and other figures keep the full panel
-   width and so break out of the column on their own. */
-.sl-markdown-content > :is(p, ul, ol, dl, blockquote, hr, h2, h3, h4, h5, h6, .sl-heading-wrapper) {
-  max-width: var(--cw-doc-measure);
-}
-
-/* The opening paragraph carries the page the way a lede does. */
-.sl-markdown-content > p:first-child {
-  color: var(--cw-ink);
-  font-size: var(--cw-doc-lede);
-  line-height: 1.55;
 }
 
 /* The landing page is rendered inside `.sl-markdown-content` too, so the

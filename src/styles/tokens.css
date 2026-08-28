@@ -40,7 +40,6 @@
      hierarchy comes from the opposite shape: a decisive h1, a clear drop to
      h2, then h3 differentiated by weight and colour rather than size. */
   --cw-doc-body: 1.115rem;
-  --cw-doc-lede: 1.42rem;
   --cw-doc-h1: clamp(2.5rem, 3.4vw, 3.05rem);
   --cw-doc-h2: 1.6rem;
   --cw-doc-h3: 1.1rem;
@@ -53,10 +52,6 @@
   --cw-doc-micro-case: uppercase;
 
   --cw-doc-leading: 1.72;
-  /* ≈58 characters of the serif body face. Held in rem rather than ch so the
-     title, the prose and the headings all wrap at the same column edge
-     regardless of which face each one is set in. */
-  --cw-doc-measure: 34rem;
 
   /* Space before a heading is what separates sections once no rule is drawn,
      so it is generous on purpose. */
@@ -66,6 +61,10 @@
 
   /* Margin the section numbers sit in, outside the reading column. */
   --cw-doc-gutter: 0rem;
+
+  /* On-page table of contents. Starlight reuses --sl-sidebar-width (18.75rem)
+     for this column; shave a sixth so it does not crowd the article. */
+  --cw-toc-width: 15.625rem;
 
   --sl-font: var(--cw-font-body);
   --sl-font-mono: var(--cw-font-mono);
@@ -94,7 +93,7 @@
    spare it; below that the numbers sit above their own heading instead. */
 @media (min-width: 72rem) {
   :root {
-    --cw-doc-gutter: 3.5rem;
+    --cw-doc-gutter: 2.5rem;
   }
 }
 
