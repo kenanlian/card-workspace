@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-`card-workspace-site` is the documentation/marketing website for **Card Workspace**, an Obsidian plugin that browses the vault as cards in the left sidebar. It is a bilingual (English + Simplified Chinese) static site built with **Astro** and the **Starlight** docs theme, deployed as a **GitHub Pages project site** at `https://kenanlian.github.io/card-workspace-site/`.
+`card-workspace-site` is the documentation/marketing website for **Card Workspace**, an Obsidian plugin that browses the vault as cards in the left sidebar. It is a bilingual (English + Simplified Chinese) static site built with **Astro** and the **Starlight** docs theme, deployed as a **GitHub Pages project site** at `https://kenanlian.github.io/card-workspace/`.
 
 ## Architecture & Data Flow
 
@@ -13,7 +13,7 @@ src/content.config.ts (single `docs` collection, Starlight schema)
         ↓
 src/content/docs/{en,zh}/**/*.{md,mdx}   ← authored content
         ↓
-astro build (base = /card-workspace-site) → dist/
+astro build (base = /card-workspace) → dist/
         ↓
 GitHub Actions (withastro/action) → GitHub Pages
 ```
@@ -51,7 +51,7 @@ npm run build        # production build → ./dist
 npm run preview      # preview the production build
 ```
 
-Local URLs are served under the `/card-workspace-site/` base path (e.g. `http://localhost:4321/card-workspace-site/en/`).
+Local URLs are served under the `/card-workspace/` base path (e.g. `http://localhost:4321/card-workspace/en/`).
 
 There is no lint or test script configured.
 
@@ -61,7 +61,7 @@ There is no lint or test script configured.
 - **Frontmatter**: every page has `title` + `description` (Starlight-required). Landing pages (`index.mdx`) use `template: splash` and omit the `hero` block; the body imports `<Landing locale="en" />` or `<Landing locale="zh" />`.
 - **Components**: custom Astro components under `src/components/landing/` for the splash only. Guide/reference pages are plain `.md` and do not import components.
 - **Product media**: `MediaShot.astro` wraps `astro:assets` `<Image>` for stills; `MediaClip.astro` wraps a muted looping `<video>` that only plays while onscreen, stays paused under `prefers-reduced-motion`, and always exposes a play/pause button. Alt text and captions come from `landing.ts`, never from the component. Re-encode new captures with `ffmpeg -vf "scale=1440:-2:flags=lanczos,fps=15" -c:v libx264 -crf 28 -preset slow -an -movflags +faststart`.
-- **Internal links**: use absolute paths including the base prefix and a trailing slash, e.g. `/card-workspace-site/en/guides/introduction/`.
+- **Internal links**: use absolute paths including the base prefix and a trailing slash, e.g. `/card-workspace/en/guides/introduction/`.
 - **i18n**: sidebar labels carry `translations: { 'zh-CN': '...' }`; keep `en/` and `zh/` structures in sync when adding pages.
 - **Styling**: V2 Graphite Index tokens in `src/styles/`; Starlight `customCss` loads `./src/styles/theme.css` (which imports `tokens.css` and `header.css`). No Tailwind. Landing-scoped CSS is imported from the Landing component, not a second Starlight `customCss` entry.
 - **Header**: docs and splash pages render the same `SiteHeader.astro` row, styled only by `header.css`. Both are unstyled by Starlight's own header chrome — `SiteTitle`, `SocialIcons`, `ThemeSelect`, and `LanguageSelect` are never rendered, so `social`/`logo` config would have no effect. Docs add Pagefind's opener to the row; splash pages skip it.
@@ -93,5 +93,5 @@ There is no lint or test script configured.
 
 - CI: `.github/workflows/deploy.yml` triggers on push to `main` (and manual `workflow_dispatch`).
 - Build uses `withastro/action@v3`; deploy uses `actions/deploy-pages@v4` to the `github-pages` environment.
-- Target URL: `https://kenanlian.github.io/card-workspace-site/`. The `base` in `astro.config.mjs` must match the repository name.
+- Target URL: `https://kenanlian.github.io/card-workspace/`. The `base` in `astro.config.mjs` must match the repository name.
 - **Pre-deploy note**: the placeholder username `kenanlian` in `astro.config.mjs` and docs links should be replaced with the actual GitHub username before a real deployment.

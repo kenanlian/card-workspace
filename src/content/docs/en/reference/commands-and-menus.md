@@ -46,4 +46,4 @@ Right-click a card for:
 
 ## Bulk menus
 
-With **Bulk** on, the toolbar offers select all, clear selection, move selected, add or remove a tag, add to card box, remove from box (while a box is open), delete selected, and merge selected. Shift-click selects a range. Merge is Markdown only and needs at least two notes. See [Writing and organizing](/card-workspace-site/en/guides/writing-and-organizing/).
+With **Bulk** on, the toolbar offers select all, clear selection, move selected, add or remove a tag, add to card box, remove from box (while a box is open), delete selected, and merge selected. Shift-click selects a range. Merge is Markdown only and needs at least two notes. See [Writing and organizing](/card-workspace/en/guides/writing-and-organizing/).

@@ -27,5 +27,5 @@ Card Workspace 适合在编辑器旁边扫读和收集笔记：研究主题、�
 
 ## 下一步
 
-- [安装插件](/card-workspace-site/zh/guides/installation/)
-- [快速开始](/card-workspace-site/zh/guides/getting-started/)
+- [安装插件](/card-workspace/zh/guides/installation/)
+- [快速开始](/card-workspace/zh/guides/getting-started/)

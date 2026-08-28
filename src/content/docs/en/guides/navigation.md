@@ -14,7 +14,7 @@ The default order is:
 3. **Tags**
 4. **Boxes**
 
-Change that order in [Settings](/card-workspace-site/en/reference/settings/) under **Navigation section order**. Collapse state is remembered separately and is not affected.
+Change that order in [Settings](/card-workspace/en/reference/settings/) under **Navigation section order**. Collapse state is remembered separately and is not affected.
 
 ## Filter navigation
 
@@ -30,7 +30,7 @@ The header toggle **Collapse navigation** hides the nav column so the cards use 
 
 Click a folder to browse its cards. Folder scope can include subfolders (on by default). Toggle that from the **Folders** section header or that section’s right-click menu. The option is disabled while you are inside a card box.
 
-Right-click **Search in folder** selects that folder and focuses the in-panel **Search notes** field. It does not open Obsidian’s core Search. See [Browsing cards](/card-workspace-site/en/guides/browsing-cards/).
+Right-click **Search in folder** selects that folder and focuses the in-panel **Search notes** field. It does not open Obsidian’s core Search. See [Browsing cards](/card-workspace/en/guides/browsing-cards/).
 
 ## Tags
 
@@ -38,7 +38,7 @@ Tags come from frontmatter and inline `#tags` through Obsidian’s tag index. Cl
 
 Several selected tags are combined with **AND**: a note must have every selected tag. A parent tag also matches notes tagged with its descendants — for example `#project` includes `#project/alpha`.
 
-Right-click **New note with this tag** to create a note in the current folder with that tag already applied. See [Writing and organizing](/card-workspace-site/en/guides/writing-and-organizing/).
+Right-click **New note with this tag** to create a note in the current folder with that tag already applied. See [Writing and organizing](/card-workspace/en/guides/writing-and-organizing/).
 
 ## Favorites
 
@@ -55,7 +55,7 @@ Missing items show **(missing)**. An empty section reads **No favorites yet — 
 
 ## Counts, collapse, and keyboard
 
-Item counts in the navigation pane are off by default. Turn them on in [Settings](/card-workspace-site/en/reference/settings/) with **Show item counts in navigation**. Hovering a row still shows a count tooltip (files and child folders or subtags) even when the badges are hidden.
+Item counts in the navigation pane are off by default. Turn them on in [Settings](/card-workspace/en/reference/settings/) with **Show item counts in navigation**. Hovering a row still shows a count tooltip (files and child folders or subtags) even when the badges are hidden.
 
 Collapse a section from its header or **Collapse section**. Right-click a section for **Expand all folders** / **Collapse all folders**, or the matching tag-tree actions.
 

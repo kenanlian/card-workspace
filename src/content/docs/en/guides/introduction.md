@@ -27,5 +27,5 @@ Card Workspace is for scanning and collecting notes beside the editor: research 
 
 ## Next steps
 
-- [Install the plugin](/card-workspace-site/en/guides/installation/)
-- [Get started](/card-workspace-site/en/guides/getting-started/)
+- [Install the plugin](/card-workspace/en/guides/installation/)
+- [Get started](/card-workspace/en/guides/getting-started/)

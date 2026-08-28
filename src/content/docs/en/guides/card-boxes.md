@@ -27,7 +27,7 @@ Right-click in **Boxes** and choose **New card box…**, or **Save current view 
 
 - Right-click a box and choose **Add current view to this card box** to append a rule from the folder and tags you are browsing.
 - Right-click a card and choose **Add to card box**, including **New card box…**.
-- In **Bulk** mode, choose **Add to card box** to add the selection. See [Writing and organizing](/card-workspace-site/en/guides/writing-and-organizing/).
+- In **Bulk** mode, choose **Add to card box** to add the selection. See [Writing and organizing](/card-workspace/en/guides/writing-and-organizing/).
 
 If a box has no rules yet, the configure dialog points you to **Add current view to card box**.
 
@@ -52,7 +52,7 @@ An empty box shows: **This card box is empty. Add notes from the card list or ad
 
 While a box is open, the browse tag filter is skipped. The stream is search, then pins. The UI shows **Tag filter is unavailable in a box**.
 
-On startup Card Workspace restores the last folder, not the last box. See [Getting started](/card-workspace-site/en/guides/getting-started/).
+On startup Card Workspace restores the last folder, not the last box. See [Getting started](/card-workspace/en/guides/getting-started/).
 
 ## Deleting a box
 

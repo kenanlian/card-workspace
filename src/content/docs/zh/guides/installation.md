@@ -35,4 +35,4 @@ Card Workspace 可以直接在 Obsidian 的第三方插件市场中安装。如�
 
 ## 下一步
 
-启用插件后，请 [打开视图并浏览第一批卡片](/card-workspace-site/zh/guides/getting-started/)。
+启用插件后，请 [打开视图并浏览第一批卡片](/card-workspace/zh/guides/getting-started/)。

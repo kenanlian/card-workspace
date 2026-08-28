@@ -3,7 +3,7 @@ title: 设置
 description: Card Workspace 设置页中实际显示的选项。
 ---
 
-以下是 **设置 → Card Workspace** 中显示的选项。其他会记住的状态 — 卡片盒、收藏、置顶、上次文件夹、面板折叠 — 不列在这里；它们分别在 [导航](/card-workspace-site/zh/guides/navigation/)、[卡片盒](/card-workspace-site/zh/guides/card-boxes/) 和 [写作与整理](/card-workspace-site/zh/guides/writing-and-organizing/) 中说明。
+以下是 **设置 → Card Workspace** 中显示的选项。其他会记住的状态 — 卡片盒、收藏、置顶、上次文件夹、面板折叠 — 不列在这里；它们分别在 [导航](/card-workspace/zh/guides/navigation/)、[卡片盒](/card-workspace/zh/guides/card-boxes/) 和 [写作与整理](/card-workspace/zh/guides/writing-and-organizing/) 中说明。
 
 | 设置键 | 默认值 | 名称 |
 | --- | --- | --- |

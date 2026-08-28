@@ -18,7 +18,7 @@ description: 在左侧边栏打开 Card Workspace，并浏览第一批卡片。
 
 ## 下一步
 
-- [导航](/card-workspace-site/zh/guides/navigation/) — 文件夹、标签、收藏与双栏面板
-- [卡片盒](/card-workspace-site/zh/guides/card-boxes/) — 保存的主题集合
-- [浏览卡片](/card-workspace-site/zh/guides/browsing-cards/) — 搜索、置顶、任务状态与悬停预览
-- [写作与整理](/card-workspace-site/zh/guides/writing-and-organizing/) — 打开、拖拽、新建与菜单
+- [导航](/card-workspace/zh/guides/navigation/) — 文件夹、标签、收藏与双栏面板
+- [卡片盒](/card-workspace/zh/guides/card-boxes/) — 保存的主题集合
+- [浏览卡片](/card-workspace/zh/guides/browsing-cards/) — 搜索、置顶、任务状态与悬停预览
+- [写作与整理](/card-workspace/zh/guides/writing-and-organizing/) — 打开、拖拽、新建与菜单

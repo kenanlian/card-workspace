@@ -18,7 +18,7 @@ On startup, Card Workspace restores the last **folder** you browsed. If that fol
 
 ## Next steps
 
-- [Navigation](/card-workspace-site/en/guides/navigation/) — folders, tags, favorites, and the two-column pane
-- [Card boxes](/card-workspace-site/en/guides/card-boxes/) — saved topic collections
-- [Browsing cards](/card-workspace-site/en/guides/browsing-cards/) — search, pins, task counts, and hover preview
-- [Writing and organizing](/card-workspace-site/en/guides/writing-and-organizing/) — open, drag, create, and menus
+- [Navigation](/card-workspace/en/guides/navigation/) — folders, tags, favorites, and the two-column pane
+- [Card boxes](/card-workspace/en/guides/card-boxes/) — saved topic collections
+- [Browsing cards](/card-workspace/en/guides/browsing-cards/) — search, pins, task counts, and hover preview
+- [Writing and organizing](/card-workspace/en/guides/writing-and-organizing/) — open, drag, create, and menus

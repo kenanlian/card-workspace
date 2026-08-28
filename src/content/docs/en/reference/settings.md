@@ -3,7 +3,7 @@ title: Settings
 description: Settings shown in the Card Workspace settings tab.
 ---
 
-These are the settings in **Settings → Card Workspace**. Other remembered state — boxes, favorites, pins, last folder, pane collapse — is not listed here; those live on the [navigation](/card-workspace-site/en/guides/navigation/), [card boxes](/card-workspace-site/en/guides/card-boxes/), and [writing](/card-workspace-site/en/guides/writing-and-organizing/) guides.
+These are the settings in **Settings → Card Workspace**. Other remembered state — boxes, favorites, pins, last folder, pane collapse — is not listed here; those live on the [navigation](/card-workspace/en/guides/navigation/), [card boxes](/card-workspace/en/guides/card-boxes/), and [writing](/card-workspace/en/guides/writing-and-organizing/) guides.
 
 | Setting key | Default | Name |
 | --- | --- | --- |

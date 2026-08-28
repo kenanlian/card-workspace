@@ -14,7 +14,7 @@ Card Workspace 有自己的双栏面板：导航栏在卡片流旁边。切换�
 3. **标签**
 4. **卡片盒**
 
-可在 [设置](/card-workspace-site/zh/reference/settings/) 的 **导航区分区顺序** 中调整。折叠状态单独记录，不受顺序影响。
+可在 [设置](/card-workspace/zh/reference/settings/) 的 **导航区分区顺序** 中调整。折叠状态单独记录，不受顺序影响。
 
 ## 筛选导航
 
@@ -30,7 +30,7 @@ Card Workspace 有自己的双栏面板：导航栏在卡片流旁边。切换�
 
 点击文件夹即可浏览其中的卡片。文件夹范围默认包含子文件夹。可在 **文件夹** 分区标题或该分区的右键菜单中切换。进入卡片盒后，该选项不可用。
 
-右键 **在文件夹中查找** 会选中该文件夹，并聚焦面板内的 **搜索笔记** 输入框。它不会打开 Obsidian 自带的搜索。见 [浏览卡片](/card-workspace-site/zh/guides/browsing-cards/)。
+右键 **在文件夹中查找** 会选中该文件夹，并聚焦面板内的 **搜索笔记** 输入框。它不会打开 Obsidian 自带的搜索。见 [浏览卡片](/card-workspace/zh/guides/browsing-cards/)。
 
 ## 标签
 
@@ -38,7 +38,7 @@ Card Workspace 有自己的双栏面板：导航栏在卡片流旁边。切换�
 
 选中多个标签时是 **AND**：笔记必须同时带有这些标签。父标签也会匹配其子标签下的笔记，例如 `#project` 包含 `#project/alpha`。
 
-右键 **新建带此标签的笔记** 会在当前文件夹新建笔记，并写入该标签。见 [写作与整理](/card-workspace-site/zh/guides/writing-and-organizing/)。
+右键 **新建带此标签的笔记** 会在当前文件夹新建笔记，并写入该标签。见 [写作与整理](/card-workspace/zh/guides/writing-and-organizing/)。
 
 ## 收藏
 
@@ -55,7 +55,7 @@ Card Workspace 有自己的双栏面板：导航栏在卡片流旁边。切换�
 
 ## 计数、折叠与键盘
 
-导航栏条目计数默认关闭。可在 [设置](/card-workspace-site/zh/reference/settings/) 中打开 **在导航栏显示条目计数**。即使关闭计数徽章，悬停条目仍会显示计数提示（文件数，以及子文件夹或子标签数）。
+导航栏条目计数默认关闭。可在 [设置](/card-workspace/zh/reference/settings/) 中打开 **在导航栏显示条目计数**。即使关闭计数徽章，悬停条目仍会显示计数提示（文件数，以及子文件夹或子标签数）。
 
 可从分区标题或 **折叠此区** 折叠某个分区。在分区上右键可使用 **全部展开** / **全部折叠**（文件夹树或标签树）。
 

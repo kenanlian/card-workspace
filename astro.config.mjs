@@ -4,10 +4,10 @@ import starlight from '@astrojs/starlight';
 
 // NOTE: Replace `kenanlian` below with your actual GitHub username.
 // For a GitHub *project* site the URL is:
-//   https://kenanlian.github.io/card-workspace-site/
+//   https://kenanlian.github.io/card-workspace/
 // so `base` must match the repository name.
 const SITE = 'https://kenanlian.github.io';
-const BASE = '/card-workspace-site';
+const BASE = '/card-workspace';
 
 export default defineConfig({
   site: SITE,

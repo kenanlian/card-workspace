@@ -46,4 +46,4 @@ Ribbon 提示文字为 **打开 Card Workspace**。它会在左侧边栏打开�
 
 ## 批量菜单
 
-打开 **批量** 后，工具栏提供全选、清除选择、移动所选、为所选添加或移除标签、加入卡片盒、移出卡片盒（打开卡片盒时）、删除所选、合并所选。Shift+点击可连选。合并仅适用于 Markdown，且至少需要两篇笔记。见 [写作与整理](/card-workspace-site/zh/guides/writing-and-organizing/)。
+打开 **批量** 后，工具栏提供全选、清除选择、移动所选、为所选添加或移除标签、加入卡片盒、移出卡片盒（打开卡片盒时）、删除所选、合并所选。Shift+点击可连选。合并仅适用于 Markdown，且至少需要两篇笔记。见 [写作与整理](/card-workspace/zh/guides/writing-and-organizing/)。

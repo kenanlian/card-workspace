@@ -11,7 +11,7 @@ Every card shows a **title** and an excerpt. Markdown notes get a full preview a
 
 Markdown notes that contain checkbox tasks also show a footer: the number of incomplete tasks, or an all-complete icon. Non-Markdown cards have no task footer.
 
-If there is nothing previewable near the top of a Markdown note, the card shows **No previewable text near the top.** How many summary lines appear is **Preview lines** in [Settings](/card-workspace-site/en/reference/settings/).
+If there is nothing previewable near the top of a Markdown note, the card shows **No previewable text near the top.** How many summary lines appear is **Preview lines** in [Settings](/card-workspace/en/reference/settings/).
 
 Scrolling is virtualized: only visible cards are rendered, so large folders stay usable.
 
@@ -34,7 +34,7 @@ The toolbar **Toggle search** field (**Search notes**) searches the current fold
 
 Right-click a folder and choose **Search in folder** to select that folder and focus this same search field. It does not open Obsidian’s core Search.
 
-Search-index recovery commands are on [Commands and menus](/card-workspace-site/en/reference/commands-and-menus/). They are not part of everyday browsing.
+Search-index recovery commands are on [Commands and menus](/card-workspace/en/reference/commands-and-menus/). They are not part of everyday browsing.
 
 ## Sort
 
@@ -52,4 +52,4 @@ Use **Pin note** / **Unpin note** on the card to keep it at the top of the strea
 
 ## Tag filter
 
-**Tags** on the toolbar, or a click in the **Tags** section, filters the folder stream. Several selected tags are combined with **AND**: a note must have every selected tag. A parent tag also matches descendant tags. That filter is unavailable inside a box — see [Card boxes](/card-workspace-site/en/guides/card-boxes/).
+**Tags** on the toolbar, or a click in the **Tags** section, filters the folder stream. Several selected tags are combined with **AND**: a note must have every selected tag. A parent tag also matches descendant tags. That filter is unavailable inside a box — see [Card boxes](/card-workspace/en/guides/card-boxes/).

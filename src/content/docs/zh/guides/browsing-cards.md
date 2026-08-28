@@ -11,7 +11,7 @@ description: 扫读卡片流、在本地搜索、排序，并把笔记置顶。
 
 含有勾选任务的 Markdown 笔记还会在底部显示任务状态：未完成任务的数量，或全部完成的图标。非 Markdown 卡片没有任务栏。
 
-如果 Markdown 笔记顶部附近没有可预览的文本，卡片会显示 **顶部附近没有可预览的文本。** 摘要行数由 [设置](/card-workspace-site/zh/reference/settings/) 中的 **预览行数** 控制。
+如果 Markdown 笔记顶部附近没有可预览的文本，卡片会显示 **顶部附近没有可预览的文本。** 摘要行数由 [设置](/card-workspace/zh/reference/settings/) 中的 **预览行数** 控制。
 
 滚动采用虚拟化布局：只渲染当前可见的卡片，避免一次挂载完整列表。
 
@@ -34,7 +34,7 @@ description: 扫读卡片流、在本地搜索、排序，并把笔记置顶。
 
 在文件夹上右键选择 **在文件夹中查找**，会选中该文件夹并聚焦这个搜索框。它不会打开 Obsidian 自带的搜索。
 
-搜索索引的恢复命令见 [命令与菜单](/card-workspace-site/zh/reference/commands-and-menus/)。它们不是日常浏览的一部分。
+搜索索引的恢复命令见 [命令与菜单](/card-workspace/zh/reference/commands-and-menus/)。它们不是日常浏览的一部分。
 
 ## 排序
 
@@ -52,4 +52,4 @@ description: 扫读卡片流、在本地搜索、排序，并把笔记置顶。
 
 ## 标签筛选
 
-工具栏上的 **标签**，或在 **标签** 分区中点击，用于筛选文件夹卡片流。选中多个标签时是 **AND**：笔记必须同时带有这些标签。父标签也会匹配其子标签。进入卡片盒后该筛选不可用 — 见 [卡片盒](/card-workspace-site/zh/guides/card-boxes/)。
+工具栏上的 **标签**，或在 **标签** 分区中点击，用于筛选文件夹卡片流。选中多个标签时是 **AND**：笔记必须同时带有这些标签。父标签也会匹配其子标签。进入卡片盒后该筛选不可用 — 见 [卡片盒](/card-workspace/zh/guides/card-boxes/)。

@@ -5,7 +5,7 @@ export type Locale = 'en' | 'zh';
 export const VERSION = '1.1.8';
 
 /* Must match `base` in astro.config.mjs. */
-export const BASE = '/card-workspace-site';
+export const BASE = '/card-workspace';
 
 export const REPO = 'https://github.com/kenanlian/obsidian-card-workspace';
 export const RELEASES = `${REPO}/releases`;

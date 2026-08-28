@@ -35,4 +35,4 @@ Use this when you need a version other than the current one.
 
 ## Next step
 
-After the plugin is enabled, [open the view and browse your first cards](/card-workspace-site/en/guides/getting-started/).
+After the plugin is enabled, [open the view and browse your first cards](/card-workspace/en/guides/getting-started/).

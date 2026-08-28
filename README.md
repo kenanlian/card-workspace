@@ -14,10 +14,10 @@ Replace `kenanlian` in these files with your real GitHub username:
 The site is configured as a **project site**, served at:
 
 ```
-https://kenanlian.github.io/card-workspace-site/
+https://kenanlian.github.io/card-workspace/
 ```
 
-`base` in `astro.config.mjs` (`/card-workspace-site`) must always match your
+`base` in `astro.config.mjs` (`/card-workspace`) must always match your
 repository name. If you rename the repo, update `base` accordingly.
 
 ## Develop
@@ -27,7 +27,7 @@ npm install
 npm run dev
 ```
 
-Open the printed local URL (paths live under `/card-workspace-site/`).
+Open the printed local URL (paths live under `/card-workspace/`).
 
 ## Build
 
@@ -38,7 +38,7 @@ npm run preview   # preview the production build
 
 ## Deploy (GitHub Pages)
 
-1. Push this project to a GitHub repo named `card-workspace-site`.
+1. Push this project to a GitHub repo named `card-workspace`.
 2. In the repo: **Settings → Pages → Build and deployment → Source = GitHub Actions**.
 3. Push to `main`. The workflow in `.github/workflows/deploy.yml` builds and publishes automatically.
 

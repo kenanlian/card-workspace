@@ -19,7 +19,7 @@ Cards are shown for:
 - Canvas (`.canvas`)
 - Excalidraw (`.excalidraw` and `.excalidraw.md`)
 
-Markdown cards get full previews and full-text search. The other kinds are title-and-placeholder cards. See [Browsing cards](/card-workspace-site/en/guides/browsing-cards/).
+Markdown cards get full previews and full-text search. The other kinds are title-and-placeholder cards. See [Browsing cards](/card-workspace/en/guides/browsing-cards/).
 
 ## Privacy
 

@@ -27,7 +27,7 @@ description: 用规则和手动加入的笔记保存主题集合，并拥有独�
 
 - 右键某个卡片盒，选择 **将当前视图加入此卡片盒**，会按你正在浏览的文件夹和标签追加一条规则。
 - 右键卡片，选择 **加入卡片盒**，也可以直接 **新建卡片盒…**。
-- 打开 **批量** 后，选择 **加入卡片盒** 可把所选笔记加进去。见 [写作与整理](/card-workspace-site/zh/guides/writing-and-organizing/)。
+- 打开 **批量** 后，选择 **加入卡片盒** 可把所选笔记加进去。见 [写作与整理](/card-workspace/zh/guides/writing-and-organizing/)。
 
 如果卡片盒还没有任何规则，配置对话框会提示你使用 **将当前视图加入卡片盒**。
 
@@ -52,7 +52,7 @@ description: 用规则和手动加入的笔记保存主题集合，并拥有独�
 
 打开卡片盒后，浏览用的标签筛选会被跳过。卡片流只经过搜索，再应用置顶。界面会显示 **卡片盒模式下不可使用标签筛选**。
 
-启动时 Card Workspace 只恢复上次的文件夹，不会重新打开上次的卡片盒。见 [快速开始](/card-workspace-site/zh/guides/getting-started/)。
+启动时 Card Workspace 只恢复上次的文件夹，不会重新打开上次的卡片盒。见 [快速开始](/card-workspace/zh/guides/getting-started/)。
 
 ## 删除卡片盒
 

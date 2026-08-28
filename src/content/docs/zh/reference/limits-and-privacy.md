@@ -19,7 +19,7 @@ Card Workspace 是 **侧边栏优先**、**仅桌面端** 的插件。移动端�
 - Canvas（`.canvas`）
 - Excalidraw（`.excalidraw` 和 `.excalidraw.md`）
 
-Markdown 卡片有完整预览和全文搜索。其他类型是标题加占位说明的卡片。详见 [浏览卡片](/card-workspace-site/zh/guides/browsing-cards/)。
+Markdown 卡片有完整预览和全文搜索。其他类型是标题加占位说明的卡片。详见 [浏览卡片](/card-workspace/zh/guides/browsing-cards/)。
 
 ## 隐私
 
