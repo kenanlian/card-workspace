@@ -1,7 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="Card Workspace">
   <style>
-    /* Presentation attributes below are the fallback; these rules win where
-       CSS-in-SVG is supported and flip the mark for dark browser chrome. */
     @media (prefers-color-scheme: dark) {
       .cw-from { stop-color: #c4daf2; }
       .cw-to { stop-color: #a0bedd; }
@@ -14,10 +12,10 @@
       <stop class="cw-to" offset="1" stop-color="#22374e"/>
     </linearGradient>
   </defs>
-  <rect width="128" height="128" rx="26" fill="url(#cwFavicon)"/>
+  <rect width="128" height="128" rx="30" fill="url(#cwFavicon)"/>
   <g class="cw-cards" fill="#ffffff">
-    <rect x="16" y="21" width="10" height="86" rx="5" opacity="0.75"/>
-    <rect x="35" y="16" width="63" height="43" rx="11"/>
-    <rect x="50" y="69" width="62" height="43" rx="11"/>
+    <rect x="24" y="28" width="8" height="72" rx="4" opacity="0.55"/>
+    <rect x="40" y="24" width="52" height="36" rx="10" opacity="0.8"/>
+    <rect x="52" y="68" width="52" height="36" rx="10"/>
   </g>
 </svg>

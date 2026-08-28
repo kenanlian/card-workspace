@@ -3,9 +3,13 @@ import Default from '@astrojs/starlight/components/Head.astro';
 import { ClientRouter } from 'astro:transitions';
 import archivoLatin from '@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url';
 import petronaLatin from '@fontsource-variable/petrona/files/petrona-latin-wght-normal.woff2?url';
+import { BASE } from '../content/site';
 ---
 
 <Default />
+
+<link rel="icon" href={`${BASE}/favicon-32.png`} type="image/png" sizes="32x32" />
+<link rel="apple-touch-icon" href={`${BASE}/apple-touch-icon.png`} />
 
 {/* Discovered only after the stylesheet parses otherwise, which costs a reflow on first paint.
     Archivo sets the headings and chrome; Petrona sets the reading copy on both surfaces. */}
