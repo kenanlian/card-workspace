@@ -1,4 +1,5 @@
 import {
+  COMMUNITY_PLUGIN,
   RELEASES,
   REPO,
   VERSION,
@@ -11,11 +12,6 @@ import {
 
 export type { Locale };
 
-export interface ProofItem {
-  title: string;
-  body: string;
-}
-
 export interface FooterLink {
   label: string;
   href: string;
@@ -27,9 +23,10 @@ export interface LandingCopy {
   versionTitle: string;
   versionHref: string;
   themeLabel: string;
+  /** Names the pair of language options; each option is labelled in its own language. */
+  languageGroupLabel: string;
   languageLabel: string;
   languageHref: string;
-  languageCode: string;
   docsLabel: string;
   docsHref: string;
   repoLabel: string;
@@ -82,12 +79,6 @@ export interface LandingCopy {
     mediaAlt: string;
     mediaCaption: string;
   };
-  proof: {
-    kicker: string;
-    title: string;
-    items: ProofItem[];
-    capabilities: string;
-  };
   cta: {
     title: string;
     body: string;
@@ -110,9 +101,9 @@ export const landing: Record<Locale, LandingCopy> = {
     versionTitle: versionTitle.en,
     versionHref: RELEASES,
     themeLabel: 'Switch color theme',
+    languageGroupLabel: 'Language',
     languageLabel: 'Read this page in Simplified Chinese',
     languageHref: homeHref('zh'),
-    languageCode: '中文',
     docsLabel: 'Docs',
     docsHref: docs('en', 'guides/introduction'),
     repoLabel: repoLabel.en,
@@ -125,10 +116,10 @@ export const landing: Record<Locale, LandingCopy> = {
       headlineCompact: ['Browse your vault', 'as cards,', 'not filenames.'],
       lede:
         'Card Workspace turns folders and tags into an excerpt-rich card stream in Obsidian’s left sidebar. See what each note says, open it beside your work, or drag it into the note you’re writing.',
-      primaryCta: 'Install from GitHub',
-      primaryHref: RELEASES,
+      primaryCta: 'Install from Community Plugins',
+      primaryHref: COMMUNITY_PLUGIN,
       secondaryCta: 'Read the docs',
-      secondaryHref: docs('en', 'guides/getting-started'),
+      secondaryHref: docs('en', 'guides/introduction'),
       meta: 'Obsidian 1.9+ · Desktop only · Runs locally',
       mediaAlt:
         'Card Workspace in Obsidian: a navigation column of favorites, folders, tags, and card boxes sits beside a stream of note cards showing excerpts, and the selected card’s note is open in the editor.',
@@ -173,34 +164,14 @@ export const landing: Record<Locale, LandingCopy> = {
         'Screen recording: a card is dragged from the card stream to the editor cursor, and the drop menu offers insert wiki link, insert embed link, insert card content, and insert card title and content.',
       mediaCaption: 'Drop a card at the cursor, then choose wikilink, embed, content, or title + content.',
     },
-    proof: {
-      kicker: 'Built for daily use',
-      title: 'Quiet engineering where it matters.',
-      items: [
-        {
-          title: 'Chinese-aware local search',
-          body: 'Titles and Markdown bodies are indexed locally, with matches highlighted directly on each card.',
-        },
-        {
-          title: 'Only visible cards are rendered',
-          body: 'The virtualized stream avoids mounting the full result set at once.',
-        },
-        {
-          title: 'Processing stays on your device',
-          body: 'Card Workspace makes no network requests. Search indexing and file operations stay local.',
-        },
-      ],
-      capabilities:
-        'Also included: favorites, pins, task counts, hover preview, sorting, bulk organization, complete file context menus, and Markdown, Base, Canvas, and Excalidraw cards.',
-    },
     cta: {
-      title: 'Replace the file list with cards you can read.',
+      title: 'More features, waiting for you to try.',
       body:
-        'Card Workspace is installed manually from GitHub Releases and supports Obsidian 1.9.0 or later on desktop.',
-      primaryCta: 'Download from GitHub Releases',
-      primaryHref: RELEASES,
-      secondaryCta: 'Read installation guide',
-      secondaryHref: docs('en', 'guides/installation'),
+        'Favorites, pins, task counts, hover preview, sorting, bulk organization, complete file context menus, local Chinese-aware search, and more.',
+      primaryCta: 'Install from Community Plugins',
+      primaryHref: COMMUNITY_PLUGIN,
+      secondaryCta: 'Read the docs',
+      secondaryHref: docs('en', 'guides/introduction'),
     },
     footer: {
       tagline: 'Readable notes, beside the note you are writing.',
@@ -219,9 +190,9 @@ export const landing: Record<Locale, LandingCopy> = {
     versionTitle: versionTitle.zh,
     versionHref: RELEASES,
     themeLabel: '切换颜色主题',
+    languageGroupLabel: '语言',
     languageLabel: 'View this page in English',
     languageHref: homeHref('en'),
-    languageCode: 'EN',
     docsLabel: '文档',
     docsHref: docs('zh', 'guides/introduction'),
     repoLabel: repoLabel.zh,
@@ -234,10 +205,10 @@ export const landing: Record<Locale, LandingCopy> = {
       headlineCompact: ['把仓库读成卡片，', '而不是', '一串文件名。'],
       lede:
         'Card Workspace 在 Obsidian 左侧栏把文件夹和标签变成带摘要的卡片流。扫一眼就知道笔记里写了什么，点开继续读，或直接拖进正在写的页面。',
-      primaryCta: '从 GitHub 安装',
-      primaryHref: RELEASES,
+      primaryCta: '从 Obsidian 插件市场安装',
+      primaryHref: COMMUNITY_PLUGIN,
       secondaryCta: '查看文档',
-      secondaryHref: docs('zh', 'guides/getting-started'),
+      secondaryHref: docs('zh', 'guides/introduction'),
       meta: 'Obsidian 1.9+ · 仅桌面端 · 本地运行',
       mediaAlt:
         'Obsidian 中的 Card Workspace：一列收藏、文件夹、标签与卡片盒导航紧挨着带摘要的笔记卡片流，选中卡片对应的笔记正在编辑器中打开。',
@@ -281,33 +252,13 @@ export const landing: Record<Locale, LandingCopy> = {
         '录屏：把一张卡片从卡片流拖到编辑器光标处，松手后弹出菜单，可以选择插入 wikilink、插入嵌入链接、插入卡片正文，或插入卡片标题与正文。',
       mediaCaption: '把卡片拖到光标处，松手后选择 wikilink、嵌入、正文或标题 + 正文。',
     },
-    proof: {
-      kicker: '日常使用',
-      title: '把工程细节用在真正重要的地方。',
-      items: [
-        {
-          title: '中文也能直接搜索',
-          body: '标题和 Markdown 正文使用本地索引。搜索结果在卡片中高亮，并显示每篇笔记的命中次数。',
-        },
-        {
-          title: '卡片流只渲染可见部分',
-          body: '虚拟化布局不会一次渲染完整列表，较大的文件夹和卡片盒也能保持可用。',
-        },
-        {
-          title: '所有处理都留在本机',
-          body: 'Card Workspace 不发起网络请求。搜索索引和文件操作都在本地完成，笔记仍然保存在原来的仓库中。',
-        },
-      ],
-      capabilities:
-        '还包括：收藏、置顶、任务状态、悬停预览、排序、批量整理、完整的文件右键菜单，以及 Markdown、Base、Canvas、Excalidraw 卡片。',
-    },
     cta: {
-      title: '把文件列表换成能读的卡片。',
-      body: 'Card Workspace 目前通过 GitHub Releases 手动安装，支持 Obsidian 1.9.0 及以上桌面端。',
-      primaryCta: '从 GitHub Releases 下载',
-      primaryHref: RELEASES,
-      secondaryCta: '查看安装说明',
-      secondaryHref: docs('zh', 'guides/installation'),
+      title: '更多功能，期待你的体验。',
+      body: '收藏、置顶、任务状态、悬停预览、排序、批量整理、完整的文件右键菜单、本地中文搜索等等。',
+      primaryCta: '从 Obsidian 插件市场安装',
+      primaryHref: COMMUNITY_PLUGIN,
+      secondaryCta: '查看文档',
+      secondaryHref: docs('zh', 'guides/introduction'),
     },
     footer: {
       tagline: '能读的笔记，就在正在写的笔记旁边。',

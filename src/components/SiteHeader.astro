@@ -18,6 +18,15 @@ interface Props {
 
 const { locale, brandHref, languageHref, inDocs = false } = Astro.props;
 const c = getLanding(locale);
+
+/* Both languages are always on the row, each written in itself, so the control
+   looks the same on either side of the site and says which one you are reading.
+   A single label naming only the other language reads as the page's own
+   language on one side and as a foreign word on the other. */
+const languages = [
+  { locale: 'en', label: 'EN', hreflang: 'en' },
+  { locale: 'zh', label: '中文', hreflang: 'zh-CN' },
+] as const;
 ---
 
 <div class="cw-header__inner">
@@ -46,14 +55,27 @@ const c = getLanding(locale);
       )
     }
 
-    <a
-      class="cw-tool"
-      href={languageHref}
-      aria-label={c.languageLabel}
-      hreflang={locale === 'zh' ? 'en' : 'zh-CN'}
-    >
-      {c.languageCode}
-    </a>
+    <div class="cw-lang" role="group" aria-label={c.languageGroupLabel}>
+      {
+        languages.map((language) =>
+          language.locale === locale ? (
+            <span class="cw-lang__option cw-lang__option--current" lang={language.hreflang} aria-current="true">
+              {language.label}
+            </span>
+          ) : (
+            <a
+              class="cw-lang__option"
+              href={languageHref}
+              lang={language.hreflang}
+              hreflang={language.hreflang}
+              aria-label={c.languageLabel}
+            >
+              {language.label}
+            </a>
+          )
+        )
+      }
+    </div>
 
     <button class="cw-tool cw-theme" type="button" aria-label={c.themeLabel} title={c.themeLabel}>
       <span class="cw-theme__light"><SunMark /></span>

@@ -126,29 +126,6 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
 
     <SectionRule />
 
-    <section class="cw-proof" data-screen-label="Trust and proof">
-      <div class="cw-wrap">
-        <div class="cw-proof__heading">
-          <p class="cw-kicker">{c.proof.kicker}</p>
-          <h2>{c.proof.title}</h2>
-        </div>
-        <div class="cw-proof__list">
-          {c.proof.items.map((item, index) => (
-            <article>
-              <span>0{index + 1}</span>
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-        <p class="cw-capabilities">{c.proof.capabilities}</p>
-      </div>
-    </section>
-
-    <SectionRule />
-
     <section class="cw-final" id="install" data-screen-label="Install">
       <div class="cw-wrap cw-final__inner">
         <div>
