@@ -21,7 +21,7 @@ GitHub Actions (withastro/action) → GitHub Pages
 - Content lives in a single Starlight `docs` collection; there is no custom loader or schema.
 - The sidebar is **manually defined** in `astro.config.mjs` and is decoupled from the filesystem — adding a doc requires both a content file *and* a sidebar entry.
 - `src/pages/index.astro` is a meta-refresh redirect from the site root to `/en/`.
-- Splash pages import a custom `Landing` Astro tree from `src/components/landing/`. V2 Graphite tokens live in `src/styles/` and are loaded via Starlight `customCss`.
+- Splash pages import a custom `Landing` Astro tree from `src/components/landing/`, and share the header row with docs via `src/components/SiteHeader.astro`. V2 Graphite tokens live in `src/styles/` and are loaded via Starlight `customCss`.
 - `designs/` holds self-contained HTML design artifacts (baoyu-design skill). It is **not** part of the Astro build or GitHub Pages deploy; promote approved work into `src/` when shipping.
 
 ## Key Directories
@@ -30,8 +30,9 @@ GitHub Actions (withastro/action) → GitHub Pages
 - `src/content/docs/zh/` — Chinese docs (`zh-CN`). Mirrors the `en/` structure.
 - `src/content/docs/{locale}/guides/` — guide pages (`introduction`, `installation`, `getting-started`, `navigation`, `card-boxes`, `browsing-cards`, `writing-and-organizing`). Distinctive feature docs live at `guides/card-boxes`.
 - `src/content/docs/{locale}/reference/` — reference pages (`settings`, `commands-and-menus`, `limits-and-privacy`).
+- `src/components/` — Starlight component overrides plus `SiteHeader.astro`, the one header row rendered by both the docs `Header` override and the splash pages.
 - `src/components/landing/` — custom Astro landing components used only by the locale splash pages.
-- `src/styles/` — V2 Graphite Index tokens (`tokens.css`) and Starlight chrome (`theme.css`); landing CSS is imported from the Landing component.
+- `src/styles/` — V2 Graphite Index tokens (`tokens.css`), the shared header (`header.css`), and Starlight chrome (`theme.css`); landing CSS is imported from the Landing component.
 - `src/assets/` — images referenced by content (e.g. `logo-light.svg`, `logo-dark.svg`).
 - `src/pages/` — the root redirect (`index.astro`).
 - `public/` — static assets served as-is (`favicon.svg`, `og.png`).
@@ -60,13 +61,14 @@ There is no lint or test script configured.
 - **Components**: custom Astro components under `src/components/landing/` for the splash only. Guide/reference pages are plain `.md` and do not import components.
 - **Internal links**: use absolute paths including the base prefix and a trailing slash, e.g. `/card-workspace-site/en/guides/introduction/`.
 - **i18n**: sidebar labels carry `translations: { 'zh-CN': '...' }`; keep `en/` and `zh/` structures in sync when adding pages.
-- **Styling**: V2 Graphite Index tokens in `src/styles/`; Starlight `customCss` loads `./src/styles/theme.css` (which imports `tokens.css`). No Tailwind. Landing-scoped CSS is imported from the Landing component, not a second Starlight `customCss` entry.
+- **Styling**: V2 Graphite Index tokens in `src/styles/`; Starlight `customCss` loads `./src/styles/theme.css` (which imports `tokens.css` and `header.css`). No Tailwind. Landing-scoped CSS is imported from the Landing component, not a second Starlight `customCss` entry.
+- **Header**: docs and splash pages render the same `SiteHeader.astro` row, styled only by `header.css`. Both are unstyled by Starlight's own header chrome — `SiteTitle`, `SocialIcons`, `ThemeSelect`, and `LanguageSelect` are never rendered, so `social`/`logo` config would have no effect. Docs add Pagefind's opener to the row; splash pages skip it.
 - **Designs**: one project per `designs/<slug>/` folder; keep deliverables self-contained (HTML/JSX/CSS/assets together). Regular projects have `_d_meta.json`; design systems have `_ds_manifest.json` at the folder root. Preview via HTTP (`python3 -m http.server 4311 --directory designs`), not `file://`. Do not scatter design files in the repo root or under `src/`. `designs/` is still not deployed.
 
 ## Important Files
 
-- `astro.config.mjs` — Starlight config: `site`, `base`, locales, sidebar, social links, `customCss`. Edit here to change navigation.
-- `src/styles/theme.css` / `src/styles/tokens.css` — Graphite Index theme for docs chrome.
+- `astro.config.mjs` — Starlight config: `site`, `base`, locales, sidebar, component overrides, `customCss`. Edit here to change navigation.
+- `src/styles/theme.css` / `src/styles/tokens.css` / `src/styles/header.css` — Graphite Index theme for docs chrome and the shared header.
 - `src/components/landing/` — V2 splash composition imported by `index.mdx`.
 - `src/content.config.ts` — declares the `docs` collection using `docsLoader()` + `docsSchema()`.
 - `src/pages/index.astro` — root → `/en/` redirect.

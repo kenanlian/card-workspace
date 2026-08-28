@@ -6,7 +6,7 @@ const { entry } = Astro.locals.starlightRoute;
   entry.data.template === 'splash' ? (
     <span class="cw-splash-marker" hidden></span>
   ) : (
-    <h1 id="_top">{entry.data.title}</h1>
+    <h1 id="_top" class="cw-doc-title">{entry.data.title}</h1>
   )
 }
 

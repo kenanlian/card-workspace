@@ -1,9 +1,15 @@
-export type Locale = 'en' | 'zh';
+import {
+  RELEASES,
+  REPO,
+  VERSION,
+  docsHref as docs,
+  homeHref,
+  repoLabel,
+  versionTitle,
+  type Locale,
+} from './site';
 
-export interface NavItem {
-  label: string;
-  href: string;
-}
+export type { Locale };
 
 export interface ProofItem {
   title: string;
@@ -19,11 +25,15 @@ export interface LandingCopy {
   lang: Locale;
   version: string;
   versionTitle: string;
+  versionHref: string;
   themeLabel: string;
   languageLabel: string;
   languageHref: string;
   languageCode: string;
-  nav: NavItem[];
+  docsLabel: string;
+  docsHref: string;
+  repoLabel: string;
+  repoHref: string;
   hero: {
     eyebrow: string;
     headline: string[];
@@ -95,30 +105,22 @@ export interface LandingCopy {
   };
 }
 
-const RELEASES = 'https://github.com/kenanlian/obsidian-card-workspace/releases';
-const REPO = 'https://github.com/kenanlian/obsidian-card-workspace';
-
-function docs(locale: Locale, slug: string): string {
-  return `/card-workspace-site/${locale}/${slug}/`;
-}
-
 export const landing: Record<Locale, LandingCopy> = {
   en: {
     lang: 'en',
-    version: 'v1.1.5',
-    versionTitle: 'Card Workspace v1.1.5 on GitHub Releases',
+    version: VERSION,
+    versionTitle: versionTitle.en,
+    versionHref: RELEASES,
     themeLabel: 'Switch color theme',
     languageLabel: 'Read this page in Simplified Chinese',
-    languageHref: '/card-workspace-site/zh/',
+    languageHref: homeHref('zh'),
     languageCode: '中文',
-    nav: [
-      { label: 'Card boxes', href: '#card-boxes' },
-      { label: 'Browse', href: '#browse' },
-      { label: 'Drag to write', href: '#drag' },
-      { label: 'Docs', href: docs('en', 'guides/introduction') },
-    ],
+    docsLabel: 'Docs',
+    docsHref: docs('en', 'guides/introduction'),
+    repoLabel: repoLabel.en,
+    repoHref: REPO,
     hero: {
-      eyebrow: 'Obsidian desktop plugin · v1.1.5',
+      eyebrow: `Obsidian desktop plugin · ${VERSION}`,
       headline: ['Browse your vault', 'as cards,', 'not filenames.'],
       headlineCompact: ['Browse your vault', 'as cards,', 'not filenames.'],
       lede:
@@ -212,25 +214,24 @@ export const landing: Record<Locale, LandingCopy> = {
         { label: 'GitHub', href: REPO },
         { label: 'Releases', href: RELEASES },
       ],
-      legal: 'MIT licensed · Card Workspace v1.1.5',
+      legal: `MIT licensed · Card Workspace ${VERSION}`,
     },
   },
   zh: {
     lang: 'zh',
-    version: 'v1.1.5',
-    versionTitle: '在 GitHub Releases 查看 Card Workspace v1.1.5',
+    version: VERSION,
+    versionTitle: versionTitle.zh,
+    versionHref: RELEASES,
     themeLabel: '切换颜色主题',
     languageLabel: 'View this page in English',
-    languageHref: '/card-workspace-site/en/',
+    languageHref: homeHref('en'),
     languageCode: 'EN',
-    nav: [
-      { label: '卡片盒', href: '#card-boxes' },
-      { label: '浏览', href: '#browse' },
-      { label: '拖入写作', href: '#drag' },
-      { label: '文档', href: docs('zh', 'guides/introduction') },
-    ],
+    docsLabel: '文档',
+    docsHref: docs('zh', 'guides/introduction'),
+    repoLabel: repoLabel.zh,
+    repoHref: REPO,
     hero: {
-      eyebrow: 'Obsidian 桌面端插件 · v1.1.5',
+      eyebrow: `Obsidian 桌面端插件 · ${VERSION}`,
       headline: ['把仓库读成卡片，', '而不是一串文件名。'],
       headlineCompact: ['把仓库读成卡片，', '而不是', '一串文件名。'],
       lede:
@@ -322,7 +323,7 @@ export const landing: Record<Locale, LandingCopy> = {
         { label: 'GitHub', href: REPO },
         { label: '版本发布', href: RELEASES },
       ],
-      legal: 'MIT 许可证 · Card Workspace v1.1.5',
+      legal: `MIT 许可证 · Card Workspace ${VERSION}`,
     },
   },
 };

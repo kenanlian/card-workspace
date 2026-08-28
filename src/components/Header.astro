@@ -1,0 +1,32 @@
+---
+import config from 'virtual:starlight/user-config';
+import Search from 'virtual:starlight/components/Search';
+import SiteHeader from './SiteHeader.astro';
+import { homeHref, otherLocaleHref, toLocale } from '../content/site';
+
+/* The docs header is the landing page's header, so Starlight's own site title,
+   social icons, and theme/language pickers are all replaced by the shared tool
+   row. Pagefind's opener is the one control docs need and the landing does not,
+   and it is folded into that row rather than kept as a separate field.
+
+   Splash pages compose the row themselves, inside their own sticky header, and
+   hide this one; rendering it here as well would put a second copy of every
+   control in the document. */
+const { entry, lang } = Astro.locals.starlightRoute;
+const locale = toLocale(lang);
+const shouldRenderSearch =
+  config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
+---
+
+{
+  entry.data.template !== 'splash' && (
+    <SiteHeader
+      locale={locale}
+      brandHref={homeHref(locale)}
+      languageHref={otherLocaleHref(Astro.url.pathname, locale)}
+      inDocs
+    >
+      {shouldRenderSearch && <Search slot="search" />}
+    </SiteHeader>
+  )
+}

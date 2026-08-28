@@ -16,11 +16,14 @@ export default defineConfig({
     starlight({
       title: 'Card Workspace',
       description: 'Browse your vault as cards in Obsidian’s sidebar.',
-      logo: {
-        light: './src/assets/logo-light.svg',
-        dark: './src/assets/logo-dark.svg',
-      },
+      // The docs header is the landing page's header. `Header` renders the
+      // shared row — brand, version pill, and one row of tools — which replaces
+      // Starlight's site title, social icons, and theme/language pickers, so
+      // `MobileMenuFooter` has nothing left to repeat at the foot of the drawer.
       components: {
+        Head: './src/components/Head.astro',
+        Header: './src/components/Header.astro',
+        MobileMenuFooter: './src/components/MobileMenuFooter.astro',
         ThemeProvider: './src/components/LightFirstThemeProvider.astro',
         PageTitle: './src/components/PageTitle.astro',
         SkipLink: './src/components/SkipLink.astro',
@@ -41,13 +44,6 @@ export default defineConfig({
         en: { label: 'English', lang: 'en' },
         zh: { label: '简体中文', lang: 'zh-CN' },
       },
-      social: [
-        {
-          icon: 'github',
-          label: 'GitHub',
-          href: 'https://github.com/kenanlian/obsidian-card-workspace',
-        },
-      ],
       sidebar: [
         {
           label: 'Getting started',

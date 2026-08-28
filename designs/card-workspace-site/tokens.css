@@ -1,0 +1,86 @@
+/* Card Workspace — Graphite tokens.
+   Palette and control shapes are lifted verbatim from the live site
+   (src/styles/tokens.css) so these mockups sit in the real product's skin.
+   What is new here is the reading layer: a serif body face and a type scale
+   built for long-form docs rather than Starlight's flat default ramp. */
+
+:root {
+  /* --- Families ---------------------------------------------------------- */
+  --cw-font-display: 'Archivo', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cw-font-sans: 'Archivo', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cw-font-serif: 'Petrona', 'Noto Serif SC', Georgia, 'Songti SC', serif;
+  --cw-font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+
+  /* Swapped by the Tweaks panel so serif and sans can be compared in place. */
+  --cw-font-reading: var(--cw-font-serif);
+
+  /* --- Shape ------------------------------------------------------------- */
+  --cw-page: 1240px;
+  --cw-header-height: 4rem;
+  --cw-radius-control: 0.5rem;
+  --cw-radius-media: 0.875rem;
+  --cw-fast: 140ms;
+  --cw-mid: 220ms;
+  --cw-ease: cubic-bezier(0.2, 0.75, 0.25, 1);
+
+  /* --- Light palette ----------------------------------------------------- */
+  --cw-canvas: oklch(0.975 0.003 250);
+  --cw-surface: oklch(0.995 0.001 250);
+  --cw-surface-subtle: oklch(0.955 0.005 250);
+  --cw-surface-strong: oklch(0.925 0.007 250);
+  --cw-ink: oklch(0.2 0.012 255);
+  --cw-ink-soft: oklch(0.43 0.012 255);
+  --cw-ink-faint: oklch(0.59 0.01 255);
+  --cw-line: oklch(0.2 0.012 255 / 0.12);
+  --cw-line-strong: oklch(0.2 0.012 255 / 0.22);
+  --cw-accent: oklch(0.43 0.055 245);
+  --cw-accent-strong: oklch(0.35 0.064 245);
+  --cw-accent-soft: oklch(0.43 0.055 245 / 0.09);
+  --cw-on-accent: oklch(0.99 0.002 250);
+
+  /* --- Docs reading scale ------------------------------------------------
+     Starlight ramps 16 → 29 → 35 → 42px, which is flat at the top (h1 and h2
+     only 1.2x apart) and a cliff at the bottom (h3 is 1.8x the body). Reading
+     hierarchy comes from the opposite shape: a decisive h1, a clear drop to
+     h2, then h3 differentiated by weight and colour rather than size. */
+  --doc-body: 1.0625rem;
+  --doc-lede: 1.24rem;
+  --doc-h1: clamp(2.5rem, 3.4vw, 3.05rem);
+  --doc-h2: 1.75rem;
+  --doc-h3: 1.1rem;
+  --doc-small: 0.82rem;
+  --doc-micro: 0.7rem;
+
+  --doc-leading: 1.72;
+  --doc-leading-heading: 1.1;
+  --doc-measure: 68ch;
+
+  /* Vertical rhythm. Space before a heading is what actually separates
+     sections once the rules are gone, so it is generous on purpose. */
+  --doc-space-h2: 3.4rem;
+  --doc-space-h3: 2.1rem;
+  --doc-space-block: 1.15rem;
+
+  --doc-sidebar-width: 16.5rem;
+  --doc-toc-width: 14rem;
+}
+
+/* Variant and language differences are expressed as scales and deltas against
+   the three values above, never as replacements — that way the Tweaks sliders
+   move all three artboards together and their relative character survives. */
+
+[data-theme='dark'] {
+  --cw-canvas: oklch(0.17 0.008 255);
+  --cw-surface: oklch(0.205 0.009 255);
+  --cw-surface-subtle: oklch(0.235 0.01 255);
+  --cw-surface-strong: oklch(0.28 0.012 255);
+  --cw-ink: oklch(0.95 0.004 250);
+  --cw-ink-soft: oklch(0.76 0.008 250);
+  --cw-ink-faint: oklch(0.59 0.009 250);
+  --cw-line: oklch(0.95 0.004 250 / 0.11);
+  --cw-line-strong: oklch(0.95 0.004 250 / 0.22);
+  --cw-accent: oklch(0.77 0.055 245);
+  --cw-accent-strong: oklch(0.84 0.045 245);
+  --cw-accent-soft: oklch(0.77 0.055 245 / 0.11);
+  --cw-on-accent: oklch(0.17 0.008 255);
+}

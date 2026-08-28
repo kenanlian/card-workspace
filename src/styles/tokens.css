@@ -1,11 +1,17 @@
 :root {
   --cw-font-display: 'Archivo Variable', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --cw-font-body: 'Archivo Variable', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cw-font-serif: 'Petrona Variable', 'Noto Serif SC', Georgia, 'Songti SC', serif;
   --cw-font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+
+  /* Long-form reading copy — docs prose and the landing page's body paragraphs.
+     Labels, controls and supporting text stay on the sans face. */
+  --cw-font-reading: var(--cw-font-serif);
 
   --cw-page: 1240px;
   --cw-reading: 62ch;
-  --cw-header-height: 4rem;
+  /* Tracks the docs header so both headers occupy the same box at every width. */
+  --cw-header-height: var(--sl-nav-height, 4rem);
   --cw-radius-control: 0.5rem;
   --cw-radius-media: 0.875rem;
   --cw-fast: 140ms;
@@ -28,9 +34,46 @@
   --cw-media-shadow: 0 24px 64px -38px oklch(0.2 0.02 255 / 0.42),
     0 1px 2px oklch(0.2 0.02 255 / 0.08);
 
+  /* --- Docs reading scale -------------------------------------------------
+     Starlight ramps 16 → 29 → 35 → 42px, which is flat at the top (h1 and h2
+     only 1.2x apart) and a cliff at the bottom (h3 is 1.8x the body). Reading
+     hierarchy comes from the opposite shape: a decisive h1, a clear drop to
+     h2, then h3 differentiated by weight and colour rather than size. */
+  --cw-doc-body: 1.115rem;
+  --cw-doc-lede: 1.42rem;
+  --cw-doc-h1: clamp(2.5rem, 3.4vw, 3.05rem);
+  --cw-doc-h2: 1.6rem;
+  --cw-doc-h3: 1.1rem;
+
+  /* Uppercase mono micro-label, shared with the landing page's kicker. Hanzi
+     does not have a case to shift, so Chinese swaps the whole treatment. */
+  --cw-doc-micro: 0.7rem;
+  --cw-doc-micro-family: var(--cw-font-mono);
+  --cw-doc-micro-tracking: 0.08em;
+  --cw-doc-micro-case: uppercase;
+
+  --cw-doc-leading: 1.72;
+  /* ≈58 characters of the serif body face. Held in rem rather than ch so the
+     title, the prose and the headings all wrap at the same column edge
+     regardless of which face each one is set in. */
+  --cw-doc-measure: 34rem;
+
+  /* Space before a heading is what separates sections once no rule is drawn,
+     so it is generous on purpose. */
+  --cw-doc-space-h2: 3.6rem;
+  --cw-doc-space-h3: 2.1rem;
+  --cw-doc-space-block: 1.15rem;
+
+  /* Margin the section numbers sit in, outside the reading column. */
+  --cw-doc-gutter: 0rem;
+
   --sl-font: var(--cw-font-body);
   --sl-font-mono: var(--cw-font-mono);
   --sl-border-radius: var(--cw-radius-control);
+  --sl-text-h1: var(--cw-doc-h1);
+  --sl-text-h2: var(--cw-doc-h2);
+  --sl-text-h3: var(--cw-doc-h3);
+  --sl-content-gap-y: var(--cw-doc-space-block);
   --sl-color-accent-low: var(--cw-accent-soft);
   --sl-color-accent: var(--cw-accent);
   --sl-color-accent-high: var(--cw-accent-strong);
@@ -45,6 +88,14 @@
   --sl-color-black: var(--cw-canvas);
   --sl-color-hairline: var(--cw-line);
   --sl-color-hairline-shade: var(--cw-line);
+}
+
+/* The section-number gutter only exists once the layout is wide enough to
+   spare it; below that the numbers sit above their own heading instead. */
+@media (min-width: 72rem) {
+  :root {
+    --cw-doc-gutter: 3.5rem;
+  }
 }
 
 :root[data-theme='dark'] {

@@ -1,11 +1,53 @@
 @import './tokens.css';
+@import './header.css';
 @import '@fontsource-variable/archivo';
 @import '@fontsource/noto-sans-sc/latin-400.css';
 @import '@fontsource/noto-sans-sc/latin-500.css';
 @import '@fontsource/noto-sans-sc/chinese-simplified-400.css';
 @import '@fontsource/noto-sans-sc/chinese-simplified-500.css';
+@import '@fontsource-variable/petrona';
+@import '@fontsource/noto-serif-sc/latin-400.css';
+@import '@fontsource/noto-serif-sc/latin-600.css';
+@import '@fontsource/noto-serif-sc/chinese-simplified-400.css';
+@import '@fontsource/noto-serif-sc/chinese-simplified-600.css';
 @import '@fontsource/ibm-plex-mono/400.css';
 @import '@fontsource/ibm-plex-mono/500.css';
+
+/* Reserving the gutter stops content shifting sideways between pages that are
+   long enough to scroll and pages that are not. */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* The docs header and the landing page's own header share a snapshot name so
+   they morph into one another instead of the outgoing one lingering on top and
+   then vanishing. The sidebar and TOC are deliberately left unnamed: they are
+   pixel-identical between docs pages anyway, and naming them leaves a stranded
+   snapshot over the sidebar-less landing page. */
+@media (prefers-reduced-motion: no-preference) {
+  header.header,
+  .cw-header {
+    view-transition-name: cw-header;
+  }
+
+  ::view-transition-old(root) {
+    animation-duration: var(--cw-fast);
+    animation-timing-function: var(--cw-ease);
+  }
+
+  ::view-transition-new(root) {
+    animation-duration: var(--cw-mid);
+    animation-timing-function: var(--cw-ease);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
 
 body {
   font-family: var(--cw-font-body);
@@ -18,47 +60,40 @@ body {
 h1,
 h2,
 h3,
-h4,
-.sl-markdown-content h1,
-.sl-markdown-content h2,
-.sl-markdown-content h3,
-.sl-markdown-content h4 {
+h4 {
   font-family: var(--cw-font-display);
   font-weight: 570;
   letter-spacing: -0.025em;
 }
 
-html[lang='zh-CN'] .sl-markdown-content {
-  line-height: 1.78;
+/* Hanzi carries more ink per line and needs the extra leading. */
+html[lang='zh-CN'] {
+  --cw-doc-body: 1.137rem;
+  --cw-doc-leading: 1.85;
+  --cw-doc-micro: 0.78rem;
+  --cw-doc-micro-family: var(--cw-font-body);
+  --cw-doc-micro-tracking: 0.02em;
+  --cw-doc-micro-case: none;
 }
 
-html[lang='zh-CN'] .sl-markdown-content h1,
-html[lang='zh-CN'] .sl-markdown-content h2,
-html[lang='zh-CN'] .sl-markdown-content h3 {
-  letter-spacing: -0.015em;
-  line-height: 1.35;
-}
-
+/* The docs header holds the shared header row (see header.css), so Starlight's
+   vertical padding goes: the row sizes itself against the full nav height,
+   exactly as it does on the landing page. No rule underneath either — the
+   blurred canvas is the boundary. */
 header.header {
-  background-color: color-mix(in oklab, var(--cw-canvas) 88%, transparent);
-  border-bottom-color: var(--cw-line);
-  backdrop-filter: saturate(130%) blur(14px);
-  -webkit-backdrop-filter: saturate(130%) blur(14px);
+  padding-block: 0;
+  border-bottom: 0;
 }
 
-.site-title {
-  font-weight: 570;
-  letter-spacing: -0.02em;
-}
-
-.site-title img {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
+/* The sidebar, the article, and the table of contents are separated by the
+   space between them. One canvas runs edge to edge, undivided. */
 .sidebar-pane {
   background: var(--cw-canvas);
-  border-inline-end-color: var(--cw-line);
+  border-inline-end: 0;
+}
+
+.right-sidebar {
+  border-inline-start: 0;
 }
 
 nav.sidebar a,
@@ -76,23 +111,124 @@ nav.sidebar a[aria-current='page']:hover {
   font-weight: 500;
 }
 
-.sl-markdown-content {
-  color: var(--cw-ink-soft);
+/* ==========================================================================
+   Docs article — the Magazine direction: serif at reading size on a narrow
+   measure, sections numbered in the left margin, and no rule drawn anywhere in
+   the reading column.
+   ========================================================================== */
+
+/* The title and the prose are two panels of one article, so the seam between
+   them is not a boundary worth drawing. */
+.content-panel + .content-panel {
+  border-top: 0;
 }
 
-.sl-markdown-content h1,
-.sl-markdown-content h2,
-.sl-markdown-content h3,
-.sl-markdown-content h4,
-.sl-markdown-content strong {
+/* The gutter the section numbers live in. Taking it out of the container keeps
+   the numbers inside the panel instead of overhanging the sidebar. */
+.content-panel .sl-container {
+  padding-inline-start: var(--cw-doc-gutter);
+}
+
+.cw-doc-title {
+  max-width: var(--cw-doc-measure);
+  font-family: var(--cw-font-serif);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.sl-markdown-content {
+  color: var(--cw-ink-soft);
+  font-family: var(--cw-font-reading);
+  font-size: var(--cw-doc-body);
+  line-height: var(--cw-doc-leading);
+  text-wrap: pretty;
+  counter-reset: cw-doc-section;
+}
+
+/* Prose is held to the measure; tables and other figures keep the full panel
+   width and so break out of the column on their own. */
+.sl-markdown-content > :is(p, ul, ol, dl, blockquote, hr, h2, h3, h4, h5, h6, .sl-heading-wrapper) {
+  max-width: var(--cw-doc-measure);
+}
+
+/* The opening paragraph carries the page the way a lede does. */
+.sl-markdown-content > p:first-child {
+  color: var(--cw-ink);
+  font-size: var(--cw-doc-lede);
+  line-height: 1.55;
+}
+
+/* The landing page is rendered inside `.sl-markdown-content` too, so the
+   reading rules below exclude it the way Starlight's own content styles do. */
+.sl-markdown-content :is(h2, h3, h4, h5, h6):not(:where(.not-content *)),
+.sl-markdown-content strong:not(:where(.not-content *)) {
   color: var(--cw-ink);
 }
+
+.sl-markdown-content h2:not(:where(.not-content *)) {
+  font-family: var(--cw-font-serif);
+  font-weight: 600;
+  letter-spacing: -0.014em;
+}
+
+.sl-markdown-content h3:not(:where(.not-content *)) {
+  font-family: var(--cw-font-display);
+  font-weight: 620;
+  letter-spacing: -0.008em;
+}
+
+html[lang='zh-CN'] .cw-doc-title,
+html[lang='zh-CN'] .sl-markdown-content :is(h2, h3):not(:where(.not-content *)) {
+  letter-spacing: -0.015em;
+}
+
+/* --- Section numbers ------------------------------------------------------
+   The numbers are what separates one section from the next, in place of a
+   rule. Below the wide breakpoint there is no margin to put them in, so they
+   sit above their own heading instead. */
+
+.sl-markdown-content > :is(h2, .sl-heading-wrapper.level-h2) {
+  position: relative;
+  margin-top: var(--cw-doc-space-h2);
+  counter-increment: cw-doc-section;
+  line-height: 1.18;
+}
+
+.sl-markdown-content > :is(h2, .sl-heading-wrapper.level-h2)::before {
+  content: counter(cw-doc-section, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.sl-markdown-content > :is(h3, .sl-heading-wrapper.level-h3) {
+  margin-top: var(--cw-doc-space-h3);
+}
+
+.sl-markdown-content > :is(h2, .sl-heading-wrapper.level-h2) + * {
+  margin-top: 1rem;
+}
+
+.sl-markdown-content > :is(h3, .sl-heading-wrapper.level-h3) + * {
+  margin-top: 0.55rem;
+}
+
+@media (min-width: 72rem) {
+  .sl-markdown-content > :is(h2, .sl-heading-wrapper.level-h2)::before {
+    position: absolute;
+    inset-inline-start: calc(0.25rem - var(--cw-doc-gutter));
+    inset-block-start: 0.42em;
+    margin-bottom: 0;
+  }
+}
+
+/* --- Prose details -------------------------------------------------------- */
 
 .sl-markdown-content a {
   color: var(--cw-accent-strong);
   text-decoration-thickness: 1px;
-  text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
-  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in oklab, currentColor 32%, transparent);
+  text-underline-offset: 0.22em;
 }
 
 .sl-markdown-content a:hover {
@@ -100,17 +236,145 @@ nav.sidebar a[aria-current='page']:hover {
 }
 
 .sl-markdown-content :not(pre) > code {
+  margin-block: 0;
+  padding: 0.1em 0.36em;
   color: var(--cw-ink);
   background: var(--cw-surface-subtle);
-  border: 1px solid var(--cw-line);
   border-radius: 0.3rem;
+  font-size: 0.84em;
+}
+
+.sl-markdown-content :is(ul, ol):not(:where(.not-content *)) {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.sl-markdown-content :is(ul, ol) li + li:not(:where(.not-content *)) {
+  margin-top: 0;
+}
+
+.sl-markdown-content ul:not(:where(.not-content *)) {
+  padding-inline-start: 1.1rem;
+  list-style: none;
+}
+
+.sl-markdown-content ul > li:not(:where(.not-content *)) {
+  position: relative;
+}
+
+/* A dot in the margin instead of a bullet in the text flow. */
+.sl-markdown-content ul > li:not(:where(.not-content *))::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: -1.1rem;
+  inset-block-start: calc(var(--cw-doc-leading) * 0.5em - 2px);
+  width: 4px;
+  height: 4px;
+  background: var(--cw-ink-faint);
+  border-radius: 50%;
+}
+
+.sl-markdown-content ol:not(:where(.not-content *)) {
+  padding-inline-start: 1.35rem;
+}
+
+.sl-markdown-content ol > li:not(:where(.not-content *))::marker {
+  color: var(--cw-ink-faint);
+}
+
+/* --- Table ---------------------------------------------------------------
+   A table is a figure, not prose: it keeps the sans face and the full panel
+   width so setting keys never wrap onto a second line. */
+
+.sl-markdown-content table {
+  font-family: var(--cw-font-body);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.sl-markdown-content th {
+  padding-block: 0.45rem;
+  border-bottom: 1px solid var(--cw-line);
+  white-space: nowrap;
+}
+
+.sl-markdown-content td {
+  padding-block: 0.62rem;
+  border-bottom: 0;
+}
+
+.sl-markdown-content td code {
+  white-space: nowrap;
 }
 
 .expressive-code .frame pre,
-.sl-markdown-content pre,
-.sl-markdown-content table {
+.sl-markdown-content pre {
   border-color: var(--cw-line);
   border-radius: var(--cw-radius-control);
+}
+
+/* --- Pager ---------------------------------------------------------------
+   Two titles across the foot of the page rather than two boxed cards. */
+
+.content-panel footer {
+  gap: 0;
+}
+
+.content-panel footer .meta {
+  margin-top: 0;
+}
+
+.pagination-links {
+  gap: 2.5rem;
+  margin-top: 3.5rem;
+}
+
+.pagination-links a {
+  display: grid;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+.pagination-links a svg {
+  display: none;
+}
+
+.pagination-links .link-title {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--cw-ink);
+  font-family: var(--cw-font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  line-height: 1.15;
+  text-transform: none;
+  transition: color var(--cw-fast) var(--cw-ease);
+}
+
+.pagination-links a:hover .link-title {
+  color: var(--cw-accent-strong);
+}
+
+/* --- Micro labels --------------------------------------------------------
+   One treatment for every small uppercase mono label on the docs page: the
+   section numbers, table headings, sidebar groups, the table of contents
+   heading, and the pager's direction.
+   ========================================================================== */
+
+.sl-markdown-content > :is(h2, .sl-heading-wrapper.level-h2)::before,
+.sl-markdown-content th,
+nav.sidebar summary .group-label > .large,
+.right-sidebar-panel h2,
+.pagination-links a > span {
+  color: var(--cw-ink-faint);
+  font-family: var(--cw-doc-micro-family);
+  font-size: var(--cw-doc-micro);
+  font-weight: 500;
+  letter-spacing: var(--cw-doc-micro-tracking);
+  line-height: 1.35;
+  text-transform: var(--cw-doc-micro-case);
 }
 
 .card {
@@ -141,15 +405,6 @@ nav.sidebar a[aria-current='page']:hover {
     --sl-menu-button-size: 2.75rem;
   }
 
-  site-search > button[data-open-modal] {
-    justify-content: center;
-    width: 2.75rem;
-    min-width: 2.75rem;
-    height: 2.75rem;
-    min-height: 2.75rem;
-    padding: 0.625rem;
-  }
-
   mobile-starlight-toc summary {
     min-height: 2.75rem;
     padding-block: 0;
@@ -157,11 +412,5 @@ nav.sidebar a[aria-current='page']:hover {
 
   mobile-starlight-toc summary .toggle {
     min-height: 2.75rem;
-  }
-}
-
-@media (min-width: 72rem) {
-  .sl-markdown-content {
-    font-size: 1rem;
   }
 }

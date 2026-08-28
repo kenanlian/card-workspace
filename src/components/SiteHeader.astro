@@ -1,0 +1,91 @@
+---
+import { getLanding } from '../content/landing';
+import type { Locale } from '../content/site';
+import BrandMark from './landing/BrandMark.astro';
+import GithubMark from './landing/GithubMark.astro';
+import MoonMark from './landing/MoonMark.astro';
+import SunMark from './landing/SunMark.astro';
+
+interface Props {
+  locale: Locale;
+  /** Where the brand goes back to: the top of the landing page, or the landing page itself. */
+  brandHref: string;
+  /** The counterpart of the current page in the other locale. */
+  languageHref: string;
+  /** Docs pages are already in the docs, so the label reports position instead of linking. */
+  inDocs?: boolean;
+}
+
+const { locale, brandHref, languageHref, inDocs = false } = Astro.props;
+const c = getLanding(locale);
+---
+
+<div class="cw-header__inner">
+  <a class="cw-brand" href={brandHref} aria-label="Card Workspace">
+    <BrandMark />
+    <span class="cw-brand__name">Card Workspace</span>
+  </a>
+
+  <a class="cw-version" href={c.versionHref} title={c.versionTitle}>
+    <span class="cw-version__dot" aria-hidden="true"></span>
+    <span>{c.version}</span>
+  </a>
+
+  <div class="cw-header__tools">
+    <slot name="search" />
+
+    {
+      inDocs ? (
+        <span class="cw-tool cw-tool--current" aria-current="page">
+          {c.docsLabel}
+        </span>
+      ) : (
+        <a class="cw-tool" href={c.docsHref}>
+          {c.docsLabel}
+        </a>
+      )
+    }
+
+    <a
+      class="cw-tool"
+      href={languageHref}
+      aria-label={c.languageLabel}
+      hreflang={locale === 'zh' ? 'en' : 'zh-CN'}
+    >
+      {c.languageCode}
+    </a>
+
+    <button class="cw-tool cw-theme" type="button" aria-label={c.themeLabel} title={c.themeLabel}>
+      <span class="cw-theme__light"><SunMark /></span>
+      <span class="cw-theme__dark"><MoonMark /></span>
+    </button>
+
+    <a class="cw-tool" href={c.repoHref} aria-label={c.repoLabel} title={c.repoLabel}>
+      <GithubMark />
+    </a>
+  </div>
+</div>
+
+<script>
+  // The client router replaces the body on navigation, so bind on every page
+  // load rather than once at module evaluation.
+  document.addEventListener('astro:page-load', () => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.cw-theme');
+
+    const syncPressedState = () => {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      buttons.forEach((button) => button.setAttribute('aria-pressed', String(isDark)));
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = nextTheme;
+        localStorage.setItem('starlight-theme', nextTheme);
+        syncPressedState();
+      });
+    });
+
+    syncPressedState();
+  });
+</script>

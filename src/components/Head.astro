@@ -1,0 +1,15 @@
+---
+import Default from '@astrojs/starlight/components/Head.astro';
+import { ClientRouter } from 'astro:transitions';
+import archivoLatin from '@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url';
+import petronaLatin from '@fontsource-variable/petrona/files/petrona-latin-wght-normal.woff2?url';
+---
+
+<Default />
+
+{/* Discovered only after the stylesheet parses otherwise, which costs a reflow on first paint.
+    Archivo sets the headings and chrome; Petrona sets the reading copy on both surfaces. */}
+<link rel="preload" href={archivoLatin} as="font" type="font/woff2" crossorigin />
+<link rel="preload" href={petronaLatin} as="font" type="font/woff2" crossorigin />
+
+<ClientRouter />

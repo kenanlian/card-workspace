@@ -1,0 +1,243 @@
+/* Site header.
+   One component and one set of rules, rendered identically by the landing page
+   and by every docs page. The two surfaces only differ in what the tool row
+   holds: docs add Pagefind's opener and mark `Docs` as where you already are. */
+
+/* One surface, whether the row sits in the landing page's own header or in the
+   one Starlight builds. Down to the tint and the blur radius: the two are the
+   same object, and the view transition between them has to read that way. */
+.cw-header,
+header.header {
+  background: color-mix(in oklab, var(--cw-canvas) 90%, transparent);
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+}
+
+.cw-header {
+  position: sticky;
+  z-index: 100;
+  inset-block-start: 0;
+  height: var(--cw-header-height);
+  padding-inline: var(--sl-nav-pad-x);
+}
+
+.cw-header__inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.65rem, 1.4vw, 1.2rem);
+  height: 100%;
+}
+
+.cw-brand {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  gap: 0.65rem;
+  color: var(--cw-ink);
+  text-decoration: none;
+}
+
+.cw-brand__mark {
+  display: block;
+  width: 1.45rem;
+  height: 1.45rem;
+  flex: none;
+  background: center / contain no-repeat url('../assets/logo-light.svg');
+}
+
+[data-theme='dark'] .cw-brand__mark {
+  background-image: url('../assets/logo-dark.svg');
+}
+
+.cw-brand__name {
+  font-family: var(--cw-font-display);
+  font-size: 0.98rem;
+  font-weight: 570;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* --- Version pill --------------------------------------------------------
+   The dot is the only thing in either header that moves: a small sign that the
+   project is alive. */
+
+.cw-version {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  gap: 0.4rem;
+  padding: 0.22rem 0.5rem 0.22rem 0.45rem;
+  color: var(--cw-accent-strong);
+  background: var(--cw-accent-soft);
+  border-radius: 999px;
+  font-family: var(--cw-font-mono);
+  font-size: 0.68rem;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.cw-version__dot {
+  position: relative;
+  flex: none;
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.cw-version__dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cw-version__dot::after {
+    animation: cw-ping 2.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes cw-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  65%,
+  100% {
+    transform: scale(3.4);
+    opacity: 0;
+  }
+}
+
+/* --- Tools ---------------------------------------------------------------
+   Pagefind's opener is folded into the same box as the hand-written controls so
+   the row reads as one set of objects rather than a search field with buttons
+   parked beside it. */
+
+.cw-header__tools {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 0.4rem;
+  margin-inline-start: auto;
+}
+
+/* Grouped with `:where` rather than `:is` so the rule weighs one class:
+   `button[data-open-modal]` is the heavier branch, and an `:is` group would take
+   its weight and outrank the single-class overrides further down. */
+.cw-header__tools :where(.cw-tool, button[data-open-modal]) {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2rem;
+  width: auto;
+  max-width: none;
+  height: 2rem;
+  padding-inline: 0.45rem;
+  color: var(--cw-ink-soft);
+  background: transparent;
+  border: 0;
+  border-radius: var(--cw-radius-control);
+  font: 500 0.74rem/1 var(--cw-font-body);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--cw-fast) var(--cw-ease), background var(--cw-fast) var(--cw-ease);
+}
+
+.cw-header__tools :where(.cw-tool, button[data-open-modal]):hover {
+  color: var(--cw-ink);
+  background: var(--cw-surface-subtle);
+}
+
+.cw-header__tools :where(.cw-tool, button[data-open-modal]) svg {
+  display: block;
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+/* The label and the ⌘K hint would make the search control several times wider
+   than everything else in the row. */
+.cw-header__tools button[data-open-modal] > :is(span, kbd) {
+  display: none !important;
+}
+
+/* Where you already are, rather than somewhere to go: full ink, and none of the
+   hover feedback the controls beside it give. */
+.cw-header__tools .cw-tool--current,
+.cw-header__tools .cw-tool--current:hover {
+  color: var(--cw-ink);
+  background: transparent;
+  cursor: default;
+}
+
+.cw-theme__light,
+[data-theme='dark'] .cw-theme__dark {
+  display: inline-flex;
+}
+
+.cw-theme__dark,
+[data-theme='dark'] .cw-theme__light {
+  display: none;
+}
+
+@media (max-width: 52rem) {
+  .cw-header__inner .cw-brand {
+    min-height: 2.75rem;
+  }
+
+  .cw-header__tools :where(.cw-tool, button[data-open-modal]) {
+    min-width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+@media (max-width: 36rem) {
+  .cw-header__inner {
+    gap: 0.35rem;
+  }
+
+  .cw-brand {
+    gap: 0.45rem;
+  }
+
+  .cw-brand__mark {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .cw-brand__name {
+    font-size: 0.86rem;
+  }
+
+  .cw-version {
+    display: none;
+  }
+
+  .cw-header__tools {
+    gap: 0.15rem;
+  }
+
+  .cw-header__tools :where(.cw-tool, button[data-open-modal]) {
+    padding-inline: 0.3rem;
+  }
+}
+
+/* Docs pages carry search as well, and reserve the end of the row for the menu
+   button, so the label that only says where you are is the last thing to come
+   back — a breakpoint after the version pill, which would otherwise return at
+   the same width and overflow the row. */
+@media (max-width: 40rem) {
+  .cw-header__tools .cw-tool--current {
+    display: none;
+  }
+}
+
+/* Narrower than this the docs row cannot hold the wordmark and four controls at
+   a touch-sized target, so the mark carries the brand on its own. */
+@media (max-width: 27rem) {
+  .cw-header__inner .cw-brand__name {
+    display: none;
+  }
+}

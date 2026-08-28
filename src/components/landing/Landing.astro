@@ -1,10 +1,12 @@
 ---
 import '../../styles/landing.css';
 import { getLanding, type Locale } from '../../content/landing';
+import SiteHeader from '../SiteHeader.astro';
 import BrandMark from './BrandMark.astro';
 import Btn from './Btn.astro';
 import MediaPlaceholder from './MediaPlaceholder.astro';
 import CardBoxConcept from './CardBoxConcept.astro';
+import SectionRule from './SectionRule.astro';
 
 interface Props {
   locale: Locale;
@@ -19,34 +21,7 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
   <a class="cw-skip" href="#cw-main">{locale === 'zh' ? '跳到主要内容' : 'Skip to content'}</a>
 
   <header class="cw-header">
-    <div class="cw-wrap cw-header__inner">
-      <a class="cw-brand" href="#top" aria-label="Card Workspace">
-        <BrandMark />
-        <span class="cw-brand__name">Card Workspace</span>
-      </a>
-
-      <a class="cw-version" href={c.hero.primaryHref} title={c.versionTitle}>{c.version}</a>
-
-      <nav class="cw-nav" aria-label={locale === 'zh' ? '页面导航' : 'Landing page'}>
-        {c.nav.map((item) => <a href={item.href}>{item.label}</a>)}
-      </nav>
-
-      <div class="cw-header__tools">
-        <a
-          class="cw-tool cw-language"
-          href={c.languageHref}
-          aria-label={c.languageLabel}
-          hreflang={locale === 'zh' ? 'en' : 'zh-CN'}
-        >
-          {c.languageCode}
-        </a>
-        <button class="cw-tool cw-theme" type="button" aria-label={c.themeLabel} title={c.themeLabel}>
-          <span class="cw-theme__light" aria-hidden="true">☼</span>
-          <span class="cw-theme__dark" aria-hidden="true">◐</span>
-        </button>
-        <Btn compact primary href={c.hero.primaryHref}>{locale === 'zh' ? '安装' : 'Install'}</Btn>
-      </div>
-    </div>
+    <SiteHeader locale={locale} brandHref="#top" languageHref={c.languageHref} />
   </header>
 
   <div id="cw-main" tabindex="-1">
@@ -82,7 +57,9 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
       </div>
     </section>
 
-    <section class="cw-section cw-section--boxes" id="card-boxes" data-screen-label="Card boxes">
+    <SectionRule />
+
+    <section class="cw-section" id="card-boxes" data-screen-label="Card boxes">
       <div class="cw-wrap cw-feature-grid">
         <div class="cw-feature-copy">
           <p class="cw-kicker">{c.boxes.kicker}</p>
@@ -93,6 +70,8 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
         <CardBoxConcept copy={c.boxes} />
       </div>
     </section>
+
+    <SectionRule />
 
     <section class="cw-section" id="browse" data-screen-label="Browsing loop">
       <div class="cw-wrap cw-feature-grid cw-feature-grid--media-first">
@@ -113,6 +92,8 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
       </div>
     </section>
 
+    <SectionRule />
+
     <section class="cw-section" id="drag" data-screen-label="Writing flow">
       <div class="cw-wrap cw-feature-grid">
         <div class="cw-feature-copy">
@@ -131,6 +112,8 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
         />
       </div>
     </section>
+
+    <SectionRule />
 
     <section class="cw-proof" data-screen-label="Trust and proof">
       <div class="cw-wrap">
@@ -153,6 +136,8 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
       </div>
     </section>
 
+    <SectionRule />
+
     <section class="cw-final" id="install" data-screen-label="Install">
       <div class="cw-wrap cw-final__inner">
         <div>
@@ -166,6 +151,8 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
       </div>
     </section>
   </div>
+
+  <SectionRule />
 
   <footer class="cw-footer">
     <div class="cw-wrap cw-footer__inner">
@@ -185,27 +172,14 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
 </div>
 
 <script>
-  const skipLink = document.querySelector<HTMLAnchorElement>('.cw-skip');
-  const mainTarget = document.querySelector<HTMLElement>('#cw-main');
-  const themeButton = document.querySelector<HTMLButtonElement>('.cw-theme');
+  // The client router replaces the body on navigation, so bind on every page
+  // load rather than once at module evaluation.
+  document.addEventListener('astro:page-load', () => {
+    const skipLink = document.querySelector<HTMLAnchorElement>('.cw-skip');
+    const mainTarget = document.querySelector<HTMLElement>('#cw-main');
 
-  skipLink?.addEventListener('click', () => {
-    requestAnimationFrame(() => mainTarget?.focus({ preventScroll: true }));
+    skipLink?.addEventListener('click', () => {
+      requestAnimationFrame(() => mainTarget?.focus({ preventScroll: true }));
+    });
   });
-
-  function syncThemeButton() {
-    if (!themeButton) return;
-    const isDark = document.documentElement.dataset.theme === 'dark';
-    themeButton.setAttribute('aria-pressed', String(isDark));
-  }
-
-  themeButton?.addEventListener('click', () => {
-    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = nextTheme;
-    localStorage.setItem('starlight-theme', nextTheme);
-    window.StarlightThemeProvider?.updatePickers(nextTheme);
-    syncThemeButton();
-  });
-
-  syncThemeButton();
 </script>
