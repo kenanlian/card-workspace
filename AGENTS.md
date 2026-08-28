@@ -34,6 +34,7 @@ GitHub Actions (withastro/action) → GitHub Pages
 - `src/components/landing/` — custom Astro landing components used only by the locale splash pages.
 - `src/styles/` — V2 Graphite Index tokens (`tokens.css`), the shared header (`header.css`), and Starlight chrome (`theme.css`); landing CSS is imported from the Landing component.
 - `src/assets/` — images referenced by content (e.g. `logo-light.svg`, `logo-dark.svg`).
+- `src/assets/media/` — product screenshots and landing clips (`overview.jpg`, `browse.mp4` + `browse-poster.webp`, `writing.mp4` + `writing-poster.webp`). Clips are H.264 MP4 only; no GIF and no WebM.
 - `src/pages/` — the root redirect (`index.astro`).
 - `public/` — static assets served as-is (`favicon.svg`, `og.png`).
 - `designs/` — design prototypes and design systems (one folder per project). Not served by Astro.
@@ -59,6 +60,7 @@ There is no lint or test script configured.
 - **File naming**: kebab-case for doc files (`getting-started.md`); lowercase for locale (`en`, `zh`) and section (`guides`, `reference`) folders; landing page is `index.mdx` per locale.
 - **Frontmatter**: every page has `title` + `description` (Starlight-required). Landing pages (`index.mdx`) use `template: splash` and omit the `hero` block; the body imports `<Landing locale="en" />` or `<Landing locale="zh" />`.
 - **Components**: custom Astro components under `src/components/landing/` for the splash only. Guide/reference pages are plain `.md` and do not import components.
+- **Product media**: `MediaShot.astro` wraps `astro:assets` `<Image>` for stills; `MediaClip.astro` wraps a muted looping `<video>` that only plays while onscreen, stays paused under `prefers-reduced-motion`, and always exposes a play/pause button. Alt text and captions come from `landing.ts`, never from the component. Re-encode new captures with `ffmpeg -vf "scale=1440:-2:flags=lanczos,fps=15" -c:v libx264 -crf 28 -preset slow -an -movflags +faststart`.
 - **Internal links**: use absolute paths including the base prefix and a trailing slash, e.g. `/card-workspace-site/en/guides/introduction/`.
 - **i18n**: sidebar labels carry `translations: { 'zh-CN': '...' }`; keep `en/` and `zh/` structures in sync when adding pages.
 - **Styling**: V2 Graphite Index tokens in `src/styles/`; Starlight `customCss` loads `./src/styles/theme.css` (which imports `tokens.css` and `header.css`). No Tailwind. Landing-scoped CSS is imported from the Landing component, not a second Starlight `customCss` entry.

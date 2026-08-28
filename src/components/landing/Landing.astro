@@ -4,9 +4,15 @@ import { getLanding, type Locale } from '../../content/landing';
 import SiteHeader from '../SiteHeader.astro';
 import BrandMark from './BrandMark.astro';
 import Btn from './Btn.astro';
-import MediaPlaceholder from './MediaPlaceholder.astro';
+import MediaShot from './MediaShot.astro';
+import MediaClip from './MediaClip.astro';
 import CardBoxConcept from './CardBoxConcept.astro';
 import SectionRule from './SectionRule.astro';
+import overview from '../../assets/media/overview.jpg';
+import browseClip from '../../assets/media/browse.mp4';
+import browsePoster from '../../assets/media/browse-poster.webp';
+import writingClip from '../../assets/media/writing.mp4';
+import writingPoster from '../../assets/media/writing-poster.webp';
 
 interface Props {
   locale: Locale;
@@ -48,11 +54,12 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
           </div>
           <p class="cw-meta">{c.hero.meta}</p>
         </div>
-        <MediaPlaceholder
+        <MediaShot
           featured
-          label={c.hero.mediaLabel}
-          title={c.hero.mediaTitle}
-          brief={c.hero.mediaBrief}
+          src={overview}
+          alt={c.hero.mediaAlt}
+          widths={[520, 1024]}
+          sizes="(max-width: 52rem) calc(100vw - 2rem), 520px"
         />
       </div>
     </section>
@@ -75,11 +82,13 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
 
     <section class="cw-section" id="browse" data-screen-label="Browsing loop">
       <div class="cw-wrap cw-feature-grid cw-feature-grid--media-first">
-        <MediaPlaceholder
-          kind="clip"
-          label={c.browse.mediaLabel}
-          title={c.browse.mediaTitle}
-          brief={c.browse.mediaBrief}
+        <MediaClip
+          src={browseClip}
+          poster={browsePoster}
+          alt={c.browse.mediaAlt}
+          caption={c.browse.mediaCaption}
+          playLabel={c.clipPlayLabel}
+          pauseLabel={c.clipPauseLabel}
         />
         <div class="cw-feature-copy">
           <p class="cw-kicker">{c.browse.kicker}</p>
@@ -104,11 +113,13 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
             {c.drag.actions.map((action, index) => <li><span>0{index + 1}</span>{action}</li>)}
           </ul>
         </div>
-        <MediaPlaceholder
-          kind="clip"
-          label={c.drag.mediaLabel}
-          title={c.drag.mediaTitle}
-          brief={c.drag.mediaBrief}
+        <MediaClip
+          src={writingClip}
+          poster={writingPoster}
+          alt={c.drag.mediaAlt}
+          caption={c.drag.mediaCaption}
+          playLabel={c.clipPlayLabel}
+          pauseLabel={c.clipPauseLabel}
         />
       </div>
     </section>

@@ -1,0 +1,80 @@
+---
+interface Props {
+  src: string;
+  poster: ImageMetadata;
+  alt: string;
+  caption: string;
+  playLabel: string;
+  pauseLabel: string;
+}
+
+const { src, poster, alt, caption, playLabel, pauseLabel } = Astro.props;
+---
+
+<figure class="cw-media">
+  <div class="cw-media__frame cw-clip" data-paused="true">
+    <video
+      src={src}
+      poster={poster.src}
+      width={poster.width}
+      height={poster.height}
+      aria-label={alt}
+      muted
+      loop
+      playsinline
+      preload="metadata"></video>
+    <button type="button" class="cw-clip__toggle" data-play-label={playLabel} data-pause-label={pauseLabel} aria-label={playLabel}>
+      <svg class="cw-clip__icon cw-clip__icon--play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.4v9.2L13 8z" /></svg>
+      <svg class="cw-clip__icon cw-clip__icon--pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 3h2.2v10H4.5zm4.8 0h2.2v10H9.3z" /></svg>
+    </button>
+  </div>
+  <figcaption class="cw-media__caption">{caption}</figcaption>
+</figure>
+
+<script>
+  // The client router replaces the body on navigation, so bind on every page
+  // load rather than once at module evaluation.
+  document.addEventListener('astro:page-load', () => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    document.querySelectorAll<HTMLElement>('.cw-clip').forEach((clip) => {
+      const video = clip.querySelector('video');
+      const toggle = clip.querySelector<HTMLButtonElement>('.cw-clip__toggle');
+      if (!video || !toggle) return;
+
+      let paused = reduceMotion.matches;
+
+      const sync = () => {
+        clip.dataset.paused = String(paused);
+        const label = paused ? toggle.dataset.playLabel : toggle.dataset.pauseLabel;
+        if (label) toggle.setAttribute('aria-label', label);
+      };
+
+      const resume = () => {
+        if (!paused) void video.play().catch(() => undefined);
+      };
+
+      toggle.addEventListener('click', () => {
+        paused = !paused;
+        if (paused) video.pause();
+        else resume();
+        sync();
+      });
+
+      // Offscreen clips stay paused so a scroll past the page never decodes
+      // three videos at once.
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) resume();
+            else video.pause();
+          }
+        },
+        { threshold: 0.25 },
+      );
+
+      observer.observe(clip);
+      sync();
+    });
+  });
+</script>

@@ -34,6 +34,8 @@ export interface LandingCopy {
   docsHref: string;
   repoLabel: string;
   repoHref: string;
+  clipPlayLabel: string;
+  clipPauseLabel: string;
   hero: {
     eyebrow: string;
     headline: string[];
@@ -44,9 +46,7 @@ export interface LandingCopy {
     secondaryCta: string;
     secondaryHref: string;
     meta: string;
-    mediaLabel: string;
-    mediaTitle: string;
-    mediaBrief: string;
+    mediaAlt: string;
   };
   boxes: {
     kicker: string;
@@ -71,18 +71,16 @@ export interface LandingCopy {
     title: string;
     body: string;
     labels: string[];
-    mediaLabel: string;
-    mediaTitle: string;
-    mediaBrief: string;
+    mediaAlt: string;
+    mediaCaption: string;
   };
   drag: {
     kicker: string;
     title: string;
     body: string;
     actions: string[];
-    mediaLabel: string;
-    mediaTitle: string;
-    mediaBrief: string;
+    mediaAlt: string;
+    mediaCaption: string;
   };
   proof: {
     kicker: string;
@@ -119,6 +117,8 @@ export const landing: Record<Locale, LandingCopy> = {
     docsHref: docs('en', 'guides/introduction'),
     repoLabel: repoLabel.en,
     repoHref: REPO,
+    clipPlayLabel: 'Play this clip',
+    clipPauseLabel: 'Pause this clip',
     hero: {
       eyebrow: `Obsidian desktop plugin · ${VERSION}`,
       headline: ['Browse your vault', 'as cards,', 'not filenames.'],
@@ -130,10 +130,8 @@ export const landing: Record<Locale, LandingCopy> = {
       secondaryCta: 'Read the docs',
       secondaryHref: docs('en', 'guides/getting-started'),
       meta: 'Obsidian 1.9+ · Desktop only · Runs locally',
-      mediaLabel: 'Product screenshot slot · 16:10',
-      mediaTitle: 'The complete browsing loop, beside the editor',
-      mediaBrief:
-        'Capture a populated sidebar with folders, tags, card boxes, and favorites; show 4–6 readable Markdown cards, one selected card, and its corresponding note open in the editor.',
+      mediaAlt:
+        'Card Workspace in Obsidian: a navigation column of favorites, folders, tags, and card boxes sits beside a stream of note cards showing excerpts, and the selected card’s note is open in the editor.',
     },
     boxes: {
       kicker: 'Card boxes',
@@ -161,10 +159,9 @@ export const landing: Record<Locale, LandingCopy> = {
       body:
         'Card Workspace keeps folders, tags, favorites, and card boxes beside the card stream. Markdown notes show readable previews; scoped search highlights matching text and counts. Open a card in the editor, or switch notes in the editor and let the card stream follow.',
       labels: ['Excerpt previews', 'Task status', 'Hover preview', 'Current-scope search', 'Chinese matching', 'Two-way sync'],
-      mediaLabel: 'Future product clip · 16:10 · 5 seconds',
-      mediaTitle: 'Scope, search, open, follow',
-      mediaBrief:
-        'Switch folders, type a Chinese query, reveal highlights and per-note match counts, open a result, then show editor-to-card selection sync.',
+      mediaAlt:
+        'Screen recording: changing the scope in the navigation column reloads the card stream, a search highlights matching text and shows a match count on each card, and clicking a card opens that note in the editor.',
+      mediaCaption: 'Pick a scope, search inside it, then open a card beside the editor.',
     },
     drag: {
       kicker: 'Writing flow',
@@ -172,10 +169,9 @@ export const landing: Record<Locale, LandingCopy> = {
       body:
         'Drop a Markdown card at a specific position in the editor, then insert a wikilink, an embed, the note body, or its title and body. Choose every time or make one action the default.',
       actions: ['Wikilink', 'Embed', 'Content', 'Title + content'],
-      mediaLabel: 'Future product clip · 16:10 · 4–6 seconds',
-      mediaTitle: 'From card to draft in one drop',
-      mediaBrief:
-        'Show the drag ghost leaving the card stream, the drop menu at the editor cursor, and the chosen result inserted into the note.',
+      mediaAlt:
+        'Screen recording: a card is dragged from the card stream to the editor cursor, and the drop menu offers insert wiki link, insert embed link, insert card content, and insert card title and content.',
+      mediaCaption: 'Drop a card at the cursor, then choose wikilink, embed, content, or title + content.',
     },
     proof: {
       kicker: 'Built for daily use',
@@ -230,6 +226,8 @@ export const landing: Record<Locale, LandingCopy> = {
     docsHref: docs('zh', 'guides/introduction'),
     repoLabel: repoLabel.zh,
     repoHref: REPO,
+    clipPlayLabel: '播放这段录屏',
+    clipPauseLabel: '暂停这段录屏',
     hero: {
       eyebrow: `Obsidian 桌面端插件 · ${VERSION}`,
       headline: ['把仓库读成卡片，', '而不是一串文件名。'],
@@ -241,10 +239,8 @@ export const landing: Record<Locale, LandingCopy> = {
       secondaryCta: '查看文档',
       secondaryHref: docs('zh', 'guides/getting-started'),
       meta: 'Obsidian 1.9+ · 仅桌面端 · 本地运行',
-      mediaLabel: '产品截图位置 · 16:10',
-      mediaTitle: '编辑器旁边的完整浏览闭环',
-      mediaBrief:
-        '未来截图：左侧栏中填充文件夹、标签、卡片盒与收藏；显示 4–6 张可读卡片、当前选中的卡片，以及编辑器中对应打开的笔记。',
+      mediaAlt:
+        'Obsidian 中的 Card Workspace：一列收藏、文件夹、标签与卡片盒导航紧挨着带摘要的笔记卡片流，选中卡片对应的笔记正在编辑器中打开。',
     },
     boxes: {
       kicker: '卡片盒',
@@ -271,10 +267,9 @@ export const landing: Record<Locale, LandingCopy> = {
       body:
         'Card Workspace 自带文件夹、标签、收藏和卡片盒导航。选定范围后，Markdown 笔记会显示为带摘要的卡片；在当前范围内搜索时，命中的文字和次数直接出现在卡片上。点开一张卡片，编辑器随即打开；从编辑器切换笔记，卡片流也会跟着高亮。',
       labels: ['摘要预览', '任务状态', '悬停预览', '当前范围搜索', '中文匹配', '双向同步'],
-      mediaLabel: '未来产品录屏 · 16:10 · 5 秒',
-      mediaTitle: '切换范围、搜索、打开、跟随',
-      mediaBrief:
-        '未来录屏：切换文件夹，输入一条中文查询，显示高亮与每篇笔记的命中次数，打开结果，再展示编辑器与卡片选择同步。',
+      mediaAlt:
+        '录屏：在导航列切换范围后卡片流随之刷新，搜索时命中的文字在卡片上高亮并标出命中次数，点开一张卡片就在编辑器中打开对应的笔记。',
+      mediaCaption: '选定范围，在范围内搜索，点开卡片就在编辑器旁边打开。',
     },
     drag: {
       kicker: '写作流',
@@ -282,10 +277,9 @@ export const landing: Record<Locale, LandingCopy> = {
       body:
         '把 Markdown 卡片拖到编辑器中的具体位置，松手后可以插入 wikilink、嵌入、正文，或“标题 + 正文”。常用方式可以设为默认，也可以每次选择。',
       actions: ['Wikilink', '嵌入', '正文', '标题 + 正文'],
-      mediaLabel: '未来产品录屏 · 16:10 · 4–6 秒',
-      mediaTitle: '拖一下，把卡片放进草稿',
-      mediaBrief:
-        '未来录屏：展示卡片离开卡片流时的拖拽影子、编辑器光标旁的放置菜单，以及选择后插入的结果。',
+      mediaAlt:
+        '录屏：把一张卡片从卡片流拖到编辑器光标处，松手后弹出菜单，可以选择插入 wikilink、插入嵌入链接、插入卡片正文，或插入卡片标题与正文。',
+      mediaCaption: '把卡片拖到光标处，松手后选择 wikilink、嵌入、正文或标题 + 正文。',
     },
     proof: {
       kicker: '日常使用',

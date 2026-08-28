@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  widths: number[];
+  sizes: string;
+  caption?: string;
+  featured?: boolean;
+}
+
+const { src, alt, widths, sizes, caption, featured = false } = Astro.props;
+---
+
+<figure class="cw-media">
+  <div class="cw-media__frame">
+    <Image src={src} alt={alt} widths={widths} sizes={sizes} loading={featured ? 'eager' : 'lazy'} />
+  </div>
+  {caption && <figcaption class="cw-media__caption">{caption}</figcaption>}
+</figure>

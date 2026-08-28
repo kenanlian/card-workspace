@@ -22,3 +22,10 @@ pnpm-debug.log*
 .agents/
 # Private development artifacts companion
 /.dev
+# Raw screen captures dropped in the repo root; ship the encoded copies in
+# src/assets/media/ instead
+/*.gif
+/*.jpg
+/*.png
+/*.mov
+/*.mp4
