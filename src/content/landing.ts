@@ -23,9 +23,7 @@ export interface LandingCopy {
   versionTitle: string;
   versionHref: string;
   themeLabel: string;
-  /** Names the pair of language options; each option is labelled in its own language. */
-  languageGroupLabel: string;
-  languageLabel: string;
+  languageMenuLabel: string;
   languageHref: string;
   docsLabel: string;
   docsHref: string;
@@ -101,8 +99,7 @@ export const landing: Record<Locale, LandingCopy> = {
     versionTitle: versionTitle.en,
     versionHref: RELEASES,
     themeLabel: 'Switch color theme',
-    languageGroupLabel: 'Language',
-    languageLabel: 'Read this page in Simplified Chinese',
+    languageMenuLabel: 'Choose language',
     languageHref: homeHref('zh'),
     docsLabel: 'Docs',
     docsHref: docs('en', 'guides/introduction'),
@@ -190,8 +187,7 @@ export const landing: Record<Locale, LandingCopy> = {
     versionTitle: versionTitle.zh,
     versionHref: RELEASES,
     themeLabel: '切换颜色主题',
-    languageGroupLabel: '语言',
-    languageLabel: 'View this page in English',
+    languageMenuLabel: '选择语言',
     languageHref: homeHref('en'),
     docsLabel: '文档',
     docsHref: docs('zh', 'guides/introduction'),

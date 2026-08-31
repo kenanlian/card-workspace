@@ -173,54 +173,84 @@ header.header {
 }
 
 /* --- Language switch -----------------------------------------------------
-   Both languages stay on the row, hairline-separated, so the pair reads as one
-   control. Which one you are reading is said the same way the `Docs` label says
-   it: full ink and no hover feedback, with the language you can leave for kept
-   faint until you reach for it. */
+   A neutral globe keeps the other locale out of the persistent tool row. The
+   full language names and current state appear only after opening the menu. */
 
 .cw-lang {
-  display: inline-flex;
-  align-items: center;
+  position: relative;
   flex: none;
-  gap: 0.15rem;
 }
 
-.cw-lang__option {
-  display: inline-grid;
-  place-items: center;
-  min-width: 1.75rem;
-  height: 2rem;
-  padding-inline: 0.35rem;
-  color: var(--cw-ink-faint);
-  border-radius: var(--cw-radius-control);
-  font: 500 0.74rem/1 var(--cw-font-body);
-  text-decoration: none;
-  transition: color var(--cw-fast) var(--cw-ease), background var(--cw-fast) var(--cw-ease);
+.cw-lang > summary {
+  list-style: none;
 }
 
-.cw-lang__option:hover {
+.cw-lang > summary::-webkit-details-marker {
+  display: none;
+}
+
+.cw-lang[open] > .cw-lang__trigger {
   color: var(--cw-ink);
   background: var(--cw-surface-subtle);
 }
 
-.cw-lang__option--current,
-.cw-lang__option--current:hover {
+.cw-lang__menu {
+  position: absolute;
+  z-index: calc(var(--sl-z-index-navbar) + 1);
+  inset-block-start: calc(100% + 0.45rem);
+  inset-inline-end: 0;
+  width: max-content;
+  padding: 0.3rem;
   color: var(--cw-ink);
-  background: transparent;
+  background: color-mix(in oklab, var(--cw-surface) 94%, transparent);
+  border: 1px solid var(--cw-line);
+  border-radius: calc(var(--cw-radius-control) + 0.15rem);
+  box-shadow: 0 16px 38px -22px color-mix(in oklab, var(--cw-ink) 45%, transparent);
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+}
+
+.cw-lang__menu ul {
+  display: grid;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cw-lang__option {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.25rem;
+  padding-inline: 0.65rem;
+  color: var(--cw-ink-soft);
+  border-radius: var(--cw-radius-control);
+  font: 500 0.78rem/1.2 var(--cw-font-body);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--cw-fast) var(--cw-ease), background var(--cw-fast) var(--cw-ease);
+}
+
+a.cw-lang__option:hover {
+  color: var(--cw-ink);
+  background: var(--cw-surface-subtle);
+}
+
+.cw-lang__option--current {
+  color: var(--cw-ink);
+  background: var(--cw-surface-subtle);
   cursor: default;
 }
 
-.cw-lang__option + .cw-lang__option {
-  position: relative;
-}
-
-.cw-lang__option + .cw-lang__option::before {
-  content: '';
-  position: absolute;
-  inset-inline-start: -0.075rem;
-  inset-block: 0.5rem;
-  width: 1px;
-  background: var(--cw-line);
+.cw-lang__flag {
+  display: block;
+  width: 1.25rem;
+  height: 0.9375rem;
+  object-fit: cover;
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px var(--cw-line);
 }
 
 .cw-theme__light,
@@ -243,14 +273,6 @@ header.header {
     height: 2.75rem;
   }
 
-  .cw-lang__option {
-    min-width: 2.25rem;
-    height: 2.75rem;
-  }
-
-  .cw-lang__option + .cw-lang__option::before {
-    inset-block: 0.85rem;
-  }
 }
 
 @media (max-width: 36rem) {
@@ -283,10 +305,6 @@ header.header {
     padding-inline: 0.3rem;
   }
 
-  .cw-lang__option {
-    min-width: 1.9rem;
-    padding-inline: 0.25rem;
-  }
 }
 
 /* Docs pages carry search as well, and reserve the end of the row for the menu

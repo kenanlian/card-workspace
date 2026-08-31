@@ -420,6 +420,34 @@ nav.sidebar summary .group-label > .large,
     --sl-menu-button-size: 2.75rem;
   }
 
+  /* Starlight makes the toggle a flex container without centering its child.
+     Reset the inner layout so both the bars and close marks sit on the exact
+     optical center of the circular touch target. */
+  starlight-menu-button > button {
+    display: grid;
+    place-items: center;
+    padding: 0;
+    line-height: 0;
+  }
+
+  starlight-menu-button > button svg {
+    grid-area: 1 / 1;
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 0;
+    flex: none;
+  }
+
+  starlight-menu-button:not([aria-expanded='true']) > button .open-menu,
+  starlight-menu-button[aria-expanded='true'] > button .close-menu {
+    display: block;
+  }
+
+  starlight-menu-button:not([aria-expanded='true']) > button .close-menu,
+  starlight-menu-button[aria-expanded='true'] > button .open-menu {
+    display: none;
+  }
+
   mobile-starlight-toc summary {
     min-height: 2.75rem;
     padding-block: 0;
