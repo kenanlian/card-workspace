@@ -1,9 +1,11 @@
 ---
 title: 设置
-description: Card Workspace 设置页中实际显示的选项。
+description: Card Workspace 设置页中显示的六项选项。
+tags: [card-workspace, reference/settings]
+workflow: [organize]
 ---
 
-以下是 **设置 → Card Workspace** 中显示的选项。其他会记住的状态 — 卡片盒、收藏、置顶、上次文件夹、面板折叠 — 不列在这里；它们分别在 [导航](/card-workspace/zh/guides/navigation/)、[卡片盒](/card-workspace/zh/guides/card-boxes/) 和 [写作与整理](/card-workspace/zh/guides/writing-and-organizing/) 中说明。
+设置页包含六项偏好。活动筛选、可见属性、导航展开状态、分区顺序、卡片盒、收藏、置顶和面板尺寸会在适用时被记住，但不会作为独立设置显示。
 
 | 设置键 | 默认值 | 名称 |
 | --- | --- | --- |
@@ -13,22 +15,19 @@ description: Card Workspace 设置页中实际显示的选项。
 | `cardCornerRadius` | `rounded` | 卡片圆角 |
 | `previewLines` | `5`（最小 3，最大 8） | 预览行数 |
 | `showNavItemCounts` | `false` | 在导航栏显示条目计数 |
-| `navSectionOrder` | favorites, folders, tags, boxes | 导航区分区顺序 |
 
-界面语言跟随 Obsidian：若 Obsidian 语言以 `zh` 开头，Card Workspace 使用简体中文，否则使用英文。没有单独的语言设置。
+界面跟随 Obsidian 语言：语言以 `zh` 开头时使用简体中文，否则使用英文。
 
 ## 卡片默认打开方式
-
-选择直接点击卡片时的行为。右键菜单操作仍可单独使用。
 
 - **当前窗格 / 当前标签页**（`smart`）— 默认
 - **在新标签页中打开**（`new-tab`）
 - **在右侧分栏打开**（`split-right`）
 - **在新窗口中打开**（`new-window`）
 
-## 卡片拖拽插入行为
+这些选项影响直接点击卡片。卡片菜单中的明确打开位置始终可用，详见[写作与整理](../guides/writing-and-organizing.md)。
 
-选择将卡片拖入 Markdown 编辑器时的处理方式。
+## 卡片拖拽插入行为
 
 - **每次弹框确认**（`ask`）— 默认
 - **插入 wiki link**（`wiki`）
@@ -38,14 +37,10 @@ description: Card Workspace 设置页中实际显示的选项。
 
 ## 新建笔记内容
 
-选择工具栏“创建笔记”生成的笔记内容：带一个空的 tags 属性，或完全空白。
-
 - **带 tags 属性**（`tags-frontmatter`）— 默认
 - **完全空白**（`blank`）
 
 ## 卡片圆角
-
-调整面板中每张卡片边框的方正或圆润程度。
 
 - **紧凑**（`compact`）
 - **柔和**（`medium`）
@@ -53,12 +48,10 @@ description: Card Workspace 设置页中实际显示的选项。
 
 ## 预览行数
 
-选择每张卡片预览可显示的规范化摘要行数（3–8）。默认值为 `5`。
+每张 Markdown 卡片可以显示 3–8 行规范化摘要，默认值为 `5`。详见[浏览卡片](../guides/browsing-cards.md)。
 
 ## 在导航栏显示条目计数
 
-在导航栏中显示每个文件夹和标签包含的卡片数量。文件夹计数会跟随“包含子文件夹”开关变化，标签计数包含其子标签。默认关闭（`false`）。
+在导航条目旁显示计数。文件夹计数跟随“包含子文件夹”，标签计数包含子标签，属性计数描述当前未筛选来源。默认关闭。
 
-## 导航区分区顺序
-
-用 **上移** 和 **下移** 调整导航区各分区的上下顺序。**恢复默认顺序** 会把收藏、文件夹、标签、卡片盒还原为该序列。折叠状态单独记录，不受影响。
+导航分区顺序通过各分区标题的右键菜单调整，不在设置页中。详见[导航](../guides/navigation.md)。

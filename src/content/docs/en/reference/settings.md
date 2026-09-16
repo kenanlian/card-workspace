@@ -1,9 +1,11 @@
 ---
 title: Settings
-description: Settings shown in the Card Workspace settings tab.
+description: The six options shown in the Card Workspace settings tab.
+tags: [card-workspace, reference/settings]
+workflow: [organize]
 ---
 
-These are the settings in **Settings → Card Workspace**. Other remembered state — boxes, favorites, pins, last folder, pane collapse — is not listed here; those live on the [navigation](/card-workspace/en/guides/navigation/), [card boxes](/card-workspace/en/guides/card-boxes/), and [writing](/card-workspace/en/guides/writing-and-organizing/) guides.
+The settings tab contains six preferences. Workspace state—active filters, visible properties, expanded navigation rows, section order, boxes, favorites, pins, and pane size—is remembered where relevant but is not presented as a separate setting.
 
 | Setting key | Default | Name |
 | --- | --- | --- |
@@ -13,22 +15,19 @@ These are the settings in **Settings → Card Workspace**. Other remembered stat
 | `cardCornerRadius` | `rounded` | Card corner radius |
 | `previewLines` | `5` (min 3, max 8) | Preview lines |
 | `showNavItemCounts` | `false` | Show item counts in navigation |
-| `navSectionOrder` | favorites, folders, tags, boxes | Navigation section order |
 
-The interface language follows Obsidian: if Obsidian’s language starts with `zh`, Card Workspace uses Simplified Chinese; otherwise it uses English. There is no separate language setting.
+The interface follows Obsidian’s language: Simplified Chinese when its language begins with `zh`, otherwise English.
 
 ## Default card open behavior
-
-Choose what happens when you click a card directly. Right-click menu actions stay available separately.
 
 - **Current pane / current tab** (`smart`) — default
 - **Open in new tab** (`new-tab`)
 - **Open to the right** (`split-right`)
 - **Open in new window** (`new-window`)
 
-## Card drag insert behavior
+These options affect direct card clicks. Explicit destinations in the card menu are always available; see [Writing and organizing](../guides/writing-and-organizing.md).
 
-Choose what happens when a card is dropped into a Markdown editor.
+## Card drag insert behavior
 
 - **Ask every time** (`ask`) — default
 - **Insert wiki link** (`wiki`)
@@ -38,14 +37,10 @@ Choose what happens when a card is dropped into a Markdown editor.
 
 ## New note content
 
-Choose what the toolbar’s create-note action writes into a new note: an empty tags property, or nothing at all.
-
 - **Start with a tags property** (`tags-frontmatter`) — default
 - **Start blank** (`blank`)
 
 ## Card corner radius
-
-Adjust how square or rounded each card border feels in the panel.
 
 - **Compact** (`compact`)
 - **Softer** (`medium`)
@@ -53,12 +48,10 @@ Adjust how square or rounded each card border feels in the panel.
 
 ## Preview lines
 
-Choose how many normalized summary lines each card preview can show (3–8). Default is `5`.
+Choose 3–8 normalized excerpt lines per Markdown card. The default is `5`; see [Browsing cards](../guides/browsing-cards.md).
 
 ## Show item counts in navigation
 
-Show how many cards each folder and tag contributes in the navigation pane. Folder counts follow the include-subfolders toggle, and tag counts include child tags. Off by default (`false`).
+Show counts beside navigation rows. Folder counts follow the include-subfolders choice, tag counts include descendants, and property counts describe the current unfiltered source. The default is off.
 
-## Navigation section order
-
-Arrange the order of the navigation pane’s sections with **Move up** and **Move down**. **Restore default order** puts Favorites, Folders, Tags, and Boxes back in that sequence. Collapse state is tracked separately and is unaffected.
+Navigation section order is changed from each section header’s right-click menu, not from Settings. See [Navigation](../guides/navigation.md).

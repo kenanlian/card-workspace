@@ -484,6 +484,7 @@ html[lang='zh-CN'] .cw-hero h1 {
 
 .cw-rule__operand {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   min-width: 0;
   gap: 0.55rem;

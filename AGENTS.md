@@ -7,7 +7,7 @@
 ## Architecture & Data Flow
 
 ```
-astro.config.mjs (Starlight: locales, sidebar, social, site/base)
+astro.config.mjs (Starlight: locales, sidebar, social, site/base, remark links)
         ↓
 src/content.config.ts (single `docs` collection, Starlight schema)
         ↓
@@ -18,7 +18,7 @@ astro build (base = /card-workspace) → dist/
 GitHub Actions (withastro/action) → GitHub Pages
 ```
 
-- Content lives in a single Starlight `docs` collection; there is no custom loader or schema.
+- Content lives in a single Starlight `docs` collection; there is no custom loader or schema. `src/remark-obsidian-links.mjs` rewrites authored relative `.md` links to deployed Starlight routes.
 - The sidebar is **manually defined** in `astro.config.mjs` and is decoupled from the filesystem — adding a doc requires both a content file *and* a sidebar entry.
 - `src/pages/index.astro` is a meta-refresh redirect from the site root to `/en/`.
 - Splash pages import a custom `Landing` Astro tree from `src/components/landing/`, and share the header row with docs via `src/components/SiteHeader.astro`. V2 Graphite tokens live in `src/styles/` and are loaded via Starlight `customCss`.
@@ -28,13 +28,13 @@ GitHub Actions (withastro/action) → GitHub Pages
 
 - `src/content/docs/en/` — English docs (default locale).
 - `src/content/docs/zh/` — Chinese docs (`zh-CN`). Mirrors the `en/` structure.
-- `src/content/docs/{locale}/guides/` — guide pages (`introduction`, `installation`, `getting-started`, `navigation`, `card-boxes`, `browsing-cards`, `writing-and-organizing`). Distinctive feature docs live at `guides/card-boxes`.
+- `src/content/docs/{locale}/guides/` — guide pages (`introduction`, `installation`, `getting-started`, `navigation`, `property-filters`, `linked-notes`, `card-boxes`, `browsing-cards`, `writing-and-organizing`). Distinctive feature docs live alongside the navigation overview.
 - `src/content/docs/{locale}/reference/` — reference pages (`settings`, `commands-and-menus`, `limits-and-privacy`).
 - `src/components/` — Starlight component overrides plus `SiteHeader.astro`, the one header row rendered by both the docs `Header` override and the splash pages.
 - `src/components/landing/` — custom Astro landing components used only by the locale splash pages.
 - `src/styles/` — V2 Graphite Index tokens (`tokens.css`), the shared header (`header.css`), and Starlight chrome (`theme.css`); landing CSS is imported from the Landing component.
 - `src/assets/` — images referenced by content (e.g. `logo-light.svg`, `logo-dark.svg`).
-- `src/assets/media/` — product screenshots and landing clips (`overview.jpg`, `browse.mp4` + `browse-poster.webp`, `writing.mp4` + `writing-poster.webp`). Clips are H.264 MP4 only; no GIF and no WebM.
+- `src/assets/media/` — product screenshots and landing clips (`overview.jpg`, `property-filters.webp`, `linked-notes.webp`, `browse.mp4` + `browse-poster.webp`, `writing.mp4` + `writing-poster.webp`). Clips are H.264 MP4 only; no GIF and no WebM.
 - `src/pages/` — the root redirect (`index.astro`).
 - `public/` — static assets served as-is (`favicon.svg`, `og.png`).
 - `designs/` — design prototypes and design systems (one folder per project). Not served by Astro.
@@ -61,7 +61,7 @@ There is no lint or test script configured.
 - **Frontmatter**: every page has `title` + `description` (Starlight-required). Landing pages (`index.mdx`) use `template: splash` and omit the `hero` block; the body imports `<Landing locale="en" />` or `<Landing locale="zh" />`.
 - **Components**: custom Astro components under `src/components/landing/` for the splash only. Guide/reference pages are plain `.md` and do not import components.
 - **Product media**: `MediaShot.astro` wraps `astro:assets` `<Image>` for stills; `MediaClip.astro` wraps a muted looping `<video>` that only plays while onscreen, stays paused under `prefers-reduced-motion`, and always exposes a play/pause button. Alt text and captions come from `landing.ts`, never from the component. Re-encode new captures with `ffmpeg -vf "scale=1440:-2:flags=lanczos,fps=15" -c:v libx264 -crf 28 -preset slow -an -movflags +faststart`.
-- **Internal links**: use absolute paths including the base prefix and a trailing slash, e.g. `/card-workspace/en/guides/introduction/`.
+- **Internal doc links**: author standard Markdown links to relative `.md` files, e.g. `[Navigation](./navigation.md)` or `[Settings](../reference/settings.md)`. This keeps the same files navigable in Obsidian; `src/remark-obsidian-links.mjs` validates and rewrites them to base-prefixed, trailing-slash website routes at build time. Keep landing/component links on the existing `docsHref()` helpers.
 - **i18n**: sidebar labels carry `translations: { 'zh-CN': '...' }`; keep `en/` and `zh/` structures in sync when adding pages.
 - **Styling**: V2 Graphite Index tokens in `src/styles/`; Starlight `customCss` loads `./src/styles/theme.css` (which imports `tokens.css` and `header.css`). No Tailwind. Landing-scoped CSS is imported from the Landing component, not a second Starlight `customCss` entry.
 - **Header**: docs and splash pages render the same `SiteHeader.astro` row, styled only by `header.css`. Both are unstyled by Starlight's own header chrome — `SiteTitle`, `SocialIcons`, `ThemeSelect`, and `LanguageSelect` are never rendered, so `social`/`logo` config would have no effect. Docs add Pagefind's opener to the row; splash pages skip it.
@@ -70,6 +70,7 @@ There is no lint or test script configured.
 ## Important Files
 
 - `astro.config.mjs` — Starlight config: `site`, `base`, locales, sidebar, component overrides, `customCss`. Edit here to change navigation.
+- `src/remark-obsidian-links.mjs` — validates relative `.md` links and converts them to deployed Starlight routes.
 - `src/styles/theme.css` / `src/styles/tokens.css` / `src/styles/header.css` — Graphite Index theme for docs chrome and the shared header.
 - `src/components/landing/` — V2 splash composition imported by `index.mdx`.
 - `src/content.config.ts` — declares the `docs` collection using `docsLoader()` + `docsSchema()`.

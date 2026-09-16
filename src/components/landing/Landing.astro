@@ -66,21 +66,7 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
 
     <SectionRule />
 
-    <section class="cw-section" id="card-boxes" data-screen-label="Card boxes">
-      <div class="cw-wrap cw-feature-grid">
-        <div class="cw-feature-copy">
-          <p class="cw-kicker">{c.boxes.kicker}</p>
-          <h2>{c.boxes.title}</h2>
-          <p class="cw-section-body">{c.boxes.body}</p>
-          <p class="cw-support">{c.boxes.support}</p>
-        </div>
-        <CardBoxConcept copy={c.boxes} />
-      </div>
-    </section>
-
-    <SectionRule />
-
-    <section class="cw-section" id="browse" data-screen-label="Browsing loop">
+    <section class="cw-section" id="browse" data-screen-label="Gather context">
       <div class="cw-wrap cw-feature-grid cw-feature-grid--media-first">
         <MediaClip
           src={browseClip}
@@ -103,7 +89,21 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
 
     <SectionRule />
 
-    <section class="cw-section" id="drag" data-screen-label="Writing flow">
+    <section class="cw-section" id="card-boxes" data-screen-label="Organize views">
+      <div class="cw-wrap cw-feature-grid">
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.boxes.kicker}</p>
+          <h2>{c.boxes.title}</h2>
+          <p class="cw-section-body">{c.boxes.body}</p>
+          <p class="cw-support">{c.boxes.support}</p>
+        </div>
+        <CardBoxConcept copy={c.boxes} />
+      </div>
+    </section>
+
+    <SectionRule />
+
+    <section class="cw-section" id="drag" data-screen-label="Reframe in writing">
       <div class="cw-wrap cw-feature-grid">
         <div class="cw-feature-copy">
           <p class="cw-kicker">{c.drag.kicker}</p>

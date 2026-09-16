@@ -1,59 +1,61 @@
 ---
 title: Card boxes
-description: Save a topic collection with rules, hand-picked notes, its own sort, and its own pins.
+description: Save reusable collections with folder, tag, and property rules, plus their own arrangement.
+tags: [card-workspace, guides/organizing, features/card-boxes]
+workflow: [organize]
 ---
 
-A card box is a saved topic collection in the **Boxes** section. Use boxes when notes belong together conceptually but live in different folders — without moving files or maintaining an index note. Typical uses are research topics, long-running projects, and reading lists.
+A card box is a saved topic collection in the **Boxes** section. Use one when related notes live across folders, or when you want to preserve a useful view without moving files or maintaining an index note.
 
 ## Membership
 
-A note is in a box when it matches at least one rule, unless it was excluded by hand. A manually added note is included whether or not it matches a rule, and **manual inclusion wins over exclusion**.
+A note belongs to a box when it matches at least one rule, unless you removed it by hand. A manually added note is included whether or not it matches a rule, and **manual inclusion wins over exclusion**.
 
-Each **rule** is:
+Each rule contains:
 
-- a folder path (`""` is the vault root)
+- a folder path (`""` means the vault root)
 - whether to include subfolders
-- tags that all must match (AND inside a rule)
+- tags that all must match
+- property clauses that all must match
+- an optional rule name
 
-If a box has several rules, a note matches the box when it matches **any** of them (OR across rules). As the vault changes, notes that start matching a rule keep appearing; notes that stop matching drop out unless you added them by hand.
+Values inside one property clause use OR; separate property clauses, tags, and the folder scope combine with AND. If a box has several rules, matching **any** rule is enough. The [Property filters](./property-filters.md) guide explains the value model.
 
-Each box also keeps its own **sort** and **pinned** notes, separate from folder browsing.
+As your vault changes, notes enter or leave a rule-driven box automatically. Manually added and removed notes stay explicit until you change them.
 
-## Create a box
+Each box also keeps its own **sort**, **grouping**, collapsed groups, and **pinned notes**, separate from folder browsing.
 
-Right-click in **Boxes** and choose **New card box…**, or **Save current view as card box…** to store the folder-and-tag scope you are already browsing. Saving the current view also shows how many notes match before you confirm.
+## Create a box from a view
 
-## Add notes to a box
+Right-click in **Boxes** and choose **New card box…**, or choose **Save current view as card box…** while browsing a folder. The saved rule captures the current folder, include-subfolders choice, tags, and property filters; the dialog previews how many notes match.
 
-- Right-click a box and choose **Add current view to this card box** to append a rule from the folder and tags you are browsing.
+To preserve linked notes instead, use the snapshot action described in [Linked notes](./linked-notes.md). That creates a box with manually added members rather than a live link rule.
+
+## Add more to a box
+
+- Right-click a box and choose **Add current view to this card box** to append the folder, tag, and property rule you are browsing.
 - Right-click a card and choose **Add to card box**, including **New card box…**.
-- In **Bulk** mode, choose **Add to card box** to add the selection. See [Writing and organizing](/card-workspace/en/guides/writing-and-organizing/).
+- In **Bulk** mode, choose **Add to card box** to add the selection. See [Writing and organizing](./writing-and-organizing.md).
 
-If a box has no rules yet, the configure dialog points you to **Add current view to card box**.
+## Configure and arrange a box
 
-## Configure a box
+Right-click a box and choose **Configure card box…**. The dialog shows:
 
-Right-click a box and choose **Configure card box…**. The dialog has:
+- **Rules** — names, folders, subfolder choices, tags, and property conditions
+- **Sort** — the box’s card sort, independent of folder browsing
+- **Manually added** — notes included directly
+- **Removed notes** — exclusions that can be restored one at a time or all together
 
-- **Rules** — each rule’s folder, subfolder setting, and tags; remove a rule from here
-- **Sort** — that box’s sort, independent of folder browsing
-- **Manually added** — notes you added by hand; remove one to drop it from the box
-- **Removed notes** — notes you excluded; **Restore** one or **Restore all**
+Use **Sort & group** on the toolbar to group a box by folder, tag, task status, or card-box rule. Group order can follow the default sequence, name, or card count, in either direction.
 
-You can also **Restore N removed notes** from the box’s right-click menu when anything is excluded.
+## Remove notes and delete boxes
 
-## Remove a note from a box
+Inside a box, right-click a card and choose **Remove from card box**. The note is excluded from this box, not deleted from the vault. Restore it from the configuration dialog or the box menu.
 
-Inside a box, right-click a card and choose **Remove from card box**. The note is excluded from this box; it is not deleted from the vault. Restore it from the configure dialog or the box menu.
+Deleting a box removes only the box, its rules, and its saved arrangement. Your notes stay in the vault.
 
-An empty box shows: **This card box is empty. Add notes from the card list or add a rule.**
+## Filters and startup behavior
 
-## Tag filter in a box
+Browse tag and property filters are unavailable while a box is open because those conditions belong to its membership rules. Search still narrows the resulting box before pins and grouping are applied. See [Browsing cards](./browsing-cards.md).
 
-While a box is open, the browse tag filter is skipped. The stream is search, then pins. The UI shows **Tag filter is unavailable in a box**.
-
-On startup Card Workspace restores the last folder, not the last box. See [Getting started](/card-workspace/en/guides/getting-started/).
-
-## Deleting a box
-
-Deleting a box removes the box and its rules. Your notes are not deleted.
+On startup, Card Workspace restores the last folder rather than the last card box.

@@ -1,62 +1,55 @@
 ---
 title: Navigation
-description: Use Card Workspace’s two-column pane to switch folders, tags, boxes, and favorites.
+description: Use the two-column pane to move through favorites, folders, tags, properties, boxes, and links.
+tags: [card-workspace, guides/navigation]
+workflow: [gather]
 ---
 
-Card Workspace has its own two-column pane: a navigation column next to the card stream. You do not need Obsidian’s File Explorer to switch folders, tags, boxes, or favorites.
+Card Workspace has its own two-column pane: a navigation column next to the card stream. You do not need Obsidian’s File Explorer to move between structure, metadata, saved views, and note connections.
 
-## Section order
+## Sections
 
 The default order is:
 
 1. **Favorites**
 2. **Folders**
 3. **Tags**
-4. **Boxes**
+4. **Properties**
+5. **Boxes**
+6. **Links**
 
-Change that order in [Settings](/card-workspace/en/reference/settings/) under **Navigation section order**. Collapse state is remembered separately and is not affected.
+Right-click a section header and choose **Move section up** or **Move section down** to change the order. Each section remembers its collapsed state separately.
 
 ## Filter navigation
 
-Type in **Filter navigation…** to match folders, tags, boxes, and favorites by name. Chinese names work. Nested matches keep their ancestors visible. Press Escape or the clear button to empty the filter. If nothing matches, the pane shows **No navigation items found**.
+Type in **Filter navigation…** to match favorites, folders, tags, enabled property keys and values, card boxes, and the Outgoing links or Backlinks entries. Chinese names work. Nested matches keep their ancestors visible. Press Escape or use the clear button to empty the filter.
 
 ## Resize and collapse
 
-Drag the divider to resize the **navigation column** (default 240, minimum 160, maximum 480). That width is the nav column, not the cards. With the divider focused, arrow keys change the width by 8 pixels (Shift: 32 pixels); Home and End jump to the minimum and maximum.
+Drag the divider to resize the navigation column (default 240, minimum 160, maximum 480). With the divider focused, arrow keys change the width by 8 pixels (Shift: 32); Home and End jump to the limits.
 
-The header toggle **Collapse navigation** hides the nav column so the cards use the full panel width. When the panel is too narrow for two columns — shell width less than the nav column width plus 304 — the layout becomes a single pane. The same toggle then swaps between navigation and cards (**Back to cards**).
+The header action **Collapse navigation** gives the cards the full panel width. When the panel is too narrow for two columns, the layout becomes a single pane and the same action swaps between navigation and cards.
 
-## Folders
+## Folders and tags
 
-Click a folder to browse its cards. Folder scope can include subfolders (on by default). Toggle that from the **Folders** section header or that section’s right-click menu. The option is disabled while you are inside a card box.
+Click a folder to browse its cards. Folder scope includes subfolders by default; change that from the **Folders** header or its right-click menu. Right-click **Search in folder** to select the folder and focus the in-panel search described in [Browsing cards](./browsing-cards.md).
 
-Right-click **Search in folder** selects that folder and focuses the in-panel **Search notes** field. It does not open Obsidian’s core Search. See [Browsing cards](/card-workspace/en/guides/browsing-cards/).
+Click a tag to filter the folder stream. Ctrl-click on Windows/Linux or Cmd-click on macOS adds or removes a tag; several tags use AND matching. Parent tags include their descendants. Tag menus can also create a note with that tag, rename it across references, or delete it after confirmation.
 
-## Tags
+## Properties and links
 
-Tags come from frontmatter and inline `#tags` through Obsidian’s tag index. Click a tag to select it. Click the only selected tag again to clear the filter. Hold Ctrl (Windows/Linux) or Cmd (macOS) and click — or press Space on a focused tag — to add or remove extra tags.
+The **Properties** section is empty until you choose the frontmatter keys worth keeping visible. Expanding a key reveals its values and lets you filter the stream. See [Property filters](./property-filters.md).
 
-Several selected tags are combined with **AND**: a note must have every selected tag. A parent tag also matches notes tagged with its descendants — for example `#project` includes `#project/alpha`.
+The **Links** section has two fixed entries: **Outgoing links** and **Backlinks**. They follow the active note unless you pin the source. See [Linked notes](./linked-notes.md).
 
-Right-click **New note with this tag** to create a note in the current folder with that tag already applied. See [Writing and organizing](/card-workspace/en/guides/writing-and-organizing/).
+## Favorites and boxes
 
-## Favorites
+You can favorite a folder, file, tag, or card box. Favorites are grouped by kind and can be reordered by dragging or with their menus. A file favorite opens the note without replacing the current card source.
 
-You can favorite a folder, file, tag, or box. Favorites are grouped by kind and can be reordered within the same kind.
+[Card boxes](./card-boxes.md) are reusable topic collections with their own rules and arrangement. Opening one replaces the current source until you choose another folder, box, or linked-note direction.
 
-Clicking a favorite:
+## Counts and keyboard navigation
 
-- **Folder** — browse that folder
-- **Tag** — browse the vault root with that one tag selected
-- **Box** — open that card box
-- **File** — open the note without changing the current folder or box
+Navigation counts are off by default. Enable **Show item counts in navigation** in [Settings](../reference/settings.md). Hover tooltips still describe folder and tag counts when badges are hidden; active tag and property-filter summaries remain visible.
 
-Missing items show **(missing)**. An empty section reads **No favorites yet — right-click an item to add one**.
-
-## Counts, collapse, and keyboard
-
-Item counts in the navigation pane are off by default. Turn them on in [Settings](/card-workspace/en/reference/settings/) with **Show item counts in navigation**. Hovering a row still shows a count tooltip (files and child folders or subtags) even when the badges are hidden.
-
-Collapse a section from its header or **Collapse section**. Right-click a section for **Expand all folders** / **Collapse all folders**, or the matching tag-tree actions.
-
-On the tree: Up, Down, Home, and End move the focus; Right and Left expand or collapse; Enter activates; Space additive-selects a tag; Shift+F10 or the context-menu key opens the menu.
+In the navigation tree, use arrow keys, Home, and End to move focus; Left and Right collapse or expand; Enter activates; Space additively toggles a tag or property value; Shift+F10 or the Menu key opens the context menu.

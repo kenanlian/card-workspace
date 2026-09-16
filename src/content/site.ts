@@ -2,7 +2,7 @@
 
 export type Locale = 'en' | 'zh';
 
-export const VERSION = '1.1.8';
+export const VERSION = '1.2.1';
 
 /* Must match `base` in astro.config.mjs. */
 export const BASE = '/card-workspace';

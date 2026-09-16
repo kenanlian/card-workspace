@@ -20,12 +20,16 @@ const { copy: c } = Astro.props;
   <div class="cw-box-model__rules">
     <div class="cw-rule">
       <span class="cw-rule__number">01</span>
-      <div class="cw-rule__operand"><span>{c.ruleOne}</span><b>{c.and}</b><span>#method</span></div>
+      <div class="cw-rule__operand">
+        <span>{c.ruleOne}</span><b>{c.and}</b><span>#method</span><b>{c.and}</b><span>{c.ruleOneProperty}</span>
+      </div>
     </div>
     <span class="cw-rule__or">{c.or}</span>
     <div class="cw-rule">
       <span class="cw-rule__number">02</span>
-      <div class="cw-rule__operand"><span>{c.ruleTwo}</span><b>{c.and}</b><span>#fieldwork</span></div>
+      <div class="cw-rule__operand">
+        <span>{c.ruleTwo}</span><b>{c.and}</b><span>#fieldwork</span><b>{c.and}</b><span>{c.ruleTwoProperty}</span>
+      </div>
     </div>
   </div>
 

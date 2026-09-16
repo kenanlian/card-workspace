@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { unified } from '@astrojs/markdown-remark';
 import starlight from '@astrojs/starlight';
+import remarkObsidianLinks from './src/remark-obsidian-links.mjs';
 
 // NOTE: Replace `kenanlian` below with your actual GitHub username.
 // For a GitHub *project* site the URL is:
@@ -12,10 +14,15 @@ const BASE = '/card-workspace';
 export default defineConfig({
   site: SITE,
   base: BASE,
+  markdown: {
+    processor: unified({
+      remarkPlugins: [[remarkObsidianLinks, { base: BASE }]],
+    }),
+  },
   integrations: [
     starlight({
       title: 'Card Workspace',
-      description: 'Browse your vault as cards in Obsidian’s sidebar.',
+      description: 'Gather, organize, and reframe your Obsidian notes as a contextual card stream beside the editor.',
       // The docs header is the landing page's header. `Header` renders the
       // shared row — brand, version pill, and one row of tools — which replaces
       // Starlight's site title, social icons, and theme/language pickers, so
@@ -74,6 +81,16 @@ export default defineConfig({
               label: 'Navigation',
               translations: { 'zh-CN': '导航' },
               slug: 'guides/navigation',
+            },
+            {
+              label: 'Property filters',
+              translations: { 'zh-CN': '属性筛选' },
+              slug: 'guides/property-filters',
+            },
+            {
+              label: 'Linked notes',
+              translations: { 'zh-CN': '双链导航' },
+              slug: 'guides/linked-notes',
             },
             {
               label: 'Card boxes',

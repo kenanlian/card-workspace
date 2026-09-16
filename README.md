@@ -9,7 +9,7 @@ bilingual (English / 简体中文), and deployed to GitHub Pages.
 Replace `kenanlian` in these files with your real GitHub username:
 
 - `astro.config.mjs` — `site`, `social` link
-- `src/content/docs/**` — GitHub links and any absolute in-page links
+- `src/content/site.ts` — shared repository and release links
 
 The site is configured as a **project site**, served at:
 
@@ -53,6 +53,8 @@ src/content/docs/
 │   │   ├── installation.md
 │   │   ├── getting-started.md
 │   │   ├── navigation.md
+│   │   ├── property-filters.md
+│   │   ├── linked-notes.md
 │   │   ├── card-boxes.md
 │   │   ├── browsing-cards.md
 │   │   └── writing-and-organizing.md
@@ -69,3 +71,8 @@ src/content/docs/
 Splash landing components live in `src/components/landing/`. V2 Graphite Index tokens and Starlight chrome live in `src/styles/`. Guide pages include `guides/card-boxes`. `designs/` is a prototype tree and is not deployed.
 
 Navigation labels and translations live in the `sidebar` config in `astro.config.mjs`.
+
+Documentation pages use relative Markdown links to their `.md` source files so
+the same tree can be opened as an Obsidian vault. `src/remark-obsidian-links.mjs`
+validates those targets and rewrites them to deployed Starlight routes during
+the build.

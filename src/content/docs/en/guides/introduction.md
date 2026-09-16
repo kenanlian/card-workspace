@@ -1,31 +1,30 @@
 ---
 title: Introduction
-description: What Card Workspace is, what it is not, and who it is for.
+description: What Card Workspace is, how it gathers note context, and who it is for.
+tags: [card-workspace, guides/getting-started]
+workflow: [gather, organize, reframe]
 ---
 
-Card Workspace is a **left-sidebar** [Obsidian](https://obsidian.md/) plugin that shows notes as a card stream. Each card shows a title and a Markdown-stripped excerpt so you can scan a folder, a tag filter, or a card box without reading a plain file list.
+Card Workspace is a **left-sidebar** [Obsidian](https://obsidian.md/) plugin that turns notes into a readable card stream beside the editor. Each Markdown card shows a title and a formatting-free excerpt, so you can understand a set of notes without reducing it to filenames.
 
-It is not Obsidian Canvas, and it is not a board you arrange by dragging cards around. Click a card to open the note. As you switch notes in the editor, the matching card is selected. Notes stay Markdown files (and other supported files) in your vault.
+The stream can come from a folder, a card box, or the outgoing links and backlinks around a note. Tags, properties, and local search then narrow what you see. The [navigation guide](./navigation.md) explains how those sources stay together in one compact pane.
 
-## What you browse
+It is not Obsidian Canvas, and it is not a board where dragging cards changes your vault structure. Click a card to open its note; switch notes in the editor and the matching card is selected. Your Markdown and other supported files stay in their original folders.
 
-Scope is one of:
+## A three-part workflow
 
-- a **folder**, optionally including subfolders
-- a **tag filter**
-- a **card box** — a saved topic collection with its own rules, sort, and pins
+- **Gather** — browse folders and tags, filter by frontmatter properties, or follow linked notes.
+- **Organize** — sort, group, pin, and save a useful view as a [card box](./card-boxes.md).
+- **Reframe** — open context beside your work or drag a card into the note you are writing.
 
 ## Who it is for
 
-Card Workspace is for scanning and collecting notes beside the editor: research topics, long-running projects, reading lists, and any set of notes that spans folders. It is a sidebar card stream, not a canvas or a query language.
+Card Workspace is for people who scan and collect notes while writing: research topics, long-running projects, reading lists, and any body of work that crosses folder boundaries. It gives you direct controls instead of introducing another query language.
 
 ## Requirements
 
-- **Desktop only.** Card Workspace is unavailable on mobile.
+- **Desktop only.** Mobile is not supported.
 - **Obsidian 1.9.0 or later**, because card support for Bases depends on that version.
-- The plugin UI follows Obsidian’s language: Simplified Chinese when that language starts with `zh`, otherwise English.
+- The interface follows Obsidian’s language: Simplified Chinese for languages beginning with `zh`, otherwise English.
 
-## Next steps
-
-- [Install the plugin](/card-workspace/en/guides/installation/)
-- [Get started](/card-workspace/en/guides/getting-started/)
+Continue with [Installation](./installation.md), then [Getting started](./getting-started.md).
