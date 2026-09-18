@@ -11,6 +11,12 @@ import SectionRule from './SectionRule.astro';
 import overview from '../../assets/media/overview.jpg';
 import browseClip from '../../assets/media/browse.mp4';
 import browsePoster from '../../assets/media/browse-poster.webp';
+import searchClip from '../../assets/media/search.mp4';
+import searchPoster from '../../assets/media/search-poster.webp';
+import linksClip from '../../assets/media/bidirectional-links.mp4';
+import linksPoster from '../../assets/media/bidirectional-links-poster.webp';
+import batchClip from '../../assets/media/batch.mp4';
+import batchPoster from '../../assets/media/batch-poster.webp';
 import writingClip from '../../assets/media/writing.mp4';
 import writingPoster from '../../assets/media/writing-poster.webp';
 
@@ -66,24 +72,24 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
 
     <SectionRule />
 
-    <section class="cw-section" id="browse" data-screen-label="Gather context">
-      <div class="cw-wrap cw-feature-grid cw-feature-grid--media-first">
+    <section class="cw-section" id="gather" data-screen-label="Gather from vault structure">
+      <div class="cw-wrap cw-feature-grid">
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.gather.kicker}</p>
+          <h2>{c.gather.title}</h2>
+          <p class="cw-section-body">{c.gather.body}</p>
+          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '浏览能力' : 'Browsing capabilities'}>
+            {c.gather.labels.map((label) => <li>{label}</li>)}
+          </ul>
+        </div>
         <MediaClip
           src={browseClip}
           poster={browsePoster}
-          alt={c.browse.mediaAlt}
-          caption={c.browse.mediaCaption}
+          alt={c.gather.mediaAlt}
+          caption={c.gather.caption}
           playLabel={c.clipPlayLabel}
           pauseLabel={c.clipPauseLabel}
         />
-        <div class="cw-feature-copy">
-          <p class="cw-kicker">{c.browse.kicker}</p>
-          <h2>{c.browse.title}</h2>
-          <p class="cw-section-body">{c.browse.body}</p>
-          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '浏览能力' : 'Browsing capabilities'}>
-            {c.browse.labels.map((label) => <li>{label}</li>)}
-          </ul>
-        </div>
       </div>
     </section>
 
@@ -121,6 +127,100 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
           playLabel={c.clipPlayLabel}
           pauseLabel={c.clipPauseLabel}
         />
+      </div>
+    </section>
+
+    <SectionRule />
+
+    <section class="cw-section" id="search" data-screen-label="Local full-text search">
+      <div class="cw-wrap cw-feature-grid cw-feature-grid--visual-first">
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.search.kicker}</p>
+          <h2>{c.search.title}</h2>
+          <p class="cw-section-body">{c.search.body}</p>
+          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '搜索能力' : 'Search capabilities'}>
+            {c.search.labels.map((label) => <li>{label}</li>)}
+          </ul>
+        </div>
+        <MediaClip
+          src={searchClip}
+          poster={searchPoster}
+          alt={c.search.mediaAlt}
+          caption={c.search.caption}
+          playLabel={c.clipPlayLabel}
+          pauseLabel={c.clipPauseLabel}
+        />
+      </div>
+    </section>
+
+    <SectionRule />
+
+    <section class="cw-section" id="linked-notes" data-screen-label="Linked-note context">
+      <div class="cw-wrap cw-feature-grid">
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.links.kicker}</p>
+          <h2>{c.links.title}</h2>
+          <p class="cw-section-body">{c.links.body}</p>
+          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '双链能力' : 'Linked-note capabilities'}>
+            {c.links.labels.map((label) => <li>{label}</li>)}
+          </ul>
+        </div>
+        <MediaClip
+          src={linksClip}
+          poster={linksPoster}
+          alt={c.links.mediaAlt}
+          caption={c.links.caption}
+          playLabel={c.clipPlayLabel}
+          pauseLabel={c.clipPauseLabel}
+        />
+      </div>
+    </section>
+
+    <SectionRule />
+
+    <section class="cw-section" id="bulk" data-screen-label="Bulk organization">
+      <div class="cw-wrap cw-feature-grid cw-feature-grid--visual-first">
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.bulk.kicker}</p>
+          <h2>{c.bulk.title}</h2>
+          <p class="cw-section-body">{c.bulk.body}</p>
+          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '批量选择方式' : 'Bulk selection methods'}>
+            {c.bulk.selectionModes.map((label) => <li>{label}</li>)}
+          </ul>
+          <ul class="cw-bulk-actions" aria-label={locale === 'zh' ? '批量操作' : 'Bulk actions'}>
+            {c.bulk.actions.map((action) => <li>{action}</li>)}
+          </ul>
+        </div>
+        <MediaClip
+          src={batchClip}
+          poster={batchPoster}
+          alt={c.bulk.mediaAlt}
+          caption={c.bulk.caption}
+          playLabel={c.clipPlayLabel}
+          pauseLabel={c.clipPauseLabel}
+        />
+      </div>
+    </section>
+
+    <SectionRule />
+
+    <section class="cw-details" id="daily-details" data-screen-label="Daily experience details">
+      <div class="cw-wrap">
+        <header class="cw-details__head">
+          <div>
+            <p class="cw-kicker">{c.details.kicker}</p>
+            <h2>{c.details.title}</h2>
+          </div>
+          <p>{c.details.body}</p>
+        </header>
+        <ol class="cw-detail-grid">
+          {c.details.items.map((item, index) => (
+            <li>
+              <span>0{index + 1}</span>
+              <div><h3>{item.title}</h3><p>{item.body}</p></div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
 

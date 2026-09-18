@@ -1,0 +1,40 @@
+---
+import type { LandingCopy } from '../../content/landing';
+
+interface Props {
+  copy: LandingCopy['links'];
+}
+
+const { copy: c } = Astro.props;
+---
+
+<figure class="cw-concept cw-links-model" aria-labelledby="cw-links-title" aria-describedby="cw-links-caption">
+  <header class="cw-concept__head cw-links-model__head">
+    <div>
+      <span class="cw-media__label">{c.conceptLabel}</span>
+      <h3 id="cw-links-title">{c.source}</h3>
+    </div>
+    <div class="cw-source-state">
+      <span>{c.following}</span>
+      <strong>{c.pinned}</strong>
+    </div>
+  </header>
+
+  <div class="cw-links-model__bar">
+    <span class="cw-links-model__source">{c.sourceLabel}</span>
+    <div class="cw-tab-pair" aria-label={c.conceptLabel}>
+      <strong>{c.outgoing}</strong>
+      <span>{c.backlinks}</span>
+    </div>
+  </div>
+
+  <div class="cw-links-model__search">{c.searchLabel}</div>
+
+  <ol class="cw-linked-results">
+    <li><strong>{c.resultOne}</strong><span>{c.resultOneMeta}</span></li>
+    <li><strong>{c.resultTwo}</strong><span>{c.resultTwoMeta}</span></li>
+  </ol>
+
+  <div class="cw-links-model__save"><span>{c.saveLabel}</span></div>
+  <figcaption id="cw-links-caption">{c.caption}</figcaption>
+</figure>

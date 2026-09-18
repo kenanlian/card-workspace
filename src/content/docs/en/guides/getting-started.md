@@ -10,7 +10,7 @@ Open the panel, choose where the cards come from, and refine the result only whe
 ## Open the view
 
 1. Select the ribbon icon **Open Card Workspace**, or run **Open Card Workspace view** from the command palette. The panel opens in the **left sidebar**.
-2. Pick a folder, tag, property value, or card box in the [navigation pane](./navigation.md). To start from the note you are reading, choose its outgoing links or backlinks.
+2. Pick a folder in the [navigation pane](./navigation.md), then narrow it with tags or property values. You can also switch the source to a card box, or start from the note you are reading with its outgoing links or backlinks.
 3. Browse the card stream. Use search, sorting, grouping, or pins to shape the view; click a card to open its note.
 4. Right-click a navigation item or card for more actions. Drag a Markdown card into an open editor to insert a link or content.
 

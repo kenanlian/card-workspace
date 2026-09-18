@@ -1,0 +1,40 @@
+---
+import type { LandingCopy } from '../../content/landing';
+
+interface Props {
+  copy: LandingCopy['search'];
+}
+
+const { copy: c } = Astro.props;
+---
+
+<figure class="cw-concept cw-search-model" aria-labelledby="cw-search-title" aria-describedby="cw-search-caption">
+  <header class="cw-concept__head">
+    <span class="cw-media__label" id="cw-search-title">{c.conceptLabel}</span>
+    <span class="cw-search-model__status">{c.localLabel}</span>
+  </header>
+
+  <div class="cw-search-field">
+    <span>{c.queryLabel}</span>
+    <strong>{c.query}</strong>
+  </div>
+
+  <ol class="cw-search-results">
+    <li>
+      <div>
+        <h3>{c.resultOneTitle}</h3>
+        <span>{c.resultOneCount}</span>
+      </div>
+      <p>{c.resultOneBefore}<mark>{c.resultOneHit}</mark>{c.resultOneAfter}</p>
+    </li>
+    <li>
+      <div>
+        <h3>{c.resultTwoTitle}</h3>
+        <span>{c.resultTwoCount}</span>
+      </div>
+      <p>{c.resultTwoBefore}<mark>{c.resultTwoHit}</mark>{c.resultTwoAfter}</p>
+    </li>
+  </ol>
+
+  <figcaption id="cw-search-caption">{c.caption}</figcaption>
+</figure>

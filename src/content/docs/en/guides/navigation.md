@@ -38,7 +38,7 @@ Click a tag to filter the folder stream. Ctrl-click on Windows/Linux or Cmd-clic
 
 ## Properties and links
 
-The **Properties** section is empty until you choose the frontmatter keys worth keeping visible. Expanding a key reveals its values and lets you filter the stream. See [Property filters](./property-filters.md).
+The **Properties** section is empty until you choose the frontmatter keys worth keeping visible. While a folder source is open, expanding a key reveals its values and lets you filter the stream. Tag and property rows are unavailable in card-box and linked-note sources; existing folder filters stay dormant there and resume when you return to a folder. See [Property filters](./property-filters.md).
 
 The **Links** section has two fixed entries: **Outgoing links** and **Backlinks**. They follow the active note unless you pin the source. See [Linked notes](./linked-notes.md).
 

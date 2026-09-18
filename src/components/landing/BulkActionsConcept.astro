@@ -1,0 +1,43 @@
+---
+import type { LandingCopy } from '../../content/landing';
+
+interface Props {
+  copy: LandingCopy['bulk'];
+}
+
+const { copy: c } = Astro.props;
+---
+
+<figure class="cw-concept cw-bulk-model" aria-labelledby="cw-bulk-title" aria-describedby="cw-bulk-caption">
+  <header class="cw-concept__head">
+    <div>
+      <span class="cw-media__label">{c.conceptLabel}</span>
+      <h3 id="cw-bulk-title">{c.selectedLabel}</h3>
+    </div>
+    <span class="cw-concept__count">{c.selectedCount}</span>
+  </header>
+
+  <div class="cw-bulk-model__workspace">
+    <ul class="cw-selection-stack" aria-label={c.selectedLabel}>
+      <li><span aria-hidden="true"></span><strong>{c.selectionOne}</strong></li>
+      <li><span aria-hidden="true"></span><strong>{c.selectionTwo}</strong></li>
+      <li class="cw-selection-stack__more">+ 4</li>
+    </ul>
+
+    <div class="cw-merge-preview">
+      <div class="cw-merge-preview__head">
+        <strong>{c.mergeTitle}</strong>
+        <span>{c.previewLabel}</span>
+      </div>
+      <dl>
+        <div><dt>{c.mergeFromLabel}</dt><dd>{c.mergeFrom}</dd></div>
+        <div><dt>{c.mergeToLabel}</dt><dd>{c.mergeTo}</dd></div>
+      </dl>
+      <div class="cw-merge-preview__paper">
+        {c.previewLines.map((line) => <span>{line}</span>)}
+      </div>
+    </div>
+  </div>
+
+  <figcaption id="cw-bulk-caption">{c.caption}</figcaption>
+</figure>

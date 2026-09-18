@@ -1,6 +1,6 @@
 ---
 title: 属性筛选
-description: 选择有用的 frontmatter 属性，并按其值筛选当前卡片来源。
+description: 选择有用的 frontmatter 属性，并按其值筛选文件夹中的卡片。
 tags: [card-workspace, guides/navigation, features/properties]
 workflow: [gather, organize]
 ---
@@ -33,7 +33,11 @@ workflow: [gather, organize]
 
 ## 不同来源中的可用性
 
-属性筛选适用于文件夹来源和[双链来源](./linked-notes.md)。进入卡片盒后它不可作为临时浏览筛选使用，因为属性条件已经参与卡片盒的成员规则。
+属性筛选仅适用于文件夹来源。
+
+在卡片盒和[双链来源](./linked-notes.md)中，它不可作为临时浏览筛选使用；已有的文件夹属性条件会暂时停用，条件存在时会显示筛选已暂停的提示，返回文件夹后会恢复生效。
+
+卡片盒自身的成员规则仍可包含属性条件；这些条件用于决定成员，而不是临时浏览筛选。
 
 把文件夹视角保存或加入[卡片盒](./card-boxes.md)时，当前属性条件会与文件夹和标签一起写入新规则。
 

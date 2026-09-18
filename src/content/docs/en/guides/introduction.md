@@ -7,13 +7,13 @@ workflow: [gather, organize, reframe]
 
 Card Workspace is a **left-sidebar** [Obsidian](https://obsidian.md/) plugin that turns notes into a readable card stream beside the editor. Each Markdown card shows a title and a formatting-free excerpt, so you can understand a set of notes without reducing it to filenames.
 
-The stream can come from a folder, a card box, or the outgoing links and backlinks around a note. Tags, properties, and local search then narrow what you see. The [navigation guide](./navigation.md) explains how those sources stay together in one compact pane.
+The stream can come from a folder, a card box, or the outgoing links and backlinks around a note. Local search works in every source; tag and property browse filters narrow folder sources only. The [navigation guide](./navigation.md) explains how those sources stay together in one compact pane.
 
 It is not Obsidian Canvas, and it is not a board where dragging cards changes your vault structure. Click a card to open its note; switch notes in the editor and the matching card is selected. Your Markdown and other supported files stay in their original folders.
 
 ## A three-part workflow
 
-- **Gather** — browse folders and tags, filter by frontmatter properties, or follow linked notes.
+- **Gather** — browse folders with tags and frontmatter properties, or follow linked notes.
 - **Organize** — sort, group, pin, and save a useful view as a [card box](./card-boxes.md).
 - **Reframe** — open context beside your work or drag a card into the note you are writing.
 

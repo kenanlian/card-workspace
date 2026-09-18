@@ -1,6 +1,6 @@
 ---
 title: Property filters
-description: Choose useful frontmatter properties and filter a card source by their values.
+description: Choose useful frontmatter properties and filter folder cards by their values.
 tags: [card-workspace, guides/navigation, features/properties]
 workflow: [gather, organize]
 ---
@@ -33,7 +33,13 @@ Property facets are calculated from the unfiltered source, so choosing one value
 
 ## Availability by source
 
-Property filters work for folder sources and [linked-note sources](./linked-notes.md). They are unavailable while a card box is open because property clauses already participate in the box’s membership rules.
+Property filters are available only in folder sources.
+
+They are unavailable in card boxes and [linked-note sources](./linked-notes.md).
+
+Existing folder property clauses stay dormant there, show a paused-filter hint when applicable, and resume when you return to a folder.
+
+A card box’s membership rules can still include property clauses; those rules determine its members rather than acting as a temporary browse filter.
 
 When you save or add a folder view to a [card box](./card-boxes.md), its active property clauses become part of the new rule together with the folder and tags.
 

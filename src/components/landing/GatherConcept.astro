@@ -1,0 +1,42 @@
+---
+import type { LandingCopy } from '../../content/landing';
+
+interface Props {
+  copy: LandingCopy['gather'];
+}
+
+const { copy: c } = Astro.props;
+---
+
+<figure class="cw-concept cw-gather-model" aria-labelledby="cw-gather-title" aria-describedby="cw-gather-caption">
+  <header class="cw-concept__head">
+    <div>
+      <span class="cw-media__label">{c.conceptLabel}</span>
+      <h3 id="cw-gather-title">{c.conceptTitle}</h3>
+    </div>
+    <span class="cw-concept__count">{c.resultCount}</span>
+  </header>
+
+  <dl class="cw-filter-stack">
+    <div class="cw-filter-row cw-filter-row--source">
+      <dt>{c.folderLabel}</dt>
+      <dd>
+        <strong>{c.folder}</strong>
+        <span>{c.scope}</span>
+      </dd>
+    </div>
+    <div class="cw-filter-row">
+      <dt>{c.tagLabel}</dt>
+      <dd><code>{c.tag}</code></dd>
+    </div>
+    <div class="cw-filter-row">
+      <dt>{c.propertyLabel}</dt>
+      <dd><code>{c.property}</code></dd>
+    </div>
+  </dl>
+
+  <div class="cw-stream-lines" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <figcaption id="cw-gather-caption">{c.caption}</figcaption>
+</figure>

@@ -25,7 +25,7 @@ Click a card to open its note. Switch notes in the editor and a matching card is
 
 The toolbar action **Toggle search** opens **Search notes** for the current folder, card box, outgoing-links source, or backlinks source. Matching text is highlighted on Markdown cards with a per-note hit count.
 
-- An empty query shows the current source after its active filters.
+- An empty query shows the current source after any browse filters that apply to it.
 - A non-empty query waits for the local index. Until it is ready, the panel reports that search is blocked.
 - Markdown titles and bodies are indexed; frontmatter is not. Other supported card types use their title.
 - Chinese search uses characters and adjacent character pairs. Pinyin is not indexed.
@@ -47,12 +47,12 @@ Order groups by the default sequence, name, or card count, ascending or descendi
 
 ## Pins
 
-Use **Pin note** or **Unpin note** on a card to keep it at the top. Pins do not bypass search, tag filters, or [property filters](./property-filters.md); they only reorder cards that already match.
+Use **Pin note** or **Unpin note** on a card to keep it at the top. Pins do not bypass search or any browse filters that apply to the source; they only reorder cards that already match.
 
 Folder and linked-note sources share global pins. Every card box has its own pinned list.
 
 ## Browse filters
 
-Tags filter folder sources and combine with AND. Parent tags include descendant tags. Property filters work for folders and linked-note sources, with OR inside one property and AND across properties.
+Tag and property browse filters are available only in folder sources. Tags combine with AND, and parent tags include descendant tags. Property filters use OR inside one property and AND across properties.
 
-Tag and property browse filters are unavailable in a card box because the box applies those clauses while determining membership. Tag filters are also unavailable for linked-note sources, where property filters remain available.
+Card boxes and link-based streams do not apply either browse filter. Existing folder tag or property selections stay dormant there; when applicable, Card Workspace shows a paused-filter hint, and the selections resume when you return to a folder. A card box’s own membership rules can still include tag or property clauses.
