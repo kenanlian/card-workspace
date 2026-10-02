@@ -21,6 +21,12 @@ Markdown cards receive full previews and full-text search. Other supported kinds
 
 [Linked notes](../guides/linked-notes.md) use Obsidian’s resolved link graph and include only destinations that resolve to supported card files. The source note itself is excluded; unresolved links do not become placeholder cards.
 
+## Image limits and local caching
+
+[Card images](../guides/browsing-cards.md#card-images) use local attachments referenced in Markdown bodies; image attachments do not become standalone cards or enter the search index. Originals are limited to **50,000,000 bytes** and **50,000,000 pixels**. The thumbnail preserves aspect ratio, does not enlarge small originals, and has a maximum edge of **1024 pixels**.
+
+The plugin keeps at most **64 thumbnails / 16 MiB** in memory and **2000 thumbnails / 256 MiB** in a separate, per-vault IndexedDB cache. Matching cached thumbnails avoid rereading the original attachment. If persistent storage fails, bounded memory caching remains available. If the thumbnail Worker is unavailable, only existing cached thumbnails can be displayed; the plugin does not fall back to displaying the original image.
+
 ## Privacy
 
 All processing remains local. The plugin makes no external network requests. File operations use Obsidian’s Vault and FileManager APIs; the bundled search engine stores its local index in IndexedDB. Source notes stay in their existing vault folders.

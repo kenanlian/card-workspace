@@ -5,9 +5,11 @@ tags: [card-workspace, guides/getting-started]
 workflow: [gather, organize, reframe]
 ---
 
-Card Workspace is a **left-sidebar** [Obsidian](https://obsidian.md/) plugin that turns notes into a readable card stream beside the editor. Each Markdown card shows a title and a formatting-free excerpt, so you can understand a set of notes without reducing it to filenames.
+Card Workspace is a **left-sidebar** [Obsidian](https://obsidian.md/) plugin that turns notes into a readable card stream beside the editor. Each Markdown card shows a title and a light excerpt with cues for links, lists, and tasks, so you can understand a set of notes without reducing it to filenames.
 
 The stream can come from a folder, a card box, or the outgoing links and backlinks around a note. Local search works in every source; tag and property browse filters narrow folder sources only. The [navigation guide](./navigation.md) explains how those sources stay together in one compact pane.
+
+In 1.3.4, Markdown cards also show a [local image preview](./browsing-cards.md#card-images) when the note body embeds a supported image. Right-side thumbnails are enabled by default; choose an image below the title or turn images off in Settings.
 
 It is not Obsidian Canvas, and it is not a board where dragging cards changes your vault structure. Click a card to open its note; switch notes in the editor and the matching card is selected. Your Markdown and other supported files stay in their original folders.
 
@@ -27,4 +29,4 @@ Card Workspace is for people who scan and collect notes while writing: research 
 - **Obsidian 1.9.0 or later**, because card support for Bases depends on that version.
 - The interface follows Obsidian’s language: Simplified Chinese for languages beginning with `zh`, otherwise English.
 
-Continue with [Installation](./installation.md), then [Getting started](./getting-started.md).
+Continue with [Installation](./installation.md), then [Getting started](./getting-started.md). Returning users can read [1.3.4: Card images](../updates/1-3-4.md) for the latest changes, or [1.2.7–1.3.3](../updates/1-2-7-to-1-3-3.md) for property grouping, contextual previews, and opening at link locations.

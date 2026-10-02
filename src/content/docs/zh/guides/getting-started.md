@@ -14,6 +14,20 @@ workflow: [gather, organize, reframe]
 3. 浏览卡片流；用搜索、排序、分组或置顶整理视角，再点击卡片打开笔记。
 4. 右键导航条目或卡片可使用更多操作。把 Markdown 卡片拖入已打开的编辑器，可以插入链接或内容。
 
+<figure class="cw-doc-shot" id="screenshot-workspace-overview">
+<div class="cw-doc-shot__light">
+
+![Obsidian 左侧显示 Card Workspace 导航与库根目录的卡片流，右侧编辑器打开选中的 getting-started 笔记。](../../../../assets/media/navigation-favorites-zh.webp)
+
+</div>
+<div class="cw-doc-shot__dark">
+
+![Obsidian 左侧显示 Card Workspace 导航与库根目录的卡片流，右侧编辑器打开选中的 getting-started 笔记。](../../../../assets/media/navigation-favorites-zh-dark.webp)
+
+</div>
+<figcaption>Card Workspace 位于编辑器旁：选择文件夹、浏览卡片，点击卡片即可打开笔记并保留卡片流。</figcaption>
+</figure>
+
 ## 建议的第一次体验
 
 沿三段工作流各试一次：

@@ -11,7 +11,7 @@ workflow: [organize, reframe]
 
 直接点击使用 **卡片默认打开方式**。默认会尽量复用未固定的根编辑器标签页，否则打开新标签页。其他选择是新标签页、右侧分栏或新窗口，详见[设置](../reference/settings.md)。
 
-从[双链导航](./linked-notes.md)打开卡片时，可以把来源笔记固定在 Card Workspace 中，一边检查上下文一边继续写作。
+从[双链导航](./linked-notes.md)打开卡片时，可以把来源笔记固定在 Card Workspace 中，一边检查上下文一边继续写作。开启 **双链卡片点击定位** 后，打开卡片还会跳到摘要对应的引用或搜索命中位置，详见[设置](../reference/settings.md)。
 
 ## 拖入 Markdown 编辑器
 
@@ -35,6 +35,8 @@ workflow: [organize, reframe]
 
 卡片菜单可以选择打开位置；复制、移动、重命名或删除文件；管理收藏和卡片盒成员；Markdown 卡片还可以复制内容或编辑标签。完整清单见[命令与菜单](../reference/commands-and-menus.md)。
 
+复制 Markdown 内容时会跳过顶部 frontmatter，得到正文；文件副本仍保留原始文件内容。
+
 ## 批量模式
 
 打开 **批量**，点击卡片即可切换选中；Shift+点击从上次选中的卡片开始连选。
@@ -46,7 +48,7 @@ workflow: [organize, reframe]
 - 删除所选笔记
 - 合并所选 Markdown 笔记
 
-合并至少需要两篇 Markdown。对话框可以设置标题、目标文件夹、来源顺序、分隔符、是否保留源笔记，并提供实时预览。
+合并至少需要两篇 Markdown。对话框可以设置标题、目标文件夹、来源顺序、分隔符、是否保留源笔记，并提供实时预览。只有第一篇来源笔记的 frontmatter 会保留在合并结果顶部；其他来源的 frontmatter 不会合并进去。
 
 ## 删除行为
 

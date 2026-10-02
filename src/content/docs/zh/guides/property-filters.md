@@ -1,6 +1,6 @@
 ---
 title: 属性筛选
-description: 选择有用的 frontmatter 属性，并按其值筛选文件夹中的卡片。
+description: 选择有用的 frontmatter 属性，按值筛选文件夹卡片，或按属性值为卡片分组。
 tags: [card-workspace, guides/navigation, features/properties]
 workflow: [gather, organize]
 ---
@@ -13,8 +13,6 @@ workflow: [gather, organize]
 
 这套演示文档带有一个很小的 `workflow` 属性，值为 `gather`、`organize` 和 `reframe`。完成[快速开始](./getting-started.md)后，可以先用它体验筛选。
 
-![属性导航区展开 workflow 属性，右侧显示对应的卡片流。](../../../../assets/media/property-filters.webp)
-
 ## 按值筛选
 
 直接点击一个值，会让它成为唯一的属性筛选；如果它已经是唯一生效的值，再点一次会清空。Ctrl（Windows/Linux）或 Cmd（macOS）加点击，以及键盘 Space，可以在不替换其他条件的情况下追加或移除值。
@@ -23,7 +21,19 @@ workflow: [gather, organize]
 - 不同属性之间使用 **AND**：`workflow = gather AND status = active`。
 - **未分配** 匹配没有该 key，或没有受支持值的笔记。
 
+启用非空属性筛选时，当前标签筛选会被清除；反过来，启用标签筛选也会清除属性筛选。同一种属性筛选内仍可以用 Ctrl/Cmd 加点击或 Space 追加值与其他属性条件。需要保留不同的标签与属性视角时，可使用[卡片盒规则](./card-boxes.md)。
+
 支持文本、有限数值、布尔值，以及包含这些标量的数组。属性只读取 Markdown 顶层 frontmatter，不会把嵌套对象展开成点号路径。非 Markdown 卡片没有属性值，因此只有选择 **未分配** 时才可能匹配。
+
+## 按属性分组
+
+1. 先在 **选择可见属性** 中启用需要的 key，例如 `status`。
+2. 打开工具栏 **排序与分组 → 分组依据 → 属性**，选择该 key。
+3. 卡片按该属性的完整值集合归组。例如 `status: [draft, review]` 与 `status: draft` 属于不同组；数组内值的顺序不会改变分组。
+
+分组标题显示属性名、值和卡片数量。文本、数值与布尔值会保留类型区别；没有受支持值的卡片归入 **未赋值** 组。
+
+属性分组适用于文件夹、卡片盒和双链来源，即使后两种来源不能进行临时属性筛选。隐藏正在用于分组的属性时，相关全局或卡片盒排列会回到 **不分组**。
 
 ## 计数与导航搜索
 
@@ -41,4 +51,4 @@ workflow: [gather, organize]
 
 把文件夹视角保存或加入[卡片盒](./card-boxes.md)时，当前属性条件会与文件夹和标签一起写入新规则。
 
-右键属性标题可以清除全部属性筛选。隐藏某个属性时，它的展开状态与生效条件也会一起删除。
+右键属性标题可以清除全部属性筛选。隐藏某个属性时，它的展开状态与生效条件也会一起删除，使用该属性的分组会取消；卡片盒成员规则中的属性条件仍然保留。

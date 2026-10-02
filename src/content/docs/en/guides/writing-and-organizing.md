@@ -11,7 +11,7 @@ Clicks, right-click menus, bulk mode, and drag cover most everyday work. Setting
 
 Direct click uses **Default card open behavior**. The default reuses an unpinned root editor tab when possible and otherwise opens a new tab. Other choices are a new tab, right split, or new window; see [Settings](../reference/settings.md).
 
-Opening cards from [Linked notes](./linked-notes.md) is a useful way to inspect context while keeping the source note pinned in Card Workspace.
+Opening cards from [Linked notes](./linked-notes.md) is a useful way to inspect context while keeping the source note pinned in Card Workspace. With **Jump to link location when opening a link card** enabled, opening the card also jumps to its reference or search-match location; see [Settings](../reference/settings.md).
 
 ## Drag into a Markdown editor
 
@@ -35,6 +35,8 @@ Navigation menus cover creation, rename, duplicate, move, path copying, reveal i
 
 Card menus can open in several destinations; duplicate, move, rename, or delete the file; manage favorites and box membership; and, for Markdown, copy content or edit tags. The complete inventory is in [Commands and menus](../reference/commands-and-menus.md).
 
+Copying Markdown content omits the leading frontmatter and gives you the body. Duplicating the file preserves its original contents.
+
 ## Bulk mode
 
 Turn on **Bulk**, then click cards to toggle them. Shift-click selects a range from the last selected card.
@@ -46,7 +48,7 @@ Turn on **Bulk**, then click cards to toggle them. Shift-click selects a range f
 - Delete selected notes
 - Merge selected Markdown notes
 
-Merge needs at least two Markdown notes. Its dialog controls the title, target folder, source order, separator, whether source notes are kept, and a live preview.
+Merge needs at least two Markdown notes. Its dialog controls the title, target folder, source order, separator, whether source notes are kept, and a live preview. Only the first source note’s frontmatter is preserved at the top of the merged note; the other source frontmatter blocks are omitted.
 
 ## Delete behavior
 

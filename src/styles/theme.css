@@ -297,6 +297,42 @@ html[lang='zh-CN'] .sl-markdown-content :is(h2, h3):not(:where(.not-content *)) 
   color: var(--cw-ink-faint);
 }
 
+/* Product screenshots in the Markdown guides follow the site's theme. */
+.sl-markdown-content .cw-doc-shot {
+  margin: 1.75rem 0;
+  font-family: var(--cw-font-body);
+}
+
+.sl-markdown-content .cw-doc-shot__light,
+.sl-markdown-content .cw-doc-shot__dark,
+.sl-markdown-content .cw-doc-shot p {
+  margin: 0;
+}
+
+.sl-markdown-content .cw-doc-shot__dark,
+:root[data-theme='dark'] .sl-markdown-content .cw-doc-shot__light {
+  display: none;
+}
+
+:root[data-theme='dark'] .sl-markdown-content .cw-doc-shot__dark {
+  display: block;
+}
+
+.sl-markdown-content .cw-doc-shot figcaption {
+  margin-top: 0.65rem;
+  color: var(--cw-ink-soft);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.sl-markdown-content .cw-doc-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--cw-line);
+  border-radius: var(--cw-radius-media);
+}
+
 /* --- Table ---------------------------------------------------------------
    A table is a figure, not prose: it keeps the sans face and the full panel
    width so setting keys never wrap onto a second line. */

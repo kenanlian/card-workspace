@@ -5,9 +5,11 @@ tags: [card-workspace, guides/getting-started]
 workflow: [gather, organize, reframe]
 ---
 
-Card Workspace 是一款运行在 **左侧边栏** 的 [Obsidian](https://obsidian.md/) 插件，把笔记显示成编辑器旁一条可读的卡片流。每张 Markdown 卡片都有标题和去除格式后的摘要，不必把一组笔记压缩成一串文件名。
+Card Workspace 是一款运行在 **左侧边栏** 的 [Obsidian](https://obsidian.md/) 插件，把笔记显示成编辑器旁一条可读的卡片流。每张 Markdown 卡片都有标题和带有链接、列表与任务提示的轻量摘要，不必把一组笔记压缩成一串文件名。
 
 卡片流的来源可以是文件夹、卡片盒，也可以是某篇笔记周围的出链或反链。本地搜索适用于每种来源；标签和属性浏览筛选仅会收窄文件夹来源。[导航](./navigation.md)会说明这些入口如何共存在一个紧凑的双栏面板中。
+
+1.3.4 中，正文嵌入受支持图片的 Markdown 卡片还会显示[本地图片预览](./browsing-cards.md#卡片图片)。默认启用右侧缩略图，可在设置中改为标题下方图片或关闭图片。
 
 它不是 Obsidian Canvas，也不是通过拖动卡片改变仓库结构的白板。点击卡片会打开笔记；在编辑器中切换笔记时，对应卡片也会被选中。Markdown 和其他受支持的文件仍留在原来的文件夹。
 
@@ -27,4 +29,4 @@ Card Workspace 适合一边写作、一边扫读和收集笔记的人：研究�
 - **Obsidian 1.9.0 或更高版本**，因为卡片对 Bases 的支持依赖该版本。
 - 界面跟随 Obsidian 语言：语言以 `zh` 开头时使用简体中文，否则使用英文。
 
-接下来先[安装插件](./installation.md)，再进入[快速开始](./getting-started.md)。
+接下来先[安装插件](./installation.md)，再进入[快速开始](./getting-started.md)。已有使用经验，可以查看 [1.3.4：卡片图片](../updates/1-3-4.md)了解最新变化，或阅读 [1.2.7–1.3.3](../updates/1-2-7-to-1-3-3.md)了解属性分组、上下文预览和点击定位。

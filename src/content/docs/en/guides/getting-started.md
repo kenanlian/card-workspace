@@ -14,6 +14,20 @@ Open the panel, choose where the cards come from, and refine the result only whe
 3. Browse the card stream. Use search, sorting, grouping, or pins to shape the view; click a card to open its note.
 4. Right-click a navigation item or card for more actions. Drag a Markdown card into an open editor to insert a link or content.
 
+<figure class="cw-doc-shot" id="screenshot-workspace-overview">
+<div class="cw-doc-shot__light">
+
+![Obsidian with Card Workspace navigation on the left, the vault-root card stream in the middle, and the selected getting-started note open in the editor.](../../../../assets/media/navigation-favorites-en.webp)
+
+</div>
+<div class="cw-doc-shot__dark">
+
+![Obsidian with Card Workspace navigation on the left, the vault-root card stream in the middle, and the selected getting-started note open in the editor.](../../../../assets/media/navigation-favorites-en-dark.webp)
+
+</div>
+<figcaption>Card Workspace stays beside the editor: select a folder, browse its cards, and open a note without leaving the stream.</figcaption>
+</figure>
+
 ## A useful first pass
 
 Try one path through each part of the workflow:

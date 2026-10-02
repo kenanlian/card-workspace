@@ -19,7 +19,7 @@ Each rule contains:
 - property clauses that all must match
 - an optional rule name
 
-Values inside one property clause use OR; separate property clauses, tags, and the folder scope combine with AND. If a box has several rules, matching **any** rule is enough. The [Property filters](./property-filters.md) guide explains the value model.
+A box can keep tag rules and property rules; existing rules may also contain both kinds of condition. Values inside one property clause use OR; separate property clauses, tags, and the folder scope combine with AND. If a box has several rules, matching **any** rule is enough. The [Property filters](./property-filters.md) guide explains the value model.
 
 As your vault changes, notes enter or leave a rule-driven box automatically. Manually added and removed notes stay explicit until you change them.
 
@@ -28,6 +28,8 @@ Each box also keeps its own **sort**, **grouping**, collapsed groups, and **pinn
 ## Create a box from a view
 
 Right-click in **Boxes** and choose **New card box…**, or choose **Save current view as card box…** while browsing a folder. The saved rule captures the current folder, include-subfolders choice, tags, and property filters; the dialog previews how many notes match.
+
+Tag and property browse filters replace each other, so a new rule captures the currently active filter type. Add the other view to the same box as another rule. Combined tag and property rules saved before upgrading continue to apply their original conditions.
 
 To preserve linked notes instead, use the snapshot action described in [Linked notes](./linked-notes.md). That creates a box with manually added members rather than a live link rule.
 
@@ -41,12 +43,12 @@ To preserve linked notes instead, use the snapshot action described in [Linked n
 
 Right-click a box and choose **Configure card box…**. The dialog shows:
 
-- **Rules** — names, folders, subfolder choices, tags, and property conditions
+- **Rules** — inspect folders, subfolder choices, tags, and property conditions; rename or remove a rule
 - **Sort** — the box’s card sort, independent of folder browsing
 - **Manually added** — notes included directly
 - **Removed notes** — exclusions that can be restored one at a time or all together
 
-Use **Sort & group** on the toolbar to group a box by folder, tag, task status, or card-box rule. Group order can follow the default sequence, name, or card count, in either direction.
+Use **Sort & group** on the toolbar to group a box by folder, complete tag set, task status, an enabled property, or card-box rule. See [Property filters](./property-filters.md) for property grouping. Group order can follow the default sequence, name, or card count, in either direction.
 
 ## Remove notes and delete boxes
 
