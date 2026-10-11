@@ -35,4 +35,4 @@ Markdown 卡片有完整预览和全文搜索；其他受支持类型显示标�
 
 ## 许可证与支持
 
-Card Workspace 使用 MIT License。遇到问题可前往 [GitHub Issues](https://github.com/kenanlian/obsidian-card-workspace/issues)，源码位于[插件仓库](https://github.com/kenanlian/obsidian-card-workspace)。
+Card Workspace 从 [1.4.3](https://github.com/kenanlian/obsidian-card-workspace/releases/tag/1.4.3) 起使用 GPL-3.0-only；此前已发布的 1.4.2 及更早版本保留原有 MIT License。遇到问题可前往 [GitHub Issues](https://github.com/kenanlian/obsidian-card-workspace/issues)，源码位于[插件仓库](https://github.com/kenanlian/obsidian-card-workspace)。

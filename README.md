@@ -4,14 +4,10 @@ Documentation and marketing site for the **Card Workspace** Obsidian plugin.
 Built with [Astro](https://astro.build/) + [Starlight](https://starlight.astro.build/),
 bilingual (English / 简体中文), and deployed to GitHub Pages.
 
-## Before you deploy
+## Site configuration
 
-Replace `kenanlian` in these files with your real GitHub username:
-
-- `astro.config.mjs` — `site`, `social` link
-- `src/content/site.ts` — shared repository and release links
-
-The site is configured as a **project site**, served at:
+The site is configured for the `kenanlian/card-workspace` GitHub Pages
+**project site**, served at:
 
 ```
 https://kenanlian.github.io/card-workspace/
@@ -19,6 +15,8 @@ https://kenanlian.github.io/card-workspace/
 
 `base` in `astro.config.mjs` (`/card-workspace`) must always match your
 repository name. If you rename the repo, update `base` accordingly.
+If you move the site to another account, update `site` in `astro.config.mjs`.
+Plugin repository and release links live separately in `src/content/site.ts`.
 
 ## Develop
 
@@ -38,7 +36,7 @@ npm run preview   # preview the production build
 
 ## Deploy (GitHub Pages)
 
-1. Push this project to a GitHub repo named `card-workspace`.
+1. Use the `kenanlian/card-workspace` repository, or update the site configuration for your own repository.
 2. In the repo: **Settings → Pages → Build and deployment → Source = GitHub Actions**.
 3. Push to `main`. The workflow in `.github/workflows/deploy.yml` builds and publishes automatically.
 
@@ -76,7 +74,9 @@ src/content/docs/
     └── updates/
 ```
 
-Splash landing components live in `src/components/landing/`. V2 Graphite Index tokens and Starlight chrome live in `src/styles/`. Guide pages include `guides/card-boxes`. `designs/` is a prototype tree and is not deployed.
+Splash landing components live in `src/components/landing/`. Graphite Index
+tokens and Starlight chrome live in `src/styles/`. `designs/` contains independent
+design prototypes and icon handoff assets; it is not deployed.
 
 Navigation labels and translations live in the `sidebar` config in `astro.config.mjs`.
 
@@ -93,12 +93,26 @@ Keep both locales in sync, summarize about five published releases per update
 page, and add each page to the manual sidebar with the newest group first.
 The first reserved range, 1.0.0–1.0.5, contains the three actual 1.0 releases;
 the 1.2.7–1.3.3 group also identifies the unpublished 1.3.1 tag separately.
-The current release, 1.3.4, starts a new update page for card images. The settings
-reference includes nine preferences, with right-side thumbnails and crop-to-fill
-enabled by default.
+The landing page and shared header currently show 1.4.3. Bulk property operations
+in Writing and organizing and the menu reference were checked against the 1.4.3
+tag; license copy follows the 1.4.3 release. The remaining guides, settings
+reference, and update summaries were last reviewed against 1.3.4; changing
+`VERSION` does not update their content. Review
+the intervening tagged releases before describing all documentation as current.
+Keep historical update pages as release records.
 
 Getting started and Navigation reuse bilingual workspace screenshots that
-follow the site's light or dark theme. Empty screenshot placeholders and the
-old property-filter screenshot have been removed. See
-[the screenshot capture plan](docs/screenshot-plan.md) for the current placement
-and deferred feature captures.
+follow the site's light or dark theme. See
+[the screenshot guide](docs/screenshot-plan.md) for current placement and future
+captures.
+
+## Homepage media
+
+Every landing section uses a localized clip: `hero`, `gather`, `images`, `links`,
+`search`, `drag`, `boxes`, and `bulk`. Each has an English and Chinese H.264 MP4
+and a WebP poster in `src/assets/media/clips/`. `Landing.astro` requires all pairs
+at build time. Clip alt text and captions live in `src/content/landing.ts`.
+
+Edit and render clips in the separate [`videos/`](videos/README.md) project;
+its dependencies and local rendering inputs are independent of the Astro site.
+The site build uses the rendered assets directly.

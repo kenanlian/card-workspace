@@ -1,6 +1,6 @@
 ---
 title: Writing and organizing
-description: Open, insert, create, rename, move, and edit notes from the card workspace.
+description: Open, insert, and organize notes from the card workspace, and set or remove Markdown properties in bulk.
 tags: [card-workspace, guides/writing]
 workflow: [organize, reframe]
 ---
@@ -44,11 +44,23 @@ Turn on **Bulk**, then click cards to toggle them. Shift-click selects a range f
 - Select all or clear selection
 - Move selected notes
 - Add or remove tags
+- Set or remove properties across Markdown notes
 - Add to a card box, or remove from the open box
 - Delete selected notes
 - Merge selected Markdown notes
 
 Merge needs at least two Markdown notes. Its dialog controls the title, target folder, source order, separator, whether source notes are kept, and a live preview. Only the first source note’s frontmatter is preserved at the top of the merged note; the other source frontmatter blocks are omitted.
+
+### Bulk property operations
+
+Select Markdown notes in bulk mode, then click **Bulk property operations** in the toolbar. The dialog shows how many notes it will affect. You can set several properties and remove other properties in one operation.
+
+- **Set properties**: enter a name, type, and value to create a property or overwrite its existing value across the selection. For example, set `status` to `review` for a group of notes.
+- **Types and values**: choose text, list, number, checkbox, date, or date & time. List items support text or numbers; setting a list replaces its existing contents.
+- **Suggestions**: search existing property names and values, or enter new ones. The removal picker lists properties present in the selection and how many selected notes contain each one.
+- **Results**: click **Apply** to see modified, unchanged, and failed counts. If any notes fail, applying again retries only those notes.
+
+Operations edit Markdown frontmatter while preserving the body and other properties. Use **Bulk tag operations** for tags. A property cannot be set and removed in the same operation.
 
 ## Delete behavior
 

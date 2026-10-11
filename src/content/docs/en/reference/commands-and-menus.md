@@ -44,4 +44,4 @@ The Links header uses the shared collapse and section-order actions; its two dir
 
 Right-click a card to choose an open destination; duplicate, move, rename, or delete it; manage favorites and card-box membership; or, for Markdown, copy content and edit tags. See [Writing and organizing](../guides/writing-and-organizing.md) for the workflow and delete behavior.
 
-With **Bulk** on, the toolbar offers select all, clear selection, move, add or remove tags, add to or remove from a box, delete, and merge. Shift-click selects a range; merge requires at least two Markdown notes.
+With **Bulk** on, the toolbar offers select all, clear selection, move, bulk tag operations, bulk property operations, add to or remove from a box, delete, and merge. Bulk property operations set or remove properties across Markdown notes; see [Writing and organizing](../guides/writing-and-organizing.md#bulk-property-operations). Shift-click selects a range; merge requires at least two Markdown notes.

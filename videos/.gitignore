@@ -1,0 +1,8 @@
+node_modules/
+renders/
+
+# Obsidian's proprietary app.css and locally licensed fonts; never commit.
+theme/
+
+# `git archive` exports of the plugin; recreate with `npm run snapshot:plugin`.
+plugin-snapshots/

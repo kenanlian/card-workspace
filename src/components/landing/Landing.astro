@@ -4,21 +4,8 @@ import { getLanding, type Locale } from '../../content/landing';
 import SiteHeader from '../SiteHeader.astro';
 import BrandMark from './BrandMark.astro';
 import Btn from './Btn.astro';
-import MediaShot from './MediaShot.astro';
 import MediaClip from './MediaClip.astro';
-import CardBoxConcept from './CardBoxConcept.astro';
 import SectionRule from './SectionRule.astro';
-import overview from '../../assets/media/overview.jpg';
-import browseClip from '../../assets/media/browse.mp4';
-import browsePoster from '../../assets/media/browse-poster.webp';
-import searchClip from '../../assets/media/search.mp4';
-import searchPoster from '../../assets/media/search-poster.webp';
-import linksClip from '../../assets/media/bidirectional-links.mp4';
-import linksPoster from '../../assets/media/bidirectional-links-poster.webp';
-import batchClip from '../../assets/media/batch.mp4';
-import batchPoster from '../../assets/media/batch-poster.webp';
-import writingClip from '../../assets/media/writing.mp4';
-import writingPoster from '../../assets/media/writing-poster.webp';
 
 interface Props {
   locale: Locale;
@@ -27,6 +14,27 @@ interface Props {
 const { locale } = Astro.props;
 const c = getLanding(locale);
 const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
+
+/* Rendered by `videos/`: `<id>-<locale>.mp4` with its `<id>-<locale>-poster.webp`. */
+const clipFiles = import.meta.glob<string>('../../assets/media/clips/*.mp4', { eager: true, import: 'default' });
+const posterFiles = import.meta.glob<ImageMetadata>('../../assets/media/clips/*-poster.webp', { eager: true, import: 'default' });
+function clip(id: string): { src: string; poster: ImageMetadata } {
+  const base = `../../assets/media/clips/${id}-${locale}`;
+  const src = clipFiles[`${base}.mp4`];
+  const poster = posterFiles[`${base}-poster.webp`];
+  if (!src || !poster) throw new Error(`Missing landing clip ${id}-${locale}`);
+  return { src, poster };
+}
+const clips = {
+  hero: clip('hero'),
+  gather: clip('gather'),
+  images: clip('images'),
+  links: clip('links'),
+  search: clip('search'),
+  drag: clip('drag'),
+  boxes: clip('boxes'),
+  bulk: clip('bulk'),
+};
 ---
 
 <div class="cw-page not-content" data-screen-label="Card Workspace landing">
@@ -60,12 +68,13 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
           </div>
           <p class="cw-meta">{c.hero.meta}</p>
         </div>
-        <MediaShot
-          featured
-          src={overview}
+        <MediaClip
+          src={clips.hero.src}
+          poster={clips.hero.poster}
           alt={c.hero.mediaAlt}
-          widths={[520, 1024]}
-          sizes="(max-width: 52rem) calc(100vw - 2rem), 520px"
+          caption={c.hero.caption}
+          playLabel={c.clipPlayLabel}
+          pauseLabel={c.clipPauseLabel}
         />
       </div>
     </section>
@@ -83,8 +92,8 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
           </ul>
         </div>
         <MediaClip
-          src={browseClip}
-          poster={browsePoster}
+          src={clips.gather.src}
+          poster={clips.gather.poster}
           alt={c.gather.mediaAlt}
           caption={c.gather.caption}
           playLabel={c.clipPlayLabel}
@@ -95,58 +104,21 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
 
     <SectionRule />
 
-    <section class="cw-section" id="card-boxes" data-screen-label="Organize views">
-      <div class="cw-wrap cw-feature-grid">
-        <div class="cw-feature-copy">
-          <p class="cw-kicker">{c.boxes.kicker}</p>
-          <h2>{c.boxes.title}</h2>
-          <p class="cw-section-body">{c.boxes.body}</p>
-          <p class="cw-support">{c.boxes.support}</p>
-        </div>
-        <CardBoxConcept copy={c.boxes} />
-      </div>
-    </section>
-
-    <SectionRule />
-
-    <section class="cw-section" id="drag" data-screen-label="Reframe in writing">
-      <div class="cw-wrap cw-feature-grid">
-        <div class="cw-feature-copy">
-          <p class="cw-kicker">{c.drag.kicker}</p>
-          <h2>{c.drag.title}</h2>
-          <p class="cw-section-body">{c.drag.body}</p>
-          <ul class="cw-action-list" aria-label={locale === 'zh' ? 'Markdown 拖入操作' : 'Markdown drop actions'}>
-            {c.drag.actions.map((action, index) => <li><span>0{index + 1}</span>{action}</li>)}
-          </ul>
-        </div>
-        <MediaClip
-          src={writingClip}
-          poster={writingPoster}
-          alt={c.drag.mediaAlt}
-          caption={c.drag.mediaCaption}
-          playLabel={c.clipPlayLabel}
-          pauseLabel={c.clipPauseLabel}
-        />
-      </div>
-    </section>
-
-    <SectionRule />
-
-    <section class="cw-section" id="search" data-screen-label="Local full-text search">
+    <section class="cw-section" id="card-images" data-screen-label="Card images">
       <div class="cw-wrap cw-feature-grid cw-feature-grid--visual-first">
         <div class="cw-feature-copy">
-          <p class="cw-kicker">{c.search.kicker}</p>
-          <h2>{c.search.title}</h2>
-          <p class="cw-section-body">{c.search.body}</p>
-          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '搜索能力' : 'Search capabilities'}>
-            {c.search.labels.map((label) => <li>{label}</li>)}
+          <p class="cw-kicker">{c.images.kicker}</p>
+          <h2>{c.images.title}</h2>
+          <p class="cw-section-body">{c.images.body}</p>
+          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '卡片图片选项' : 'Card image options'}>
+            {c.images.labels.map((label) => <li>{label}</li>)}
           </ul>
         </div>
         <MediaClip
-          src={searchClip}
-          poster={searchPoster}
-          alt={c.search.mediaAlt}
-          caption={c.search.caption}
+          src={clips.images.src}
+          poster={clips.images.poster}
+          alt={c.images.mediaAlt}
+          caption={c.images.caption}
           playLabel={c.clipPlayLabel}
           pauseLabel={c.clipPauseLabel}
         />
@@ -166,8 +138,8 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
           </ul>
         </div>
         <MediaClip
-          src={linksClip}
-          poster={linksPoster}
+          src={clips.links.src}
+          poster={clips.links.poster}
           alt={c.links.mediaAlt}
           caption={c.links.caption}
           playLabel={c.clipPlayLabel}
@@ -178,8 +150,75 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
 
     <SectionRule />
 
-    <section class="cw-section" id="bulk" data-screen-label="Bulk organization">
+    <section class="cw-section" id="search" data-screen-label="Local full-text search">
       <div class="cw-wrap cw-feature-grid cw-feature-grid--visual-first">
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.search.kicker}</p>
+          <h2>{c.search.title}</h2>
+          <p class="cw-section-body">{c.search.body}</p>
+          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '搜索能力' : 'Search capabilities'}>
+            {c.search.labels.map((label) => <li>{label}</li>)}
+          </ul>
+        </div>
+        <MediaClip
+          src={clips.search.src}
+          poster={clips.search.poster}
+          alt={c.search.mediaAlt}
+          caption={c.search.caption}
+          playLabel={c.clipPlayLabel}
+          pauseLabel={c.clipPauseLabel}
+        />
+      </div>
+    </section>
+
+    <SectionRule />
+
+    <section class="cw-section" id="drag" data-screen-label="Reframe in writing">
+      <div class="cw-wrap cw-feature-grid">
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.drag.kicker}</p>
+          <h2>{c.drag.title}</h2>
+          <p class="cw-section-body">{c.drag.body}</p>
+          <ul class="cw-action-list" aria-label={locale === 'zh' ? 'Markdown 拖入操作' : 'Markdown drop actions'}>
+            {c.drag.actions.map((action, index) => <li><span>0{index + 1}</span>{action}</li>)}
+          </ul>
+        </div>
+        <MediaClip
+          src={clips.drag.src}
+          poster={clips.drag.poster}
+          alt={c.drag.mediaAlt}
+          caption={c.drag.mediaCaption}
+          playLabel={c.clipPlayLabel}
+          pauseLabel={c.clipPauseLabel}
+        />
+      </div>
+    </section>
+
+    <SectionRule />
+
+    <section class="cw-section" id="card-boxes" data-screen-label="Organize views">
+      <div class="cw-wrap cw-feature-grid cw-feature-grid--visual-first">
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.boxes.kicker}</p>
+          <h2>{c.boxes.title}</h2>
+          <p class="cw-section-body">{c.boxes.body}</p>
+          <p class="cw-support">{c.boxes.support}</p>
+        </div>
+        <MediaClip
+          src={clips.boxes.src}
+          poster={clips.boxes.poster}
+          alt={c.boxes.mediaAlt}
+          caption={c.boxes.caption}
+          playLabel={c.clipPlayLabel}
+          pauseLabel={c.clipPauseLabel}
+        />
+      </div>
+    </section>
+
+    <SectionRule />
+
+    <section class="cw-section" id="bulk" data-screen-label="Bulk organization">
+      <div class="cw-wrap cw-feature-grid">
         <div class="cw-feature-copy">
           <p class="cw-kicker">{c.bulk.kicker}</p>
           <h2>{c.bulk.title}</h2>
@@ -192,8 +231,8 @@ const headlineLabel = c.hero.headline.join(locale === 'zh' ? '' : ' ');
           </ul>
         </div>
         <MediaClip
-          src={batchClip}
-          poster={batchPoster}
+          src={clips.bulk.src}
+          poster={clips.bulk.poster}
           alt={c.bulk.mediaAlt}
           caption={c.bulk.caption}
           playLabel={c.clipPlayLabel}

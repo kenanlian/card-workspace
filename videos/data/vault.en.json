@@ -1,0 +1,230 @@
+{
+ "name": "My Notes",
+ "files": [
+  {
+   "path": "Reading/Deep work.md",
+   "ctime": 1791630000000,
+   "mtime": 1791630000000,
+   "content": "---\ntags: [neuroscience]\nstatus: active\n---\n\nDeep work is focus without interruption that pushes your thinking to its limit. It is hard, and its value is the hardest to replace.\n\n## What deep work is\n\nShallow work survives a chat window; deep work needs one unbroken block of time. Every glance at messages cuts attention into pieces — see [[The cost of task switching]].\n\n## Getting into it\n\nFixed hours, a fixed place, a clear stopping point. Getting into it feels like [[Conditions for flow#Entering flow]]: a clear goal, quick feedback, just enough difficulty.\n\n## The daily plan\n\n- Two morning hours on a single task\n- Messages and meetings batched in the afternoon\n"
+  },
+  {
+   "path": "Travel/Kyoto in autumn.md",
+   "ctime": 1791622800000,
+   "mtime": 1791622800000,
+   "content": "---\ntags: [travel]\n---\n\nMid-November in Kyoto: below the Kiyomizu-dera stage, the whole hillside turns red. Arrive before seven for soft light and empty paths.\n\n![[Attachments/kyoto-temple.jpg]]\n\n## Route\n\n- Kiyomizu-dera → Ninenzaka → Yasaka Shrine\n- Nanzen-ji after lunch, Eikan-dō for the evening maples\n"
+  },
+  {
+   "path": "Research/Interviews/Interview - Lin, developer.md",
+   "ctime": 1791615600000,
+   "mtime": 1791615600000,
+   "content": "---\ntags: [interview]\nstatus: active\n---\n\nLin codes under three hours a day. The worst is an interruption just as the idea comes together; getting back takes ten minutes or more.\n\nMornings are now for [[Deep work]]: chat closed, one editor window open.\n\n## Where interruptions come from\n\n- Group chats and ad-hoc meetings cause most interruptions\n- Opening a browser on a whim is an interruption too\n\n## What works for him\n\nQuestions go on a sticky note. He calls it the easiest [[Deep work]] habit to keep, and the reason [[Deep work]] lasts for him.\n"
+  },
+  {
+   "path": "Kitchen/Tomato beef stew.md",
+   "ctime": 1791608400000,
+   "mtime": 1791608400000,
+   "content": "---\ntags: [recipe]\n---\n\nA weekend clay-pot stew: add the tomatoes in two rounds — half melt into the broth, half go in for the last ten minutes.\n\n![[Attachments/tomato-beef.jpg]]\n\n## Ingredients\n\n- [x] 600 g beef brisket, blanched\n- [x] 4 tomatoes, peeled\n- [ ] Half an onion, ginger, star anise\n"
+  },
+  {
+   "path": "Clippings/The cost of task switching.md",
+   "ctime": 1791601200000,
+   "mtime": 1791601200000,
+   "content": "---\ntags: [neuroscience]\nstatus: done\n---\n\nSwitching from email back to a document, the brain needs time to get back into it. The more often you switch, the more you lose.\n\n## Switching cost\n\nEvery interruption means reloading context: where you were, what comes next.\n\n## Attention residue\n\nAfter a switch, part of your attention stays with the previous task.\n\nThat attention residue is why [[Deep work]] asks for whole blocks of time.\n"
+  },
+  {
+   "path": "Journal/A week with my phone in a drawer.md",
+   "ctime": 1791594000000,
+   "mtime": 1791594000000,
+   "content": "---\ntags: [journal]\n---\n\nDay one, I reached for my pocket a dozen times. By day three I looked out the window while waiting for the lift. By day seven I had read half a book.\n\nMornings changed most: without the phone, [[Deep work]] held for ninety minutes at a time.\n\n## Next week\n\nKeep the phone in the drawer and try afternoon [[Deep work]] too.\n"
+  },
+  {
+   "path": "Reading/Conditions for flow.md",
+   "ctime": 1791586800000,
+   "mtime": 1791586800000,
+   "content": "---\ntags: [neuroscience]\nstatus: done\n---\n\nFlow is total absorption, where time disappears. Csikszentmihalyi summed up when it shows up.\n\n## Three conditions\n\n- A clear goal\n- Immediate feedback\n- Difficulty just within reach\n\n## Entering flow\n\nSpend fifteen minutes on one small, certain task and let attention gather. The quieter the room, the faster you get there.\n\n## After an interruption\n\nAfter a single interruption it can take a long time to get back in, so the opening stretch is the part to protect.\n"
+  },
+  {
+   "path": "Travel/Iceland ring road.md",
+   "ctime": 1791579600000,
+   "mtime": 1791579600000,
+   "content": "---\ntags: [travel]\n---\n\nTen days on Route 1. The highlight was the black beach at Vík: basalt stacks rising from the sea, waves too big to get close.\n\n![[Attachments/iceland-beach.jpg]]\n\n## Reminders\n\n- The weather changes hourly; pack a shell jacket\n- Gas stations are far apart; refuel at half a tank\n"
+  },
+  {
+   "path": "Research/Interviews/Interview - Qing, designer.md",
+   "ctime": 1791572400000,
+   "mtime": 1791572400000,
+   "content": "---\ntags: [interview]\nstatus: active\n---\n\nQing has designed products for five years. She knows exactly how notifications are built, which makes them harder, not easier, to resist.\n\n## On red dots\n\nShe mentions [[Red dots and badges]]: once a number appears, she wants it gone. At work her phone lies face down.\n\n## Her rhythm\n\nMessages get checked at three fixed times a day; the rest stays free of interruption. That leaves room for [[Deep work]] in the afternoon too.\n"
+  },
+  {
+   "path": "Clippings/Designing notifications.md",
+   "ctime": 1791565200000,
+   "mtime": 1791565200000,
+   "content": "---\ntags: [product-design]\nstatus: to-read\n---\n\nGood notifications appear only when the user needs them. Bad ones dress every interruption up as \"something important you might miss\".\n\n## Principles\n\n- Quiet by default; let users opt in\n- Bundle similar notifications instead of pushing each one\n- Cap badge counts — see [[Red dots and badges]]\n"
+  },
+  {
+   "path": "Kitchen/Pour-over coffee.md",
+   "ctime": 1791558000000,
+   "mtime": 1791558000000,
+   "content": "---\ntags: [coffee]\n---\n\nThe daily cup: 15 g of beans, 92 °C water, a 1:15 ratio, about two and a half minutes in total.\n\n![[Attachments/pour-over.jpg]]\n\n## Steps\n\n1. Bloom with 30 g of water for 30 seconds\n2. Pour to 225 g in three stages\n3. Raise the water to 94 °C for light roasts\n"
+  },
+  {
+   "path": "Journal/After turning off notifications.md",
+   "ctime": 1791550800000,
+   "mtime": 1791550800000,
+   "content": "---\ntags: [journal]\n---\n\nOnly calls and calendar alerts stay on. For two days I worried about missing things; then I noticed that anything urgent comes as a phone call.\n\nInterruptions dropped by half, and the time for [[Deep work]] grew.\n"
+  },
+  {
+   "path": "Research/Attention research review.md",
+   "ctime": 1791543600000,
+   "mtime": 1791543600000,
+   "content": "---\ntags: [method]\nstatus: active\n---\n\nThis review asks one question: why is focus getting harder?\n\n## Background\n\nAs information multiplies, attention becomes the scarce resource — see [[The attention economy]]. Products keep us with uncertain rewards — see [[Dopamine and anticipation]].\n\n## What the interviews found\n\nBoth interviewees named interruption as the biggest problem.\n\n## Next steps\n\n- Add practical advice on [[Deep work]]\n- Gather the research on switching costs\n"
+  },
+  {
+   "path": "Reading/Dopamine and anticipation.md",
+   "ctime": 1791536400000,
+   "mtime": 1791536400000,
+   "content": "---\ntags: [neuroscience]\nstatus: done\n---\n\nDopamine rewards anticipation, not getting. Uncertain rewards are the hardest to stop: the next refresh might bring something new.\n\n## Why we can't stop\n\nVariable rewards turn every check into a lottery ticket. Feeds and red dots both rely on it.\n"
+  },
+  {
+   "path": "Life/Balcony garden.md",
+   "ctime": 1791529200000,
+   "mtime": 1791529200000,
+   "content": "---\ntags: [plants]\n---\n\nA small east-facing balcony with four hours of morning sun. This year: basil, mint, rosemary, and a pot of cherry tomatoes.\n\n![[Attachments/balcony-garden.jpg]]\n\n## Care\n\n- Pinch the basil often so it grows bushy\n- Feed the tomatoes diluted fertilizer once a week\n"
+  },
+  {
+   "path": "Reading/The attention economy.md",
+   "ctime": 1791522000000,
+   "mtime": 1791522000000,
+   "content": "---\ntags: [economics]\nstatus: active\n---\n\nHerbert Simon wrote in 1971 that a wealth of information creates a poverty of attention. When content is free, what is sold is our time.\n\n## Going further\n\nAds are priced by time on screen, so products work hard to keep us a little longer.\n"
+  },
+  {
+   "path": "Reading/Red dots and badges.md",
+   "ctime": 1791514800000,
+   "mtime": 1791514800000,
+   "content": "---\ntags: [product-design]\nstatus: to-read\n---\n\nRed badges borrow our unease about unfinished things: the bigger the number, the stronger the urge to clear it, even when nothing inside matters.\n"
+  },
+  {
+   "path": "Travel/Erhai Lake, Dali.md",
+   "ctime": 1791507600000,
+   "mtime": 1791507600000,
+   "content": "---\ntags: [travel]\n---\n\nErhai Lake is still at dawn, with clouds resting on the Cangshan peaks. From the guesthouse in Shuanglang, the window opens onto the water.\n\n![[Attachments/erhai-lake.jpg]]\n\n## Plan\n\n- Day one: the old town and the Three Pagodas\n- Day two: cycling the west shore road\n"
+  },
+  {
+   "path": "Clippings/Infinite scroll.md",
+   "ctime": 1791500400000,
+   "mtime": 1791500400000,
+   "content": "---\ntags: [product-design]\nstatus: done\n---\n\nA feed with no bottom removes the natural stopping point of \"I'm done\". Pagination used to be a chance to decide whether to go on.\n"
+  },
+  {
+   "path": "Clippings/Opportunity cost.md",
+   "ctime": 1791493200000,
+   "mtime": 1791493200000,
+   "content": "---\ntags: [economics]\nstatus: done\n---\n\nThe real cost of a choice is the most valuable option you gave up for it. An hour of scrolling has an opportunity cost too.\n"
+  },
+  {
+   "path": "Research/Research method.md",
+   "ctime": 1791486000000,
+   "mtime": 1791486000000,
+   "content": "---\ntags: [method]\nstatus: done\n---\n\nSemi-structured interviews, forty minutes each. First the rhythm of a working day, then the most recent interruption.\n\n## Notes\n\nInterview notes live in the Interviews folder, one interviewee per note.\n"
+  },
+  {
+   "path": "Journal/October week one review.md",
+   "ctime": 1791478800000,
+   "mtime": 1791478800000,
+   "content": "---\ntags: [journal]\n---\n\nA slow week, but a few long-postponed small things got done.\n\n## Done\n\n- [x] Sorted the photo library into trip folders\n- [x] Finished the first three chapters of Flow\n- [ ] Write up the Kyoto photos\n"
+  }
+ ],
+ "attachments": [
+  {
+   "path": "Attachments/kyoto-temple.jpg",
+   "size": 219029,
+   "mtime": 1791622800000
+  },
+  {
+   "path": "Attachments/tomato-beef.jpg",
+   "size": 167284,
+   "mtime": 1791608400000
+  },
+  {
+   "path": "Attachments/iceland-beach.jpg",
+   "size": 64077,
+   "mtime": 1791579600000
+  },
+  {
+   "path": "Attachments/pour-over.jpg",
+   "size": 75198,
+   "mtime": 1791558000000
+  },
+  {
+   "path": "Attachments/balcony-garden.jpg",
+   "size": 168334,
+   "mtime": 1791529200000
+  },
+  {
+   "path": "Attachments/erhai-lake.jpg",
+   "size": 106369,
+   "mtime": 1791507600000
+  }
+ ],
+ "settings": {
+  "schemaVersion": 2,
+  "preferences": {
+   "sort": {
+    "field": "mtime",
+    "direction": "desc"
+   },
+   "group": {
+    "dimension": "none",
+    "orderBy": "default",
+    "orderDirection": "asc"
+   },
+   "includeSubfolders": true,
+   "defaultView": "cards",
+   "defaultCardOpenBehavior": "smart",
+   "locateLinkCardOnOpen": true,
+   "dragInsertAction": "ask",
+   "cardCornerRadius": "rounded",
+   "newNoteTemplate": "tags-frontmatter",
+   "previewLines": 3,
+   "cardImageMode": "right",
+   "cardImageFit": "cover",
+   "searchPreviewSnippetCount": 2,
+   "showNavItemCounts": true,
+   "navSectionOrder": [
+    "favorites",
+    "folders",
+    "tags",
+    "properties",
+    "boxes",
+    "links"
+   ],
+   "visiblePropertyKeys": [
+    "status"
+   ]
+  },
+  "workspace": {
+   "lastFolderPath": "",
+   "expandedFolderPaths": [],
+   "expandedTagPaths": [],
+   "expandedPropertyKeys": [],
+   "activeBoxId": null,
+   "filterTags": [],
+   "filterProperties": [],
+   "navPaneWidth": 200,
+   "navPaneCollapsed": false,
+   "sectionCollapsed": {
+    "favorites": true,
+    "folders": false,
+    "tags": false,
+    "properties": false,
+    "boxes": true,
+    "links": true
+   }
+  },
+  "userData": {
+   "boxes": [],
+   "favorites": [],
+   "pinnedPaths": []
+  }
+ }
+}

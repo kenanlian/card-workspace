@@ -23,7 +23,6 @@ export interface LandingDetail {
 }
 
 export interface LandingCopy {
-  lang: Locale;
   version: string;
   versionTitle: string;
   versionHref: string;
@@ -47,42 +46,29 @@ export interface LandingCopy {
     secondaryHref: string;
     meta: string;
     mediaAlt: string;
+    caption: string;
+  };
+  images: {
+    kicker: string;
+    title: string;
+    body: string;
+    labels: string[];
+    mediaAlt: string;
+    caption: string;
   };
   boxes: {
     kicker: string;
     title: string;
     body: string;
     support: string;
-    conceptLabel: string;
-    conceptTitle: string;
-    ruleOne: string;
-    ruleOneProperty: string;
-    ruleTwo: string;
-    ruleTwoProperty: string;
-    and: string;
-    or: string;
-    manual: string;
-    manualNote: string;
-    excluded: string;
-    excludedNote: string;
-    boxState: string;
-    precedence: string;
+    mediaAlt: string;
+    caption: string;
   };
   gather: {
     kicker: string;
     title: string;
     body: string;
     labels: string[];
-    conceptLabel: string;
-    conceptTitle: string;
-    folderLabel: string;
-    folder: string;
-    scope: string;
-    tagLabel: string;
-    tag: string;
-    propertyLabel: string;
-    property: string;
-    resultCount: string;
     mediaAlt: string;
     caption: string;
   };
@@ -99,20 +85,6 @@ export interface LandingCopy {
     title: string;
     body: string;
     labels: string[];
-    conceptLabel: string;
-    localLabel: string;
-    queryLabel: string;
-    query: string;
-    resultOneTitle: string;
-    resultOneBefore: string;
-    resultOneHit: string;
-    resultOneAfter: string;
-    resultOneCount: string;
-    resultTwoTitle: string;
-    resultTwoBefore: string;
-    resultTwoHit: string;
-    resultTwoAfter: string;
-    resultTwoCount: string;
     mediaAlt: string;
     caption: string;
   };
@@ -121,19 +93,6 @@ export interface LandingCopy {
     title: string;
     body: string;
     labels: string[];
-    conceptLabel: string;
-    sourceLabel: string;
-    source: string;
-    following: string;
-    pinned: string;
-    outgoing: string;
-    backlinks: string;
-    resultOne: string;
-    resultOneMeta: string;
-    resultTwo: string;
-    resultTwoMeta: string;
-    searchLabel: string;
-    saveLabel: string;
     mediaAlt: string;
     caption: string;
   };
@@ -143,18 +102,6 @@ export interface LandingCopy {
     body: string;
     selectionModes: string[];
     actions: string[];
-    conceptLabel: string;
-    selectedLabel: string;
-    selectedCount: string;
-    selectionOne: string;
-    selectionTwo: string;
-    mergeTitle: string;
-    mergeFromLabel: string;
-    mergeFrom: string;
-    mergeToLabel: string;
-    mergeTo: string;
-    previewLabel: string;
-    previewLines: string[];
     mediaAlt: string;
     caption: string;
   };
@@ -181,7 +128,6 @@ export interface LandingCopy {
 
 export const landing: Record<Locale, LandingCopy> = {
   en: {
-    lang: 'en',
     version: VERSION,
     versionTitle: versionTitle.en,
     versionHref: RELEASES,
@@ -204,131 +150,82 @@ export const landing: Record<Locale, LandingCopy> = {
       primaryHref: COMMUNITY_PLUGIN,
       secondaryCta: 'Read the docs',
       secondaryHref: docs('en', 'guides/introduction'),
-      meta: 'Obsidian 1.9+ · Desktop only · Runs locally',
+      meta: 'Obsidian 1.11.4+ · Desktop only · Runs locally',
       mediaAlt:
-        'Card Workspace in Obsidian: folders, tags, properties, card boxes, and links sit beside a stream of excerpt-rich note cards, with the selected card open in the editor.',
+        'Demo: Card Workspace beside the editor in Obsidian. The card stream shows the whole vault with photo thumbnails; clicking the neuroscience tag narrows it to 4 notes, clicking the Deep work card opens that note, and following a link inside it moves the selected card to The cost of task switching.',
+      caption: 'Click a tag to narrow the stream and a card to open it; the selection follows the note you’re reading.',
+    },
+    images: {
+      kicker: 'Recognize',
+      title: 'Spot a note by its picture.',
+      body:
+        'Markdown cards show the first local image embedded in the note, so recipes, trips, and references are recognizable at a glance. Keep it as a right-side thumbnail, show it full width below the title, crop it to fill or show the whole image, or turn images off.',
+      labels: ['Right thumbnail', 'Below title', 'Crop or show whole', 'Local images only'],
+      mediaAlt:
+        'Demo: cards with right-side photo thumbnails; in the Card Workspace settings, Card images is switched to Below title, and the scrolling stream shows each photo full width under its title.',
+      caption: 'Switch between a right thumbnail and a full-width image in settings; the stream re-lays out at once.',
     },
     boxes: {
       kicker: 'Organize',
       title: 'Turn a useful view into a reusable workspace.',
       body:
-        'Save a folder, tag, and property view as a card box, and matching notes keep appearing as the vault changes. Add or remove individual notes, then give each box its own sort, grouping, and pins. The source files stay where they are.',
+        'Save the current folder, tag, or property view as a card box, and matching notes keep appearing as the vault changes. Add or remove individual notes, then give each box its own sort, grouping, and pins. The source files stay where they are.',
       support:
         'Use a box for research topics, long-running projects, reading lists, or a snapshot of linked notes.',
-      conceptLabel: 'Rule model · accurate example',
-      conceptTitle: 'Field research',
-      ruleOne: 'Projects/Research',
-      ruleOneProperty: 'status = active',
-      ruleTwo: 'Sources/Interviews',
-      ruleTwoProperty: 'type = source',
-      and: 'AND',
-      or: 'OR',
-      manual: 'Manually added',
-      manualNote: 'synthesis-map.md',
-      excluded: 'Excluded',
-      excludedNote: 'meeting-scratch.md',
-      boxState: 'Grouped by rule · Modified ↓ · 2 pinned',
-      precedence: 'Manual inclusion wins over exclusion.',
+      mediaAlt:
+        'Demo: with the neuroscience tag selected, the view is saved as a card box named Focus research; the dialog shows how many notes match, the new box appears in the navigation, and its cards are grouped by folder from the Sort & group menu.',
+      caption: 'A box keeps its rules, and its own grouping and sort, separate from every other view.',
     },
     gather: {
       kicker: 'Gather',
       title: 'Start with the structure your vault already has.',
       body:
-        'Choose a folder, include its subfolders when useful, then narrow the card stream with tags or frontmatter properties. Switching filter types clears the previous selection, keeping the active view easy to follow.',
-      labels: ['Folder scope', 'Include subfolders', 'Multiple tags together', 'Frontmatter properties'],
-      conceptLabel: 'Folder filter options',
-      conceptTitle: 'Research notes',
-      folderLabel: 'Folder',
-      folder: 'Projects / Research',
-      scope: 'Including subfolders',
-      tagLabel: 'Tag option',
-      tag: '#method + #fieldwork',
-      propertyLabel: 'Property option',
-      property: 'status = active',
-      resultCount: '24 matching notes',
+        'Choose a folder, include its subfolders when useful, then narrow the card stream with tags or frontmatter properties. Switching filter types replaces the previous selection, keeping the active view easy to follow. Drag folders to move or reorder them, and arrange tags and properties in the order you think in.',
+      labels: ['Folder scope', 'Include subfolders', 'Tags or properties', 'Drag to reorder'],
       mediaAlt:
-        'Screen recording: moving from the vault root into a folder, selecting nested tags, and narrowing the card stream with a workflow property.',
-      caption: 'Choose tags or properties to refine the folder. Switching types replaces the previous filter.',
+        'Demo: selecting the Reading folder fills the card stream; the neuroscience tag narrows it, the status value done replaces the tag filter, and the Research folder is dragged to the top of the folder list.',
+      caption: 'A folder, then a tag or a property value; each count shows what is left.',
     },
     drag: {
       kicker: 'Reframe',
       title: 'Bring useful context into the note you’re writing.',
       body:
-        'Open a connected note beside your work, or drop a Markdown card at a precise editor position. Insert a wikilink, an embed, the note body, or its title and body—choosing each time or setting a default.',
+        'Drag a Markdown card into the editor and drop it at the cursor. Insert a wikilink, an embed, the note body, or its title and body—choosing each time or setting a default. Turn on heading drag to bring in a single section instead of the whole note.',
       actions: ['Wikilink', 'Embed', 'Content', 'Title + content'],
       mediaAlt:
-        'Screen recording: a card is dragged from the card stream to the editor cursor, and the drop menu offers insert wiki link, insert embed link, insert card content, and insert card title and content.',
+        'Demo: the Conditions for flow card is dragged into the Further reading list of the note being written; the drop menu offers wiki link, embed, content, or title and content, and choosing wiki link inserts the link at the cursor.',
       mediaCaption: 'Drop a card at the cursor, then choose wikilink, embed, content, or title + content.',
     },
     search: {
       kicker: 'Search locally',
       title: 'Find the passage, not just the filename.',
       body:
-        'Search the current folder, card box, outgoing links, or backlinks with a local full-text index. Matching text is highlighted inside Markdown excerpts, and each card shows its hit count without sending vault content anywhere.',
-      labels: ['Current source only', 'Full-text excerpts', 'Hit highlighting + counts', 'Local index'],
-      conceptLabel: 'Search in this view',
-      localLabel: 'Local index',
-      queryLabel: 'Query',
-      query: 'field notes',
-      resultOneTitle: 'Interview synthesis.md',
-      resultOneBefore: 'The ',
-      resultOneHit: 'field notes',
-      resultOneAfter: ' reveal where the working model breaks down…',
-      resultOneCount: '4 hits',
-      resultTwoTitle: 'Research protocol.md',
-      resultTwoBefore: 'Compare the original ',
-      resultTwoHit: 'field notes',
-      resultTwoAfter: ' with the interview synthesis…',
-      resultTwoCount: '2 hits',
+        'Search the current folder, card box, outgoing links, or backlinks with a local full-text index. Each card shows short excerpts around its hits with the matches highlighted, plus a hit count; click an excerpt to open the note at that passage. Recent queries stay in the search history, and vault content never leaves your device.',
+      labels: ['Current source only', 'Hit excerpts', 'Click to jump', 'Search history', 'Local index'],
       mediaAlt:
-        'Screen recording: opening search in the current card view and typing a query to highlight matching text across note excerpts.',
-      caption: 'Highlighted matches and per-note counts keep the search result scannable.',
+        'Demo: searching “interruption” in the card sidebar finds 9 notes with highlighted excerpts and per-note hit counts; clicking an excerpt opens the note at that passage.',
+      caption: 'Highlighted excerpts show why each note matched; click one to jump straight to the passage.',
     },
     links: {
       kicker: 'Keep context',
       title: 'Read the link graph beside the note that gives it meaning.',
       body:
-        'Switch between outgoing links and backlinks around the active note. Let the source follow the editor, pin it while you inspect other notes, search the linked set locally, or save the visible cards as a fixed card-box snapshot.',
-      labels: ['Outgoing links + backlinks', 'Follow active note', 'Pin source', 'Local search', 'Save snapshot'],
-      conceptLabel: 'Linked-note source',
-      sourceLabel: 'Source note',
-      source: 'Synthesis map.md',
-      following: 'Following editor',
-      pinned: 'Pin source',
-      outgoing: 'Outgoing · 12',
-      backlinks: 'Backlinks · 8',
-      resultOne: 'Interview synthesis.md',
-      resultOneMeta: 'Outgoing link · 3 search hits',
-      resultTwo: 'Research index.md',
-      resultTwoMeta: 'Outgoing link · modified today',
-      searchLabel: 'Search linked notes',
-      saveLabel: 'Save snapshot',
+        'Open the backlinks or outgoing links of the active note. Cards are ordered by how often they reference it, and each backlink shows the passages that cite it; click one to open the citing note at that line. Let the source follow the editor, or pin it while you look around.',
+      labels: ['Backlinks + outgoing links', 'Sorted by references', 'Citing passages', 'Click to jump', 'Pin source'],
       mediaAlt:
-        'Screen recording: following outgoing links from the active note, opening linked cards, then switching the link context while the editor stays visible.',
-      caption: 'Link direction and source-note controls stay explicit; the saved box is a snapshot.',
+        'Demo: with Deep work open, Backlinks lists the notes that cite it, most-referenced first, each with its citing paragraphs; the source is pinned, and clicking a passage in an interview note opens that note at the cited sentence.',
+      caption: 'See how a note is cited, not just where; one click opens the citing passage.',
     },
     bulk: {
       kicker: 'Act in bulk',
       title: 'Organize a set of notes as deliberately as one.',
       body:
-        'Click to select individual cards, Shift-click a range, or select the whole view. Then move notes, add or remove tags, change card-box membership, merge Markdown notes with a live preview, or delete the selection.',
+        'In bulk mode, click to select individual cards, Shift-click to select a range, or select the whole view. Then move notes, add or remove tags, set or remove properties across Markdown notes, change card-box membership, merge Markdown notes after checking a live preview, or delete the selection.',
       selectionModes: ['Click to select', 'Shift-select a range', 'Select all'],
-      actions: ['Move', 'Add / remove tags', 'Add / remove from box', 'Merge with preview', 'Delete'],
-      conceptLabel: 'Bulk mode',
-      selectedLabel: 'Selected',
-      selectedCount: '6 notes',
-      selectionOne: 'Interview synthesis.md',
-      selectionTwo: 'Field observations.md',
-      mergeTitle: 'Merge notes',
-      mergeFromLabel: 'From',
-      mergeFrom: '6 Markdown sources',
-      mergeToLabel: 'To',
-      mergeTo: 'Research synthesis.md',
-      previewLabel: 'Live preview',
-      previewLines: ['# Research synthesis', '## Interview synthesis', 'Shared themes and open questions…'],
+      actions: ['Move', 'Add / remove tags', 'Set / remove properties', 'Add / remove from box', 'Merge with preview', 'Delete'],
       mediaAlt:
-        'Screen recording: entering bulk mode, selecting several cards, merging the selected Markdown notes, and reviewing the merged result in the card stream.',
-      caption: 'Selection stays visible while the live preview makes the merge easy to inspect.',
+        'Demo: in the Journal folder, bulk mode is turned on; clicking the first card and Shift-clicking the third selects 3 notes; Merge selected opens a dialog with the title October journal and a preview of the merged note, and the new note appears at the top of the stream.',
+      caption: 'Check the merged note in the preview before it is written; the source notes stay unless you choose to trash them.',
     },
     details: {
       kicker: 'Built for daily use',
@@ -337,8 +234,8 @@ export const landing: Record<Locale, LandingCopy> = {
         'Card Workspace stays compact, predictable, and close to Obsidian’s own file model.',
       items: [
         { title: 'Arrange the stream', body: 'Sort, group by folder, tags, tasks, or properties, and pin the notes you need within each group.' },
-        { title: 'Return quickly', body: 'Favorite folders, files, tags, and card boxes, then move through them from one navigation pane.' },
-        { title: 'Maintain tags safely', body: 'Rename or delete tags with confirmation, updating notes, active filters, favorites, and card-box rules.' },
+        { title: 'Return quickly', body: 'Favorite folders, files, tags, and card boxes, and reveal the active note’s folder in the navigation.' },
+        { title: 'Tidy the navigation', body: 'Hide the sections and items you don’t use, and keep tags safe: renames and deletes update notes, filters, favorites, and card-box rules.' },
         { title: 'Preview or open your way', body: 'Hover-preview a note, or open it in the current tab, a new tab, a split, or a window.' },
         { title: 'Stay responsive at scale', body: 'Virtualized card rendering keeps large vault sources practical to scan.' },
         { title: 'Keep the vault private', body: 'Search, indexing, and file operations stay local; notes remain in their existing folders.' },
@@ -361,11 +258,10 @@ export const landing: Record<Locale, LandingCopy> = {
         { label: 'GitHub', href: REPO },
         { label: 'Releases', href: RELEASES },
       ],
-      legal: `MIT licensed · Card Workspace ${VERSION}`,
+      legal: `GPL-3.0-only · Card Workspace ${VERSION}`,
     },
   },
   zh: {
-    lang: 'zh',
     version: VERSION,
     versionTitle: versionTitle.zh,
     versionHref: RELEASES,
@@ -388,126 +284,75 @@ export const landing: Record<Locale, LandingCopy> = {
       primaryHref: COMMUNITY_PLUGIN,
       secondaryCta: '查看文档',
       secondaryHref: docs('zh', 'guides/introduction'),
-      meta: 'Obsidian 1.9+ · 仅桌面端 · 本地运行',
+      meta: 'Obsidian 1.11.4+ · 仅桌面端 · 本地运行',
       mediaAlt:
-        'Obsidian 中的 Card Workspace：文件夹、标签、属性、卡片盒与双链导航紧挨着带摘要的笔记卡片流，选中卡片对应的笔记正在编辑器中打开。',
+        '演示：Obsidian 中的 Card Workspace 与编辑器并排。卡片流显示整个仓库，带图片的笔记显示缩略图；点击“神经科学”标签后收窄为 4 篇笔记，点击“深度工作”卡片打开这篇笔记，再点击笔记里的链接，选中的卡片随之移到“任务切换的代价”。',
+      caption: '点标签收窄卡片流，点卡片打开笔记；选中状态跟随正在阅读的笔记。',
+    },
+    images: {
+      kicker: '识别',
+      title: '看图就能认出笔记。',
+      body:
+        'Markdown 卡片会显示笔记中嵌入的第一张本地图片，菜谱、旅行和资料一眼就能认出。可以放在右侧做缩略图，也可以在标题下方整幅显示；支持裁切铺满或完整显示，也可以关闭图片。',
+      labels: ['右侧缩略图', '标题下方内联', '裁切或完整显示', '仅本地图片'],
+      mediaAlt: '演示：卡片右侧显示照片缩略图；在 Card Workspace 设置中把“卡片图片”切换为“标题下方内联图片”，滚动卡片流，每张照片整幅显示在标题下方。',
+      caption: '在设置中切换右侧缩略图与内联图片，卡片流立即重新排版。',
     },
     boxes: {
       kicker: '整理',
       title: '把有用的视角，整理成可复用的工作区。',
       body:
-        '把当前的文件夹、标签和属性视角保存成卡片盒，它会持续收集符合规则的笔记。也可以手动加入或移出单篇笔记，并为每个盒子保留独立的排序、分组和置顶。源文件仍留在原处。',
+        '把当前的文件夹、标签或属性视角保存成卡片盒，它会持续收集符合规则的笔记。也可以手动加入或移出单篇笔记，并为每个盒子保留独立的排序、分组和置顶。源文件仍留在原处。',
       support: '适合研究主题、长期项目、阅读清单，也适合保存一组双链笔记的快照。',
-      conceptLabel: '规则模型 · 准确示例',
-      conceptTitle: '田野研究',
-      ruleOne: 'Projects/Research',
-      ruleOneProperty: 'status = active',
-      ruleTwo: 'Sources/Interviews',
-      ruleTwoProperty: 'type = source',
-      and: '且',
-      or: '或',
-      manual: '手动加入',
-      manualNote: 'synthesis-map.md',
-      excluded: '排除',
-      excludedNote: 'meeting-scratch.md',
-      boxState: '按规则分组 · 修改时间 ↓ · 2 张置顶',
-      precedence: '手动加入优先于排除。',
+      mediaAlt: '演示：选中“神经科学”标签后，把当前视角保存为名为“专注研究”的卡片盒；对话框显示匹配的笔记数，新盒子出现在导航中，再从“排序与分组”菜单按文件夹分组。',
+      caption: '每个盒子保留自己的规则，以及独立的分组和排序。',
     },
     gather: {
       kicker: '汇集',
       title: '从仓库已有的结构出发，汇集需要的内容。',
       body:
-        '选择一个文件夹，按需包含子文件夹，再用标签或 frontmatter 属性收窄卡片流。切换筛选类型会清除上一种条件，让当前视角更容易理解。',
-      labels: ['文件夹范围', '包含子文件夹', '多标签组合', 'Frontmatter 属性'],
-      conceptLabel: '文件夹筛选方式',
-      conceptTitle: '研究笔记',
-      folderLabel: '文件夹',
-      folder: 'Projects / Research',
-      scope: '包含子文件夹',
-      tagLabel: '标签方式',
-      tag: '#method + #fieldwork',
-      propertyLabel: '属性方式',
-      property: 'status = active',
-      resultCount: '匹配 24 篇笔记',
-      mediaAlt: '录屏：从仓库根目录进入文件夹，选择嵌套标签，再用 workflow 属性收窄卡片流。',
-      caption: '选择标签或属性来收窄文件夹；切换类型时替换上一种筛选。',
+        '选择一个文件夹，按需包含子文件夹，再用标签或 frontmatter 属性收窄卡片流。切换筛选类型会替换上一种条件，让当前视角更容易理解。文件夹可以拖动移动或调整顺序，标签和属性也能按你的思路排列。',
+      labels: ['文件夹范围', '包含子文件夹', '标签或属性', '拖动排序'],
+      mediaAlt: '演示：选择“读书笔记”文件夹，卡片流随之更新；“神经科学”标签进一步收窄，属性值“状态：已完成”替换标签筛选，最后把“研究”文件夹拖到文件夹列表顶部。',
+      caption: '先选文件夹，再选标签或属性值；每一步的数量都清楚可见。',
     },
     drag: {
       kicker: '重构',
       title: '把有用的上下文，带回正在写的笔记。',
       body:
-        '在编辑器旁打开关联笔记，或把 Markdown 卡片拖到正文中的具体位置。松手后可以插入 wikilink、嵌入、正文或“标题 + 正文”，既可每次选择，也可设置默认。',
+        '把 Markdown 卡片拖进编辑器，在光标处松手。可以插入 wikilink、嵌入、正文或“标题 + 正文”，既可每次选择，也可设置默认。开启标题拖拽后，还能只带入其中一个章节。',
       actions: ['Wikilink', '嵌入', '正文', '标题 + 正文'],
       mediaAlt:
-        '录屏：把一张卡片从卡片流拖到编辑器光标处，松手后弹出菜单，可以选择插入 wikilink、插入嵌入链接、插入卡片正文，或插入卡片标题与正文。',
+        '演示：把“心流的条件”卡片拖进正在写的笔记的“延伸阅读”列表，松手后弹出菜单，可以插入 wiki link、嵌入、正文或标题与正文；选择 wiki link 后，链接插入光标处。',
       mediaCaption: '把卡片拖到光标处，松手后选择 wikilink、嵌入、正文或标题 + 正文。',
     },
     search: {
       kicker: '本地搜索',
       title: '找到正文里的那句话，而不只是文件名。',
       body:
-        '在当前文件夹、卡片盒、出链或反链中使用本地全文搜索。它针对连续中文文本做了专门优化，也支持中英文混合查询；Markdown 摘要会高亮命中内容并显示每篇笔记的命中数，全程无需上传仓库内容。',
-      labels: ['连续中文检索', '中英文混合查询', '命中高亮与计数', '本地索引'],
-      conceptLabel: '在当前视角中搜索',
-      localLabel: '本地索引',
-      queryLabel: '查询',
-      query: '研究记录',
-      resultOneTitle: '访谈综合.md',
-      resultOneBefore: '这组',
-      resultOneHit: '研究记录',
-      resultOneAfter: '显示 API 模型仍有缺口……',
-      resultOneCount: '命中 4 处',
-      resultTwoTitle: '研究方案.md',
-      resultTwoBefore: '逐项对照',
-      resultTwoHit: '研究记录',
-      resultTwoAfter: '与原始观察……',
-      resultTwoCount: '命中 2 处',
-      mediaAlt: '录屏：在当前卡片视角中打开搜索并输入查询，在多篇笔记摘要中高亮匹配正文。',
-      caption: '高亮正文命中并显示每篇计数，让搜索结果一眼可扫。',
+        '在当前文件夹、卡片盒、出链或反链中使用本地全文搜索。它针对连续中文文本做了专门优化，也支持中英文混合查询。每张卡片显示命中处的短片段并高亮命中词，附带命中数；点击片段即可打开笔记并定位到原文。最近的查询保存在搜索历史中，仓库内容全程不离开本机。',
+      labels: ['连续中文检索', '中英文混合查询', '命中片段', '点击定位', '搜索历史'],
+      mediaAlt: '演示：在卡片侧栏搜索“打断”，找到 9 篇笔记，摘要高亮命中并显示每篇命中数；点击摘要片段即打开笔记并定位到原文。',
+      caption: '高亮片段说明每篇为何命中；点击片段，直达原文位置。',
     },
     links: {
       kicker: '保留语境',
       title: '在赋予连接意义的笔记旁，读懂双链。',
       body:
-        '围绕当前笔记切换出链与反链。可以跟随编辑器，也可以固定来源后继续查看其他笔记；还可在关联笔记中本地搜索，或把当前可见结果保存为固定的卡片盒快照。',
-      labels: ['出链 + 反链', '跟随当前笔记', '固定来源', '本地搜索', '保存快照'],
-      conceptLabel: '双链来源',
-      sourceLabel: '来源笔记',
-      source: '综合地图.md',
-      following: '跟随编辑器',
-      pinned: '固定来源',
-      outgoing: '出链 · 12',
-      backlinks: '反链 · 8',
-      resultOne: '访谈综合.md',
-      resultOneMeta: '出链 · 搜索命中 3 处',
-      resultTwo: '研究索引.md',
-      resultTwoMeta: '出链 · 今天修改',
-      searchLabel: '搜索关联笔记',
-      saveLabel: '保存快照',
-      mediaAlt: '录屏：从当前笔记查看出链，打开关联卡片，再切换双链上下文，同时保持编辑器可见。',
-      caption: '连接方向和来源控制清晰可见；保存得到的是固定快照。',
+        '打开当前笔记的反链或出链。卡片按引用次数排序，每条反链都会显示引用它的段落；点击段落，直接打开引用处所在的那一行。来源可以跟随编辑器，也可以固定下来，再去查看其他笔记。',
+      labels: ['反链 + 出链', '按引用次数排序', '引用段落', '点击定位', '固定来源'],
+      mediaAlt: '演示：打开“深度工作”后切换到反链，引用它的笔记按引用次数排列，并显示引用段落；固定来源后，点击一篇访谈笔记中的段落，打开那篇笔记并定位到引用的句子。',
+      caption: '不只看到谁引用了它，还能看到怎么引用；点击即可打开引用原文。',
     },
     bulk: {
       kicker: '批量整理',
       title: '像整理一篇笔记那样，稳妥地整理一组。',
       body:
-        '点击选择单张卡片，Shift+点击连续选择，或全选当前视角。随后可移动笔记、添加或移除标签、加入或移出卡片盒、通过实时预览合并 Markdown 笔记，或删除所选内容。',
+        '进入批量模式后，点击选择单张卡片，Shift+点击连续选择，或全选当前视角。随后可移动笔记、添加或移除标签、统一设置或移除 Markdown 笔记的属性、加入或移出卡片盒、在实时预览中确认后合并 Markdown 笔记，或删除所选内容。',
       selectionModes: ['点击选择', 'Shift 连选', '全选'],
-      actions: ['移动', '添加 / 移除标签', '加入 / 移出卡片盒', '预览后合并', '删除'],
-      conceptLabel: '批量模式',
-      selectedLabel: '已选择',
-      selectedCount: '6 篇笔记',
-      selectionOne: '访谈综合.md',
-      selectionTwo: '田野观察.md',
-      mergeTitle: '合并笔记',
-      mergeFromLabel: '来源',
-      mergeFrom: '6 篇 Markdown 来源',
-      mergeToLabel: '目标',
-      mergeTo: '研究综合.md',
-      previewLabel: '实时预览',
-      previewLines: ['# 研究综合', '## 访谈综合', '共同主题与待解问题……'],
-      mediaAlt: '录屏：进入批量模式，选择多张卡片，合并所选 Markdown 笔记，并在卡片流中检查合并结果。',
-      caption: '选择范围始终可见，实时预览让合并前的结果清楚可查。',
+      actions: ['移动', '添加 / 移除标签', '设置 / 移除属性', '加入 / 移出卡片盒', '预览后合并', '删除'],
+      mediaAlt: '演示：在“日志”文件夹中进入批量模式，点击第一张卡片、Shift+点击第三张，选中 3 篇笔记；点击“合并所选”打开对话框，标题填写“十月日志”并预览合并结果，新笔记出现在卡片流顶部。',
+      caption: '写入前先在预览中检查合并结果；除非选择移入废纸篓，源笔记都会保留。',
     },
     details: {
       kicker: '日常使用',
@@ -515,8 +360,8 @@ export const landing: Record<Locale, LandingCopy> = {
       body: 'Card Workspace 保持紧凑、可预测，也始终贴近 Obsidian 原有的文件模型。',
       items: [
         { title: '整理卡片流', body: '按文件夹、标签、任务或属性分组，折叠分组，并在组内置顶需要的笔记。' },
-        { title: '快速返回', body: '收藏文件夹、文件、标签和卡片盒，再从同一导航栏往返。' },
-        { title: '安全维护标签', body: '确认后重命名或删除标签，并同步更新笔记、活动筛选、收藏与卡片盒规则。' },
+        { title: '快速返回', body: '收藏文件夹、文件、标签和卡片盒，也能在导航中定位当前笔记所在的文件夹。' },
+        { title: '整理导航', body: '隐藏用不到的分区和条目；重命名或删除标签时会同步更新笔记、筛选、收藏与卡片盒规则。' },
         { title: '按习惯预览或打开', body: '悬停预览笔记，也可在当前标签页、新标签页、分栏或新窗口中打开。' },
         { title: '大仓库依然流畅', body: '卡片流采用虚拟化渲染，大型来源也能保持实用的浏览体验。' },
         { title: '内容留在本地', body: '搜索、索引与文件操作都在本地完成；笔记仍留在原有文件夹。' },
@@ -538,7 +383,7 @@ export const landing: Record<Locale, LandingCopy> = {
         { label: 'GitHub', href: REPO },
         { label: '版本发布', href: RELEASES },
       ],
-      legal: `MIT 许可证 · Card Workspace ${VERSION}`,
+      legal: `GPL-3.0-only 许可证 · Card Workspace ${VERSION}`,
     },
   },
 };

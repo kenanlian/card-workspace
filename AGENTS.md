@@ -34,7 +34,9 @@ GitHub Actions (withastro/action) → GitHub Pages
 - `src/components/landing/` — custom Astro landing components used only by the locale splash pages.
 - `src/styles/` — V2 Graphite Index tokens (`tokens.css`), the shared header (`header.css`), and Starlight chrome (`theme.css`); landing CSS is imported from the Landing component.
 - `src/assets/` — images referenced by content (e.g. `logo-light.svg`, `logo-dark.svg`).
-- `src/assets/media/` — product screenshots and landing clips (`overview.jpg`, `property-filters.webp`, `linked-notes.webp`, `browse.mp4` + `browse-poster.webp`, `writing.mp4` + `writing-poster.webp`). Clips are H.264 MP4 only; no GIF and no WebM.
+- `src/assets/media/` — docs screenshots (`navigation-favorites-{en,zh}{,-dark}.webp`).
+- `src/assets/media/clips/` — landing clips, one per feature and locale: `<id>-<locale>.mp4` + `<id>-<locale>-poster.webp` for `hero`, `gather`, `images`, `links`, `search`, `drag`, `boxes`, `bulk`. Rendered by `videos/`; do not edit by hand. Clips are H.264 MP4 only; no GIF and no WebM.
+- `videos/` — separate Vite + Svelte project that renders the landing clips from the plugin's real components (see `videos/README.md`). Not part of the Astro build; excluded from the site `tsconfig.json`. Its `theme/`, `plugin-snapshots/`, and `renders/` are git-ignored.
 - `src/pages/` — the root redirect (`index.astro`).
 - `public/` — static assets served as-is (`favicon.svg`, `og.png`).
 - `designs/` — design prototypes and design systems (one folder per project). Not served by Astro.
@@ -60,7 +62,7 @@ There is no lint or test script configured.
 - **File naming**: kebab-case for doc files (`getting-started.md`); lowercase for locale (`en`, `zh`) and section (`guides`, `reference`) folders; landing page is `index.mdx` per locale.
 - **Frontmatter**: every page has `title` + `description` (Starlight-required). Landing pages (`index.mdx`) use `template: splash` and omit the `hero` block; the body imports `<Landing locale="en" />` or `<Landing locale="zh" />`.
 - **Components**: custom Astro components under `src/components/landing/` for the splash only. Guide/reference pages are plain `.md` and do not import components.
-- **Product media**: `MediaShot.astro` wraps `astro:assets` `<Image>` for stills; `MediaClip.astro` wraps a muted looping `<video>` that only plays while onscreen, stays paused under `prefers-reduced-motion`, and always exposes a play/pause button. Alt text and captions come from `landing.ts`, never from the component. Re-encode new captures with `ffmpeg -vf "scale=1440:-2:flags=lanczos,fps=15" -c:v libx264 -crf 28 -preset slow -an -movflags +faststart`.
+- **Product media**: all landing sections use `MediaClip.astro`, which wraps a muted looping `<video>` that only plays while onscreen, stays paused under `prefers-reduced-motion`, and always exposes a play/pause button. Alt text and captions come from `landing.ts`, never from the component. `Landing.astro` resolves each section's clip for the page locale with `clip('<id>')`, which fails the build if a file is missing. To change a clip, edit `videos/src/clips/<id>/main.ts` and re-render both locales with `npm run render -- <id>` from `videos/`; describe what the clip actually shows in that section's `mediaAlt`. Guide screenshots use standard Markdown image references to WebP assets.
 - **Internal doc links**: author standard Markdown links to relative `.md` files, e.g. `[Navigation](./navigation.md)` or `[Settings](../reference/settings.md)`. This keeps the same files navigable in Obsidian; `src/remark-obsidian-links.mjs` validates and rewrites them to base-prefixed, trailing-slash website routes at build time. Keep landing/component links on the existing `docsHref()` helpers.
 - **i18n**: sidebar labels carry `translations: { 'zh-CN': '...' }`; keep `en/` and `zh/` structures in sync when adding pages.
 - **Styling**: V2 Graphite Index tokens in `src/styles/`; Starlight `customCss` loads `./src/styles/theme.css` (which imports `tokens.css` and `header.css`). No Tailwind. Landing-scoped CSS is imported from the Landing component, not a second Starlight `customCss` entry.
@@ -95,4 +97,4 @@ There is no lint or test script configured.
 - CI: `.github/workflows/deploy.yml` triggers on push to `main` (and manual `workflow_dispatch`).
 - Build uses `withastro/action@v3`; deploy uses `actions/deploy-pages@v4` to the `github-pages` environment.
 - Target URL: `https://kenanlian.github.io/card-workspace/`. The `base` in `astro.config.mjs` must match the repository name.
-- **Pre-deploy note**: the placeholder username `kenanlian` in `astro.config.mjs` and docs links should be replaced with the actual GitHub username before a real deployment.
+- **Site identity**: `kenanlian/card-workspace` is the configured site repository. If hosting moves, update `site` and `base` in `astro.config.mjs`; plugin repository links are maintained separately in `src/content/site.ts`.

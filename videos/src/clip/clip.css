@@ -1,0 +1,181 @@
+/* Scoped to the clip page: popout windows copy this stylesheet into their own documents. */
+html.clip-document,
+html.clip-document body {
+  margin: 0;
+  width: 1440px;
+  height: 1080px;
+  overflow: hidden;
+}
+
+#clip {
+  --ink-shadow: 40 44 70;
+  position: relative;
+  width: 1440px;
+  height: 1080px;
+  overflow: hidden;
+  font-family: var(--font-interface);
+  color: var(--text-normal);
+  background: var(--background-primary);
+}
+
+#camera {
+  position: absolute;
+  inset: 0;
+}
+
+/* Own stacking context, so the shell's menu layer stays under the cursor. */
+#stage {
+  position: relative;
+  z-index: 0;
+}
+
+/* Frames are posed by seeking, not played, so wall-clock motion would be random per frame. */
+#stage *,
+#stage *::before,
+#stage *::after {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  caret-color: transparent !important;
+}
+
+/* A separate OS window (settings) floating over the main one. */
+.clip-os-window {
+  position: absolute;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgb(0 0 0 / 0.16);
+  box-shadow: 0 24px 60px rgb(var(--ink-shadow) / 0.3), 0 4px 14px rgb(var(--ink-shadow) / 0.14);
+}
+
+#overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  margin: -3px 0 0 -7px;
+  transform-origin: 7px 3px;
+  opacity: 0;
+  filter: drop-shadow(0 3px 5px rgb(0 0 0 / 0.3));
+}
+
+#ripple {
+  position: absolute;
+  left: -36px;
+  top: -36px;
+  width: 72px;
+  height: 72px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 4px solid var(--interactive-accent);
+  opacity: 0;
+}
+
+.clip-ghost {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px 10px 14px;
+  border-radius: 12px;
+  font-family: var(--font-interface);
+  font-size: 28px;
+  white-space: nowrap;
+  color: var(--text-normal);
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgb(var(--ink-shadow) / 0.22), 0 2px 6px rgb(var(--ink-shadow) / 0.12);
+  opacity: 0;
+}
+
+/* The plugin's card drag ghost: the live one tracks real drag events on the body, so clips redraw it in screen space. */
+body > .fce-card-drag-ghost {
+  display: none !important;
+}
+
+.clip-card-ghost {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.clip-card-ghost .fce-card-drag-ghost {
+  position: static;
+}
+
+.clip-ghost-icon {
+  display: grid;
+  color: var(--text-muted);
+}
+
+.clip-ghost-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+#callouts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.clip-callout {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 28px 16px 22px;
+  border-radius: 999px;
+  font-size: 36px;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--text-normal);
+  background: #ffffff;
+  box-shadow: 0 14px 36px rgb(var(--ink-shadow) / 0.16), 0 2px 8px rgb(var(--ink-shadow) / 0.1);
+  opacity: 0;
+}
+
+.clip-callout-icon {
+  display: grid;
+  color: var(--interactive-accent);
+}
+
+.clip-callout-icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.clip-callout-label {
+  color: var(--text-muted);
+}
+
+.clip-callout-text {
+  font-weight: 600;
+}
+
+.clip-callout.is-accent {
+  color: #ffffff;
+  background: var(--interactive-accent);
+}
+
+.clip-callout.is-accent .clip-callout-icon,
+.clip-callout.is-accent .clip-callout-label {
+  color: rgb(255 255 255 / 0.85);
+}
+
+/* Where a jump lands in the note: the selection Obsidian sets at the location. */
+.demo-hit-selection {
+  border-radius: 3px;
+  background: var(--text-selection);
+  box-shadow: 0 0 0 2px var(--text-selection);
+}

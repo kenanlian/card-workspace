@@ -35,4 +35,4 @@ This website self-hosts its fonts, independently of the plugin.
 
 ## License and support
 
-Card Workspace is released under the MIT License. Report issues on [GitHub Issues](https://github.com/kenanlian/obsidian-card-workspace/issues); the source is available in the [plugin repository](https://github.com/kenanlian/obsidian-card-workspace).
+Card Workspace uses GPL-3.0-only starting with [1.4.3](https://github.com/kenanlian/obsidian-card-workspace/releases/tag/1.4.3). Previously published releases through 1.4.2 retain their original MIT License. Report issues on [GitHub Issues](https://github.com/kenanlian/obsidian-card-workspace/issues); the source is available in the [plugin repository](https://github.com/kenanlian/obsidian-card-workspace).

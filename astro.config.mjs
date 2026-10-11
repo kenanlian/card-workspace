@@ -4,8 +4,7 @@ import { unified } from '@astrojs/markdown-remark';
 import starlight from '@astrojs/starlight';
 import remarkObsidianLinks from './src/remark-obsidian-links.mjs';
 
-// NOTE: Replace `kenanlian` below with your actual GitHub username.
-// For a GitHub *project* site the URL is:
+// GitHub Pages project site for `kenanlian/card-workspace`:
 //   https://kenanlian.github.io/card-workspace/
 // so `base` must match the repository name.
 const SITE = 'https://kenanlian.github.io';
@@ -45,7 +44,7 @@ export default defineConfig({
       ],
       // Light-first graphite theme shared by the landing page and docs.
       customCss: ['./src/styles/theme.css'],
-      // English is the default (root) language; Chinese lives under /zh/.
+      // Locale pages live under /en/ and /zh/; the site root redirects to /en/.
       defaultLocale: 'en',
       locales: {
         en: { label: 'English', lang: 'en' },
