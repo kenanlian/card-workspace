@@ -39,8 +39,9 @@ export function press(at: number, target: Target, init: MouseEventInit = {}): Sc
       else node.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, ...init }));
     }),
     // A click re-renders the row and drops the mirror; restore it until the cursor moves on.
+    // Same `at` as the click, so the click's own frame keeps it too.
     // A link click replaces the note it sat in, so the target may be gone.
-    call(at + 0.01, ({ host }) => {
+    call(at, ({ host }) => {
       const node = typeof target === "string" ? host.querySelector<HTMLElement>(target) : target(host);
       node?.classList.add("demo-hover");
     }),

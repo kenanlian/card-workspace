@@ -40,6 +40,11 @@ html.clip-document body {
   caret-color: transparent !important;
 }
 
+/* Without its transition, the card's 1px hover lift would land as a jolt. */
+#stage .folder-card-view .fce-card.demo-hover {
+  transform: none;
+}
+
 /* A separate OS window (settings) floating over the main one. */
 .clip-os-window {
   position: absolute;
