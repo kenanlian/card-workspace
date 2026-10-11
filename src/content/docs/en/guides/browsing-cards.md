@@ -15,7 +15,7 @@ Excerpts preserve light cues for headings, code, link text, list markers, and ta
 
 Cards containing tasks show **completed / total** in the footer, such as `2/5`. Notes without tasks have no task footer. Completed and open tasks use aligned checkboxes in the excerpt.
 
-If a Markdown note has no previewable text near the top, the card shows **No previewable text near the top.** Control the excerpt height with **Preview lines** in [Settings](../reference/settings.md).
+If a Markdown note has no previewable text near the top, the card shows **No previewable text near the top.** Control the excerpt height with **Preview lines** in [Settings](../reference/settings.md): 0–8 lines, default 5. **0** hides the ordinary excerpt; a search with body hits still shows its snippets.
 
 Scrolling is virtualized, and excerpts load on demand. Content fills in progressively when you switch folders or first open a large source.
 
@@ -29,21 +29,25 @@ Use a body embed such as `![[Attachments/photo.jpg]]` or `![Photo](../Attachment
 - Missing references and unsupported file extensions are skipped when choosing the first image. Remote URLs, frontmatter cover fields, HTML images, and embedded notes are not image sources. SVG, AVIF, GIF, and animated PNG/WebP are not displayed.
 - If the selected image exceeds the limits or fails to load, the plugin does not try another attachment from the same note. Notes without a resolvable supported reference keep their normal text layout.
 
-Only visible rows and one neighboring row on either side request thumbnails. First-time generation waits for visible text to load, so a large image may appear later than its excerpt. Once a supported reference and eligible file size are known, the card reserves the image area before loading; later validation or loading failures keep an unavailable placeholder of the same size. Loaded images fade in over 240 ms, or appear immediately with reduced motion enabled. Multiple columns remain aligned by rows while each card keeps its own height.
+Only visible rows and one neighboring row on either side request thumbnails. First-time generation waits for visible text to load, so a large image may appear later than its excerpt. Once a supported reference and eligible file size are known, the card reserves the image area before loading; later validation or loading failures keep an unavailable placeholder of the same size. Loaded images fade in over 240 ms the first time they appear, or appear immediately with reduced motion enabled. A later refresh does not replay that fade, and editing the note keeps the thumbnail while its image reference stays the same. Multiple columns remain aligned by rows while each card keeps its own height.
 
 Thumbnails are cached locally and reused across restarts. Changing image layout, fit, preview lines, or the search query does not regenerate them. See [Image limits and local caching](../reference/limits-and-privacy.md#image-limits-and-local-caching) for size limits and unsupported-environment behavior.
 
 ## Hover preview and editor sync
 
-Hover a title or excerpt while holding Obsidian’s Page Preview modifier (Ctrl or Cmd by default) to preview the note. Pin, bulk, and more-actions controls do not trigger the preview.
+Hover a title or excerpt while holding Obsidian’s Page Preview modifier (Ctrl or Cmd by default) to preview the note. Pin, bulk, and more-actions controls do not trigger the preview. With the **Page preview** core plugin enabled, **Card hover preview width** and **Card hover preview height** in [Settings](../reference/settings.md#card-hover-preview-size) default to 600 × 400 pixels and shrink to fit the window.
 
 Click a card to open its note. Switch notes in the editor and a matching card is selected; a [linked-note source](./linked-notes.md) also follows the active note unless pinned.
 
 ## Search
 
-The toolbar action **Toggle search** opens **Search notes** for the current folder, card box, outgoing-links source, or backlinks source. Matching text is highlighted on Markdown cards with a per-note hit count.
+The toolbar action **Toggle search** opens **Search notes** for the current folder, card box, outgoing-links source, or backlinks source. Matching text is highlighted on Markdown cards, and each card keeps its hit count.
 
-When the body contains a match, the excerpt starts near the first matching location instead of showing only the beginning of the note. A title-only match or an unavailable body location falls back to the ordinary excerpt. Clearing the query restores the source’s preview; see [Linked notes](./linked-notes.md) for link-context previews.
+Body hits appear as separate snippets in source order, using the same lightweight list, task, heading, code, and link cues as an ordinary excerpt. Each snippet occupies two lines. [Settings](../reference/settings.md#maximum-search-hit-snippets-in-each-card-preview) chooses how many snippets a card shows: 1–5, default 2. Overlapping contexts are merged, and a short hit line continues into the following prose. Click a snippet, or press Enter or Space while it is focused, to open that hit in the note’s current editing or reading mode.
+
+A title-only match highlights the title and keeps the opening excerpt. Clearing the query restores the source’s preview; see [Linked notes](./linked-notes.md) for link-context previews.
+
+**Search history** remembers the 30 most recent queries across card views. While you type, it offers up to six matching entries. Delete one entry, or choose **Clear history**. Closing search or clearing the query stores the current text first. Suggestions stay hidden when nothing in the history matches.
 
 - An empty query shows the current source after any browse filters that apply to it.
 - A non-empty query waits for the local index. Until it is ready, the panel reports that search is blocked.
@@ -54,9 +58,9 @@ The local index persists across restarts. An unchanged vault reuses it to avoid 
 
 ## Sort and group
 
-Open **Sort & group** on the toolbar. Sort cards by edited time, created time, or filename, in ascending or descending order.
+Open **Sort & group** on the toolbar. Folder cards sort by edited time, created time, or filename, in ascending or descending order. Outgoing links and backlinks add **Reference count** and each remember their own sort; both default to reference count, highest first. See [Linked notes](./linked-notes.md).
 
-Folder and linked-note sources use the global arrangement. A [card box](./card-boxes.md) keeps its own. Grouping options are:
+Folder sources share one global grouping. A [card box](./card-boxes.md) keeps its own sort and grouping. Grouping options are:
 
 - **Folder** — group by the note’s parent folder.
 - **Tag** — group by the complete tag set, rather than the first tag. `#research` and `#research #draft` form different groups; the order of tags within the same set does not matter.

@@ -9,7 +9,7 @@ Card Workspace 是一款 **侧边栏优先、仅桌面端** 的插件，不支�
 
 ## 运行要求与受支持文件
 
-- Obsidian **1.9.0** 或更高版本
+- Obsidian **1.11.4** 或更高版本。Obsidian 1.13 及更高版本使用设置搜索和原生确认弹窗；1.11.4–1.12 使用相同设置和兼容弹窗。更早的 Obsidian 会保留 Card Workspace 1.3.4，也就是这些版本能运行的最后一版
 - 从 ribbon 或命令面板在左侧边栏打开
 - Markdown（`.md`）、Bases（`.base`）、Canvas（`.canvas`）以及 Excalidraw（`.excalidraw` 和 `.excalidraw.md`）卡片
 

@@ -9,7 +9,7 @@ Card Workspace is a **left-sidebar** [Obsidian](https://obsidian.md/) plugin tha
 
 The stream can come from a folder, a card box, or the outgoing links and backlinks around a note. Local search works in every source; tag and property browse filters narrow folder sources only. The [navigation guide](./navigation.md) explains how those sources stay together in one compact pane.
 
-In 1.3.4, Markdown cards also show a [local image preview](./browsing-cards.md#card-images) when the note body embeds a supported image. Right-side thumbnails are enabled by default; choose an image below the title or turn images off in Settings.
+Markdown cards show a [local image preview](./browsing-cards.md#card-images) when the note body embeds a supported image. Right-side thumbnails are enabled by default; choose an image below the title or turn images off in Settings.
 
 It is not Obsidian Canvas, and it is not a board where dragging cards changes your vault structure. Click a card to open its note; switch notes in the editor and the matching card is selected. Your Markdown and other supported files stay in their original folders.
 
@@ -26,7 +26,7 @@ Card Workspace is for people who scan and collect notes while writing: research 
 ## Requirements
 
 - **Desktop only.** Mobile is not supported.
-- **Obsidian 1.9.0 or later**, because card support for Bases depends on that version.
+- **Obsidian 1.11.4 or later.** Vaults on an older Obsidian stay on Card Workspace 1.3.4. Obsidian 1.13 or later adds settings search and native confirmation dialogs.
 - The interface follows Obsidian’s language: Simplified Chinese for languages beginning with `zh`, otherwise English.
 
-Continue with [Installation](./installation.md), then [Getting started](./getting-started.md). Returning users can read [1.3.4: Card images](../updates/1-3-4.md) for the latest changes, or [1.2.7–1.3.3](../updates/1-2-7-to-1-3-3.md) for property grouping, contextual previews, and opening at link locations.
+Continue with [Installation](./installation.md), then [Getting started](./getting-started.md). Returning users can read [1.3.5–1.4.3](../updates/1-3-5-to-1-4-3.md) for navigation visibility, search snippets, and metadata editing, or [1.3.4: Card images](../updates/1-3-4.md) for image previews.

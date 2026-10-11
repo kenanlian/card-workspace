@@ -23,6 +23,12 @@ Drag a card to a precise position in an open Markdown editor. The default is **A
 
 If a requested action is unavailable, Obsidian shows **This card type does not support that drag insertion action.**
 
+## Insert a heading section
+
+**Enable section drag insertion** in [Settings](../reference/settings.md#enable-section-drag-insertion) is off by default. Turn it on, then drop a Markdown card to choose a heading section or the whole note. The section actions are **Insert section link**, **Insert section content**, and **Insert section heading & content**. They follow the selected drag insert behavior.
+
+Section content includes nested headings and stops at the next heading of the same or higher level. The inserted text is the original Markdown. If heading metadata is still loading, drop the card again. When Obsidian cannot link to one heading, insert its content instead.
+
 ## Create notes and files
 
 The toolbar **Create note** action uses the configured new-note content: an empty `tags` property by default, or a blank note. The filename begins with **Untitled**.
@@ -33,7 +39,7 @@ From a folder menu you can create a note, folder, canvas, or base inside that fo
 
 Navigation menus cover creation, rename, duplicate, move, path copying, reveal in the system explorer, favorites, tree expansion, section ordering, filters, and [card-box](./card-boxes.md) actions. Renaming or deleting a tag updates or removes its references in notes, active filters, favorites, and box rules after confirmation.
 
-Card menus can open in several destinations; duplicate, move, rename, or delete the file; manage favorites and box membership; and, for Markdown, copy content or edit tags. The complete inventory is in [Commands and menus](../reference/commands-and-menus.md).
+Card menus can open in several destinations; duplicate, move, rename, or delete the file; manage favorites and box membership; and, for Markdown, copy content or open **Add/remove tags...** and **Add/remove properties...**. Those two actions use the same dialogs as bulk mode, applied to that one note. The complete inventory is in [Commands and menus](../reference/commands-and-menus.md).
 
 Copying Markdown content omits the leading frontmatter and gives you the body. Duplicating the file preserves its original contents.
 
@@ -49,7 +55,11 @@ Turn on **Bulk**, then click cards to toggle them. Shift-click selects a range f
 - Delete selected notes
 - Merge selected Markdown notes
 
-Merge needs at least two Markdown notes. Its dialog controls the title, target folder, source order, separator, whether source notes are kept, and a live preview. Only the first source note’s frontmatter is preserved at the top of the merged note; the other source frontmatter blocks are omitted.
+Merge needs at least two Markdown notes. Its dialog controls the title, target folder, source order, and a live preview. The separator defaults to **Blank line**, and can also be a **Horizontal rule** or a **Line break**. **Trash source notes after merge** is off, so the source notes stay in the vault until you turn it on; trashing then follows Obsidian’s delete preference. Only the first source note’s frontmatter is preserved at the top of the merged note; the other source frontmatter blocks are omitted.
+
+### Bulk tag operations
+
+Select Markdown notes in bulk mode, then click **Bulk tag operations** in the toolbar. The dialog shows how many notes it will affect. Add tags and remove tags in one operation. Removing a parent tag also removes its child tags, and removals run before additions. **Apply** reports modified, unchanged, and failed counts. If any notes fail, applying again retries only those notes. A single card’s **Add/remove tags...** action opens this same dialog for that note.
 
 ### Bulk property operations
 
@@ -60,7 +70,7 @@ Select Markdown notes in bulk mode, then click **Bulk property operations** in t
 - **Suggestions**: search existing property names and values, or enter new ones. The removal picker lists properties present in the selection and how many selected notes contain each one.
 - **Results**: click **Apply** to see modified, unchanged, and failed counts. If any notes fail, applying again retries only those notes.
 
-Operations edit Markdown frontmatter while preserving the body and other properties. Use **Bulk tag operations** for tags. A property cannot be set and removed in the same operation.
+Operations edit Markdown frontmatter while preserving the body and other properties. A property cannot be set and removed in the same operation. A single card’s **Add/remove properties...** action opens this same dialog for that note. Use **Bulk tag operations** for tags.
 
 ## Delete behavior
 

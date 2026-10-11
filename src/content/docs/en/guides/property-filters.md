@@ -35,6 +35,8 @@ Headers show the property name, values, and card count. Text, numbers, and boole
 
 Property grouping works in folder, card-box, and linked-note sources, even though the latter two cannot use temporary property filters. Hiding a property used for grouping resets the affected global or card-box arrangement to **None**.
 
+Right-click a property name to sort its values by **Name (A to Z)**, **Name (Z to A)**, or **Manual sorting**. **Unassigned** stays last. The Properties header sorts the property names themselves. See [Arrange folders, tags, and properties](./navigation.md#arrange-folders-tags-and-properties).
+
 ## Counts and navigation search
 
 Property facets are calculated from the unfiltered source, so choosing one value does not erase its siblings. Turn on navigation counts in [Settings](../reference/settings.md) to show how many source cards contribute to each key and value.

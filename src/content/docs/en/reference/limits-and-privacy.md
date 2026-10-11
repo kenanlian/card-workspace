@@ -9,7 +9,7 @@ Card Workspace is a **sidebar-first, desktop-only** plugin. It does not run on m
 
 ## Requirements and supported files
 
-- Obsidian **1.9.0** or later
+- Obsidian **1.11.4** or later. Obsidian 1.13 or later uses settings search and native confirmation dialogs; 1.11.4–1.12 uses the same settings with compatible dialogs. Earlier Obsidian versions keep Card Workspace 1.3.4, the last release they can run
 - Opened from the ribbon or command palette in the left sidebar
 - Markdown (`.md`), Bases (`.base`), Canvas (`.canvas`), and Excalidraw (`.excalidraw` and `.excalidraw.md`) cards
 

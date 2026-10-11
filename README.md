@@ -93,13 +93,10 @@ Keep both locales in sync, summarize about five published releases per update
 page, and add each page to the manual sidebar with the newest group first.
 The first reserved range, 1.0.0–1.0.5, contains the three actual 1.0 releases;
 the 1.2.7–1.3.3 group also identifies the unpublished 1.3.1 tag separately.
-The landing page and shared header currently show 1.4.3. Bulk property operations
-in Writing and organizing and the menu reference were checked against the 1.4.3
-tag; license copy follows the 1.4.3 release. The remaining guides, settings
-reference, and update summaries were last reviewed against 1.3.4; changing
-`VERSION` does not update their content. Review
-the intervening tagged releases before describing all documentation as current.
-Keep historical update pages as release records.
+The landing page, shared header, guides, settings reference, and update
+summaries describe Card Workspace 1.4.3. Changing `VERSION` does not update
+their content. Review the intervening tagged releases before describing a newer
+plugin release as current. Keep historical update pages as release records.
 
 Getting started and Navigation reuse bilingual workspace screenshots that
 follow the site's light or dark theme. See

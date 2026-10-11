@@ -23,7 +23,7 @@ A box can keep tag rules and property rules; existing rules may also contain bot
 
 As your vault changes, notes enter or leave a rule-driven box automatically. Manually added and removed notes stay explicit until you change them.
 
-Each box also keeps its own **sort**, **grouping**, collapsed groups, and **pinned notes**, separate from folder browsing.
+Each box also keeps its own **sort**, **grouping**, collapsed groups, and **pinned notes**, separate from folder browsing. Saving the current folder view copies the grouping in effect at that moment.
 
 ## Create a box from a view
 
@@ -45,6 +45,7 @@ Right-click a box and choose **Configure card box…**. The dialog shows:
 
 - **Rules** — inspect folders, subfolder choices, tags, and property conditions; rename or remove a rule
 - **Sort** — the box’s card sort, independent of folder browsing
+- **Grouping** — the dimension, property, group order, and direction saved with this box
 - **Manually added** — notes included directly
 - **Removed notes** — exclusions that can be restored one at a time or all together
 

@@ -133,6 +133,7 @@ export default defineConfig({
           label: 'Recent updates',
           translations: { 'zh-CN': '最近更新' },
           items: [
+            { label: '1.3.5–1.4.3', slug: 'updates/1-3-5-to-1-4-3' },
             { label: '1.3.4', slug: 'updates/1-3-4' },
             { label: '1.2.7–1.3.3', slug: 'updates/1-2-7-to-1-3-3' },
             { label: '1.2.2–1.2.6', slug: 'updates/1-2-2-to-1-2-6' },

@@ -26,10 +26,10 @@ Use **Pin to this note** in the toolbar to hold the source on the current note w
 
 ## Link context and opening location
 
-Without a search query, Markdown link cards prefer an excerpt from the relevant reference location:
+Without a search query, each linked file stays one card. A badge shows how many references connect it with the source note. Repeated references inside one paragraph share a context and keep their occurrence count. Repeated links to the same destination location share one preview. Click a snippet to open the reference or destination it shows.
 
-- **Backlinks** — preview from the first usable reference in that note, showing why it links to the source.
-- **Outgoing links** — a resolved heading or block reference, such as `[[Note#Heading]]` or `[[Note#^block-id]]`, previews from that target. Whole-note links and unavailable locations use the opening excerpt.
+- **Backlinks** show the paragraphs that link to the source. [Settings](../reference/settings.md#default-backlink-reference-snippets) chooses 1, 2, 3, or all contexts; the default is 3. A card can expand the rest with **Show reference contexts** and collapse them again.
+- **Outgoing links** with a resolved heading or block reference, such as `[[Note#Heading]]` or `[[Note#^block-id]]`, preview that target. Whole-note links and unavailable locations use the opening excerpt, within the ordinary preview-line budget.
 - **Active search** — the matching text’s context takes priority over the link location.
 
 Enable **Jump to link location when opening a link card** in [Settings](../reference/settings.md) to jump to the previewed location when you click a card or open it through its menu. An active search takes priority and jumps to matching text. This setting is off by default and applies only to linked-note sources; a missing location falls back to opening normally.
@@ -38,7 +38,7 @@ Enable **Jump to link location when opening a link card** in [Settings](../refer
 
 Search, sorting, grouping, and pins remain available. Tag and property browse filters, along with the include-subfolders control, do not apply because the source comes from links rather than a folder. Existing folder filter selections stay paused and resume when you return to a folder.
 
-Linked-note sources use the global sort, grouping, and pinned paths shared with folder browsing. They are temporary: Card Workspace restores the last folder, not a linked-note source, on startup.
+Outgoing links and backlinks each remember their own sort. Both default to **Reference count**, highest first; edited time, created time, and filename remain available. They still share grouping and pins with folder browsing. A linked-note source is temporary: Card Workspace restores the last folder, not a linked-note source, on startup.
 
 ## Save a snapshot as a card box
 

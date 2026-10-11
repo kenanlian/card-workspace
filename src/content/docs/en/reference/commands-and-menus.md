@@ -31,17 +31,17 @@ Inside a [linked-note source](../guides/linked-notes.md), it also provides **Pin
 
 Right-click a section header or row in the navigation pane.
 
-- **Sections** — collapse or expand, move up, and move down
-- **Folders** — create files, rename, duplicate, move, copy paths, reveal, search, include subfolders, expand or collapse trees, favorite, or delete
-- **Tags** — filter, create a tagged note, copy, rename or delete with reference updates, expand or collapse, and favorite
-- **Properties** — choose visible keys, clear filters, expand or collapse all; hide a key; add, remove, or isolate a value filter
-- **Boxes** — create, open, configure, add the current view, restore removed notes, duplicate, rename, favorite, or delete
+- **Sections** — collapse or expand, move up, move down, or hide the section
+- **Folders** — create files, rename, duplicate, move, copy paths, reveal, search, include subfolders, sort child folders, reveal the active note’s folder, expand or collapse trees, favorite, hide, or delete
+- **Tags** — filter, create a tagged note, copy, rename or delete with reference updates, sort the section or its subtags, expand or collapse, favorite, or hide
+- **Properties** — choose visible keys, clear filters, sort names or values, expand or collapse all; hide a key; add, remove, or isolate a value filter
+- **Boxes** — create, open, configure (including grouping), add the current view, restore removed notes, duplicate, rename, favorite, or delete
 - **Favorites** — open, reorder, remove, or clear
 
 The Links header uses the shared collapse and section-order actions; its two direction rows activate directly.
 
 ## Card and bulk menus
 
-Right-click a card to choose an open destination; duplicate, move, rename, or delete it; manage favorites and card-box membership; or, for Markdown, copy content and edit tags. See [Writing and organizing](../guides/writing-and-organizing.md) for the workflow and delete behavior.
+Right-click a card to choose an open destination; duplicate, move, rename, or delete it; manage favorites and card-box membership; or, for Markdown, copy content, add or remove tags, and add or remove properties. See [Writing and organizing](../guides/writing-and-organizing.md) for the workflow and delete behavior.
 
 With **Bulk** on, the toolbar offers select all, clear selection, move, bulk tag operations, bulk property operations, add to or remove from a box, delete, and merge. Bulk property operations set or remove properties across Markdown notes; see [Writing and organizing](../guides/writing-and-organizing.md#bulk-property-operations). Shift-click selects a range; merge requires at least two Markdown notes.

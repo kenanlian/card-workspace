@@ -10,7 +10,7 @@ Card Workspace 可以从 Obsidian 第三方插件市场安装，也可以从 Git
 ## 运行要求
 
 - 桌面版 Obsidian；不支持移动端
-- Obsidian **1.9.0** 或更高版本
+- Obsidian **1.11.4** 或更高版本。Obsidian 1.13 及更高版本使用设置搜索和原生确认弹窗；1.11.4–1.12 使用相同设置和兼容弹窗。更早的 Obsidian 会停留在 Card Workspace 1.3.4
 - 界面跟随 Obsidian 语言（`zh*` → 简体中文，否则为英文）
 
 ## 从插件市场安装
