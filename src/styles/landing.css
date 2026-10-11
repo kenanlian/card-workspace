@@ -339,9 +339,13 @@ html[lang='zh-CN'] .cw-hero h1 {
 
 .cw-feature-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   align-items: center;
   gap: clamp(3rem, 7vw, 6.5rem);
+}
+
+.cw-feature-grid--visual-first {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
 }
 
 .cw-feature-grid--visual-first > :where(.cw-media) {
@@ -578,7 +582,8 @@ html[lang='zh-CN'] .cw-hero h1 {
 
 @media (max-width: 52rem) {
   .cw-hero__grid,
-  .cw-feature-grid {
+  .cw-feature-grid,
+  .cw-feature-grid--visual-first {
     grid-template-columns: minmax(0, 1fr);
   }
 
