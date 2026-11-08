@@ -158,8 +158,8 @@ export const landing: Record<Locale, LandingCopy> = {
     clipPauseLabel: 'Pause this clip',
     hero: {
       eyebrow: `Obsidian plugin · ${VERSION}`,
-      headline: ['Gather. Organize.', 'Reframe — into', 'understanding.'],
-      headlineCompact: ['Gather.', 'Organize.', 'Reframe — into', 'understanding.'],
+      headline: ['Capture. Gather.', 'Organize. Reframe —', 'into understanding.'],
+      headlineCompact: ['Capture. Gather.', 'Organize.', 'Reframe — into', 'understanding.'],
       lede:
         'Card Workspace captures ideas the moment they arrive, then brings folders, tags, properties, backlinks, outgoing links, and card boxes into a readable card stream beside your editor. Gather context, shape a working view, and bring what matters into the note you’re writing.',
       primaryCta: 'Install from Community Plugins',

@@ -578,6 +578,14 @@ html[lang='zh-CN'] .cw-hero h1 {
   .cw-hero h1 {
     font-size: clamp(3.35rem, 5.5vw, 3.75rem);
   }
+
+  .cw-headline__line--standard {
+    display: none;
+  }
+
+  .cw-headline__line--compact {
+    display: block;
+  }
 }
 
 @media (max-width: 52rem) {
