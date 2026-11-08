@@ -22,7 +22,7 @@ import { IMAGE_MAX_BYTES, type CardImageState } from "@plugin/images/types";
 import { addIcon, setDemoLanguage } from "../shims/obsidian";
 import {
   BULK_ADD_TO_BOX_ICON, BULK_ADD_TO_BOX_ICON_SVG, BULK_REMOVE_FROM_BOX_ICON, BULK_REMOVE_FROM_BOX_ICON_SVG,
-  CARD_WORKSPACE_ICON, CARD_WORKSPACE_ICON_SVG, PLAIN_FOLDER_ICON, PLAIN_FOLDER_ICON_SVG,
+  CARD_BACKGROUND_ICONS, CARD_WORKSPACE_ICON, CARD_WORKSPACE_ICON_SVG, PLAIN_FOLDER_ICON, PLAIN_FOLDER_ICON_SVG,
 } from "@plugin/icons";
 import { resolvePropertyValueSelection, type PropertyFilterClause } from "@plugin/property-filter-settings";
 import { prepareSearchableDocument } from "@plugin/search/document-preparation";
@@ -45,7 +45,8 @@ import type { NavigationIntent, NavigationRow } from "@plugin/view/navigation-mo
 import { projectNavigation } from "@plugin/view/navigation-projection";
 import { buildCardsPanelGroup, buildProjectionPanelGroup } from "@plugin/view/panel-group-state";
 import { DEFAULT_SEARCH_PREVIEW_SNIPPET_COUNT } from "@plugin/settings";
-import { buildLinksScopeGroupFields, createPanelModel, type PanelModel, type PanelModelState } from "@plugin/view/panel-model";
+import { buildLinksScopeGroupFields, createPanelModel, type PanelAppearanceState, type PanelModel, type PanelModelState } from "@plugin/view/panel-model";
+import { resolveRuntimeCapabilities } from "@plugin/runtime/capabilities";
 import { runPipeline, stepsForScope } from "@plugin/view/pipeline";
 import { buildPropertyFacets } from "@plugin/view/property-facets";
 import { createFolderScope, isLinksScope, normalizeScopePath, scopeDisplayPath, scopeIdentity, type CardScope } from "@plugin/view/scope";
@@ -59,6 +60,7 @@ addIcon(CARD_WORKSPACE_ICON, CARD_WORKSPACE_ICON_SVG);
 addIcon(PLAIN_FOLDER_ICON, PLAIN_FOLDER_ICON_SVG);
 addIcon(BULK_ADD_TO_BOX_ICON, BULK_ADD_TO_BOX_ICON_SVG);
 addIcon(BULK_REMOVE_FROM_BOX_ICON, BULK_REMOVE_FROM_BOX_ICON_SVG);
+for (const { id, svg } of CARD_BACKGROUND_ICONS) addIcon(id, svg);
 
 type NavSectionId = CardWorkspaceData["preferences"]["navSectionOrder"][number];
 
@@ -86,6 +88,8 @@ export interface DemoRuntimeState {
   /** Settings-tab values a scene changes; `undefined` keeps the snapshot's. */
   cardImageMode?: "off" | "right" | "inline";
   cardImageFit?: "cover" | "contain";
+  /** Other settings-tab appearance values a scene changes, over the snapshot's. */
+  appearance?: Partial<PanelAppearanceState>;
 }
 
 /**
@@ -435,6 +439,14 @@ export class DemoHost {
     });
   }
 
+  /** Any other appearance change from the settings tab or a card menu; republishes appearance only. */
+  setAppearance(patch: Partial<PanelAppearanceState>): void {
+    this.state = { ...this.state, appearance: { ...this.state.appearance, ...patch } };
+    this.model.mutate((draft) => {
+      draft.appearance = this.buildState().appearance;
+    });
+  }
+
   /** The global-owner arm of `ArrangementActions.onGroupChange`: the settings write reprojects. */
   setGroup(detail: Partial<GroupSpec>): void {
     const current = this.state.group;
@@ -696,6 +708,7 @@ export class DemoHost {
 
     const displayPath = scopeDisplayPath(scope);
     return {
+      capabilities: resolveRuntimeCapabilities(true),
       strings,
       scope: {
         displayPath: displayPath === "" ? "/" : displayPath,
@@ -737,7 +750,7 @@ export class DemoHost {
       bulk: {
         bulkMode: false, selectedPaths: [], selectedCount: 0, bulkAnchorPath: null,
         canBulkSelectAll: false, canBulkClearSelection: false, canBulkMoveSelected: false,
-        canBulkAddTagSelected: false, canBulkRemoveTagSelected: false, canBulkDeleteSelected: false,
+        canBulkEditTagsSelected: false, canBulkEditPropertiesSelected: false, canBulkDeleteSelected: false,
         canBulkMergeSelected: false,
       },
       nav: {
@@ -764,6 +777,7 @@ export class DemoHost {
         cardImageMode: this.state.cardImageMode ?? preferences.cardImageMode ?? "off",
         cardImageFit: this.state.cardImageFit ?? preferences.cardImageFit ?? "cover",
         searchPreviewSnippetCount: preferences.searchPreviewSnippetCount ?? DEFAULT_SEARCH_PREVIEW_SNIPPET_COUNT,
+        ...this.state.appearance,
       },
       images: { byPath: this.imagesByPath, requestVersion: 1, generation: this.generation },
     };

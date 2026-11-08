@@ -1,6 +1,6 @@
 // Card images: cards show the note's first local image as a right thumbnail;
-// in the plugin's settings tab, "Card images" switches to the inline layout,
-// and the stream re-lays out with the photos under each title.
+// on the settings tab's "Cards and previews" page, "Card images" switches to
+// the inline layout, and the stream re-lays out with the photos under each title.
 import gsap from "gsap";
 import meta from "../../../theme/meta.json";
 import workspaceHtml from "../../../theme/workspace.html?raw";
@@ -8,7 +8,7 @@ import zhSnapshot from "../../../data/vault.zh.json";
 import enSnapshot from "../../../data/vault.en.json";
 import { DemoHost } from "../../stage/demo-host";
 import { createDemoVault, type VaultSnapshot } from "../../stage/demo-vault";
-import { call, Director, type Box, type MountedScene } from "../../stage/director";
+import { call, Director, type MountedScene } from "../../stage/director";
 import { applyThemeMeta, mountPanel } from "../../stage/obsidian-shell";
 import { createSettingsWindow } from "../../stage/settings-window";
 import { createMainWindow } from "../../stage/window-shell";
@@ -17,6 +17,7 @@ import {
   type Point,
 } from "../../clip/frame";
 import { LAND, MOVE, scrollSteps } from "../../clip/script";
+import { renderSelectPopup, windowBox as boxIn } from "../../clip/os-window";
 
 const ZOOM = THREE_COLUMN_ZOOM;
 const WINDOW = windowFor(ZOOM);
@@ -37,7 +38,9 @@ const COPY = {
 const T = (() => {
   const toGear = 0.4;
   const clickGear = toGear + MOVE + LAND;
-  const toSelect = clickGear + 0.4;
+  const toPage = clickGear + 0.4;
+  const clickPage = toPage + MOVE + LAND;
+  const toSelect = clickPage + 0.35;
   const clickSelect = toSelect + MOVE + LAND;
   const toOption = clickSelect + 0.25;
   const clickOption = toOption + 0.45 + LAND;
@@ -46,7 +49,7 @@ const T = (() => {
   const scroll = clickClose + 0.55;
   const scrollBack = scroll + 2.2 + 1.0;
   return {
-    toGear, clickGear, toSelect, clickSelect, toOption, clickOption, toClose, clickClose,
+    toGear, clickGear, toPage, clickPage, toSelect, clickSelect, toOption, clickOption, toClose, clickClose,
     scroll, scrollBack, end: scrollBack + 1.6 + 0.3,
   };
 })();
@@ -94,50 +97,24 @@ const director = new Director(mountScene, [
   ...scrollSteps(LIST, T.scrollBack, T.scrollBack + SCROLL.back, SCROLL.to, 0),
 ]);
 
-/** Box of an element inside the settings window, in frame px. */
-function windowBox(node: Element): Box {
-  const outer = settingsWindow.iframe.getBoundingClientRect();
-  const base = dom.camera.getBoundingClientRect();
-  const scale = outer.width / settingsWindow.doc.documentElement.clientWidth;
-  const rect = node.getBoundingClientRect();
-  return { x: outer.left - base.left + rect.left * scale, y: outer.top - base.top + rect.top * scale, width: rect.width * scale, height: rect.height * scale };
-}
-
-/** Chromium on Windows draws a native select's list as a plain box under the control. */
-function renderSelectPopup(select: HTMLSelectElement): { popup: HTMLElement; rows: HTMLElement[] } {
-  const doc = select.ownerDocument;
-  const rect = select.getBoundingClientRect();
-  const style = getComputedStyle(select);
-  const popup = doc.createElement("div");
-  const rowHeight = Math.round(rect.height * 0.84);
-  Object.assign(popup.style, {
-    position: "absolute", left: `${rect.left}px`, top: `${rect.bottom + 1}px`, minWidth: `${rect.width}px`,
-    boxSizing: "border-box", border: "1px solid #a0a0a0", background: "#fff", boxShadow: "0 2px 6px rgb(0 0 0 / 0.18)",
-    fontFamily: style.fontFamily, fontSize: style.fontSize, color: "#000", visibility: "hidden", zIndex: "100",
-  });
-  const rows = Array.from(select.options, (option) => {
-    const row = doc.createElement("div");
-    row.textContent = option.textContent;
-    Object.assign(row.style, { height: `${rowHeight}px`, lineHeight: `${rowHeight}px`, padding: `0 12px 0 ${style.paddingLeft}`, whiteSpace: "nowrap" });
-    popup.append(row);
-    return row;
-  });
-  doc.body.append(popup);
-  return { popup, rows };
-}
+const windowBox = (node: Element) => boxIn(settingsWindow, dom, node);
 
 async function buildTimeline(): Promise<{ tl: gsap.core.Timeline }> {
   const gear = await director.measureAsync(0, GEAR, dom.camera);
   const list = await director.measureAsync(0, LIST, dom.camera);
   await director.seekAsync(0);
 
-  // Settings window: the Card Workspace tab, scrolled to the image rows.
+  // Settings window: the Card Workspace tab's page list, then the page holding the image rows.
   const { page, doc } = settingsWindow;
   page.navScroller.scrollTop = page.navScroller.scrollHeight;
   const select = page.dropdowns.get(MODE_KEY)!;
-  const content = doc.querySelector<HTMLElement>(".vertical-tab-content")!;
+  const subpage = page.pages.find((candidate) => candidate.page.contains(select))!;
+  const pageRowBox = windowBox(subpage.row);
+  page.landing.style.display = "none";
+  subpage.page.style.display = "";
   const row = select.closest<HTMLElement>(".setting-item")!;
-  content.scrollTop = row.getBoundingClientRect().top - content.getBoundingClientRect().top + content.scrollTop - 150;
+  const content = subpage.page;
+  content.scrollTop = Math.max(0, row.getBoundingClientRect().top - content.getBoundingClientRect().top + content.scrollTop - 250);
   const chosen = select.cloneNode(true) as HTMLSelectElement;
   chosen.value = TARGET_MODE;
   chosen.style.display = "none";
@@ -150,6 +127,8 @@ async function buildTimeline(): Promise<{ tl: gsap.core.Timeline }> {
   const optionBox = windowBox(rows[targetIndex]);
   const closeBox = windowBox(closeButton);
   const labels = { from: select.selectedOptions[0].textContent!, to: chosen.selectedOptions[0].textContent! };
+  page.landing.style.display = "";
+  subpage.page.style.display = "none";
 
   const tl = gsap.timeline({ paused: true });
   const rest: Point = { x: FRAME.width * 0.5, y: FRAME.height * 0.6 };
@@ -165,6 +144,14 @@ async function buildTimeline(): Promise<{ tl: gsap.core.Timeline }> {
   pulse(tl, dom, center(gear), T.clickGear - 0.05);
   tl.fromTo(slot, { autoAlpha: 0, scale: SETTINGS.scale * 0.95 },
     { autoAlpha: 1, scale: SETTINGS.scale, duration: 0.28, ease: "power2.out", immediateRender: false }, T.clickGear + 0.05);
+
+  // Open the page with the card image rows.
+  const pagePoint = { x: pageRowBox.x + pageRowBox.width * 0.3, y: center(pageRowBox).y };
+  glide(tl, dom.cursor, pagePoint, T.toPage, MOVE);
+  tl.set(subpage.row, { attr: { class: "setting-item mod-navigable demo-hover" } }, T.clickPage - LAND);
+  pulse(tl, dom, pagePoint, T.clickPage - 0.05);
+  tl.set(page.landing, { display: "none" }, T.clickPage + 0.05);
+  tl.set(subpage.page, { display: "" }, T.clickPage + 0.05);
 
   // Open the dropdown and pick the inline layout; the panel re-lays out behind the window.
   const selectPoint = { x: selectBox.x + selectBox.width * 0.4, y: center(selectBox).y };

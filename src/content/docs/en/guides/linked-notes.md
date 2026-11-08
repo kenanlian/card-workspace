@@ -11,8 +11,8 @@ The **Links** navigation section turns Obsidian’s resolved note graph into two
 
 Open a supported note in the editor, then choose:
 
-- **Outgoing links** — supported notes referenced by the source note
-- **Backlinks** — supported notes that reference the source note
+- **Outgoing links** — files referenced by the source note
+- **Backlinks** — notes that reference the source note
 
 The source note itself is not included. If no supported note is active, both entries are disabled. Empty results show **No linked notes**.
 
@@ -36,7 +36,7 @@ Enable **Jump to link location when opening a link card** in [Settings](../refer
 
 ## Refine and arrange linked cards
 
-Search, sorting, grouping, and pins remain available. Tag and property browse filters, along with the include-subfolders control, do not apply because the source comes from links rather than a folder. Existing folder filter selections stay paused and resume when you return to a folder.
+Search, sorting, grouping, and pins remain available. Tag and property browse filters, along with the include-subfolders control, do not apply because the source comes from links rather than a folder. Existing filter selections stay paused and resume when you return to a folder or card box. Which file types appear follows **Show file types**; see [File types](./browsing-cards.md#file-types).
 
 Outgoing links and backlinks each remember their own sort. Both default to **Reference count**, highest first; edited time, created time, and filename remain available. They still share grouping and pins with folder browsing. A linked-note source is temporary: Card Workspace restores the last folder, not a linked-note source, on startup.
 

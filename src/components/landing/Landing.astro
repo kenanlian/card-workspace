@@ -27,8 +27,10 @@ function clip(id: string): { src: string; poster: ImageMetadata } {
 }
 const clips = {
   hero: clip('hero'),
+  capture: clip('capture'),
   gather: clip('gather'),
   images: clip('images'),
+  looks: clip('looks'),
   links: clip('links'),
   search: clip('search'),
   drag: clip('drag'),
@@ -81,8 +83,31 @@ const clips = {
 
     <SectionRule />
 
-    <section class="cw-section" id="gather" data-screen-label="Gather from vault structure">
+    <section class="cw-section" id="capture" data-screen-label="Capture with quick input">
       <div class="cw-wrap cw-feature-grid">
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.capture.kicker}</p>
+          <h2>{c.capture.title}</h2>
+          <p class="cw-section-body">{c.capture.body}</p>
+          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '记录方式' : 'Capture options'}>
+            {c.capture.labels.map((label) => <li>{label}</li>)}
+          </ul>
+        </div>
+        <MediaClip
+          src={clips.capture.src}
+          poster={clips.capture.poster}
+          alt={c.capture.mediaAlt}
+          caption={c.capture.caption}
+          playLabel={c.clipPlayLabel}
+          pauseLabel={c.clipPauseLabel}
+        />
+      </div>
+    </section>
+
+    <SectionRule />
+
+    <section class="cw-section" id="gather" data-screen-label="Gather from vault structure">
+      <div class="cw-wrap cw-feature-grid cw-feature-grid--visual-first">
         <div class="cw-feature-copy">
           <p class="cw-kicker">{c.gather.kicker}</p>
           <h2>{c.gather.title}</h2>
@@ -104,13 +129,13 @@ const clips = {
 
     <SectionRule />
 
-    <section class="cw-section" id="card-images" data-screen-label="Card images">
-      <div class="cw-wrap cw-feature-grid cw-feature-grid--visual-first">
+    <section class="cw-section" id="card-images" data-screen-label="Card images and file previews">
+      <div class="cw-wrap cw-feature-grid">
         <div class="cw-feature-copy">
           <p class="cw-kicker">{c.images.kicker}</p>
           <h2>{c.images.title}</h2>
           <p class="cw-section-body">{c.images.body}</p>
-          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '卡片图片选项' : 'Card image options'}>
+          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '图片与文件预览' : 'Image and file previews'}>
             {c.images.labels.map((label) => <li>{label}</li>)}
           </ul>
         </div>
@@ -119,6 +144,29 @@ const clips = {
           poster={clips.images.poster}
           alt={c.images.mediaAlt}
           caption={c.images.caption}
+          playLabel={c.clipPlayLabel}
+          pauseLabel={c.clipPauseLabel}
+        />
+      </div>
+    </section>
+
+    <SectionRule />
+
+    <section class="cw-section" id="appearance" data-screen-label="Card styles, colors, and icons">
+      <div class="cw-wrap cw-feature-grid cw-feature-grid--visual-first">
+        <div class="cw-feature-copy">
+          <p class="cw-kicker">{c.looks.kicker}</p>
+          <h2>{c.looks.title}</h2>
+          <p class="cw-section-body">{c.looks.body}</p>
+          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '外观选项' : 'Appearance options'}>
+            {c.looks.labels.map((label) => <li>{label}</li>)}
+          </ul>
+        </div>
+        <MediaClip
+          src={clips.looks.src}
+          poster={clips.looks.poster}
+          alt={c.looks.mediaAlt}
+          caption={c.looks.caption}
           playLabel={c.clipPlayLabel}
           pauseLabel={c.clipPauseLabel}
         />
@@ -223,7 +271,7 @@ const clips = {
           <p class="cw-kicker">{c.bulk.kicker}</p>
           <h2>{c.bulk.title}</h2>
           <p class="cw-section-body">{c.bulk.body}</p>
-          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '批量选择方式' : 'Bulk selection methods'}>
+          <ul class="cw-proof-labels" aria-label={locale === 'zh' ? '选择与拖拽方式' : 'Selection and drag methods'}>
             {c.bulk.selectionModes.map((label) => <li>{label}</li>)}
           </ul>
           <ul class="cw-bulk-actions" aria-label={locale === 'zh' ? '批量操作' : 'Bulk actions'}>

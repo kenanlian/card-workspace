@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 /** The plugin release every clip is built against. */
-export const PLUGIN_VERSION = "1.4.2";
+export const PLUGIN_VERSION = "1.5.3";
 export const PLUGIN_ROOT = process.env.PLUGIN_ROOT ?? `plugin-snapshots/${PLUGIN_VERSION}`;
 
 const root = new URL("../", import.meta.url).pathname;

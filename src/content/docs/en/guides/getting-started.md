@@ -9,10 +9,11 @@ Open the panel, choose where the cards come from, and refine the result only whe
 
 ## Open the view
 
-1. Select the ribbon icon **Open Card Workspace**, or run **Open Card Workspace view** from the command palette. The panel opens in the **left sidebar**.
-2. Pick a folder in the [navigation pane](./navigation.md), then narrow it with tags or property values. You can also switch the source to a card box, or start from the note you are reading with its outgoing links or backlinks.
-3. Browse the card stream. Use search, sorting, grouping, or pins to shape the view; click a card to open its note.
-4. Right-click a navigation item or card for more actions. Drag a Markdown card into an open editor to insert a link or content.
+1. Select the ribbon icon **Open Card Workspace**, or run **Open Card Workspace view** from the command palette. On desktop the panel opens in the **left sidebar**; on phones and tablets it opens as a page in the main workspace.
+2. Capture an idea: use **New** on the toolbar, choose a template from **Templates**, or select the paper-plane button (**Open quick input**). See [Quick input and templates](./quick-input-and-templates.md).
+3. Pick a folder or card box in the [navigation pane](./navigation.md), then narrow it with tags or property values. You can also start from the note you are reading with its outgoing links or backlinks.
+4. Browse the card stream. Use search, sorting, grouping, or pins to shape the view; click a card to open its note.
+5. Right-click a navigation item or card for more actions. Drag a Markdown card into an open editor to insert a link or content, or drag cards onto a folder, tag, property value, or card box to organize them. On mobile, use the menu buttons instead; see [Phones and tablets](./mobile.md).
 
 <figure class="cw-doc-shot" id="screenshot-workspace-overview">
 <div class="cw-doc-shot__light">
@@ -32,6 +33,7 @@ Open the panel, choose where the cards come from, and refine the result only whe
 
 Try one path through each part of the workflow:
 
+- **Capture:** open quick input, write one line, add a tag, and press Ctrl/Cmd+Enter to send it.
 - **Gather:** open a project folder, enable `workflow` under [Property filters](./property-filters.md), and select a value.
 - **Organize:** choose **Sort & group**, then save a useful folder view as a [card box](./card-boxes.md).
 - **Reframe:** open a note and compare its [outgoing links and backlinks](./linked-notes.md).

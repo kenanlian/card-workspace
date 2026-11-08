@@ -77,6 +77,11 @@ export default defineConfig({
           translations: { 'zh-CN': '使用指南' },
           items: [
             {
+              label: 'Quick input and templates',
+              translations: { 'zh-CN': '快速输入与模板' },
+              slug: 'guides/quick-input-and-templates',
+            },
+            {
               label: 'Navigation',
               translations: { 'zh-CN': '导航' },
               slug: 'guides/navigation',
@@ -106,6 +111,16 @@ export default defineConfig({
               translations: { 'zh-CN': '写作与整理' },
               slug: 'guides/writing-and-organizing',
             },
+            {
+              label: 'Appearance and icons',
+              translations: { 'zh-CN': '外观与图标' },
+              slug: 'guides/appearance',
+            },
+            {
+              label: 'Phones and tablets',
+              translations: { 'zh-CN': '手机与平板' },
+              slug: 'guides/mobile',
+            },
           ],
         },
         {
@@ -133,6 +148,7 @@ export default defineConfig({
           label: 'Recent updates',
           translations: { 'zh-CN': '最近更新' },
           items: [
+            { label: '1.4.4–1.5.3', slug: 'updates/1-4-4-to-1-5-3' },
             { label: '1.3.5–1.4.3', slug: 'updates/1-3-5-to-1-4-3' },
             { label: '1.3.4', slug: 'updates/1-3-4' },
             { label: '1.2.7–1.3.3', slug: 'updates/1-2-7-to-1-3-3' },

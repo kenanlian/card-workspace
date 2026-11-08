@@ -96,6 +96,7 @@ export class BoxDemoHost extends DemoHost {
       isBoxMode: () => this.boxActions.isBoxMode(),
       appendAddToBoxMenu: (menu, paths) => this.boxActions.appendAddToBoxMenu(menu, paths),
       appendCardFavoriteMenuItem: (menu) => menu.addItem((item) => item.setTitle(favoriteLabel).setIcon("star")),
+      appendTemplateFileMenu: () => false,
       removeMemberFromActiveBox: (path) => this.boxActions.removeMemberFromActiveBox(path),
       copyCardTitle: inert,
       copyCardContent: inert,
@@ -104,7 +105,8 @@ export class BoxDemoHost extends DemoHost {
       moveCardNote: () => {},
       renameCardFile: () => {},
       deleteCardFile: inert,
-      openSingleTagModal: () => {},
+      openTagsEditor: () => {},
+      openPropertiesEditor: () => {},
       openCardWithDestination: () => {},
     });
     this.merge = new MergeActions({

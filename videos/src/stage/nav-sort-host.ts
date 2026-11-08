@@ -8,7 +8,7 @@ import {
 import { serializePropertyScalarRef } from "@plugin/property-filter-settings";
 import type { NavMenuDeps } from "@plugin/view/nav-context-menu";
 import type { NavigationProjectionInput } from "@plugin/view/navigation-model";
-import { canAcceptNavigationSortDrop, navigationSortEntry } from "@plugin/view/navigation-sort-dnd";
+import { canAcceptNavigationSortDrop, navigationSortEntry, type NavigationReorderTarget } from "@plugin/view/navigation-sort-dnd";
 import type { TagTreeNode } from "@plugin/view/tag-tree";
 import { DemoHost, inertActions } from "./demo-host";
 
@@ -90,15 +90,20 @@ export class NavSortDemoHost extends DemoHost {
     const targetRow = rows.find((row) => row.id === targetId);
     if (!source || !targetRow || !canAcceptNavigationSortDrop(source, targetRow)) return;
     const entry = navigationSortEntry(source), destination = navigationSortEntry(targetRow);
-    if (!entry || !destination) return;
-    const candidates = this.sortCandidates(entry.target);
+    if (!entry || !destination || !isSortTarget(entry.target)) return;
+    const target = entry.target;
+    const candidates = this.sortCandidates(target);
     if (candidates === null) return;
     const sorting = this.navigationSorting;
-    const previous = resolveNavigationSort(sorting, entry.target);
+    const previous = resolveNavigationSort(sorting, target);
     const current = orderNavigationItems(candidates, previous, (item) => item.identity, (item) => item.label).map((item) => item.identity);
     const fullOrder = mergeNavigationOrder(previous.order, current);
     const order = reorderNavigationItems(fullOrder, entry.identity, destination.identity, position);
     if (order === null && previous.mode === "manual") return;
     this.save(updateNavigationSort(sorting, entry.target, { mode: "manual", order: order ?? fullOrder }));
   }
+}
+
+function isSortTarget(target: NavigationReorderTarget): target is NavigationSortTarget {
+  return target.kind === "tags" || target.kind === "property-keys" || target.kind === "property-values";
 }

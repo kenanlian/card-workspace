@@ -9,7 +9,7 @@ Card Workspace 可以从 Obsidian 第三方插件市场安装，也可以从 Git
 
 ## 运行要求
 
-- 桌面版 Obsidian；不支持移动端
+- 桌面端、Android 或 iOS/iPadOS 上的 Obsidian。桌面端快速输入还需要在 **设置 → 外观 → 窗口框架样式** 中选择 **Obsidian 框架** 或 **隐藏框架**，详见[快速输入与模板](./quick-input-and-templates.md#使用前准备)
 - Obsidian **1.11.4** 或更高版本。Obsidian 1.13 及更高版本使用设置搜索和原生确认弹窗；1.11.4–1.12 使用相同设置和兼容弹窗。更早的 Obsidian 会停留在 Card Workspace 1.3.4
 - 界面跟随 Obsidian 语言（`zh*` → 简体中文，否则为英文）
 
@@ -24,7 +24,7 @@ Card Workspace 可以从 Obsidian 第三方插件市场安装，也可以从 Git
 
 ## 从 GitHub Releases 安装
 
-需要使用当前市场版本以外的版本时，采用这种方式。
+需要使用当前市场版本以外的版本时，采用这种方式。在移动端，能否把文件复制到仓库隐藏的 `.obsidian` 文件夹取决于文件管理器或同步工具，因此通常从插件市场安装更方便。
 
 1. 从 [GitHub Releases](https://github.com/kenanlian/obsidian-card-workspace/releases) 下载对应版本。
 2. 解压 `main.js`、`manifest.json` 和 `styles.css`，复制到：

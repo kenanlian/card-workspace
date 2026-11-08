@@ -9,7 +9,7 @@ export const collections = {
     schema: docsSchema({
       extend: z.object({
         tags: z.array(z.string()).optional(),
-        workflow: z.array(z.enum(['gather', 'organize', 'reframe'])).optional(),
+        workflow: z.array(z.enum(['capture', 'gather', 'organize', 'reframe'])).optional(),
       }),
     }),
   }),

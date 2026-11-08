@@ -196,6 +196,7 @@
     "tags",
     "properties",
     "boxes",
+    "templates",
     "links"
    ],
    "visiblePropertyKeys": [
@@ -218,6 +219,7 @@
     "tags": false,
     "properties": false,
     "boxes": true,
+    "templates": true,
     "links": true
    }
   },

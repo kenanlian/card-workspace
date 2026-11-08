@@ -18,10 +18,16 @@ Opening cards from [Linked notes](./linked-notes.md) is a useful way to inspect 
 Drag a card to a precise position in an open Markdown editor. The default is **Ask every time**. Depending on card type, the menu can insert:
 
 - Markdown — wikilink, embed, content, or title and content
-- Base and Canvas — wikilink or embed
-- Excalidraw — wikilink only
+- Base, Canvas, images, PDF, audio, and video — wikilink or embed
+- Excalidraw and other files — wikilink only
 
-If a requested action is unavailable, Obsidian shows **This card type does not support that drag insertion action.**
+If a requested action is unavailable, Obsidian shows **This card type does not support that drag insertion action.** On phones and tablets, use the card menu’s insert and copy actions instead; see [Phones and tablets](./mobile.md#insert-and-copy-card-content).
+
+## Drag into Canvas or Excalidraw
+
+Drag a card into an open Canvas or Excalidraw drawing to drop it as an ordinary Obsidian file. The canvas decides how to show it and handles any modifier keys. Even in bulk mode, the drag carries only the card you started from.
+
+To organize notes by dragging them onto folders, tags, property values, or card boxes, see [Drag cards onto navigation](./navigation.md#drag-cards-onto-navigation).
 
 ## Insert a heading section
 
@@ -31,15 +37,15 @@ Section content includes nested headings and stops at the next heading of the sa
 
 ## Create notes and files
 
-The toolbar **Create note** action uses the configured new-note content: an empty `tags` property by default, or a blank note. The filename begins with **Untitled**.
+The toolbar **New** button creates a note in the current folder, including the vault root. Selected tags and active property filters are written into its frontmatter. In a card box the note is saved in the box’s new-note folder and added to the box; in a linked-note source it goes to the folder you visited last. The note starts blank by default; **New note content** can add an empty `tags` property instead. See [Quick input and templates](./quick-input-and-templates.md#new-notes) for the details, templates, and quick input.
 
-From a folder menu you can create a note, folder, canvas, or base inside that folder. A tag menu can create a note in the current folder with the tag already applied. Creating from a folder while a card box is open switches back to that folder source.
+From a folder menu you can create a note, folder, canvas, Excalidraw file, or base inside that folder. **New Excalidraw file** needs the Excalidraw plugin; it creates an `.excalidraw.md` drawing and opens it directly in Excalidraw. A tag menu can create a note in the current folder with the tag already applied. Creating from a folder while a card box is open switches back to that folder source.
 
 ## Navigation and card menus
 
 Navigation menus cover creation, rename, duplicate, move, path copying, reveal in the system explorer, favorites, tree expansion, section ordering, filters, and [card-box](./card-boxes.md) actions. Renaming or deleting a tag updates or removes its references in notes, active filters, favorites, and box rules after confirmation.
 
-Card menus can open in several destinations; duplicate, move, rename, or delete the file; manage favorites and box membership; and, for Markdown, copy content or open **Add/remove tags...** and **Add/remove properties...**. Those two actions use the same dialogs as bulk mode, applied to that one note. The complete inventory is in [Commands and menus](../reference/commands-and-menus.md).
+Card menus can open in several destinations; duplicate, move, rename, or delete the file; manage favorites and box membership; change the card’s **Background color** or icon; and, for Markdown, copy content or open **Add/remove tags...** and **Add/remove properties...**. Those two actions use the same dialogs as bulk mode, applied to that one note. The complete inventory is in [Commands and menus](../reference/commands-and-menus.md).
 
 Copying Markdown content omits the leading frontmatter and gives you the body. Duplicating the file preserves its original contents.
 
@@ -52,8 +58,11 @@ Turn on **Bulk**, then click cards to toggle them. Shift-click selects a range f
 - Add or remove tags
 - Set or remove properties across Markdown notes
 - Add to a card box, or remove from the open box
+- Set a background color for the selected cards
 - Delete selected notes
 - Merge selected Markdown notes
+
+You can also drag any selected card onto a folder, tag, property value, or card box in navigation to apply that operation to the whole visible selection.
 
 Merge needs at least two Markdown notes. Its dialog controls the title, target folder, source order, and a live preview. The separator defaults to **Blank line**, and can also be a **Horizontal rule** or a **Line break**. **Trash source notes after merge** is off, so the source notes stay in the vault until you turn it on; trashing then follows Obsidian’s delete preference. Only the first source note’s frontmatter is preserved at the top of the merged note; the other source frontmatter blocks are omitted.
 

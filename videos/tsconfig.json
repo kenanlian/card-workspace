@@ -12,9 +12,9 @@
     "types": ["svelte", "vite/client"],
     "baseUrl": ".",
     "paths": {
-      "obsidian": ["plugin-snapshots/1.4.2/node_modules/obsidian"],
-      "@plugin/*": ["plugin-snapshots/1.4.2/src/*"]
+      "obsidian": ["plugin-snapshots/1.5.3/node_modules/obsidian"],
+      "@plugin/*": ["plugin-snapshots/1.5.3/src/*"]
     }
   },
-  "include": ["src/**/*.ts", "plugin-snapshots/1.4.2/src/electron.d.ts"]
+  "include": ["src/**/*.ts", "plugin-snapshots/1.5.3/src/electron.d.ts"]
 }

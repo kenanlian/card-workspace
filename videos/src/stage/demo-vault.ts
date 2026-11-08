@@ -35,7 +35,7 @@ export interface CardWorkspaceData {
     backlinkSnippetCount?: 1 | 2 | 3 | "all";
     linksSort?: Record<"backlinks" | "outgoing", { field: "mtime" | "ctime" | "name" | "reference-count"; direction: "asc" | "desc" }>;
     showNavItemCounts: boolean;
-    navSectionOrder: Array<"favorites" | "folders" | "tags" | "properties" | "boxes" | "links">;
+    navSectionOrder: Array<"favorites" | "folders" | "tags" | "properties" | "boxes" | "templates" | "links">;
     visiblePropertyKeys: string[];
     includeSubfolders: boolean;
   };
@@ -45,7 +45,7 @@ export interface CardWorkspaceData {
     expandedPropertyKeys: string[];
     navPaneWidth: number;
     navPaneCollapsed?: boolean;
-    sectionCollapsed: Record<"favorites" | "folders" | "tags" | "properties" | "boxes" | "links", boolean>;
+    sectionCollapsed: Record<"favorites" | "folders" | "tags" | "properties" | "boxes" | "templates" | "links", boolean>;
   };
   userData: {
     boxes: Array<{ id: string; name: string; manualPaths: string[] }>;
@@ -54,7 +54,7 @@ export interface CardWorkspaceData {
     folderSiblingOrders?: unknown;
     folderDescendingNameSorts?: unknown;
     navigationSorting?: unknown;
-    hiddenNavSections?: Array<"favorites" | "folders" | "tags" | "properties" | "boxes" | "links">;
+    hiddenNavSections?: Array<"favorites" | "folders" | "tags" | "properties" | "boxes" | "templates" | "links">;
   };
 }
 

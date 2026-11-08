@@ -28,14 +28,15 @@ GitHub Actions (withastro/action) → GitHub Pages
 
 - `src/content/docs/en/` — English docs (default locale).
 - `src/content/docs/zh/` — Chinese docs (`zh-CN`). Mirrors the `en/` structure.
-- `src/content/docs/{locale}/guides/` — guide pages (`introduction`, `installation`, `getting-started`, `navigation`, `property-filters`, `linked-notes`, `card-boxes`, `browsing-cards`, `writing-and-organizing`). Distinctive feature docs live alongside the navigation overview.
+- `src/content/docs/{locale}/guides/` — guide pages (`introduction`, `installation`, `getting-started`, `quick-input-and-templates`, `navigation`, `property-filters`, `linked-notes`, `card-boxes`, `browsing-cards`, `writing-and-organizing`, `appearance`, `mobile`). Distinctive feature docs live alongside the navigation overview.
+- `src/content/docs/{locale}/updates/` — release summaries grouped by version range (e.g. `1-4-4-to-1-5-3`), newest first in the sidebar.
 - `src/content/docs/{locale}/reference/` — reference pages (`settings`, `commands-and-menus`, `limits-and-privacy`).
 - `src/components/` — Starlight component overrides plus `SiteHeader.astro`, the one header row rendered by both the docs `Header` override and the splash pages.
 - `src/components/landing/` — custom Astro landing components used only by the locale splash pages.
 - `src/styles/` — V2 Graphite Index tokens (`tokens.css`), the shared header (`header.css`), and Starlight chrome (`theme.css`); landing CSS is imported from the Landing component.
 - `src/assets/` — images referenced by content (e.g. `logo-light.svg`, `logo-dark.svg`).
 - `src/assets/media/` — docs screenshots (`navigation-favorites-{en,zh}{,-dark}.webp`).
-- `src/assets/media/clips/` — landing clips, one per feature and locale: `<id>-<locale>.mp4` + `<id>-<locale>-poster.webp` for `hero`, `gather`, `images`, `links`, `search`, `drag`, `boxes`, `bulk`. Rendered by `videos/`; do not edit by hand. Clips are H.264 MP4 only; no GIF and no WebM.
+- `src/assets/media/clips/` — landing clips, one per feature and locale: `<id>-<locale>.mp4` + `<id>-<locale>-poster.webp` for `hero`, `capture`, `gather`, `images`, `looks`, `links`, `search`, `drag`, `boxes`, `bulk`. Rendered by `videos/`; do not edit by hand. Clips are H.264 MP4 only; no GIF and no WebM.
 - `videos/` — separate Vite + Svelte project that renders the landing clips from the plugin's real components (see `videos/README.md`). Not part of the Astro build; excluded from the site `tsconfig.json`. Its `theme/`, `plugin-snapshots/`, and `renders/` are git-ignored.
 - `src/pages/` — the root redirect (`index.astro`).
 - `public/` — static assets served as-is (`favicon.svg`, `og.png`).

@@ -37,7 +37,13 @@ To preserve linked notes instead, use the snapshot action described in [Linked n
 
 - Right-click a box and choose **Add current view to this card box** to append the folder, tag, and property rule you are browsing.
 - Right-click a card and choose **Add to card box**, including **New card box…**.
+- Drag cards onto a box in the navigation column. Dragging a selected card adds the whole visible selection. See [Drag cards onto navigation](./navigation.md#drag-cards-onto-navigation).
 - In **Bulk** mode, choose **Add to card box** to add the selection. See [Writing and organizing](./writing-and-organizing.md).
+- In quick input, choose one or more boxes before sending. See [Quick input and templates](./quick-input-and-templates.md).
+
+## Create notes in a box
+
+With a box open, **New** on the toolbar creates a note and adds it to the box as a manually added member. The note is saved in **Folder for new notes in card boxes** (**Settings → Card Workspace → New notes and templates**), which defaults to the vault root. Active tag and property filters in the box are written into the new note, as they are in a folder.
 
 ## Configure and arrange a box
 
@@ -59,6 +65,6 @@ Deleting a box removes only the box, its rules, and its saved arrangement. Your 
 
 ## Filters and startup behavior
 
-Browse tag and property filters are unavailable while a box is open because those conditions belong to its membership rules. Search still narrows the resulting box before pins and grouping are applied. See [Browsing cards](./browsing-cards.md).
+Tag and property browse filters work inside a box the same way they do in a folder: pick tags or property values in navigation to narrow the box. They only change what you see; the box’s rules, members, and member count stay the same. **Clear filters** on the toolbar removes them without clearing the search query. Search also narrows the box before pins and grouping are applied. See [Browse filters](./browsing-cards.md#browse-filters).
 
 On startup, Card Workspace restores the last folder rather than the last card box.

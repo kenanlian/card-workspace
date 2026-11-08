@@ -77,6 +77,11 @@ export function setTooltip(el: HTMLElement, tooltip: string): void {
   el.setAttribute("aria-label", tooltip);
 }
 
+export function getIconIds(): string[] {
+  const lucide = Object.keys(icons).map((name) => `lucide-${name.replace(/[A-Z]/g, (char, at) => `${at ? "-" : ""}${char.toLowerCase()}`)}`);
+  return [...customIcons.keys(), ...lucide];
+}
+
 export function getIcon(name: string): SVGSVGElement | null {
   const host = document.createElement("div");
   setIcon(host, name);
@@ -148,6 +153,24 @@ export function stripHeadingForLink(heading: string): string {
 
 export class App {}
 export class Component {}
+/** Keyboard scopes only matter inside Obsidian's input suggest popovers, which no clip opens. */
+export class Scope {
+  register(): void {}
+  unregister(): void {}
+}
+export class AbstractInputSuggest<T> {
+  constructor(_app: App, readonly inputEl: HTMLInputElement) {}
+  setValue(value: string): void {
+    this.inputEl.value = value;
+  }
+  getValue(): string {
+    return this.inputEl.value;
+  }
+  close(): void {}
+  onSelect(_callback: (value: T, evt: MouseEvent | KeyboardEvent) => void): this {
+    return this;
+  }
+}
 /** `instanceof` targets only: the stage's editor is `stage/live-preview.ts`, and no leaf is a MarkdownView. */
 export class Editor {}
 export class MarkdownView {}
@@ -225,6 +248,13 @@ function installDomExtensions(): void {
     setAttr(this: Element, name: string, value: string | number | boolean | null) {
       if (value === null || value === false) this.removeAttribute(name);
       else this.setAttribute(name, String(value));
+    },
+  });
+  Object.assign(window, {
+    createFragment(callback?: (fragment: DocumentFragment) => void): DocumentFragment {
+      const fragment = document.createDocumentFragment();
+      callback?.(fragment);
+      return fragment;
     },
   });
 }

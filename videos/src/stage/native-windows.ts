@@ -92,10 +92,22 @@ export interface SettingsPageOptions {
   getValue(key: string): unknown;
 }
 
+export interface SettingsSubpage {
+  name: string;
+  /** The navigable row on the landing list. */
+  row: HTMLElement;
+  /** `.vertical-tab-content.setting-page`, hidden until a clip shows it. */
+  page: HTMLElement;
+  back: HTMLElement;
+}
+
 export interface SettingsPage {
   modal: HTMLElement;
   navScroller: HTMLElement;
-  /** `select.dropdown` per control key. */
+  /** The tab's first screen: its rows, or the list of its pages. */
+  landing: HTMLElement;
+  pages: SettingsSubpage[];
+  /** `select.dropdown` per control key, on whichever page holds it. */
   dropdowns: Map<string, HTMLSelectElement>;
 }
 
@@ -150,7 +162,8 @@ function renderSetting(parent: HTMLElement, item: DefinitionLike, options: Setti
 
 /**
  * Obsidian's settings modal as it fills a popout-modal window: the vertical
- * tab sidebar, and the plugin's declarative definitions rendered as groups.
+ * tab sidebar, and the plugin's declarative definitions rendered as groups;
+ * `page` definitions become navigable rows, each with its own hidden page.
  */
 export function renderSettingsPage(body: HTMLElement, options: SettingsPageOptions): SettingsPage {
   const modal = el("div", "modal mod-settings mod-sidebar-layout", body);
@@ -182,26 +195,65 @@ export function renderSettingsPage(body: HTMLElement, options: SettingsPageOptio
   }
 
   const container = el("div", "vertical-tab-content-container", content);
-  const page = el("div", "vertical-tab-content", container);
+  const landing = el("div", "vertical-tab-content", container);
   const dropdowns = new Map<string, HTMLSelectElement>();
+  const pages: SettingsSubpage[] = [];
+  let pageRows: HTMLElement | null = null;
   for (const item of options.definitions as DefinitionLike[]) {
-    if (item.type === "group" || item.type === "list") {
-      const group = el("div", "setting-group", page);
-      if (item.heading) {
-        const heading = el("div", "setting-item setting-item-heading", group);
-        const info = el("div", "setting-item-info", heading);
-        el("div", "setting-item-name", info).textContent = item.heading;
-        el("div", "setting-item-description", info);
-        el("div", "setting-item-control", heading);
-      }
-      el("div", "setting-group-search", group);
-      const rows = el("div", "setting-items", group);
-      for (const child of item.items ?? []) renderSetting(rows, child, options, dropdowns);
+    if (item.type === "page") {
+      pageRows ??= group(landing);
+      pages.push(renderSubpage(container, pageRows, item, options, dropdowns));
     } else {
-      renderSetting(page, item, options, dropdowns);
+      pageRows = null;
+      renderDefinition(landing, item, options, dropdowns);
     }
   }
-  return { modal, navScroller, dropdowns };
+  return { modal, navScroller, landing, pages, dropdowns };
+}
+
+function group(parent: HTMLElement, heading?: string): HTMLElement {
+  const groupEl = el("div", "setting-group", parent);
+  if (heading) {
+    const headingEl = el("div", "setting-item setting-item-heading", groupEl);
+    const info = el("div", "setting-item-info", headingEl);
+    el("div", "setting-item-name", info).textContent = heading;
+    el("div", "setting-item-description", info);
+    el("div", "setting-item-control", headingEl);
+  }
+  el("div", "setting-group-search", groupEl);
+  return el("div", "setting-items", groupEl);
+}
+
+function renderDefinition(parent: HTMLElement, item: DefinitionLike, options: SettingsPageOptions, dropdowns: Map<string, HTMLSelectElement>): void {
+  if (item.type === "group" || item.type === "list") {
+    const rows = group(parent, item.heading);
+    for (const child of item.items ?? []) renderSetting(rows, child, options, dropdowns);
+  } else {
+    renderSetting(parent, item, options, dropdowns);
+  }
+}
+
+/** A navigable row on the tab's landing list, and the hidden page it opens. */
+function renderSubpage(
+  container: HTMLElement, rows: HTMLElement, item: DefinitionLike, options: SettingsPageOptions, dropdowns: Map<string, HTMLSelectElement>,
+): SettingsSubpage {
+  const name = item.name ?? "";
+  const row = el("div", "setting-item mod-navigable", rows);
+  const info = el("div", "setting-item-info", row);
+  el("div", "setting-item-name", info).textContent = name;
+  if (typeof item.desc === "string") el("div", "setting-item-description", info).textContent = item.desc;
+  const control = el("div", "setting-item-control", row);
+  setIcon(el("div", "setting-item-chevron", control), "chevron-right");
+
+  const page = el("div", "vertical-tab-content setting-page", container);
+  page.style.display = "none";
+  const titlebar = el("div", "setting-page-titlebar", page);
+  const back = el("div", "clickable-icon setting-page-back-button", titlebar);
+  setIcon(back, "chevron-left");
+  el("div", "setting-page-title", titlebar).textContent = name;
+  const content = el("div", "setting-page-content", page);
+  for (const child of item.items ?? []) renderDefinition(content, child, options, dropdowns);
+  return { name, row, page, back };
 }
 
 /**

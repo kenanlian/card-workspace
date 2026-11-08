@@ -1,6 +1,6 @@
 ---
 title: Property filters
-description: Choose useful frontmatter properties, filter folder cards, and group cards by property values.
+description: Choose useful frontmatter properties, filter folder and card-box cards, and group cards by property values.
 tags: [card-workspace, guides/navigation, features/properties]
 workflow: [gather, organize]
 ---
@@ -11,7 +11,7 @@ The **Properties** navigation section turns a small set of frontmatter keys into
 
 Right-click the **Properties** header and choose **Choose visible properties**. Search the vault-wide list, enable the keys you want, and select **Done**. Newly enabled keys open immediately to show the values found in the current card source.
 
-The documentation vault includes a small `workflow` property with the values `gather`, `organize`, and `reframe`, which makes a useful first example after [Getting started](./getting-started.md).
+The documentation vault includes a small `workflow` property with the values `capture`, `gather`, `organize`, and `reframe`, which makes a useful first example after [Getting started](./getting-started.md).
 
 ## Filter by values
 
@@ -33,7 +33,7 @@ Text, finite numbers, booleans, and arrays containing those scalar values are su
 
 Headers show the property name, values, and card count. Text, numbers, and booleans keep their type distinctions; cards without supported values enter **Unassigned**.
 
-Property grouping works in folder, card-box, and linked-note sources, even though the latter two cannot use temporary property filters. Hiding a property used for grouping resets the affected global or card-box arrangement to **None**.
+Property grouping works in folder, card-box, and linked-note sources, including linked-note sources where property filters are paused. Hiding a property used for grouping resets the affected global or card-box arrangement to **None**.
 
 Right-click a property name to sort its values by **Name (A to Z)**, **Name (Z to A)**, or **Manual sorting**. **Unassigned** stays last. The Properties header sorts the property names themselves. See [Arrange folders, tags, and properties](./navigation.md#arrange-folders-tags-and-properties).
 
@@ -45,14 +45,12 @@ Property facets are calculated from the unfiltered source, so choosing one value
 
 ## Availability by source
 
-Property filters are available only in folder sources.
+Property filters work in folder and [card-box](./card-boxes.md) sources. In a box they only narrow what you see; the box’s rules, members, and member count stay the same. The conditions stay in place when you switch between folders and boxes.
 
-They are unavailable in card boxes and [linked-note sources](./linked-notes.md).
+In [linked-note sources](./linked-notes.md), property clauses stay dormant, show a paused-filter hint, and resume when you return to a folder or box.
 
-Existing folder property clauses stay dormant there, show a paused-filter hint when applicable, and resume when you return to a folder.
+A card box’s membership rules can also include property clauses; those rules decide its members rather than acting as a temporary browse filter. When you save or add a folder view to a box, its active property clauses become part of the new rule together with the folder and tags.
 
-A card box’s membership rules can still include property clauses; those rules determine its members rather than acting as a temporary browse filter.
-
-When you save or add a folder view to a [card box](./card-boxes.md), its active property clauses become part of the new rule together with the folder and tags.
+Creating a note with **New** writes the active text, number, or boolean property filters into the new note’s frontmatter. If several values of one property are selected, the first value in navigation order is used.
 
 Right-click the Properties header to clear all property filters. Hiding a property also removes its expansion state and active browse clauses, and clears grouping by that key. Property conditions in card-box membership rules remain intact.

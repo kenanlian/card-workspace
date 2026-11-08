@@ -25,7 +25,7 @@ const settings = (lang) => ({
     cardImageFit: "cover",
     searchPreviewSnippetCount: 2,
     showNavItemCounts: true,
-    navSectionOrder: ["favorites", "folders", "tags", "properties", "boxes", "links"],
+    navSectionOrder: ["favorites", "folders", "tags", "properties", "boxes", "templates", "links"],
     visiblePropertyKeys: [lang === "zh" ? "状态" : "status"],
   },
   workspace: {
@@ -38,7 +38,7 @@ const settings = (lang) => ({
     filterProperties: [],
     navPaneWidth: 200,
     navPaneCollapsed: false,
-    sectionCollapsed: { favorites: true, folders: false, tags: false, properties: false, boxes: true, links: true },
+    sectionCollapsed: { favorites: true, folders: false, tags: false, properties: false, boxes: true, templates: true, links: true },
   },
   userData: { boxes: [], favorites: [], pinnedPaths: [] },
 });

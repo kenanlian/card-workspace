@@ -9,8 +9,10 @@ vault, and draws a cursor and short callouts on top with GSAP. Output goes to
 | Clip | Shows |
 | --- | --- |
 | `hero` | Tag narrows the stream, a card opens its note, a link moves the selection |
+| `capture` | Quick input opened from navigation, a titled and tagged note sent to the stream |
 | `gather` | Folder, tag, property value, then a folder dragged to the top |
-| `images` | Right thumbnails switched to images below the title in settings |
+| `images` | Right thumbnails switched to images below the title on the Cards and previews settings page |
+| `looks` | Card style switched to Accent bar, a card colored, a folder given an icon |
 | `links` | Backlinks by reference count, pinned source, jump to a citing passage |
 | `search` | Query, highlighted excerpts and hit counts, jump to a hit |
 | `drag` | A card dropped at the editor cursor and inserted as a wiki link |
@@ -29,7 +31,8 @@ These inputs are git-ignored and have to exist locally:
   copy `theme-zh/` from the `card-workspace-promo` project.
 - `plugin-snapshots/<version>/`: run `npm run snapshot:plugin`, which exports
   the release named in `scripts/plugin-css.mjs` from the plugin checkout at
-  `../../obsidian-card-workspace` (override with `PLUGIN_REPO`).
+  `../../obsidian-card-workspace` (override with `PLUGIN_REPO`). Set
+  `PLUGIN_REF=<commit>` to export a commit before its release tag exists.
 
 Then:
 
@@ -46,6 +49,9 @@ type, scroll, and drag through the panel's own handlers) plus a GSAP timeline
 for the cursor and callouts. Shared pieces live in `src/stage/` (window shell,
 demo hosts, editor and reading views) and `src/clip/` (frame, beats, helpers).
 `src/shims/obsidian.ts` stands in for the `obsidian` module at runtime.
+Quick input wraps Obsidian's native editor in an Electron window, so `capture`
+draws that window from stage markup (`src/stage/quick-input-window.ts`) instead
+of mounting the plugin's component.
 
 With the dev server running:
 
